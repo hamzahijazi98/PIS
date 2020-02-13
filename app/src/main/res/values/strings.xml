@@ -10,4 +10,12 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="first_name">"first name"</string>
+    <string name="last_name">"last name"</string>
+    <string name="city">"city"</string>
+    <string name="phone">"Phone number"</string>
+    <string name="password">"password"</string>
+    <string name="repassword">"Re-enter password"</string>
+    <string name="RB_male">"Male"</string>
+    <string name="RB_female">"Female"</string>
 </resources>

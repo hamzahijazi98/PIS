@@ -10,105 +10,121 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".SignUp">
+
+    <EditText
+        android:id="@+id/et_lastname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/roundedbutton"
+        android:hint="@string/last_name"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="99dp" />
+
+    <EditText
+        android:id="@+id/et_firstname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/roundedbutton"
+        android:hint="@string/first_name"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="33dp" />
+
+    <EditText
+        android:id="@+id/firstname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/roundedbutton"
+        android:hint="@string/phone"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="571dp" />
+
     <EditText
         android:id="@+id/Email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="24dp"
         android:background="@drawable/roundedbutton"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
-        android:textAlignment="center"
         android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="157dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
         android:background="@drawable/roundedbutton"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
-        android:textAlignment="center"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email" />
-    <EditText
-        android:id="@+id/username1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/roundedbutton"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
         android:textAlignment="center"
-        android:selectAllOnFocus="true"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-         />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="242dp" />
 
     <EditText
         android:id="@+id/password1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
         android:background="@drawable/roundedbutton"
-        android:hint="@string/prompt_password"
+        android:hint="@string/repassword"
         android:imeActionLabel="@string/action_sign_in_short"
-        android:textAlignment="center"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username1" />
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="308dp" />
 
     <Button
         android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/roundedbutton"
         android:layout_gravity="start"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="32dp"
+        android:background="@drawable/roundedbutton"
         android:text="@string/action_sign_up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password1"
-        app:layout_constraintVertical_bias="0.2" />
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="647dp" />
 
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="226dp" />
+
+    <RadioGroup
+        android:id="@+id/RG_gender"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="384dp">
+
+        <RadioButton
+            android:id="@+id/RB_male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/RB_male"
+            android:text="@string/RB_male" />
+
+        <RadioButton
+            android:id="@+id/RB_female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/RB_female" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
