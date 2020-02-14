@@ -18,4 +18,5 @@
     <string name="repassword">"Re-enter password"</string>
     <string name="RB_male">"Male"</string>
     <string name="RB_female">"Female"</string>
+    <string name="btn_recovery">"send recovery E-mail"</string>
 </resources>

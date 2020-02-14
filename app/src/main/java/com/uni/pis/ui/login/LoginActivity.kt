@@ -1,6 +1,8 @@
 package com.uni.pis.ui.login
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,24 +13,26 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.uni.pis.MainActivity
 
 import com.uni.pis.R
 import com.uni.pis.SignUp
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.view.*
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
+
+
 
 
         val username = findViewById<EditText>(R.id.username)
@@ -36,7 +40,15 @@ class LoginActivity : AppCompatActivity() {
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
         val signup = findViewById<Button>(R.id.signup)
+        val tv_recovery=findViewById<TextView>(R.id.tv_forgetPassword)
+        val  cb_rememberme=findViewById<CheckBox>(R.id.cb_rememberme)
 
+
+        var sp= getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
+        username.setText(sp.getString("name",null))
+
+        password.setText(sp.getString("password", null))
 
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
@@ -88,27 +100,52 @@ class LoginActivity : AppCompatActivity() {
                 )
             }
 
+
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
                             username.text.toString(),
-                            password.text.toString()
+                            password.text.toString(),
+                            cb_rememberme?.isChecked!!,
+                            sp
                         )
                 }
                 false
             }
+            if (!username.text.isNullOrBlank()||!password.text.isNullOrBlank())
+            {
+                loading.visibility = View.VISIBLE
+
+                loginViewModel.login(username.text.toString(), password.text.toString(),false,sp)
+
+                loading.visibility = View.INVISIBLE
+
+            }
 
             login.setOnClickListener {
-
+                var save =cb_rememberme.isChecked
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+
+                loginViewModel.login(username.text.toString(), password.text.toString(),save,sp)
+
+                loading.visibility = View.INVISIBLE
             }
             signup.setOnClickListener {
 
                 loading.visibility = View.VISIBLE
                 intent = Intent(this@LoginActivity, SignUp::class.java)
                 startActivity(intent)
+                loading.visibility = View.INVISIBLE
+            }
+            tv_recovery.setOnClickListener {
+                loading.visibility = View.VISIBLE
+                intent = Intent(this@LoginActivity, ForgetPassword::class.java)
+                if (username.text.toString()!="")
+                    intent.putExtra("email",username.text.toString())
+                startActivity(intent)
+                loading.visibility = View.INVISIBLE
+
             }
         }
     }

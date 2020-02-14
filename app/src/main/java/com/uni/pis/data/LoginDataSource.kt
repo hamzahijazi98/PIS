@@ -17,10 +17,6 @@ class LoginDataSource {
     fun login(username: String, password: String): Result<LoggedInUser> {
         try {
 
-
-
-
-
             val User = LoggedInUser(username,password)
             return  Result.Success(User)
 
