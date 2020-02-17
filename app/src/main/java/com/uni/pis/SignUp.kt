@@ -15,48 +15,49 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 class SignUp : AppCompatActivity() {
-    var mFirebaseAuth = FirebaseAuth.getInstance()
+    //var mFirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        val username = findViewById<EditText>(R.id.Email)
+        /*val username = findViewById<EditText>(R.id.Email)
         val password = findViewById<EditText>(R.id.password)
         val signup = findViewById<Button>(R.id.signup)
-        val loading = findViewById<ProgressBar>(R.id.loading)
+        val loading = findViewById<ProgressBar>(R.id.loading)*/
 
         //yousef
+        val password = findViewById<EditText>(R.id.password)
         val confpass=findViewById<EditText>(R.id.password1)
         val fname=findViewById<EditText>(R.id.et_firstname)
         val lname=findViewById<EditText>(R.id.et_lastname)
 
-        if(TextUtils.isEmpty(et_firstname.text.toString()))
-            fname.error="No empty field is allowed ... "
-        if(TextUtils.isEmpty(et_lastname.text.toString()))
-            lname.error="No empty field is allowed ... "
 
-        val email=findViewById<EditText>(R.id.Email)
-        if(TextUtils.isEmpty(Email.text.toString().trim())||!android.util.Patterns.EMAIL_ADDRESS.matcher(email.toString()).matches())
-            Email.error="Empty or Invalid email address"
-
-        if(password.length()<5)
-            password.error="Your password is too short "
-        if(password!=confpass)
-            password.error="Password Mismatch "
 
 
 
 
 
         signup.setOnClickListener {
-            var username1=username.text.toString().trim()
+           // var username1=username.text.toString().trim()
             var password1=password.text.toString().trim()
 
+            if(TextUtils.isEmpty(et_firstname.text.toString()))
+                fname.error="No empty field is allowed ... "
+            if(TextUtils.isEmpty(et_lastname.text.toString()))
+                lname.error="No empty field is allowed ... "
+
+            val email=findViewById<EditText>(R.id.Email)
+            if(TextUtils.isEmpty(Email.text.toString().trim())||!android.util.Patterns.EMAIL_ADDRESS.matcher(email.toString()).matches())
+                Email.error="Empty or Invalid email address"
+
+            if(password.length()<5)
+                password.error="Your password is too short "
+            if(!password.equals(confpass))
+                password.error="Password Mismatch "
 
 
 
-
-            mFirebaseAuth.createUserWithEmailAndPassword(
+         /*   mFirebaseAuth.createUserWithEmailAndPassword(
                 username1,password1
             ).addOnCompleteListener {
                 if (!it.isSuccessful) {
@@ -77,7 +78,7 @@ class SignUp : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
-            }
+            }*/
         }
     }
 }
