@@ -106,7 +106,7 @@ class SignUp : AppCompatActivity() {
 
 
             //gender check
-            //gender check
+            //gender check  
             if(RB_male.isChecked)
                 gender="male"
             else
