@@ -11,10 +11,13 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.text.TextUtils
+import android.view.View
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 class SignUp : AppCompatActivity() {
+    private val phone_domain= arrayOf("078","077","079")
+
     //var mFirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +30,15 @@ class SignUp : AppCompatActivity() {
 
         //yousef
         val password = findViewById<EditText>(R.id.password)
-        val confpass=findViewById<EditText>(R.id.password1)
+        val comfim_password=findViewById<EditText>(R.id.password1)
         val fname=findViewById<EditText>(R.id.et_firstname)
         val lname=findViewById<EditText>(R.id.et_lastname)
+        var phoneno:String
+        var gender:String
 
+
+        val myAdapterView=ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,phone_domain)
+        spinner_phone.adapter=myAdapterView
 
 
 
@@ -39,21 +47,81 @@ class SignUp : AppCompatActivity() {
 
         signup.setOnClickListener {
            // var username1=username.text.toString().trim()
-            var password1=password.text.toString().trim()
+           //var password1=password.text.toString().trim()
 
-            if(TextUtils.isEmpty(et_firstname.text.toString()))
-                fname.error="No empty field is allowed ... "
-            if(TextUtils.isEmpty(et_lastname.text.toString()))
-                lname.error="No empty field is allowed ... "
+             //yousefffffffff
+             //first name valid
+             if (TextUtils.isEmpty(et_firstname.getText().toString()))
+                 et_firstname.error = "Empty field not allowed ... "
+             if(et_firstname.text.toString().length>12)
+                 et_firstname.error="Name too long ..."
 
-            val email=findViewById<EditText>(R.id.Email)
-            if(TextUtils.isEmpty(Email.text.toString().trim())||!android.util.Patterns.EMAIL_ADDRESS.matcher(email.toString()).matches())
-                Email.error="Empty or Invalid email address"
+             //last name valid
+             if (TextUtils.isEmpty(et_lastname.getText().toString()))
+                 et_lastname.error = "Empty field not allowed ... "
+             if(et_lastname.text.toString().length>12)
+                 et_lastname.error="Name too long ..."
 
-            if(password.length()<5)
-                password.error="Your password is too short "
-            if(!password.equals(confpass))
-                password.error="Password Mismatch "
+
+             //email valid
+             if(TextUtils.isEmpty(Email.text)||!android.util.Patterns.EMAIL_ADDRESS.matcher(Email.getText()).matches())
+                 Email.error="Empty or Invalid Email Address ..."
+
+
+             //password valid
+             if(TextUtils.isEmpty(password.text))
+                 password.error="Empty field not allowed ..."
+
+             if(TextUtils.isEmpty(password1.text))
+                 password1.error="Empty field not allowed ..."
+
+
+             if(!password.text.toString().equals(comfim_password.text.toString())) {
+                 Toast.makeText(this, "Password do not match ", Toast.LENGTH_LONG).show()
+             }
+             else{
+                 Toast.makeText(this,"Password Match",Toast.LENGTH_LONG).show()
+             }
+
+            //phone number valid
+             if(TextUtils.isEmpty(phonenumber.text))
+                 phonenumber.error="Empty field not allowed ... "
+
+             if(phonenumber.length()!=7)
+                 phonenumber.error="Invalid phone number ..."
+
+
+
+             spinner_phone.onItemSelectedListener=object :AdapterView.OnItemSelectedListener
+             {
+                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                     phoneno=phone_domain[position]+phonenumber.text.toString()
+                 }
+
+                 override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                 }
+             }
+
+
+
+            //gender check
+            //gender check
+            if(RB_male.isChecked)
+                gender="male"
+            else
+                gender="female"
+
+
+
+
+
+
+
+
+
+
+
 
 
 
