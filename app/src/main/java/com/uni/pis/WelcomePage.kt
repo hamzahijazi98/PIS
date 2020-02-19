@@ -2,7 +2,6 @@ package com.uni.pis
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -22,7 +21,7 @@ class WelcomePage : AppCompatActivity()    {
 
 
         val username = findViewById<EditText>(R.id.username)
-        val password = findViewById<EditText>(R.id.password)
+        val password = findViewById<EditText>(R.id.et_password)
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
         login.isEnabled = true

@@ -12,7 +12,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="first_name">"First Name"</string>
     <string name="last_name">"Last Name"</string>
-    <string name="city">"city"</string>
     <string name="phone">"Phone number"</string>
     <string name="password">"password"</string>
     <string name="repassword">"Re-enter password"</string>
@@ -20,4 +19,9 @@
     <string name="RB_female">"Female"</string>
     <string name="btn_recovery">"send recovery E-mail"</string>
     <string name="tv_gender">"Gender"</string>
+    <string name="btn_birthdate">"Select BirthDate"</string>
+    <string name="textview">TextView</string>
+    <string name="gender">Gender</string>
+    <string name="tv_date">tv_date</string>
+    <string name="city">City</string>
 </resources>

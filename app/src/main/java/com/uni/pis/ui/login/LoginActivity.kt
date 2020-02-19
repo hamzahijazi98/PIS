@@ -14,13 +14,10 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-import com.google.firebase.auth.FirebaseAuth
 import com.uni.pis.MainActivity
 
 import com.uni.pis.R
 import com.uni.pis.SignUp
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.view.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -36,10 +33,10 @@ class LoginActivity : AppCompatActivity() {
 
 
         val username = findViewById<EditText>(R.id.username)
-        val password = findViewById<EditText>(R.id.password)
+        val password = findViewById<EditText>(R.id.et_password)
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
-        val signup = findViewById<Button>(R.id.signup)
+        val signup = findViewById<Button>(R.id.btn_signup)
         val tv_recovery=findViewById<TextView>(R.id.tv_forgetPassword)
         val  cb_rememberme=findViewById<CheckBox>(R.id.cb_rememberme)
 
