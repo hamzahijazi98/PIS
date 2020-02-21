@@ -13,74 +13,67 @@
 
     <EditText
         android:id="@+id/et_lastname"
-        android:layout_width="0dp"
+        android:layout_width="315dp"
         android:layout_height="55dp"
-        android:layout_marginTop="103dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/roundedbutton"
         android:hint="@string/last_name"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/et_email"
-        app:layout_constraintStart_toStartOf="@+id/et_email"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_firstname" />
 
     <EditText
         android:id="@+id/et_firstname"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="315dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:autofillHints=""
         android:background="@drawable/roundedbutton"
         android:hint="@string/first_name"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/et_lastname"
-        app:layout_constraintEnd_toEndOf="@+id/et_lastname"
-        app:layout_constraintStart_toStartOf="@+id/et_lastname"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_phonenumber"
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/roundedbutton"
         android:hint="@string/phone"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner_phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinner_phone"
-        app:layout_constraintTop_toTopOf="@+id/loading" />
+        app:layout_constraintTop_toBottomOf="@+id/et_repassword" />
 
     <EditText
         android:id="@+id/et_email"
-        android:layout_width="0dp"
+        android:layout_width="315dp"
         android:layout_height="55dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginBottom="71dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/roundedbutton"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/et_password"
-        app:layout_constraintEnd_toEndOf="@+id/et_password"
-        app:layout_constraintStart_toStartOf="@+id/et_password"
-        app:layout_constraintTop_toTopOf="@+id/et_lastname" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_lastname" />
 
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="0dp"
+        android:layout_width="315dp"
         android:layout_height="55dp"
-        android:layout_marginTop="142dp"
-        android:layout_marginBottom="142dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/roundedbutton"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -88,19 +81,15 @@
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/et_phonenumber"
-        app:layout_constraintEnd_toEndOf="@+id/et_repassword"
-        app:layout_constraintStart_toStartOf="@+id/et_repassword"
-        app:layout_constraintTop_toTopOf="@+id/et_lastname" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <EditText
         android:id="@+id/et_repassword"
-        android:layout_width="0dp"
+        android:layout_width="315dp"
         android:layout_height="55dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="71dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/roundedbutton"
         android:hint="@string/repassword"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -108,59 +97,48 @@
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/et_phonenumber"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_password" />
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="88dp"
+        android:layout_height="38dp"
         android:layout_gravity="start"
-        android:layout_marginStart="132dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/roundedbutton"
+        android:enabled="false"
         android:text="@string/action_sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btn_birthdate"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
         android:layout_gravity="start"
-        android:layout_marginStart="17dp"
-        android:layout_marginEnd="19dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundedbutton"
+        android:enabled="false"
         android:text="@string/btn_birthdate"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_date"
-        app:layout_constraintEnd_toStartOf="@+id/tv_date"
+        android:textSize="14sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_city"
         tools:text="birthdate" />
-
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="350dp"
-        android:layout_marginBottom="349dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_firstname" />
 
     <RadioGroup
         android:id="@+id/RG_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_gender"
-        app:layout_constraintTop_toTopOf="@+id/tv_gender">
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_phonenumber">
 
         <RadioButton
             android:id="@+id/RB_male"
@@ -181,64 +159,58 @@
         android:id="@+id/tv_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginBottom="246dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
         android:text="@string/gender"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_city"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_phone" />
 
     <Spinner
         android:id="@+id/spinner_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_gender"
-        app:layout_constraintEnd_toStartOf="@+id/et_phonenumber"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="48dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_repassword" />
 
     <TextView
         android:id="@+id/tv_date"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="122dp"
-        android:layout_marginEnd="87dp"
-        android:layout_marginBottom="122dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="175dp"
         android:hint="@string/tv_date"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_birthdate"
-        app:layout_constraintTop_toBottomOf="@+id/et_phonenumber" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_city" />
 
     <TextView
         android:id="@+id/tv_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="300dp"
         android:text="@string/city"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner_city"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_city" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
 
     <Spinner
         android:id="@+id/spinner_city"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="39dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="232dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_gender"
-        app:layout_constraintTop_toBottomOf="@+id/et_phonenumber"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_city"
+        app:layout_constraintTop_toBottomOf="@+id/RG_gender" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
