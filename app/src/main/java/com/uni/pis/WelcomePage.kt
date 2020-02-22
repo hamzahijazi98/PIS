@@ -45,7 +45,7 @@ var username1=username.text.toString().trim()
                         Toast.LENGTH_LONG
                     ).show()
 
-                    intent = Intent(this, MainActivity::class.java)
+                    intent = Intent(this, profilePage::class.java)
                     startActivity(intent)
                     finish()
                 }

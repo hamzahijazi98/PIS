@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".profilePage">
 
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="27dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="136dp"
         android:text="Maybe"
         android:textSize="24sp"
@@ -62,7 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="27dp"
         android:layout_marginStart="1dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="13dp"
         android:text="Confirmed"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
@@ -135,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="4dp"
         android:text="Amman"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -196,7 +196,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginEnd="17dp"
         android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
