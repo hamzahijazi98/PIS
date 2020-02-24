@@ -1,5 +1,9 @@
 package com.uni.pis
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -11,9 +15,12 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
 
 class SignUp : AppCompatActivity() {
-    private val phone_domain = arrayOf("078 / 079 / 077","078", "077", "079")
-    private val cities = arrayOf("Choose your city","Amman", "Az Zarqa", "Irbid", "Al Karak",
-        "Jerash", "Ajloun", "Ma'an", "Tafilah", "Madaba", "Aqaba", "Balqa", "Mafraq")
+    private val phone_domain = arrayOf("078 / 079 / 077", "078", "077", "079")
+    private val cities = arrayOf(
+        "Choose your city", "Amman", "Az Zarqa", "Irbid", "Al Karak",
+        "Jerash", "Ajloun", "Ma'an", "Tafilah", "Madaba", "Aqaba", "Balqa", "Mafraq"
+    )
+
     //var mFirebaseAuth = FirebaseAuth.getInstance()
 
 
@@ -35,9 +42,6 @@ class SignUp : AppCompatActivity() {
         val signup = findViewById<Button>(R.id.signup)
         val loading = findViewById<ProgressBar>(R.id.loading)*/
 
-
-
-
         et_firstname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -55,7 +59,6 @@ class SignUp : AppCompatActivity() {
             }
 
         })
-
         et_lastname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -79,7 +82,6 @@ class SignUp : AppCompatActivity() {
 
 
         })
-
         et_email.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (et_email.text.isEmpty())
@@ -100,7 +102,6 @@ class SignUp : AppCompatActivity() {
             }
 
         })
-
         et_password.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -119,7 +120,6 @@ class SignUp : AppCompatActivity() {
             }
 
         })
-
         et_repassword.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -143,7 +143,6 @@ class SignUp : AppCompatActivity() {
 //phone number code
         val phone_adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, phone_domain)
-
         spinner_phone.adapter = phone_adapter
         spinner_phone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -163,7 +162,6 @@ class SignUp : AppCompatActivity() {
 
             }
         }
-
         et_phonenumber.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable?) {
@@ -190,14 +188,12 @@ class SignUp : AppCompatActivity() {
             }
 
         })
-
         RG_gender.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.RB_male)
                 gender = "male"
             if (checkedId == R.id.RB_female)
                 gender = "female"
         }
-
 
 
 //Birthdate
@@ -217,8 +213,6 @@ class SignUp : AppCompatActivity() {
         }
 
 
-
-
 // city code
         var city = ""
         val city_adapter =
@@ -231,15 +225,19 @@ class SignUp : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                if (position==0){
-                    btn_signup.isEnabled=false
-                }
-                else {
+                if (position == 0) {
+                    btn_signup.isEnabled = false
+                } else {
                     city = cities[position]
-                    if (et_firstname.text.isNotEmpty()&&et_lastname.text.isNotEmpty()&&et_password.text.isNotEmpty()&&et_repassword.text.isNotEmpty()&&et_phonenumber.text.isNotEmpty())
-                        btn_signup.isEnabled=true
-                    else
-                        btn_signup.isEnabled=false
+                    if (et_firstname.text.isNotEmpty() && et_lastname.text.isNotEmpty() && et_password.text.isNotEmpty() && et_repassword.text.isNotEmpty() && et_phonenumber.text.isNotEmpty())
+                    {
+                        btn_signup.isEnabled = true
+                        btn_pickImage.isEnabled=true
+
+                    }
+                    else {
+                        btn_signup.isEnabled = false
+                    }
                 }
             }
 
@@ -248,6 +246,22 @@ class SignUp : AppCompatActivity() {
         }
 
 
+
+        btn_pickImage.setOnClickListener{
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
+                    //permission denied
+                    val permissions= arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE )
+                    requestPermissions(permissions,PERMISSION_PICK_CODE)
+                }
+                else{
+                    pick_image_from_gallery()
+                }
+            else
+            {
+                pick_image_from_gallery()
+            }
+        }
 
         btn_signup.setOnClickListener {
 
@@ -288,23 +302,50 @@ class SignUp : AppCompatActivity() {
         }
 
     }
-    fun repassword_check():Boolean{
-        if(et_repassword.text.isEmpty())
-        {
-            et_repassword.error="empty"
+    private val IMAGE_PICK_CODE = 1000
+    private val PERMISSION_PICK_CODE = 1001
+
+    private fun pick_image_from_gallery() {
+
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+
+
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            PERMISSION_PICK_CODE -> {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    pick_image_from_gallery()
+            }
+            else -> {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show()
+            }
+        }
+
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE)
+            img_view.setImageURI(data?.data)
+
+    }
+
+
+    fun repassword_check(): Boolean {
+        if (et_repassword.text.isEmpty()) {
+            et_repassword.error = "empty"
             return false
         }
-        if(et_repassword.text.trim().length<5)
-        {
-            et_repassword.error="short"
+        if (et_repassword.text.trim().length < 5) {
+            et_repassword.error = "short"
             return false
-        }
-        else if(et_repassword.text.toString().equals(et_password.text.toString()))
-        {
-            password=et_password.text.toString()
+        } else if (et_repassword.text.toString().equals(et_password.text.toString())) {
+            password = et_password.text.toString()
         }
         return true
-
 
 
     }
@@ -322,5 +363,4 @@ class SignUp : AppCompatActivity() {
 
 
     }
-
 }

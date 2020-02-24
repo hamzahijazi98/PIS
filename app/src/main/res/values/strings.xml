@@ -24,4 +24,7 @@
     <string name="gender">Gender</string>
     <string name="tv_date">tv_date</string>
     <string name="city">City</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="todo">TODO</string>
+    <string name="_01_01_1996">01--01--1996</string>
 </resources>
