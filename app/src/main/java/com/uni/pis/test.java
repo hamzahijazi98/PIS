@@ -19,13 +19,19 @@ import java.net.URLEncoder;
 public class test extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
-    test (Context ctx) {
+    MyCallback myCallback;
+
+
+    test (Context ctx ) {
         context = ctx;
+        myCallback= (MyCallback) context;
+
     }
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String login_url = "https://www.files.000webhost.com/connection.php::21";
+
+        String login_url = "https://pisystemgp.000webhostapp.com/userdata.php";
         if(type.equals("login")) {
             try {
                 String personID = params[1];
@@ -69,12 +75,17 @@ public class test extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        alertDialog.setMessage(result);
-        alertDialog.show();
+//        alertDialog.setMessage(result);
+//        alertDialog.show();
+        myCallback.onResult(result);
+
     }
 
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
+    }
+    public interface MyCallback {
+          void  onResult(String result);
     }
 }

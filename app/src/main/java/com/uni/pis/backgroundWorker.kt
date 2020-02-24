@@ -21,7 +21,7 @@ class BackgroundWorker ( var context1: Context) : AsyncTask<String, Void, String
     lateinit var alertDialog: AlertDialog
     override fun doInBackground(vararg params: String): String? {
         val type = params[0]
-        val loginUrl = "http://https://files.000webhost.com//connection.php"
+        val loginUrl = "http://https://files.000webhost.com//userdata.php"
         if (type == "login") {
             try {
                 val personID = params[1]
