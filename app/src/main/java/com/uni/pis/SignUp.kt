@@ -1,5 +1,6 @@
 package com.uni.pis
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -7,6 +8,8 @@ import android.widget.*
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
+import com.uni.pis.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
 
@@ -14,7 +17,7 @@ class SignUp : AppCompatActivity() {
     private val phone_domain = arrayOf("078 / 079 / 077","078", "077", "079")
     private val cities = arrayOf("Choose your city","Amman", "Az Zarqa", "Irbid", "Al Karak",
         "Jerash", "Ajloun", "Ma'an", "Tafilah", "Madaba", "Aqaba", "Balqa", "Mafraq")
-    //var mFirebaseAuth = FirebaseAuth.getInstance()
+    var mFirebaseAuth = FirebaseAuth.getInstance()
 
 
     lateinit var first_name: String
@@ -29,11 +32,6 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        /*Hamzeh
-        val username = findViewById<EditText>(R.id.Email)
-        val password = findViewById<EditText>(R.id.password)
-        val signup = findViewById<Button>(R.id.signup)
-        val loading = findViewById<ProgressBar>(R.id.loading)*/
 
 
 
@@ -258,9 +256,29 @@ class SignUp : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
 
+            mFirebaseAuth.createUserWithEmailAndPassword(
+                email,password
+            ).addOnCompleteListener {
+                if (!it.isSuccessful) {
+                    Toast.makeText(
+                        this,
+                        "Failed to login Username or Password Invalid $email,$password",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
 
-            // var username1=username.text.toString().trim()
-            //var password1=password.text.toString().trim()
+                    Toast.makeText(
+                        this,
+                        "$email,$password",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
 
             /*   mFirebaseAuth.createUserWithEmailAndPassword(
                  username1,password1
