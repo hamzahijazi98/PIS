@@ -1,3 +1,29 @@
 package com.uni.pis.data
 
-data class userData(var fname:String, var lname:String,var Email:String,var phoneNumber:String ,var gender:String, var city:String)
+ class userData {
+
+    companion object  {
+        var first_name="test"
+        var last_name="test"
+        var email=""
+        var phoneNumber=""
+        var gender=""
+        var city="test"
+        var birthdate=""
+
+
+    }
+     constructor( first_name: String, last_name:String, email:String, phoneNumber:String , gender:String, city:String, birthdate:String)
+     {
+         userData.first_name=first_name
+         userData.last_name=last_name
+         userData.email=email
+         userData.phoneNumber=phoneNumber
+         userData.gender=gender
+         userData.city=city
+         userData.birthdate=birthdate
+
+
+
+     }
+}

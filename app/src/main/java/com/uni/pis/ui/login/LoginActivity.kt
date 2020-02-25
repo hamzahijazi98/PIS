@@ -155,6 +155,7 @@ class LoginActivity : AppCompatActivity() {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
         // TODO : initiate successful logged in experience
+
         intent = Intent(this, profilePage::class.java)
        startActivity(intent)
         Toast.makeText(
