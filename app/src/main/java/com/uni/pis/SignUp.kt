@@ -1,6 +1,9 @@
 package com.uni.pis
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -245,7 +248,21 @@ class SignUp : AppCompatActivity() {
             }
         }
 
-
+        btn_uploadimage.setOnClickListener{
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
+                    //permission denied
+                    val permissions= arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE )
+                    requestPermissions(permissions,PERMISSION_PICK_CODE)
+                }
+                else{
+                    pick_image_from_gallery()
+                }
+            else
+            {
+                pick_image_from_gallery()
+            }
+        }
 
         btn_signup.setOnClickListener {
 
@@ -304,6 +321,44 @@ class SignUp : AppCompatActivity() {
             }*/
 
         }
+
+    }
+
+
+
+
+
+    private val IMAGE_PICK_CODE=1000
+    private val PERMISSION_PICK_CODE=1001
+    private fun pick_image_from_gallery(){
+        val intent=Intent(Intent.ACTION_PICK)
+        intent.type="image/*"
+        startActivityForResult(intent,IMAGE_PICK_CODE)
+
+
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode)
+        {
+            PERMISSION_PICK_CODE->{
+                if(grantResults.size>0&&grantResults[0]== PackageManager.PERMISSION_GRANTED)
+                    pick_image_from_gallery()
+            }
+            else->{
+                Toast.makeText(this,"Permission Denied",Toast.LENGTH_LONG).show()
+            }
+        }
+
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode== Activity.RESULT_OK &&  requestCode == IMAGE_PICK_CODE )
+            profile_img.setImageURI(data?.data)
 
     }
     fun repassword_check():Boolean{
