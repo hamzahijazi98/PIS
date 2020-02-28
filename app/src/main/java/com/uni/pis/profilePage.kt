@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.uni.pis.data.userData
 
 import kotlinx.android.synthetic.main.activity_profile_page.*
@@ -30,16 +31,18 @@ class profilePage : AppCompatActivity(), BackgroundWorker.MyCallback {
         tv_gender1.text=userData.gender
         tv_phone.text=userData.phoneNumber
         tv_birthday.text= userData.birthdate
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_page)
         try {
-
+            var mFirebaseAuth = FirebaseAuth.getInstance()
 
             var data = BackgroundWorker(this)
-            data.execute("login", "123456")
+            data.execute("login", mFirebaseAuth.currentUser?.uid!!)
+
 
 
         }
@@ -47,9 +50,7 @@ class profilePage : AppCompatActivity(), BackgroundWorker.MyCallback {
         {
             Toast.makeText(this,e.message,Toast.LENGTH_LONG).show()
         }
-        finally {
-            Toast.makeText(this,"Something want wrong ",Toast.LENGTH_LONG).show()
-        }
+
 
     }
 
