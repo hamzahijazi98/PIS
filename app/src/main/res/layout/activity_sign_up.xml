@@ -1,96 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".SignUp">
+    android:background="@drawable/whitephonebackground"
+    tools:context=".SignUp"
 
-    <EditText
-        android:id="@+id/et_lastname"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="82dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="82dp"
-        android:autofillHints=""
-        android:background="@drawable/roundedbutton"
-        android:hint="@string/last_name"
-        android:inputType="text"
-        android:selectAllOnFocus="true"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/et_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    >
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="30dp"
+    >
 
     <EditText
         android:id="@+id/et_firstname"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:autofillHints=""
         android:background="@drawable/roundedbutton"
         android:hint="@string/first_name"
         android:inputType="text"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/et_lastname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
 
     <EditText
-        android:id="@+id/et_phonenumber"
-        android:layout_width="274dp"
+        android:id="@+id/et_lastname"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="16dp"
         android:autofillHints=""
         android:background="@drawable/roundedbutton"
-        android:hint="@string/phone"
-        android:inputType="numberSigned"
+        android:hint="@string/last_name"
+        android:inputType="text"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        android:layout_marginBottom="20dp" />
+
+
+
+
 
     <EditText
         android:id="@+id/et_email"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="66dp"
         android:autofillHints=""
         android:background="@drawable/roundedbutton"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/et_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_lastname" />
+        android:layout_marginBottom="20dp" />
 
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="214dp"
-        android:layout_marginEnd="16dp"
         android:autofillHints=""
         android:background="@drawable/roundedbutton"
         android:hint="@string/prompt_password"
@@ -99,18 +73,12 @@
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="10dp" />
 
     <EditText
         android:id="@+id/et_repassword"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="66dp"
         android:autofillHints=""
         android:background="@drawable/roundedbutton"
         android:hint="@string/repassword"
@@ -119,166 +87,175 @@
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/et_phonenumber"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.593"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_password"
-        app:layout_constraintVertical_bias="0.031" />
-
-    <Button
-        android:id="@+id/btn_signup"
-        android:layout_width="81dp"
-        android:layout_height="0dp"
-        android:layout_gravity="start"
-        android:layout_marginEnd="168dp"
-        android:layout_marginBottom="16dp"
+        />
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="200dp"
+        android:layout_height="90dp"
         android:background="@drawable/roundedbutton"
-        android:text="@string/action_sign_up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        android:layout_gravity="center"
+        android:translationZ="10dp"
+        android:visibility="gone"
+       />
 
-    <Button
-        android:id="@+id/btn_uploadimage"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_gravity="start"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="20dp">
+    <TextView
+        android:id="@+id/tv_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/roundedbutton"
-        android:text="@string/uplaod_image"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_birthdate" />
-
-    <Button
-        android:id="@+id/btn_birthdate"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_gravity="start"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="64dp"
-        android:background="@drawable/roundedbutton"
-        android:text="@string/btn_birthdate"
-        android:textSize="12sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toStartOf="@+id/tv_date"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_city"
-        tools:text="birthdate" />
-
+        android:fontFamily="sans-serif"
+        android:text="@string/gender"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp" />
     <RadioGroup
         android:id="@+id/RG_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_gender"
-        app:layout_constraintTop_toBottomOf="@+id/et_phonenumber">
+        android:layout_marginLeft="20dp"
+        >
+
 
         <RadioButton
+
             android:id="@+id/RB_male"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
+            android:padding="10dp"
             android:background="@drawable/roundedbutton"
-            android:hint="@string/RB_male"
             android:text="@string/RB_male" />
 
         <RadioButton
             android:id="@+id/RB_female"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:background="@drawable/roundedbutton"
             android:text="@string/RB_female" />
 
     </RadioGroup>
-
-    <TextView
-        android:id="@+id/tv_gender"
-        android:layout_width="wrap_content"
+</androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/roundedbutton"
-        android:fontFamily="sans-serif"
-        android:text="@string/gender"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_phone" />
+        android:layout_marginVertical="20dp">
+    <Button
+        android:id="@+id/btn_birthdate"
 
-    <Spinner
-        android:id="@+id/spinner_phone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:layout_gravity="start"
         android:background="@drawable/roundedbutton"
-        app:layout_constraintEnd_toStartOf="@+id/et_phonenumber"
-        app:layout_constraintHorizontal_bias="0.413"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
-
+        android:text="@string/btn_birthdate"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="564dp"
+        tools:text="birthdate" />
     <TextView
         android:id="@+id/tv_date"
-        android:layout_width="211dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
         android:background="@drawable/roundedbutton"
         android:hint="DD/MM/YYYY"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_city" />
+        android:padding="10dp"
+        android:gravity="center"
+         />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp">
+    <Spinner
+        android:id="@+id/spinner_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/roundedbutton"
+        android:padding="10dp"
+        android:layout_marginRight="20dp"
+         />
+    <EditText
+        android:id="@+id/et_phonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:autofillHints=""
+        android:background="@drawable/roundedbutton"
+        android:hint="@string/phone"
+        android:inputType="numberSigned"
+        android:selectAllOnFocus="true"
+        android:textAlignment="center"
+       />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp">
 
     <TextView
         android:id="@+id/tv_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:background="@drawable/roundedbutton"
         android:text="@string/city"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
+        android:padding="10dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+       />
+        <Spinner
+            android:id="@+id/spinner_city"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundedbutton"
+            android:padding="10dp"
+            android:gravity="center"
 
-    <Spinner
-        android:id="@+id/spinner_city"
-        android:layout_width="208dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp">
+    <Button
+        android:id="@+id/btn_uploadimage"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="start"
         android:background="@drawable/roundedbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_city"
-        app:layout_constraintTop_toBottomOf="@+id/RG_gender" />
+        android:text="@string/uplaod_image"
+        android:textSize="12sp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+         />
 
     <ImageView
         android:id="@+id/profile_img"
-        android:layout_width="56dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/todo"
-        app:layout_constraintStart_toEndOf="@+id/btn_uploadimage"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date"
         tools:srcCompat="@tools:sample/avatars" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="200dp"
-        android:layout_height="90dp"
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/roundedbutton"
-        android:translationZ="10dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/RG_gender"
-        app:layout_constraintEnd_toEndOf="@+id/RG_gender"
-        app:layout_constraintStart_toEndOf="@+id/RG_gender"
-        app:layout_constraintTop_toBottomOf="@+id/et_phonenumber" />
+        android:text="@string/action_sign_up"
+         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

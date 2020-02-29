@@ -17,8 +17,9 @@ class BackgroundWorker  constructor(var context: Context) :
     init {
         myCallback = context as MyCallback
     }
+    var type =""
     override fun doInBackground(vararg p0: String?): String? {
-        val type = p0[0]
+        type = p0[0].toString()
         val login_url = "http://www.psutsystems.com/userdata.php"
         if (type == "login") {
 
@@ -125,7 +126,7 @@ class BackgroundWorker  constructor(var context: Context) :
     }
 
     override fun onPostExecute(result: String?) {
-
+        if (type == "login") {
         var firstName = result!!.substringAfter("Fname").substringBefore("Lname")
         var lastName = result.substringAfter("Lname").substringBefore("phone")
         var phone = result.substringAfter("phone").substringBefore("gender")
@@ -136,7 +137,7 @@ class BackgroundWorker  constructor(var context: Context) :
         var birth_day = birthday.substring(0,4)
         var birth_month = birthday.substring(5,6)
         var birth_year = birthday.substring(7,12)
-         userData(firstName,lastName,email,phone,gender,city,"$birth_day-$birth_month-$birth_year")
+         userData(firstName,lastName,email,phone,gender,city,"$birth_day-$birth_month-$birth_year")}
         myCallback.onResult(result)
 
     }
