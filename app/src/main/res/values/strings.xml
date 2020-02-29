@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">PIS</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="app_name">Eventor</string>
+    <string name="title_activity_login">Eventor</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in </string>

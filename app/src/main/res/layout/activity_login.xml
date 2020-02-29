@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/download"
+    android:background="@drawable/whitephonebackground"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,18 +15,17 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="132dp"
+        android:layout_width="350dp"
+        android:layout_height="272dp"
 
 
         android:layout_marginStart="16dp"
-        android:layout_marginTop="67dp"
         android:layout_marginEnd="16dp"
         android:cropToPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/loginpic"></ImageView>
 
     <EditText
         android:id="@+id/username"
@@ -102,12 +101,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="178dp"
         android:layout_marginEnd="178dp"
+        android:background="@drawable/roundedbutton"
         android:translationZ="10dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintEnd_toEndOf="@+id/tv_forgetPassword"
         app:layout_constraintStart_toStartOf="@+id/cb_rememberme"
-        android:background="@drawable/roundedbutton"
         app:layout_constraintTop_toTopOf="@+id/username" />
 
     <TextView
