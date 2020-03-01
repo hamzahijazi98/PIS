@@ -45,9 +45,9 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     lateinit var city: String
     lateinit var date_of_birth:DatePickerDialog
     lateinit var userID:String
-    lateinit var Birthdate:String
+    lateinit var birth:String
     var index:Int =0
-   lateinit var mImageUri: Uri
+    lateinit var mImageUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,15 +59,15 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         val year = cal.get(Calendar.YEAR)
         val month = cal.get(Calendar.MONTH)
         val day = cal.get(Calendar.DAY_OF_MONTH)
-        btn_birthdate.setOnClickListener {
-            date_of_birth = DatePickerDialog(
-                this,
-                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                    tv_date.text = (" $dayOfMonth-$month-$year")
-                    Birthdate=" $dayOfMonth-$month-$year"
-                }, year, month, day
-            )
-            date_of_birth.show()
+        btn_birthdate.setOnClickListener{
+            val now=Calendar.getInstance()
+            var birth:String
+            val dob=DatePickerDialog(this,DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                birth=dayOfMonth.toString()+ "/"+ (month+1).toString() + "/" + year.toString()
+            },
+                now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH))
+            dob.show()
+
         }
 
 
@@ -85,10 +85,10 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             ) {
                 if (position == 0){
                     btn_signup.isEnabled=false
-                    }
+                }
                 else{
                     phonenumber = phone_domain[position] + et_phonenumber.text.toString()
-                     index=position
+                    index=position
                 }
 
             }
@@ -113,7 +113,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             ) {
                 if (position == 0 && index==0)
                     btn_signup.isEnabled = false
-                 else if(index!=0){
+                else if(index!=0){
                     city = cities[position]
                     btn_signup.isEnabled = true
                 }
@@ -144,7 +144,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             }
         }
         btn_signup.setOnClickListener {
-        var valid=Is_Vaild()
+            var valid=Is_Vaild()
 
             if(valid){
 
@@ -154,7 +154,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                         try {
                             userID=mFirebaseAuth.currentUser?.uid!!
                             var data = BackgroundWorker(this)
-                            data.execute("signup",first_name,last_name,gender,phonenumber,email,Birthdate,userID,city)
+                            data.execute("signup",first_name,last_name,gender,phonenumber,email,birth,userID,city)
                             uploadFile()
                         }
                         catch (e: NullPointerException)
@@ -239,11 +239,11 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         //last name
         if (et_lastname.text.isEmpty()){
             et_lastname.error = "Empty field not allowed ... "
-        valid=false
+            valid=false
         }
         if (et_lastname.text.toString().trim().length > 20){
             et_lastname.error = "Name too long"
-        valid=false
+            valid=false
         }
         else
             last_name = et_lastname.text.toString()
@@ -252,10 +252,10 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         //email
         if (et_email.text.isEmpty()){
             et_email.error = "Empty field not allowed ..."
-        valid=false}
+            valid=false}
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(et_email.text).matches()){
             et_email.error = "Invalid Email Address ..."
-        valid=false}
+            valid=false}
         else
             email = et_email.text.toString()
 
@@ -263,29 +263,29 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         //password
         if (et_password.text.isEmpty()){
             et_password.error = "Empty field not allowed ..."
-        valid=false}
+            valid=false}
         if (et_password.text.trim().length < 5){
             et_password.error = "Short Password"
-        valid=false}
+            valid=false}
 
         //repassword
         if (et_repassword.text.isEmpty()){
             et_repassword.error = "Empty field not allowed ..."
-        valid=false}
+            valid=false}
         if (et_repassword.text.trim().length < 5){
             et_repassword.error = "Short Password"
-        valid=false}
+            valid=false}
 
         if (!et_repassword.text.toString().equals(et_password.text.toString())){
             et_repassword.error = "MissMatch Password"
-        valid=false}
+            valid=false}
         else
             password = et_password.text.toString()
 
         //phone number
         if (et_phonenumber.text.isEmpty()){
             et_phonenumber.error = "Empty field not allowed ... "
-        valid=false}
+            valid=false}
         if (et_phonenumber.length() != 7) {
             et_phonenumber.error = "Invalid phone number ..."
             valid=false
@@ -293,7 +293,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         else
             phonenumber = phone_domain[index] + et_phonenumber.text.toString()
 
-return valid
+        return valid
     }
 
     override fun onResult(result: String?) {
@@ -318,7 +318,7 @@ return valid
                     Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
                         .show()
                     val upload = Upload(
-                       first_name+last_name,
+                        first_name+last_name,
                         taskSnapshot.toString()
                     )
                     val uploadId = mDatabaseRef.push().key
