@@ -23,6 +23,7 @@ class profilePage : AppCompatActivity(), BackgroundWorker.MyCallback {
     var phone: String? = ""
     var gender: String? = ""
     var city: String? = ""
+    var image: String? = ""
     override fun onResult(result: String?) {
 
         tv_fullName.text=userData.first_name+userData.last_name
@@ -31,6 +32,7 @@ class profilePage : AppCompatActivity(), BackgroundWorker.MyCallback {
         tv_gender1.text=userData.gender
         tv_phone.text=userData.phoneNumber
         tv_birthday.text= userData.birthdate
+
 
     }
 

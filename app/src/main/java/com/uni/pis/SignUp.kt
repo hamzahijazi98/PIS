@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.AdapterView
@@ -20,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
-import com.uni.pis.data.Upload
 import com.uni.pis.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
@@ -43,7 +41,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     lateinit var phonenumber: String
     lateinit var gender: String
     lateinit var city: String
-    lateinit var date_of_birth:DatePickerDialog
+    lateinit var imageStoragelink: String
     lateinit var userID:String
     lateinit var birth:String
     var index:Int =0
@@ -55,15 +53,13 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 //Birthdate
-        val cal = Calendar.getInstance()
-        val year = cal.get(Calendar.YEAR)
-        val month = cal.get(Calendar.MONTH)
-        val day = cal.get(Calendar.DAY_OF_MONTH)
+
         btn_birthdate.setOnClickListener{
             val now=Calendar.getInstance()
-            var birth:String
+
             val dob=DatePickerDialog(this,DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                birth=dayOfMonth.toString()+ "/"+ (month+1).toString() + "/" + year.toString()
+                birth=dayOfMonth.toString()+ "-"+ (month+1).toString() + "-" + year.toString()
+                tv_date.text=birth
             },
                 now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH))
             dob.show()
@@ -153,9 +149,8 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                     if (!it.isSuccessful) {
                         try {
                             userID=mFirebaseAuth.currentUser?.uid!!
-                            var data = BackgroundWorker(this)
-                            data.execute("signup",first_name,last_name,gender,phonenumber,email,birth,userID,city)
                             uploadFile()
+
                         }
                         catch (e: NullPointerException)
                         {
@@ -309,34 +304,27 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     }
 
     private fun uploadFile() {
-        if (mImageUri != null) {
+        if (mImageUri != null)
+        {
             var fileReference = mStorageRef.child(System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri))
-            mUploadTask = fileReference.putFile(mImageUri)
-                .addOnSuccessListener { taskSnapshot ->
-                    val handler = Handler()
-                    handler.postDelayed(Runnable { loading.setProgress(0) }, 500)
-                    Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
-                        .show()
-                    val upload = Upload(
-                        first_name+last_name,
-                        taskSnapshot.toString()
-                    )
-                    val uploadId = mDatabaseRef.push().key
-                    mDatabaseRef.child(uploadId.toString()).setValue(upload)
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(
-                        this,
-                        e.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                .addOnProgressListener { taskSnapshot ->
-                    val progress =
-                        100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount
-                    loading.setProgress(progress.toInt())
-                }
-        } else {
+             var uploadTask= fileReference.putFile(mImageUri)
+                 .addOnSuccessListener { taskSnapshot ->
+                 Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
+                     .show()
+                     taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+                         imageStoragelink=it.toString()
+                         var data = BackgroundWorker(this)
+                         data.execute("signup",first_name,last_name,gender,phonenumber,email,birth,userID,city,imageStoragelink)
+                     }
+
+
+                 }
+                 .addOnFailureListener { e ->
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                 }
+        }
+        else
+        {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
         }
     }

@@ -2,6 +2,7 @@ package com.uni.pis
 
 import android.app.AlertDialog
 import android.content.Context
+import android.media.Image
 import android.os.AsyncTask
 import android.widget.Toast
 import com.uni.pis.data.userData
@@ -71,6 +72,7 @@ class BackgroundWorker  constructor(var context: Context) :
                 val user_BirthDate = p0[6]
                 val user_ID = p0[7]
                 val user_city = p0[8]
+                val user_image = p0[9]
                 val url = URL(signup_url)
                 val httpURLConnection =
                     url.openConnection() as HttpURLConnection
@@ -95,6 +97,9 @@ class BackgroundWorker  constructor(var context: Context) :
                         +URLEncoder.encode("birthdate","UTF-8")+"="+URLEncoder.encode(user_BirthDate,"UTF-8")
                         +"&"
                         +URLEncoder.encode("city","UTF-8")+"="+URLEncoder.encode(user_city,"UTF-8")
+                        +"&"
+                        +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(user_image,"UTF-8")
+
                         )
                 bufferedWriter.write(post_data)
                 bufferedWriter.flush()
@@ -130,14 +135,15 @@ class BackgroundWorker  constructor(var context: Context) :
         var firstName = result!!.substringAfter("Fname").substringBefore("Lname")
         var lastName = result.substringAfter("Lname").substringBefore("phone")
         var phone = result.substringAfter("phone").substringBefore("gender")
-        var city = result.substringAfter("city").substringBefore("\"")
+        var city = result.substringAfter("city").substringBefore("image")
         var birthday = result.substringAfter("Birthday").substringBefore("city")
         var email = result.substringAfter("email").substringBefore("Birthday")
-        var gender = result.substringAfter("gender","hello").substringBefore("email","hello")
+        var gender = result.substringAfter("gender").substringBefore("email")
+        var image = result.substringAfter("image").substringBefore("\"")
         var birth_day = birthday.substring(0,4)
         var birth_month = birthday.substring(5,6)
         var birth_year = birthday.substring(7,12)
-         userData(firstName,lastName,email,phone,gender,city,"$birth_day-$birth_month-$birth_year")}
+         userData(firstName,lastName,email,phone,gender,city,"$birth_day-$birth_month-$birth_year",image)}
         myCallback.onResult(result)
 
     }

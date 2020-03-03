@@ -10,10 +10,10 @@ package com.uni.pis.data
         var gender=""
         var city="test"
         var birthdate=""
-
+        var image=""
 
     }
-     constructor( first_name: String, last_name:String, email:String, phoneNumber:String , gender:String, city:String, birthdate:String)
+     constructor( first_name: String, last_name:String, email:String, phoneNumber:String , gender:String, city:String, birthdate:String,image: String)
      {
          userData.first_name=first_name
          userData.last_name=last_name
@@ -22,6 +22,7 @@ package com.uni.pis.data
          userData.gender=gender
          userData.city=city
          userData.birthdate=birthdate
+         userData.image=image
 
 
 
