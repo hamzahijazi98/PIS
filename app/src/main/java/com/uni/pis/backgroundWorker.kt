@@ -136,13 +136,13 @@ class BackgroundWorker  constructor(var context: Context) :
         var lastName = result.substringAfter("Lname").substringBefore("phone")
         var phone = result.substringAfter("phone").substringBefore("gender")
         var city = result.substringAfter("city").substringBefore("image")
-        var birthday = result.substringAfter("Birthday").substringBefore("city")
+        var birthday = result.substringAfter("Birthday").substringBefore("city").split("-")
         var email = result.substringAfter("email").substringBefore("Birthday")
         var gender = result.substringAfter("gender").substringBefore("email")
         var image = result.substringAfter("image").substringBefore("\"")
-        var birth_day = birthday.substring(0,4)
-        var birth_month = birthday.substring(5,6)
-        var birth_year = birthday.substring(7,12)
+        var birth_day = birthday[0]
+        var birth_month = birthday[1]
+        var birth_year = birthday[2]
          userData(firstName,lastName,email,phone,gender,city,"$birth_day-$birth_month-$birth_year",image)}
         myCallback.onResult(result)
 

@@ -306,7 +306,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     private fun uploadFile() {
         if (mImageUri != null)
         {
-            var fileReference = mStorageRef.child(System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri))
+            var fileReference = mStorageRef.child("$first_name$last_name"+System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri))
              var uploadTask= fileReference.putFile(mImageUri)
                  .addOnSuccessListener { taskSnapshot ->
                  Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
