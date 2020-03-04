@@ -13,7 +13,7 @@ import com.uni.pis.model.Home_Item
 import kotlinx.android.synthetic.main.fragment_main_.*
 import java.util.ArrayList
 
-class Main_Frag : Fragment(), AdapterView.OnItemClickListener {
+class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
     private var arrayList: ArrayList<Home_Item>?=null
     private var gridView: GridView?=null
     private var itemAdapters: Item_Adapters?=null
@@ -49,8 +49,11 @@ class Main_Frag : Fragment(), AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         var items:Home_Item=arrayList!!.get(position)
-        //Toast.makeText(context,items.name, Toast.LENGTH_LONG).show()
+        if(position==0)
+            Toast.makeText(context,items.name, Toast.LENGTH_LONG).show()
 
+        if(position==1)
+            Toast.makeText(context,items.name, Toast.LENGTH_LONG).show()
 
     }
 

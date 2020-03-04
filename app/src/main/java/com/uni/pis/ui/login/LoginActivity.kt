@@ -14,15 +14,11 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-import com.google.firebase.auth.FirebaseAuth
 import com.uni.pis.MainActivity
 
 
 import com.uni.pis.R
 import com.uni.pis.SignUp
-import com.uni.pis.profilePage
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.view.*
 
 class LoginActivity : AppCompatActivity() {
 
