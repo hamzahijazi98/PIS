@@ -23,6 +23,20 @@
     <string name="gender">Gender</string>
     <string name="city">City</string>
     <string name="upload_image">Upload Image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="todo">TODO</string>
-    <string name="uplaod_image">Uplaod Image</string>
+    <string name="home">home</string>
+    <string name="dd_mm_yyyy">DD- MM - YYYY</string>
+    <string name="event_date">Event Date</string>
+    <string name="inviter_name">Inviter Name</string>
+    <string name="invitername">InviterName</string>
+    <string name="description">description</string>
+    <string name="hh_mm">HH : MM</string>
+    <string name="end_time">End Time</string>
+    <string name="start_time">Start Time</string>
+    <string name="Upload_Image2">Upload_Image2</string>
+    <string name="Upload_Image1">Upload_Image1</string>
+    <string name="uplaod_image">Up</string>
 </resources>

@@ -15,6 +15,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+import com.uni.pis.MainActivity
 
 
 import com.uni.pis.R
@@ -156,7 +157,7 @@ class LoginActivity : AppCompatActivity() {
         val displayName = model.displayName
         // TODO : initiate successful logged in experience
 
-        intent = Intent(this, profilePage::class.java)
+        intent = Intent(this, MainActivity::class.java)
        startActivity(intent)
         Toast.makeText(
             applicationContext,
