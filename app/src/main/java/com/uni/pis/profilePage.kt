@@ -34,9 +34,8 @@ class profilePage : AppCompatActivity(), BackgroundWorker.MyCallback {
         tv_gender1.text=userData.gender
         tv_phone.text=userData.phoneNumber
         tv_birthday.text= userData.birthdate
-        mStorageRef = FirebaseStorage.getInstance().getReference().child("uploads").child("hamzahijazi1583221202115.jpg")
-
-
+        var image= userData.image.replace("\\","").trim()
+        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
         mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
             val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
             imageView2.setImageBitmap(
