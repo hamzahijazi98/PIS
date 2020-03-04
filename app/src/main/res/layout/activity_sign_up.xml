@@ -117,7 +117,7 @@
         android:id="@+id/RG_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         >
 
 
@@ -163,9 +163,9 @@
         android:id="@+id/tv_date"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:background="@drawable/roundedbutton"
-        android:hint="DD/MM/YYYY"
+        android:hint="@string/birthdayformat"
         android:textSize="18sp"
         android:padding="10dp"
         android:gravity="center"
@@ -181,7 +181,7 @@
         android:layout_height="50dp"
         android:background="@drawable/roundedbutton"
         android:padding="10dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
          />
     <EditText
         android:id="@+id/et_phonenumber"
@@ -211,7 +211,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:padding="10dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:gravity="center"
        />
         <Spinner
@@ -244,7 +244,7 @@
         android:id="@+id/profile_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:contentDescription="@string/todo"
+        android:contentDescription="@string/your_image"
         tools:srcCompat="@tools:sample/avatars" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -12,7 +12,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="first_name">"First Name"</string>
     <string name="last_name">"Last Name"</string>
-    <string name="phone">"Phone number"</string>
+    <string name="phone">"Phone"</string>
     <string name="password">"password"</string>
     <string name="repassword">"Re-enter password"</string>
     <string name="RB_male">"Male"</string>
@@ -26,7 +26,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="todo">TODO</string>
     <string name="home">home</string>
     <string name="dd_mm_yyyy">DD- MM - YYYY</string>
     <string name="event_date">Event Date</string>
@@ -41,4 +40,13 @@
     <string name="uplaod_image">Up</string>
     <string name="your_image">Your Image</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="app_logo">App logo</string>
+    <string name="birthdayformat">DD/MM/YYYY</string>
+    <string name="home_icons">Home Icons</string>
+    <string name="your_name">Your Name</string>
+    <string name="friends">Friends</string>
+    <string name="my_events">My Events</string>
+    <string name="birthday">Birthday</string>
 </resources>

@@ -15,9 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Create_Invitation"></activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".profilePage" />
         <activity android:name=".ui.login.ForgetPassword" />
-        <activity android:name=".events" />
         <activity android:name=".SignUp" />
         <activity
             android:name=".ui.login.LoginActivity"
