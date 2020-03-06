@@ -8,19 +8,24 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.Toast
-import com.uni.pis.Adapter.Item_Adapters
+import com.google.android.gms.dynamic.SupportFragmentWrapper
+import com.uni.pis.Adapter.Home_Item_Adapter
 import com.uni.pis.model.Home_Item
 import kotlinx.android.synthetic.main.fragment_main_.*
 import java.util.ArrayList
 
+
 class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
     private var arrayList: ArrayList<Home_Item>?=null
     private var gridView: GridView?=null
-    private var itemAdapters: Item_Adapters?=null
+    private var itemAdapters: Home_Item_Adapter?=null
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.fragment_main_, container, false)
     }
 
@@ -28,34 +33,31 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         gridView=Gridview_home
         arrayList=ArrayList()
         arrayList=SetDataList()
-        itemAdapters=Item_Adapters(view.context,arrayList!!)
+        itemAdapters=Home_Item_Adapter(view.context,arrayList!!)
         gridView?.adapter=itemAdapters
         gridView?.onItemClickListener=this
 
 
-
-
     }
-
     private fun SetDataList():ArrayList<Home_Item>{
         var arraylist:ArrayList<Home_Item> = ArrayList()
-        arraylist.add(Home_Item(R.drawable.ic_image_black_24dp,"Home"))
-        arraylist.add(Home_Item(R.drawable.ic_launcher_foreground,"Create Event"))
-        arraylist.add(Home_Item(R.drawable.ic_launcher_foreground,"Profile"))
+        arraylist.add(Home_Item(R.drawable.ic_image_black_24dp,"Create Event"))
+        arraylist.add(Home_Item(R.drawable.ic_launcher_foreground,"Notification"))
+        arraylist.add(Home_Item(R.drawable.ic_launcher_foreground,"Find Hall"))
         arraylist.add(Home_Item(R.drawable.ic_launcher_foreground,"Help"))
         return arraylist
 
     }
-
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        var items:Home_Item=arrayList!!.get(position)
-        if(position==0)
-            Toast.makeText(context,items.name, Toast.LENGTH_LONG).show()
 
+        var items:Home_Item=arrayList!!.get(position)
+        if(position==0){
+
+        }
         if(position==1)
             Toast.makeText(context,items.name, Toast.LENGTH_LONG).show()
 
-    }
+        }
 
 
 }

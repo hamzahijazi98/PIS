@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.uni.pis.R
 import com.uni.pis.model.Home_Item
 
-class Item_Adapters(var context: Context,var arrayList: ArrayList<Home_Item>):BaseAdapter() {
+class Home_Item_Adapter(var context: Context,var arrayList: ArrayList<Home_Item>):BaseAdapter() {
 
     override fun getItem(position: Int): Any {
         return arrayList.get(position)

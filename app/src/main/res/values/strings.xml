@@ -49,4 +49,10 @@
     <string name="friends">Friends</string>
     <string name="my_events">My Events</string>
     <string name="birthday">Birthday</string>
+    <string name="wedding">Wedding</string>
+    <string name="events_image">events_image</string>
+    <string name="first_inviter">First Inviter</string>
+    <string name="second_inviter">Second Inviter</string>
+    <string name="image">Image</string>
+    <string name="template">Template</string>
 </resources>

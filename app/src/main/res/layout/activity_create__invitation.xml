@@ -12,11 +12,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+        <ImageView
+            android:id="@+id/imgview_Sinviter"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+
+            android:layout_marginTop="25dp"
+            android:contentDescription="@string/Upload_Image2"
+            android:src="@mipmap/ic_launcher" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            >
 
             <EditText
                 android:id="@+id/et_Finviter"
@@ -26,27 +38,9 @@
                 android:layout_marginTop="20dp"
                 android:autofillHints=""
                 android:ems="10"
-                android:hint="@string/invitername"
+                android:hint="@string/first_inviter"
                 android:inputType="textPersonName"
-
-                />
-
-            <ImageView
-                android:id="@+id/imgview_Finviter"
-                android:layout_width="120dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="30dp"
-                android:contentDescription="@string/Upload_Image1"
-                android:src="@mipmap/ic_launcher"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal">
+                android:layout_gravity="center"/>
 
             <EditText
                 android:id="@+id/et_Sinviter"
@@ -56,19 +50,13 @@
                 android:layout_marginTop="20dp"
                 android:autofillHints=""
                 android:ems="10"
-                android:hint="@string/inviter_name"
+                android:hint="@string/second_inviter"
                 android:inputType="textPersonName"
-                />
+                android:layout_gravity="center"/>
 
-            <ImageView
-                android:id="@+id/imgview_Sinviter"
-                android:layout_width="120dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="30dp"
-                android:contentDescription="@string/Upload_Image2"
-                android:src="@mipmap/ic_launcher"
-                />
+
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,8 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="50dp"
-                android:hint="@string/dd_mm_yyyy"
-                />
+                android:hint="@string/dd_mm_yyyy" />
 
 
         </LinearLayout>
@@ -107,16 +94,14 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="25dp"
                 android:layout_weight="1"
-                android:text="@string/start_time"
-                />
+                android:text="@string/start_time" />
 
             <Button
                 android:id="@+id/btn_endTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/end_time"
-                />
+                android:text="@string/end_time" />
 
 
         </LinearLayout>
@@ -129,31 +114,30 @@
 
             <TextView
                 android:id="@+id/tv_startTime"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="@string/hh_mm"
-                />
+                android:hint="@string/hh_mm" />
 
             <TextView
                 android:id="@+id/tv_endTime"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="50dp"
                 android:layout_weight="1"
-                android:hint="@string/hh_mm"
-                />
+                android:hint="@string/hh_mm" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/et_description"
             android:layout_width="match_parent"
-            android:layout_height="94dp"
+            android:layout_height="95dp"
             android:layout_marginTop="16dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/description"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:lines="2" />
 
     </LinearLayout>
 </LinearLayout>
