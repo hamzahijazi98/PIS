@@ -1,4 +1,4 @@
-package com.uni.pis.homefrags
+package com.uni.pis
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.Toast
 import com.uni.pis.Adapter.Item_Adapters
-import com.uni.pis.R
 import com.uni.pis.model.Home_Item
 import kotlinx.android.synthetic.main.fragment_main_.*
 import java.util.ArrayList

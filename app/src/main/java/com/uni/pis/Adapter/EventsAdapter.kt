@@ -1,0 +1,79 @@
+package com.uni.pis.Adapter
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.uni.pis.Create_Invitation
+import com.uni.pis.R
+import com.uni.pis.model.Events_Item
+import kotlinx.android.synthetic.main.cardview_events.view.*
+import android.view.View as View1
+
+
+lateinit var type:String
+class EventsAdapter(val arraylist: ArrayList<Events_Item>, val context: Context): RecyclerView.Adapter<EventsAdapter.ViewHolder>()
+{
+
+
+
+    class ViewHolder(itemView: View1): RecyclerView.ViewHolder(itemView){
+        fun bindItems(EventItem:Events_Item){
+            itemView.tv_eventName.text=EventItem.title
+            itemView.IV_events.setImageResource(EventItem.image)
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val v= LayoutInflater.from(parent.context).inflate(R.layout.cardview_events,parent,false)
+        return ViewHolder(v)
+
+
+    }
+
+    override fun getItemCount(): Int {
+        return arraylist.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bindItems(arraylist[position])
+        val checkInvCard=holder.itemView.rg_events.checkedRadioButtonId
+        holder.itemView.setOnClickListener{
+
+            if(position==0){
+                holder.itemView.rg_events.visibility=android.view.View.VISIBLE
+                    holder.itemView.rg_events.setOnCheckedChangeListener { _, checkedId ->
+                        if (checkedId == R.id.rb_Image)
+                            type = "Image"
+                        if (checkedId == R.id.rb_template){
+                            type = "template"
+                         var i= Intent(context, Create_Invitation::class.java)
+                         ContextCompat.startActivity(context,i, Bundle())
+                        }
+
+                    }
+            }
+             if(position==1)
+                 Toast.makeText(context, type,Toast.LENGTH_LONG).show()
+
+            if(position==2)
+                Toast.makeText(context,"yousef",Toast.LENGTH_LONG).show()
+
+
+
+
+
+
+
+        }
+    }
+
+
+
+
+}
+

@@ -29,9 +29,8 @@ class MainActivity : AppCompatActivity(),
                 supportFragmentManager
             )
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
-        viewpage_apdapter.addfragment(Events_Frag(),"Invitation Card")
+        viewpage_apdapter.addfragment(Events_Frag(),"Events Type")
         viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),"Profile")
-
         view_pager.adapter=viewpage_apdapter
         tabs.setupWithViewPager(view_pager)
         try {
