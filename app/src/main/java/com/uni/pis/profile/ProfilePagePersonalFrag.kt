@@ -1,6 +1,5 @@
-package com.uni.pis
+package com.uni.pis.profile
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -8,10 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.uni.pis.R
 import com.uni.pis.data.userData
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 
@@ -27,7 +25,7 @@ class ProfilePagePersonalFrag : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        tv_fullName.text= userData.first_name+ userData.last_name
+        tv_fullName.text="${userData.first_name} ${userData.last_name}"
         tv_city.text= userData.city
         tv_email.text= userData.email
         tv_gender.text= userData.gender

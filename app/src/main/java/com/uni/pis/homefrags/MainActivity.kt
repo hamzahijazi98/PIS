@@ -1,4 +1,4 @@
-package com.uni.pis
+package com.uni.pis.homefrags
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.firebase.auth.FirebaseAuth
+import com.uni.pis.BackgroundWorker
+import com.uni.pis.R
+import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), BackgroundWorker.MyCallback {
+class MainActivity : AppCompatActivity(),
+    BackgroundWorker.MyCallback {
     @RequiresApi(Build.VERSION_CODES.N)
 
 
@@ -20,7 +24,10 @@ class MainActivity : AppCompatActivity(), BackgroundWorker.MyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewpage_apdapter=MyViewPagerAdapter(supportFragmentManager)
+        val viewpage_apdapter=
+            MyViewPagerAdapter(
+                supportFragmentManager
+            )
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Invitation Card")
         viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),"Profile")

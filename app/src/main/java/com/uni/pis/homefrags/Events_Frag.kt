@@ -1,10 +1,11 @@
-package com.uni.pis
+package com.uni.pis.homefrags
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.uni.pis.R
 
 /**
  * A simple [Fragment] subclass.

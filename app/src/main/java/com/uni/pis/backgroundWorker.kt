@@ -1,10 +1,8 @@
 package com.uni.pis
 
-import android.app.AlertDialog
+
 import android.content.Context
-import android.media.Image
 import android.os.AsyncTask
-import android.widget.Toast
 import com.uni.pis.data.userData
 import java.io.*
 import java.net.HttpURLConnection
@@ -15,55 +13,62 @@ import java.net.URLEncoder
 class BackgroundWorker  constructor(var context: Context) :
     AsyncTask<String?, Void?, String?>() {
     var myCallback: MyCallback
+    enum class userDataOrder(val index: Int) {
+        firstName(0), lastName(1),phoneNumber(2),gender(3),
+        email(4),birthday(5),city(6),image(7)
+    }
+    enum class phplinks(val link: String) {
+        login("http://www.psutsystems.com/userdata.php"),signup("http://www.psutsystems.com/createuser.php"),friends("http://www.psutsystems.com/myfriends.php")
+    }
     init {
         myCallback = context as MyCallback
     }
     var type =""
     override fun doInBackground(vararg p0: String?): String? {
         type = p0[0].toString()
-        val login_url = "http://www.psutsystems.com/userdata.php"
-        if (type == "login") {
+        when (type ) {
+            "login" -> {
 
-            try {
-                val userID = p0[1]
-                val url = URL(login_url)
-                val httpURLConnection =
-                    url.openConnection() as HttpURLConnection
-                httpURLConnection.requestMethod = "POST"
-                httpURLConnection.doOutput = true
-                httpURLConnection.doInput = true
-                val outputStream = httpURLConnection.outputStream
-                val bufferedWriter =
-                    BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
-                val post_data = URLEncoder.encode(
-                    "userID",
-                    "UTF-8"
-                ) + "=" + URLEncoder.encode(userID, "UTF-8")
-                bufferedWriter.write(post_data)
-                bufferedWriter.flush()
-                bufferedWriter.close()
-                outputStream.close()
-                val inputStream = httpURLConnection.inputStream
-                val bufferedReader =
-                    BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
-                var result: String? = ""
-                var line: String? = ""
-                while (bufferedReader.readLine().also { line = it } != null) {
-                    result += line
+                try {
+                    val userID = p0[1]
+                    val url = URL(phplinks.login.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = URLEncoder.encode(
+                        "userID",
+                        "UTF-8"
+                    ) + "=" + URLEncoder.encode(userID, "UTF-8")
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                    var result: String? = ""
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
                 }
-                bufferedReader.close()
-                inputStream.close()
-                httpURLConnection.disconnect()
-                return result
-            } catch (e: MalformedURLException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
             }
-        }
-        if (type == "signup") {
+
+         "signup" ->  {
             try {
-                val signup_url = "http://www.psutsystems.com/createuser.php"
                 val user_fname = p0[1]
                 val user_lname = p0[2]
                 val user_gender =p0[3]
@@ -73,7 +78,7 @@ class BackgroundWorker  constructor(var context: Context) :
                 val user_ID = p0[7]
                 val user_city = p0[8]
                 val user_image = p0[9]
-                val url = URL(signup_url)
+                val url = URL(phplinks.signup.link)
                 val httpURLConnection =
                     url.openConnection() as HttpURLConnection
                 httpURLConnection.requestMethod = "POST"
@@ -123,6 +128,7 @@ class BackgroundWorker  constructor(var context: Context) :
                 e.printStackTrace()
             }
         }
+        }
         return null
     }
 
@@ -131,19 +137,21 @@ class BackgroundWorker  constructor(var context: Context) :
     }
 
     override fun onPostExecute(result: String?) {
-        if (type == "login") {
-        var firstName = result!!.substringAfter("Fname").substringBefore("Lname")
-        var lastName = result.substringAfter("Lname").substringBefore("phone")
-        var phone = result.substringAfter("phone").substringBefore("gender")
-        var city = result.substringAfter("city").substringBefore("image")
-        var birthday = result.substringAfter("Birthday").substringBefore("city").split("-")
-        var email = result.substringAfter("email").substringBefore("Birthday")
-        var gender = result.substringAfter("gender").substringBefore("email")
-        var image = result.substringAfter("image").substringBefore("\"")
-        var birth_day = birthday[0]
-        var birth_month = birthday[1]
-        var birth_year = birthday[2]
-         userData(firstName,lastName,email,phone,gender,city,"$birth_day-$birth_month-$birth_year",image)}
+        when (type ) {
+             "login"->{
+                 var data=result!!.split("&")
+                 userData.first_name=data[userDataOrder.firstName.index].substringAfter("=")
+                 userData.last_name=data[userDataOrder.lastName.index].substringAfter("=")
+                 userData.phoneNumber=data[userDataOrder.phoneNumber.index].substringAfter("=")
+                 userData.gender=data[userDataOrder.gender.index].substringAfter("=")
+                 userData.email=data[userDataOrder.email.index].substringAfter("=")
+                 userData.birthdate=data[userDataOrder.birthday.index].substringAfter("=")
+                 userData.city=data[userDataOrder.city.index].substringAfter("=")
+                 userData.image=data[userDataOrder.image.index].substringAfter("=") }
+
+            "friends"->{}
+
+        }
         myCallback.onResult(result)
 
     }
