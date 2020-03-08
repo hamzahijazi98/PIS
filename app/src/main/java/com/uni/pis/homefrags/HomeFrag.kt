@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.Toast
-import com.uni.pis.Adapter.Item_Adapters
+import com.uni.pis.Adapter.Home_Item_Adapter
 import com.uni.pis.model.Home_Item
 import kotlinx.android.synthetic.main.fragment_main_.*
 import java.util.ArrayList
@@ -16,7 +16,7 @@ import java.util.ArrayList
 class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
     private var arrayList: ArrayList<Home_Item>?=null
     private var gridView: GridView?=null
-    private var itemAdapters: Item_Adapters?=null
+    private var itemAdapters: Home_Item_Adapter?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +28,7 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         gridView=Gridview_home
         arrayList=ArrayList()
         arrayList=SetDataList()
-        itemAdapters=Item_Adapters(view.context,arrayList!!)
+        itemAdapters=Home_Item_Adapter(view.context,arrayList!!)
         gridView?.adapter=itemAdapters
         gridView?.onItemClickListener=this
 

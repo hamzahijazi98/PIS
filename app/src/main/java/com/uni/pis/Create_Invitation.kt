@@ -1,17 +1,25 @@
 package com.uni.pis
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_create__invitation.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 @RequiresApi(Build.VERSION_CODES.N)
 
@@ -22,8 +30,11 @@ lateinit var TimeSet:String
 lateinit var Finviter:String
 lateinit var Sinviter:String
 lateinit var eventdate:String
+lateinit var LocationID:String
 
 
+val MAPS_CODE=1234
+ var halls:ArrayList<String> = ArrayList()
 
 class Create_Invitation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,8 +116,25 @@ class Create_Invitation : AppCompatActivity() {
 
         }
 
+        var myadap=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,halls)
+        lv_halls.adapter=myadap
+        myadap.add("yousef")
+        myadap.add("ha")
+        myadap.add("auy")
+        myadap.add("2313")
+        myadap.add("ha")
+        myadap.add("yoktob")
+        myadap.add("ha")
+        myadap.add("ha")
+        myadap.add("ha")
+        btn_maps.setOnClickListener {
+            var i= Intent (this,  MapsActivity::class.java)
+            startActivityForResult (i, MAPS_CODE)
+
+        }
 
     }
+
 
 fun setTime(set:String){
         val cal= Calendar.getInstance()
@@ -125,6 +153,28 @@ fun setTime(set:String){
         timePicker.show()
 
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode)
+        {
+            MAPS_CODE ->  when (resultCode)
+            {
+
+                Activity.RESULT_OK -> {LocationID= data?.extras?.get("location").toString()
+                    if (!LocationID.isEmpty())
+                ic_correct.visibility=View.VISIBLE}
+                Activity.RESULT_CANCELED -> Toast.makeText(this ,"Nothing selected",Toast.LENGTH_LONG).show()
+            }
+
+
+        }
+
+
+
+
+    }
+
 
 
 }

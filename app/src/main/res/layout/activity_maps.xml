@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+<fragment
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    tools:context=".MapsActivity"
+    android:id="@+id/map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:id="@+id/lo_searchlayout"
+        android:layout_marginHorizontal="10dp"
+        android:elevation="10dp"
+        android:background="@drawable/roundedbutton"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ic_searchIcon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_maginify"
+            />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="7dp"
+            android:layout_toRightOf="@+id/ic_searchIcon"
+            android:background="@null"
+            android:ellipsize="end"
+            android:hint="Enter Address, City or Zip Code"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="#000"
+            android:textSize="15sp" />
+
+
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:scaleType="center"
+        android:id="@+id/ic_gps"
+        android:src="@drawable/ic_gps"
+
+
+         />
+</RelativeLayout>

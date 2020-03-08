@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -41,39 +42,34 @@ class EventsAdapter(val arraylist: ArrayList<Events_Item>, val context: Context)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(arraylist[position])
-        val checkInvCard=holder.itemView.rg_events.checkedRadioButtonId
+        var view= holder.itemView.findViewById<LinearLayout>(R.id.initialinvisiable)
         holder.itemView.setOnClickListener{
+when(position) {
+    0 -> {
+        view.visibility=android.view.View.VISIBLE
+        holder.itemView.btn_template.setOnClickListener {
+            var i = Intent(context, Create_Invitation::class.java)
+            ContextCompat.startActivity(context, i, Bundle())
+        }
+    }
 
-            if(position==0){
-                holder.itemView.rg_events.visibility=android.view.View.VISIBLE
-                    holder.itemView.rg_events.setOnCheckedChangeListener { _, checkedId ->
-                        if (checkedId == R.id.rb_Image)
-                            type = "Image"
-                        if (checkedId == R.id.rb_template){
-                            type = "template"
-                         var i= Intent(context, Create_Invitation::class.java)
-                         ContextCompat.startActivity(context,i, Bundle())
-                        }
+    1->{ Toast.makeText(context, "hello", Toast.LENGTH_LONG).show()
 
-                    }
-            }
-             if(position==1)
-                 Toast.makeText(context, type,Toast.LENGTH_LONG).show()
+    }
 
-            if(position==2)
-                Toast.makeText(context,"yousef",Toast.LENGTH_LONG).show()
+    2-> {Toast.makeText(context, "yousef", Toast.LENGTH_LONG).show()}
+}
 
 
-
-
+        }
 
 
 
         }
+
     }
 
 
 
 
-}
 

@@ -23,7 +23,7 @@ class BackgroundWorker  constructor(var context: Context) :
     init {
         myCallback = context as MyCallback
     }
-    var type =""
+    lateinit var type :String
     override fun doInBackground(vararg p0: String?): String? {
         type = p0[0].toString()
         when (type ) {
@@ -67,7 +67,7 @@ class BackgroundWorker  constructor(var context: Context) :
                 }
             }
 
-         "signup" ->  {
+            "signup" ->  {
             try {
                 val user_fname = p0[1]
                 val user_lname = p0[2]
@@ -128,6 +128,68 @@ class BackgroundWorker  constructor(var context: Context) :
                 e.printStackTrace()
             }
         }
+
+            "createEvent" ->  {
+                try {
+                    val stime = p0[1]
+                    val etime = p0[2]
+                    val Finviter =p0[3]
+                    val Sinviter = p0[4]
+                    val eventdate = p0[5]
+                    val LocationID = p0[6]
+                    val Description = p0[7]
+                    val eventid = p0[8]
+                    val eventtype = p0[9]
+                    val url = URL(phplinks.signup.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = (URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(stime, "UTF-8")
+                            +"&"
+                            + URLEncoder.encode("firstname","UTF-8")+"="+URLEncoder.encode(etime,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("lastname","UTF-8")+"="+URLEncoder.encode(Finviter,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("gender","UTF-8")+"="+URLEncoder.encode(Sinviter,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("phoneno","UTF-8")+"="+URLEncoder.encode(eventdate,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(LocationID,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("birthdate","UTF-8")+"="+URLEncoder.encode(Description,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("city","UTF-8")+"="+URLEncoder.encode(eventid,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(eventtype,"UTF-8")
+
+                            )
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                    var result: String? = ""
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
         }
         return null
     }

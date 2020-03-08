@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.uni.pis.BackgroundWorker
+import com.uni.pis.Events_Frag
+import com.uni.pis.HomeFrag
 import com.uni.pis.R
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.activity_main.*

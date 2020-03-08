@@ -19,7 +19,7 @@
     <ImageView
         android:id="@+id/IV_events"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="300dp"
         android:src="@mipmap/ic_launcher"
         android:contentDescription="@string/events_image" />
 
@@ -31,40 +31,57 @@
         android:layout_marginTop="15dp"
         android:hint="@string/wedding"
         android:textSize="25sp"
-
         android:textStyle="bold" />
 
-    <RadioGroup
-        android:id="@+id/rg_events"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/initialinvisiable"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:visibility="invisible">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="gone">
 
-        <RadioButton
-            android:id="@+id/rb_Image"
+        <TextView
+            android:id="@+id/tv_question"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="@string/image"
-            android:textSize="20sp"
-            tools:text="Image" />
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:hint="@string/in_which_way"
+            android:textSize="22sp"
+            android:textStyle="bold"
 
-        <RadioButton
-            android:id="@+id/rb_template"
-            android:layout_width="wrap_content"
+            />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:text="@string/template"
-            android:textSize="20sp"
-            tools:text="Template" />
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btn_template"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="@string/template" />
+
+            <Button
+                android:id="@+id/btn_video"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="@string/video" />
 
 
-    </RadioGroup>
-
-
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 </LinearLayout>
 
 
