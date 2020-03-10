@@ -17,7 +17,7 @@
 
 
         <ImageView
-            android:id="@+id/imgview_Sinviter"
+            android:id="@+id/pick_img"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_gravity="center"
@@ -250,6 +250,8 @@
             android:text="@string/save"
             android:layout_gravity="center"
             />
+
+
 
     </LinearLayout>
 </LinearLayout>

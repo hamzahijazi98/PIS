@@ -48,14 +48,27 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        var items:Home_Item=arrayList!!.get(position)
-        if(position==0)
-            Toast.makeText(context,items.name, Toast.LENGTH_LONG).show()
+        var items: Home_Item = arrayList!![position]
 
-        if(position==1)
-            Toast.makeText(context,items.name, Toast.LENGTH_LONG).show()
 
+        when (position) {
+            0 -> {
+                Toast.makeText(context, items.name, Toast.LENGTH_LONG).show()
+//                var fm=fragmentManager
+//
+
+            }
+
+            1->Toast.makeText(context,items.name,Toast.LENGTH_LONG).show()
+
+
+
+
+
+
+
+
+        }
     }
-
 
 }

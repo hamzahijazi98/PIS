@@ -1,10 +1,12 @@
 package com.uni.pis
 
+import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.net.Uri
@@ -37,6 +39,11 @@ var mFirebaseAuth = FirebaseAuth.getInstance()
 
 val MAPS_CODE=1234
  var halls:ArrayList<String> = ArrayList()
+
+    //image pick code
+    private val IMAGE_PICK_CODE = 1000;
+    //Permission code
+    private val PERMISSION_CODE = 1001;
 
 class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,6 +127,30 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
             date.show()
 
         }
+
+        pick_img.setOnClickListener{
+            //check runtime permission
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                    PackageManager.PERMISSION_DENIED){
+                    //permission denied
+                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
+                    //show popup to request runtime permission
+                    requestPermissions(permissions, PERMISSION_CODE);
+                }
+                else{
+                    //permission already granted
+                    pickImageFromGallery();
+                }
+            }
+            else{
+                //system OS is < Marshmallow
+                pickImageFromGallery();
+            }
+        }
+
+
+
         btn_Save.setOnClickListener {
             Description=et_description.text.toString()
 
@@ -127,6 +158,7 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
            data.execute("createEvent", stime, etime, Finviter, Sinviter, eventdate, LocationID,Description,System.currentTimeMillis().toString(),"wedding","150",
                mFirebaseAuth.currentUser!!.uid)
         }
+
 
 
 
@@ -150,6 +182,27 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
     }
 
+    private fun pickImageFromGallery() {
+        //Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode){
+            PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED){
+                    //permission from popup granted
+                    pickImageFromGallery()
+                }
+                else{
+                    //permission from popup denied
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
 fun setTime(set:String){
         val cal= Calendar.getInstance()
@@ -175,23 +228,41 @@ fun setTime(set:String){
         {
             MAPS_CODE ->  when (resultCode)
             {
-
                 Activity.RESULT_OK -> {LocationID= data?.extras?.get("location").toString()
                     if (!LocationID.isEmpty())
                 ic_correct.visibility=View.VISIBLE}
                 Activity.RESULT_CANCELED -> Toast.makeText(this ,"Nothing selected",Toast.LENGTH_LONG).show()
             }
 
+            IMAGE_PICK_CODE->{
+                if (resultCode == Activity.RESULT_OK){
+                    pick_img.setImageURI(data?.data)
+                }
 
+            }
         }
 
 
 
 
-    }
+
+
+
+
+  }
     override fun onResult(result: String?) {
         Toast.makeText(this,result,Toast.LENGTH_LONG).show()
     }
+
+
+
+
+
+
+
+
+
+
 
 
 }
