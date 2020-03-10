@@ -3,6 +3,7 @@ package com.uni.pis
 
 import android.content.Context
 import android.os.AsyncTask
+import android.widget.Toast
 import com.uni.pis.data.userData
 import java.io.*
 import java.net.HttpURLConnection
@@ -13,12 +14,13 @@ import java.net.URLEncoder
 class BackgroundWorker  constructor(var context: Context) :
     AsyncTask<String?, Void?, String?>() {
     var myCallback: MyCallback
+    var result: String? = ""
     enum class userDataOrder(val index: Int) {
         firstName(0), lastName(1),phoneNumber(2),gender(3),
         email(4),birthday(5),city(6),image(7)
     }
     enum class phplinks(val link: String) {
-        login("http://www.psutsystems.com/userdata.php"),signup("http://www.psutsystems.com/createuser.php"),friends("http://www.psutsystems.com/myfriends.php")
+        login("http://www.psutsystems.com/userdata.php"),signup("http://www.psutsystems.com/createuser.php"),createvent("http://www.psutsystems.com/createvent.php")
     }
     init {
         myCallback = context as MyCallback
@@ -133,14 +135,18 @@ class BackgroundWorker  constructor(var context: Context) :
                 try {
                     val stime = p0[1]
                     val etime = p0[2]
-                    val Finviter =p0[3]
-                    val Sinviter = p0[4]
+                    val FinviterName =p0[3]
+                    val SinviterName = p0[4]
                     val eventdate = p0[5]
                     val LocationID = p0[6]
                     val Description = p0[7]
                     val eventid = p0[8]
                     val eventtype = p0[9]
-                    val url = URL(phplinks.signup.link)
+                    val inviteenumber=p0[10]
+                    val InviterID=p0[11]
+                    val image=p0[12]
+
+                    val url = URL(phplinks.createvent.link)
                     val httpURLConnection =
                         url.openConnection() as HttpURLConnection
                     httpURLConnection.requestMethod = "POST"
@@ -149,23 +155,30 @@ class BackgroundWorker  constructor(var context: Context) :
                     val outputStream = httpURLConnection.outputStream
                     val bufferedWriter =
                         BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
-                    val post_data = (URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(stime, "UTF-8")
+                    val post_data = (URLEncoder.encode("starttime", "UTF-8") + "=" + URLEncoder.encode(stime, "UTF-8")
                             +"&"
-                            + URLEncoder.encode("firstname","UTF-8")+"="+URLEncoder.encode(etime,"UTF-8")
+                            + URLEncoder.encode("endtime","UTF-8")+"="+URLEncoder.encode(etime,"UTF-8")
                             +"&"
-                            +URLEncoder.encode("lastname","UTF-8")+"="+URLEncoder.encode(Finviter,"UTF-8")
+                            +URLEncoder.encode("firstinvitername","UTF-8")+"="+URLEncoder.encode(FinviterName,"UTF-8")
                             +"&"
-                            +URLEncoder.encode("gender","UTF-8")+"="+URLEncoder.encode(Sinviter,"UTF-8")
+                            +URLEncoder.encode("secondinvitername","UTF-8")+"="+URLEncoder.encode(SinviterName,"UTF-8")
                             +"&"
-                            +URLEncoder.encode("phoneno","UTF-8")+"="+URLEncoder.encode(eventdate,"UTF-8")
+                            +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(eventdate,"UTF-8")
                             +"&"
-                            +URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(LocationID,"UTF-8")
+                            +URLEncoder.encode("locationid","UTF-8")+"="+URLEncoder.encode(LocationID,"UTF-8")
                             +"&"
-                            +URLEncoder.encode("birthdate","UTF-8")+"="+URLEncoder.encode(Description,"UTF-8")
+                            +URLEncoder.encode("description","UTF-8")+"="+URLEncoder.encode(Description,"UTF-8")
                             +"&"
-                            +URLEncoder.encode("city","UTF-8")+"="+URLEncoder.encode(eventid,"UTF-8")
+                            +URLEncoder.encode("eventid","UTF-8")+"="+URLEncoder.encode(eventid,"UTF-8")
                             +"&"
-                            +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(eventtype,"UTF-8")
+                            +URLEncoder.encode("inviteenumber","UTF-8")+"="+URLEncoder.encode(inviteenumber,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("eventtype","UTF-8")+"="+URLEncoder.encode(eventtype,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("inviterid","UTF-8")+"="+URLEncoder.encode(InviterID,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(image,"UTF-8")
+
 
                             )
                     bufferedWriter.write(post_data)
@@ -175,7 +188,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
                         BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
-                    var result: String? = ""
+
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
                         result += line
@@ -195,6 +208,7 @@ class BackgroundWorker  constructor(var context: Context) :
     }
 
     override fun onPreExecute() {
+
 
     }
 
@@ -218,6 +232,9 @@ class BackgroundWorker  constructor(var context: Context) :
 
     }
 
+    override fun onProgressUpdate(vararg values: Void?) {
+        Toast.makeText(context,result,Toast.LENGTH_LONG).show()
+    }
 
     interface MyCallback {
         fun onResult(result: String?)

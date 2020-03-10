@@ -59,4 +59,5 @@
     <string name="in_which_way">In which way ?</string>
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDFvl841yeBO24kci1qj-ABXBtiG5TxbbU</string>
+    <string name="save">Save</string>
 </resources>

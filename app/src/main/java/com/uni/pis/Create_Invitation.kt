@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_create__invitation.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -31,18 +32,20 @@ lateinit var Finviter:String
 lateinit var Sinviter:String
 lateinit var eventdate:String
 lateinit var LocationID:String
-
+lateinit var Description:String
+var mFirebaseAuth = FirebaseAuth.getInstance()
 
 val MAPS_CODE=1234
  var halls:ArrayList<String> = ArrayList()
 
-class Create_Invitation : AppCompatActivity() {
+class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create__invitation)
 
         et_Finviter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
+                Finviter = et_Finviter.text.toString()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -51,14 +54,17 @@ class Create_Invitation : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (et_Finviter.text.isEmpty() || et_Finviter.text.length > 25)
                     et_Finviter.error = "Empty field or Long name ..."
-                else
-                    Finviter = et_Finviter.text.toString()
+
+
             }
 
         })
         et_Sinviter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
+                Sinviter = et_Sinviter.text.toString()
+
             }
+
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -84,8 +90,7 @@ class Create_Invitation : AppCompatActivity() {
                     ) {
                         if (et_Sinviter.text.isEmpty() || et_Sinviter.text.length > 25)
                             et_Sinviter.error = "Empty field or Long name ..."
-                        else
-                            Sinviter = et_Sinviter.text.toString()
+
                     }
 
                 }
@@ -115,6 +120,16 @@ class Create_Invitation : AppCompatActivity() {
             date.show()
 
         }
+        btn_Save.setOnClickListener {
+            Description=et_description.text.toString()
+
+           var data = BackgroundWorker(this)
+           data.execute("createEvent", stime, etime, Finviter, Sinviter, eventdate, LocationID,Description,System.currentTimeMillis().toString(),"wedding","150",
+               mFirebaseAuth.currentUser!!.uid)
+        }
+
+
+
 
         var myadap=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,halls)
         lv_halls.adapter=myadap
@@ -174,7 +189,9 @@ fun setTime(set:String){
 
 
     }
-
+    override fun onResult(result: String?) {
+        Toast.makeText(this,result,Toast.LENGTH_LONG).show()
+    }
 
 
 }
