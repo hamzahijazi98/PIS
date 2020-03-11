@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".VideoInvitation"></activity>
+        <activity android:name=".Main2Activity" />
         <activity android:name=".AutcompleteActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -203,7 +203,6 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
             }
         }
     }
-
 fun setTime(set:String){
         val cal= Calendar.getInstance()
         val timePicker = TimePickerDialog(this,
@@ -253,16 +252,5 @@ fun setTime(set:String){
     override fun onResult(result: String?) {
         Toast.makeText(this,result,Toast.LENGTH_LONG).show()
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }
