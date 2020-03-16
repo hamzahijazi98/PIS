@@ -20,7 +20,7 @@
         android:layout_height="198dp"
         android:layout_marginTop="25dp"
         android:contentDescription="@string/Upload_Image2"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/weddingbackground" />
 
 
 
@@ -33,8 +33,10 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:layout_weight="1"
             tools:ignore="Suspicious0dp"
+            android:background="@drawable/roundedbutton"
             android:id="@+id/tv_finviter"
             android:textSize="25sp"
             />
@@ -43,7 +45,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:layout_weight="1"
+            android:background="@drawable/roundedbutton"
             tools:ignore="Suspicious0dp"
             android:id="@+id/tv_sinviter"
             android:textSize="25sp"
@@ -52,12 +56,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:padding="5dp"
             android:layout_height="match_parent"
             android:hint="@string/event_date"
             android:textSize="25sp"
@@ -67,6 +73,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:padding="5dp"
             android:layout_height="match_parent"
             android:hint="21-9-1996"
             android:textSize="25sp"
@@ -80,6 +87,7 @@
    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+       android:background="@drawable/roundedbutton"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
@@ -88,13 +96,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="Start Time"
-
+            android:padding="5dp"
             android:textSize="25sp"
             tools:ignore="Suspicious0dp" />
 
 
         <TextView
             android:layout_width="0dp"
+            android:padding="5dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/tv_starttime"
@@ -108,6 +117,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
@@ -116,6 +126,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="End Time"
+            android:padding="5dp"
             android:textSize="25sp"
             tools:ignore="Suspicious0dp" />
         <TextView
@@ -124,26 +135,32 @@
             android:layout_weight="1"
             android:hint="HH : MM"
             android:textSize="25sp"
+            android:padding="5dp"
             android:layout_marginStart="15dp"
             android:id="@+id/tv_endtime"
             />
 
 
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:lines="7"
-        android:id="@+id/tv_description"
-        android:nestedScrollingEnabled="true"
-        android:hint="@string/description"
-        android:textSize="20sp" />
-<Button
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:hint="@string/description"
+            android:background="@drawable/roundedbutton"
+            android:lines="7"
+            android:nestedScrollingEnabled="true"
+            android:textSize="20sp" />
+
+        <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/roundedbutton"
     android:layout_marginTop="20dp"
+            android:padding="5dp"
     android:layout_gravity="center"
     android:text="@string/location"
     />
@@ -159,6 +176,7 @@
      <Button
          android:layout_width="0dp"
          android:layout_height="wrap_content"
+         android:background="@drawable/roundedbutton"
          android:layout_weight="1"
          android:text="@string/accept"
          />
@@ -166,6 +184,7 @@
      <Button
          android:layout_width="0dp"
          android:layout_height="wrap_content"
+         android:background="@drawable/roundedbutton"
          android:layout_marginLeft="15dp"
          android:layout_marginRight="15dp"
          android:layout_weight="1"
@@ -174,6 +193,7 @@
      <Button
          android:layout_weight="1"
          android:layout_width="0dp"
+         android:background="@drawable/roundedbutton"
          android:layout_height="wrap_content"
          android:text="@string/reject"
 
