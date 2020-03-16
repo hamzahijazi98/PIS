@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".receivercardinvitaion"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/event_img"
+        android:layout_width="match_parent"
+        android:layout_height="198dp"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/Upload_Image2"
+        android:src="@mipmap/ic_launcher" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="Suspicious0dp"
+            android:id="@+id/tv_finviter"
+            android:textSize="25sp"
+            />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="Suspicious0dp"
+            android:id="@+id/tv_sinviter"
+            android:textSize="25sp"
+            android:layout_marginStart="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:hint="@string/event_date"
+            android:textSize="25sp"
+
+
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:hint="21-9-1996"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:id="@+id/tv_eventdate"
+            android:layout_marginStart="15dp"
+            />
+    </LinearLayout>
+
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Start Time"
+
+            android:textSize="25sp"
+            tools:ignore="Suspicious0dp" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_starttime"
+            android:hint="HH : MM"
+            android:textSize="25sp"
+            android:layout_marginStart="15dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="End Time"
+            android:textSize="25sp"
+            tools:ignore="Suspicious0dp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="HH : MM"
+            android:textSize="25sp"
+            android:layout_marginStart="15dp"
+            android:id="@+id/tv_endtime"
+            />
+
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:lines="7"
+        android:id="@+id/tv_description"
+        android:nestedScrollingEnabled="true"
+        android:hint="@string/description"
+        android:textSize="20sp" />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_gravity="center"
+    android:text="@string/location"
+    />
+
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:layout_marginTop="20dp"
+     >
+
+     <Button
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:text="@string/accept"
+         />
+
+     <Button
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="15dp"
+         android:layout_marginRight="15dp"
+         android:layout_weight="1"
+         android:text="@string/maybe" />
+
+     <Button
+         android:layout_weight="1"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:text="@string/reject"
+
+         />
+
+ </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>
+</ScrollView>

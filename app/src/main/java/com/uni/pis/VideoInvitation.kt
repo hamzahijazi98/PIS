@@ -8,19 +8,15 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.MediaController
+import android.webkit.PermissionRequest
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_video_invitation.*
 
-
-private const val permission_Request=10
 class VideoInvitation : AppCompatActivity() {
     private var GALLERY: Int = 100
     private val VIDEO_CAPTURE = 101
-    private var mediaController: MediaController? = null
-
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,16 +27,10 @@ class VideoInvitation : AppCompatActivity() {
                 Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(galleryIntent, GALLERY)
         }
-
-
         btn_record.setOnClickListener {
-
-
             val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
             startActivityForResult(intent, VIDEO_CAPTURE)
-
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -51,9 +41,6 @@ class VideoInvitation : AppCompatActivity() {
                     var contentURI: Uri? = data.data
                     val selectedVideoPath: String = getPath(contentURI)
                     viewVideo.setVideoURI(contentURI)
-                    mediaController = MediaController(this)
-                    mediaController?.setAnchorView(viewVideo)
-                    viewVideo.setMediaController(mediaController)
                     viewVideo.requestFocus()
                     viewVideo.start()
                 }
@@ -64,12 +51,6 @@ class VideoInvitation : AppCompatActivity() {
                     Activity.RESULT_OK -> {
                         Toast.makeText(this, "Video saved to:\n" + videoUri, Toast.LENGTH_LONG)
                             .show()
-                        viewVideo.setVideoURI(videoUri)
-                        mediaController = MediaController(this)
-                        mediaController?.setAnchorView(viewVideo)
-                        viewVideo.setMediaController(mediaController)
-                        viewVideo.requestFocus()
-                        viewVideo.start()
                     }
                     Activity.RESULT_CANCELED -> {
                         Toast.makeText(this, "Video recording cancelled.", Toast.LENGTH_LONG).show()
@@ -99,9 +80,4 @@ class VideoInvitation : AppCompatActivity() {
             return ""
 
     }
-
-
-
-
-
 }

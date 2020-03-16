@@ -13,8 +13,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-feature    android:name="android.hardware.camera"
-                     android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".receivercardinvitaion"></activity>
         <activity android:name=".VideoInvitation" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

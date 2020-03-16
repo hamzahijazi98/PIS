@@ -65,4 +65,10 @@
     <string name="todo">TODO</string>
     <string name="option_2_from_maps_click_on_the_picture_below">- Option 2: from maps click on the picture below</string>
     <string name="option_1_available_on_time_and_date_you_have_chosen">- Option 1: Available on time and date you have chosen</string>
+    <string name="event_date">Event Date</string>
+    <string name="accept">Accept</string>
+    <string name="location">Location</string>
+    <string name="maybe">Maybe</string>
+    <string name="not_going">Not Going</string>
+    <string name="reject">Reject</string>
 </resources>
