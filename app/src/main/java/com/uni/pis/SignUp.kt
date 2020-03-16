@@ -12,6 +12,7 @@ import android.webkit.MimeTypeMap
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -214,6 +215,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.FROYO)
     fun Is_Vaild(): Boolean {
 
         var valid =true
@@ -330,10 +332,3 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     }
 
 }
-
-
-
-
-
-
-

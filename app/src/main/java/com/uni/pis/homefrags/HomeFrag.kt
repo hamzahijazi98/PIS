@@ -4,14 +4,25 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.tabs.TabLayout
 import com.uni.pis.Adapter.Home_Item_Adapter
+import com.uni.pis.homefrags.MainActivity
 import com.uni.pis.model.Home_Item
+import com.uni.pis.profile.ProfilePagePersonalFrag
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_create__invitation.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main_.*
 import java.util.ArrayList
+
+
 
 class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
     private var arrayList: ArrayList<Home_Item>?=null
@@ -21,7 +32,9 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main_, container, false)
+        var v= inflater.inflate(R.layout.fragment_main_, container, false)
+
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,15 +66,23 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
         when (position) {
             0 -> {
-                Toast.makeText(context, items.name, Toast.LENGTH_LONG).show()
-//                var fm=fragmentManager
-//
+                val fm=fragmentManager
+                var trans= fm?.beginTransaction()
+                if (trans != null) {
+                    trans.replace(R.id.FrameHome,ProfilePagePersonalFrag())
+                    trans.addToBackStack(null)
+                    trans.commit()
+
+                }
+
+
 
             }
 
-            1->Toast.makeText(context,items.name,Toast.LENGTH_LONG).show()
+            1-> {
+                Toast.makeText(context, items.name, Toast.LENGTH_LONG).show()
 
-
+            }
 
 
 

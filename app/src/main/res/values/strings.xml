@@ -62,4 +62,7 @@
     <string name="save">Save</string>
     <string name="choose_from_gallery">Choose From Gallery</string>
     <string name="record">record</string>
+    <string name="todo">TODO</string>
+    <string name="option_2_from_maps_click_on_the_picture_below">- Option 2: from maps click on the picture below</string>
+    <string name="option_1_available_on_time_and_date_you_have_chosen">- Option 1: Available on time and date you have chosen</string>
 </resources>

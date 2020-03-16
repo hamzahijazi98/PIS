@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.uni.pis.Create_Invitation
 import com.uni.pis.R
+import com.uni.pis.VideoInvitation
 import com.uni.pis.model.Events_Item
 import kotlinx.android.synthetic.main.cardview_events.view.*
 import android.view.View as View1
@@ -51,10 +52,14 @@ when(position) {
             var i = Intent(context, Create_Invitation::class.java)
             ContextCompat.startActivity(context, i, Bundle())
         }
+        holder.itemView.btn_video.setOnClickListener {
+            var i=Intent(context,VideoInvitation::class.java)
+            ContextCompat.startActivity(context,i,Bundle())
+        }
     }
 
-    1->{ Toast.makeText(context, "hello", Toast.LENGTH_LONG).show()
-
+    1->{  var i = Intent(context, VideoInvitation::class.java)
+        ContextCompat.startActivity(context, i, Bundle())
     }
 
     2-> {Toast.makeText(context, "yousef", Toast.LENGTH_LONG).show()}

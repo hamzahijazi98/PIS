@@ -1,5 +1,6 @@
 package com.uni.pis.profile
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
