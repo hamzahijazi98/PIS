@@ -4,6 +4,7 @@ package com.uni.pis
 import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
+import com.uni.pis.data.eventData
 import com.uni.pis.data.userData
 import java.io.*
 import java.net.HttpURLConnection
@@ -226,6 +227,11 @@ class BackgroundWorker  constructor(var context: Context) :
                  userData.image=data[userDataOrder.image.index].substringAfter("=") }
 
             "friends"->{}
+            "event"->{
+                var data=result!!.split("&")
+                eventData.Inv_No=data[0].substringAfter("=")
+
+            }
 
         }
         myCallback.onResult(result)

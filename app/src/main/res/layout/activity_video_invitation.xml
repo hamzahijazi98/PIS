@@ -32,12 +32,14 @@
                 android:text="@string/record" />
         </LinearLayout>
 
-        <VideoView
-            android:id="@+id/viewVideo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            />
+    <VideoView
+        android:id="@+id/viewVideo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="20dp"
+        android:foregroundGravity="center" />
 
 
 
