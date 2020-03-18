@@ -26,10 +26,7 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewpage_apdapter=
-            MyViewPagerAdapter(
-                supportFragmentManager
-            )
+        val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Events Type")
         viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),"Profile")

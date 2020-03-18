@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.webkit.PermissionRequest
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,8 @@ import kotlinx.android.synthetic.main.fragment_video_frame.*
 class VideoInvitation : AppCompatActivity() {
     private var GALLERY: Int = 100
     private val VIDEO_CAPTURE = 101
+    private var mediaController: MediaController? = null
+
     lateinit var Frag:Fragment
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +47,9 @@ class VideoInvitation : AppCompatActivity() {
                 if (data != null) {
                     var contentURI: Uri? = data.data
                     val selectedVideoPath: String = getPath(contentURI)
+                    mediaController = MediaController(this)
+                    mediaController?.setAnchorView(viewVideo)
+                    viewVideo.setMediaController(mediaController)
                     Frag.viewVideo.setVideoURI(contentURI)
                     Frag.viewVideo.requestFocus()
                     Frag.viewVideo.start()
@@ -55,6 +61,13 @@ class VideoInvitation : AppCompatActivity() {
                     Activity.RESULT_OK -> {
                         Toast.makeText(this, "Video saved to:\n" + videoUri, Toast.LENGTH_LONG)
                             .show()
+                        mediaController = MediaController(this)
+                        mediaController?.setAnchorView(viewVideo)
+                        viewVideo.setMediaController(mediaController)
+                        Frag.viewVideo.setVideoURI(videoUri)
+                        Frag.viewVideo.requestFocus()
+                        Frag.viewVideo.start()
+
                     }
                     Activity.RESULT_CANCELED -> {
                         Toast.makeText(this, "Video recording cancelled.", Toast.LENGTH_LONG).show()
