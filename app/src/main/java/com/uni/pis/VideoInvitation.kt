@@ -12,16 +12,20 @@ import android.webkit.PermissionRequest
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_video_invitation.*
+import kotlinx.android.synthetic.main.fragment_video_frame.*
 
 class VideoInvitation : AppCompatActivity() {
     private var GALLERY: Int = 100
     private val VIDEO_CAPTURE = 101
+    lateinit var Frag:Fragment
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_invitation)
-
+        Frag= videoFrame ()
+        supportFragmentManager.beginTransaction().add(R.id.videoFramecontine, Frag).commit()
         btn_pick_fromgallery.setOnClickListener {
             val galleryIntent =
                 Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
@@ -40,9 +44,9 @@ class VideoInvitation : AppCompatActivity() {
                 if (data != null) {
                     var contentURI: Uri? = data.data
                     val selectedVideoPath: String = getPath(contentURI)
-                    viewVideo.setVideoURI(contentURI)
-                    viewVideo.requestFocus()
-                    viewVideo.start()
+                    Frag.viewVideo.setVideoURI(contentURI)
+                    Frag.viewVideo.requestFocus()
+                    Frag.viewVideo.start()
                 }
             }
             VIDEO_CAPTURE -> {
