@@ -19,6 +19,7 @@
             <Button
                 android:id="@+id/btn_pick_fromgallery"
                 android:layout_width="0dp"
+                android:background="@drawable/roundedbutton"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/choose_from_gallery" />
@@ -26,6 +27,7 @@
             <Button
                 android:id="@+id/btn_record"
                 android:layout_width="0dp"
+                android:background="@drawable/roundedbutton"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
@@ -33,11 +35,13 @@
         </LinearLayout>
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:id="@+id/videoFramecontine"
+        android:background="@drawable/roundedbutton"
+        android:padding="15dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="20dp">
 
     </FrameLayout>
 
