@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity(),
             var data = BackgroundWorker(this)
             data.execute("login", mFirebaseAuth.currentUser?.uid!!)
         }
-        catch (e:NullPointerException)
-        {
+        catch (e:NullPointerException) {
             Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
         }
 

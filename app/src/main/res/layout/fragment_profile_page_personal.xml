@@ -2,6 +2,7 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/PROFILE_FRAM"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/appbackground"
@@ -21,12 +22,11 @@
                 android:id="@+id/iv_profile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@drawable/loginpic"
-                android:layout_marginTop="20dp"
-                app:civ_border_color="#FF000000"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/loginpic"
+                app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp" />
-
 
 
             <TextView
@@ -35,9 +35,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:textStyle="bold"
                 android:hint="@string/your_name"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
 
             <LinearLayout
@@ -46,8 +46,8 @@
                 android:layout_marginTop="60dp"
                 android:layout_marginBottom="40dp"
                 android:gravity="center"
-                android:padding="15dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="15dp">
 
                 <Button
                     android:id="@+id/btn_friends"
@@ -81,165 +81,167 @@
             </LinearLayout>
 
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
-            android:background="@color/whiteBackGround"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_emailView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/prompt_email"
-                    android:textSize="20sp" />
-
-
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="@drawable/roundedbutton"
-                    android:padding="10dp"
-                    android:textSize="20sp"
-
-                    />
-
-
-            </LinearLayout>
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:background="@color/whiteBackGround"
+                android:orientation="vertical"
+                android:paddingHorizontal="10dp">
 
-                <TextView
-                    android:id="@+id/tv_phoneNumberView"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_emailView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/prompt_email"
+                        android:textSize="20sp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/roundedbutton"
+                        android:padding="10dp"
+                        android:textSize="20sp"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/phone"
-                    android:textSize="20sp" />
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_phoneNumberView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/phone"
+                        android:textSize="20sp" />
 
 
-                <TextView
-                    android:id="@+id/tv_phone"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:textSize="20sp" />
+                    android:layout_marginTop="20dp">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_birthdayView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/birthday"
+                        android:textSize="20sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
 
-                <TextView
-                    android:id="@+id/tv_birthdayView"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tv_birthday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text=""
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/birthday"
-                    android:textSize="20sp" />
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_genderView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/gender"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_gender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textSize="20sp" />
 
 
-                <TextView
-                    android:id="@+id/tv_birthday"
-                    android:layout_width="0dp"
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text=""
-                    android:textSize="20sp" />
+                    android:layout_marginTop="20dp">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_cityView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/city"
+                        android:textSize="20sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/tv_genderView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/gender"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/tv_gender"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/tv_city"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@drawable/roundedbutton"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textSize="20sp" />
 
 
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/tv_cityView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/city"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/tv_city"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="@drawable/roundedbutton"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:textSize="20sp" />
-
-
-            </LinearLayout>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

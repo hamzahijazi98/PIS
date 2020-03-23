@@ -22,7 +22,6 @@ class EventsAdapter(val arraylist: ArrayList<Events_Item>, val context: Context)
 {
 
 
-
     class ViewHolder(itemView: View1): RecyclerView.ViewHolder(itemView){
         fun bindItems(EventItem:Events_Item){
             itemView.tv_eventName.text=EventItem.title
@@ -46,33 +45,37 @@ class EventsAdapter(val arraylist: ArrayList<Events_Item>, val context: Context)
         var view= holder.itemView.findViewById<LinearLayout>(R.id.initialinvisiable)
         holder.itemView.setOnClickListener{
 when(position) {
+
+
     0 -> {
         view.visibility=android.view.View.VISIBLE
         holder.itemView.btn_template.setOnClickListener {
-            var i = Intent(context, Create_Invitation::class.java)
-            ContextCompat.startActivity(context, i, Bundle())
+        var i = Intent(context, Create_Invitation::class.java)
+        ContextCompat.startActivity(context, i, Bundle())
         }
+
         holder.itemView.btn_video.setOnClickListener {
             var i=Intent(context,VideoInvitation::class.java)
             ContextCompat.startActivity(context,i,Bundle())
         }
     }
 
+
+
     1->{  var i = Intent(context, VideoInvitation::class.java)
         ContextCompat.startActivity(context, i, Bundle())
     }
 
+
     2-> {Toast.makeText(context, "yousef", Toast.LENGTH_LONG).show()}
+
+
 }
 
-
         }
-
-
-
-        }
-
     }
+}
+
 
 
 

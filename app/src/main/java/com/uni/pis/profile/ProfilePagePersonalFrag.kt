@@ -1,6 +1,7 @@
 package com.uni.pis.profile
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.uni.pis.Friends
 import com.uni.pis.R
 import com.uni.pis.data.userData
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
@@ -46,8 +48,15 @@ class ProfilePagePersonalFrag : Fragment() {
             // Handle any errors
         }
 
+        btn_friends.setOnClickListener {
+            val intent = Intent (context, Friends::class.java)
+            startActivity(intent)
+
+        }
+
+
+
 
     }
-
 
 }
