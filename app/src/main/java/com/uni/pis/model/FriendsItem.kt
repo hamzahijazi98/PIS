@@ -1,3 +1,3 @@
 package com.uni.pis.model
 
-data class FriendsItem (val Name:String,val Image:Int)
+data class FriendsItem (val UserID:String,val Name:String,val Image:String)
