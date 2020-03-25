@@ -17,7 +17,7 @@ class MyInvitedEventsAdapter(var arrayList_Invevents: ArrayList<EventsListeItem>
         fun binditems(EventsListItem:EventsListeItem){
             itemView.tv_eventname.text=EventsListItem.name
             itemView.tv_desc.text=EventsListItem.description
-            itemView.iv_event.setImageResource(EventsListItem.Image)
+            itemView.iv_event.setImageResource(EventsListItem.Image.toInt())
         }
     }
 

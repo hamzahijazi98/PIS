@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_events_.*
 
 class Friends : AppCompatActivity(),BackgroundWorker.MyCallback {
     val arraylist=ArrayList<FriendsItem>()
+    val friendadap=FriendViewAdapter(arraylist,this)
     enum class userDataOrder(val index: Int) {
         UserID(0),
         firstName(1),
@@ -37,18 +38,18 @@ class Friends : AppCompatActivity(),BackgroundWorker.MyCallback {
 
        for(i in data) {
 
-            var friend=data[0].split("&")
+            var friend=i.split("&")
             if (friend.size>1){
+
             var UserID = friend[userDataOrder.UserID.index].substringAfter("=")
             var firstname = friend[userDataOrder.firstName.index].substringAfter("=")
             var lastname = friend[userDataOrder.lastName.index].substringAfter("=")
             var image = friend[userDataOrder.Image.index].substringAfter("=").replace("\\","").trim()
             arraylist.add(FriendsItem(UserID,"$firstname  $lastname",image))
-
             }
 
         }
-        val friendadap=FriendViewAdapter(arraylist,this)
+
         rv_friend.layoutManager= LinearLayoutManager(this)
         rv_friend.adapter=friendadap
     }

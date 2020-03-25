@@ -35,6 +35,7 @@ lateinit var Sinviter:String
 lateinit var eventdate:String
 lateinit var LocationID:String
 lateinit var Description:String
+lateinit var Image:String
 var mFirebaseAuth = FirebaseAuth.getInstance()
 
 val MAPS_CODE=1234
@@ -156,7 +157,8 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
            var data = BackgroundWorker(this)
            data.execute("createEvent", stime, etime, Finviter, Sinviter, eventdate, LocationID,Description,System.currentTimeMillis().toString(),"wedding","150",
-               mFirebaseAuth.currentUser!!.uid)
+               mFirebaseAuth.currentUser!!.uid,
+               Image)
         }
 
 
@@ -235,6 +237,7 @@ fun setTime(set:String){
 
             IMAGE_PICK_CODE->{
                 if (resultCode == Activity.RESULT_OK){
+                    Image=data?.data.toString()
                     pick_img.setImageURI(data?.data)
                 }
 

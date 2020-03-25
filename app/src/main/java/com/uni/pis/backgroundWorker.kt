@@ -24,7 +24,8 @@ class BackgroundWorker  constructor(var context: Context) :
         login("http://www.psutsystems.com/pisystem/user_data.php"),
         signup("http://www.psutsystems.com/pisystem/create_user.php"),
         createvent("http://www.psutsystems.com/pisystem/create_event.php"),
-        myfriends("http://www.psutsystems.com/pisystem/my_friends.php")
+        myfriends("http://www.psutsystems.com/pisystem/my_friends.php"),
+        myevent("http://www.psutsystems.com/pisystem/my_events.php")
     }
     init {
         myCallback = context as MyCallback
@@ -244,6 +245,43 @@ class BackgroundWorker  constructor(var context: Context) :
             } catch (e: IOException) {
                 e.printStackTrace()
             }}
+            "myevents" ->{
+                try {
+                    val userID = p0[1]
+                    val url = URL(phplinks.myevent.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = URLEncoder.encode(
+                        "userID",
+                        "UTF-8"
+                    ) + "=" + URLEncoder.encode(userID, "UTF-8")
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                    var result: String? = ""
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }}
         }
         return null
     }

@@ -1,4 +1,4 @@
 package com.uni.pis.model
 
-class EventsListeItem(val name:String,val description:String,val Image:Int) {
+class EventsListeItem(val EventID:String,val name:String,val description:String,val Image:String) {
 }
