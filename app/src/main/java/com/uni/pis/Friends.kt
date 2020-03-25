@@ -26,9 +26,8 @@ class Friends : AppCompatActivity(),BackgroundWorker.MyCallback {
         var userID=mFirebaseAuth.currentUser?.uid!!
         var data = BackgroundWorker(this)
         data.execute("myfriends",userID )
-        val friendadap=FriendViewAdapter(arraylist,this)
-        rv_friend.layoutManager= LinearLayoutManager(this)
-        rv_friend.adapter=friendadap
+
+
 
     }
 
@@ -49,5 +48,8 @@ class Friends : AppCompatActivity(),BackgroundWorker.MyCallback {
             }
 
         }
+        val friendadap=FriendViewAdapter(arraylist,this)
+        rv_friend.layoutManager= LinearLayoutManager(this)
+        rv_friend.adapter=friendadap
     }
 }
