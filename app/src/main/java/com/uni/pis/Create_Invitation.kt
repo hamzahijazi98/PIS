@@ -15,11 +15,15 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_create__invitation.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -35,9 +39,11 @@ lateinit var Sinviter:String
 lateinit var eventdate:String
 lateinit var LocationID:String
 lateinit var Description:String
-lateinit var Image:String
+lateinit var mImageUri: Uri
+lateinit var UserID:String
+lateinit var imageStoragelink: String
 var mFirebaseAuth = FirebaseAuth.getInstance()
-
+lateinit var mStorageRef: StorageReference
 val MAPS_CODE=1234
  var halls:ArrayList<String> = ArrayList()
 
@@ -50,6 +56,7 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create__invitation)
+        mStorageRef = FirebaseStorage.getInstance().getReference("eventPic");
 
         et_Finviter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -154,11 +161,8 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
         btn_Save.setOnClickListener {
             Description=et_description.text.toString()
-
-           var data = BackgroundWorker(this)
-           data.execute("createEvent", stime, etime, Finviter, Sinviter, eventdate, LocationID,Description,System.currentTimeMillis().toString(),"wedding","150",
-               mFirebaseAuth.currentUser!!.uid,
-               Image)
+            UserID=mFirebaseAuth.currentUser?.uid!!
+            uploadFile()
         }
 
 
@@ -237,8 +241,8 @@ fun setTime(set:String){
 
             IMAGE_PICK_CODE->{
                 if (resultCode == Activity.RESULT_OK){
-                    Image=data?.data.toString()
-                    pick_img.setImageURI(data?.data)
+                    mImageUri= data!!.data!!
+                    pick_img.setImageURI(mImageUri)
                 }
 
             }
@@ -254,6 +258,41 @@ fun setTime(set:String){
   }
     override fun onResult(result: String?) {
         Toast.makeText(this,result,Toast.LENGTH_LONG).show()
+    }
+    private fun getFileExtension(uri: Uri): String? {
+        val cR = contentResolver
+        val mime = MimeTypeMap.getSingleton()
+        return mime.getExtensionFromMimeType(cR.getType(uri))
+    }
+
+    private fun uploadFile() {
+        if (mImageUri != null)
+        {
+            var fileReference = mStorageRef.child(UserID+System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri))
+            var uploadTask= fileReference.putFile(mImageUri)
+                .addOnSuccessListener { taskSnapshot ->
+                    Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
+                        .show()
+                    taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+                        imageStoragelink=it.toString()
+                        var data = BackgroundWorker(this)
+                        data.execute("createEvent", stime, etime, Finviter, Sinviter,
+                            eventdate, LocationID,Description,System.currentTimeMillis().toString(),
+                            "wedding","150",
+                            mFirebaseAuth.currentUser!!.uid,imageStoragelink)
+
+                    }
+
+
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                }
+        }
+        else
+        {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

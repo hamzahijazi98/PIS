@@ -55,14 +55,10 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         var items: Home_Item = arrayList!![position]
-        var manger: FragmentManager? = fragmentManager
-        var vp: MainActivity.MyViewPagerAdapter? = manger?.let { MainActivity.MyViewPagerAdapter(it) }
-        vp?.getItem(1)
         when (position) {
             0 -> {
 //                vp?.getItem(0)
                 Toast.makeText(context,"yousef ",Toast.LENGTH_LONG).show()
-                Toast.makeText(context,"$vp ",Toast.LENGTH_LONG).show()
             }
 
             1-> {

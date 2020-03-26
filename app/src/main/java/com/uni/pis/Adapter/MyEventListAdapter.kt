@@ -1,13 +1,18 @@
 package com.uni.pis.Adapter
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.storage.FirebaseStorage
 import com.uni.pis.R
+import com.uni.pis.mStorageRef
 import com.uni.pis.model.EventsListeItem
 import kotlinx.android.synthetic.main.cardview_eventslist.view.*
+import kotlinx.android.synthetic.main.cardview_friend.view.*
 
 
 class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>, val context: Context):
@@ -18,7 +23,21 @@ class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>, val
         fun binditems(EventsListItem:EventsListeItem){
             itemView.tv_eventname.text=EventsListItem.name
             itemView.tv_desc.text=EventsListItem.description
-            //itemView.iv_event.setImageResource(EventsListItem.Image.toInt())
+            if (EventsListItem.Image!="") {
+                mStorageRef =
+                    FirebaseStorage.getInstance().getReferenceFromUrl(EventsListItem.Image)
+                mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                    val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+                    itemView.iv_event.setImageBitmap(
+                        Bitmap.createScaledBitmap(
+                            bmp, itemView.iv_event.width,
+                            itemView.iv_event.height, false
+                        )
+                    )
+                }.addOnFailureListener {
+                    // Handle any errors
+                }
+            }
         }
     }
 
