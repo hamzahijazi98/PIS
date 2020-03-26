@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity(),
         private val titlelist:MutableList<String> =ArrayList()
 
         override fun getItem(position: Int): Fragment {
-            return fragmentlist[position]       }
+            return fragmentlist[position]
+        }
 
         override fun getCount(): Int {
             return fragmentlist.size

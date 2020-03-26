@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#1089ff</color>
     <color name="colorAccent">#4f81c7</color>
     <color name="whiteBackGround">#ffffff</color>
+    <color name="homeitem">#1b262c </color>
+    <color name="green">#1d4d4f</color>
+    <color name="blueblack">#110133</color>
+    <color name="lightwhite">#ecfcff</color>
 </resources>

@@ -14,22 +14,25 @@
     <TextView
         android:id="@+id/tv_myevents"
         android:layout_width="match_parent"
-        android:gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="My Events"
-        android:textSize="24sp"
-        android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="15dp"
+        android:background="@color/green"
+        android:gravity="center_horizontal"
+        android:textColor="@color/whiteBackGround"
+        android:text="My Events"
+        android:textSize="24sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_Myeven"
+
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_marginTop="15dp"
+        android:background="@color/green"
         android:scrollbars="vertical"
-        android:background="@color/colorPrimaryDark"/>
+
+       />
 
     <TextView
         android:id="@+id/tv_invited_events"
@@ -37,10 +40,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="My Invited Events"
+        android:textColor="@color/whiteBackGround"
         android:layout_gravity="center_horizontal"
         android:textSize="24sp"
         android:layout_marginTop="15dp"
-        android:background="@color/colorAccent"
+        android:background="@color/blueblack"
         />
 
 
@@ -50,7 +54,8 @@
         android:layout_marginTop="15dp"
         android:scrollbars="vertical"
         android:id="@+id/rv_invevents"
-        android:background="@color/colorAccent"
+        android:background="@color/blueblack"
+
 
         />
 

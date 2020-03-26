@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import com.uni.pis.Adapter.Home_Item_Adapter
+import com.uni.pis.homefrags.MainActivity
 import com.uni.pis.model.Home_Item
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.fragment_main_.*
@@ -42,9 +45,9 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
     private fun SetDataList():ArrayList<Home_Item>{
         var arraylist:ArrayList<Home_Item> = ArrayList()
-        arraylist.add(Home_Item(R.drawable.not,"Notification"))
-        arraylist.add(Home_Item(R.drawable.events,"Events List"))
-        arraylist.add(Home_Item(R.drawable.events,"Profile"))
+        arraylist.add(Home_Item(R.drawable.notf,"Notification"))
+        arraylist.add(Home_Item(R.drawable.event,"Events List"))
+        arraylist.add(Home_Item(R.drawable.prof,"Profile"))
         arraylist.add(Home_Item(R.drawable.help,"Help"))
         return arraylist
 
@@ -52,11 +55,14 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         var items: Home_Item = arrayList!![position]
-
-
+        var manger: FragmentManager? = fragmentManager
+        var vp: MainActivity.MyViewPagerAdapter? = manger?.let { MainActivity.MyViewPagerAdapter(it) }
+        vp?.getItem(1)
         when (position) {
             0 -> {
-
+//                vp?.getItem(0)
+                Toast.makeText(context,"yousef ",Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"$vp ",Toast.LENGTH_LONG).show()
             }
 
             1-> {
