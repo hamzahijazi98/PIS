@@ -94,7 +94,7 @@ class EvenstList : AppCompatActivity(),BackgroundWorker.MyCallback {
 
 
             rv_invevents.layoutManager=LinearLayoutManager(this)
-            rv_invevents.adapter=eventAdapter
+            rv_invevents.adapter=event2Adapter
         }
     }
 }
