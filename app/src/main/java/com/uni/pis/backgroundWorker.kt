@@ -27,7 +27,8 @@ class BackgroundWorker  constructor(var context: Context) :
         myfriends("http://www.psutsystems.com/pisystem/my_friends.php"),
         myevent("http://www.psutsystems.com/pisystem/my_events.php"),
         invitedtoevent("http://www.psutsystems.com/pisystem/invited_to_event.php"),
-        findfriend("http://www.psutsystems.com/pisystem/find_friend.php")
+        findfriend("http://www.psutsystems.com/pisystem/find_friend.php"),
+        addfriend("http://www.psutsystems.com/pisystem/add_friend.php")
     }
     init {
         myCallback = context as MyCallback
@@ -360,6 +361,48 @@ class BackgroundWorker  constructor(var context: Context) :
                     e.printStackTrace()
                 }
             }
+            "addfriend" ->  {
+                try {
+                    val userID = p0[1]
+                    val friendID = p0[2]
+
+
+                    val url = URL(phplinks.addfriend.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = (URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(userID, "UTF-8")
+                            +"&"
+                            + URLEncoder.encode("friendID","UTF-8")+"="+URLEncoder.encode(friendID,"UTF-8")
+
+                                                   )
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
         }
         return null
     }
@@ -372,6 +415,7 @@ class BackgroundWorker  constructor(var context: Context) :
     override fun onPostExecute(result: String?) {
         when (type ) {
              "login"->{
+                 try{
                  var data=result!!.split("&")
                  userData.first_name=data[userDataOrder.firstName.index].substringAfter("=")
                  userData.last_name=data[userDataOrder.lastName.index].substringAfter("=")
@@ -381,6 +425,11 @@ class BackgroundWorker  constructor(var context: Context) :
                  userData.birthdate=data[userDataOrder.birthday.index].substringAfter("=")
                  userData.city=data[userDataOrder.city.index].substringAfter("=")
                  userData.image=data[userDataOrder.image.index].substringAfter("=") }
+                 catch (e:KotlinNullPointerException){
+                     Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+                 }
+             }
+
             "event"->{
                 var data=result!!.split("&")
                 eventData.Inv_No=data[0].substringAfter("=")

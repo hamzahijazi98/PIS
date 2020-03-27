@@ -9,15 +9,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.uni.pis.BackgroundWorker
+import com.uni.pis.Events.UserID
+import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
 import com.uni.pis.data.friendData
+import kotlinx.android.synthetic.main.cardview_find_friend_list.view.*
 import kotlinx.android.synthetic.main.cardview_friend_list.view.*
+import kotlinx.android.synthetic.main.cardview_friend_list.view.iv_friend
+import kotlinx.android.synthetic.main.cardview_friend_list.view.tv_friendname
 
 class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
     RecyclerView.Adapter<FindFriendAdapter.ViewHolder>() {
 
 
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+        var userID= mFirebaseAuth.currentUser?.uid!!
         lateinit var mStorageRef: StorageReference
         fun bindItems(friendData: friendData){
             itemView.tv_friendname.text = friendData.first_name+" "+friendData.last_name
@@ -42,6 +49,12 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
             catch (e: Exception){
                 // Toast.makeText(context,e.message, Toast.LENGTH_LONG).show()
             }
+            itemView.addfriend.setOnClickListener {
+                var data = BackgroundWorker(itemView.context)
+                data.execute("addfriend", userID,friendData.UserID)
+
+                itemView.addfriend.text="Add as Friend"
+            }
         }
     }
 
@@ -58,6 +71,7 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
     override fun onBindViewHolder(holder: FindFriendAdapter.ViewHolder, position: Int) {
         holder.bindItems(FindFriend[position])
     }
+
 
 
 }
