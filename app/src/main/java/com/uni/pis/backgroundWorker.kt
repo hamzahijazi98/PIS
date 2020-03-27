@@ -18,7 +18,7 @@ class BackgroundWorker  constructor(var context: Context) :
     var result: String? = ""
     enum class userDataOrder(val index: Int) {
         firstName(0), lastName(1),phoneNumber(2),gender(3),
-        email(4),birthday(5),city(6),image(7)
+        email(4),birthday(5),city(6),image(7),UserID(8)
     }
     enum class phplinks(val link: String) {
         login("http://www.psutsystems.com/pisystem/user_data.php"),
@@ -26,7 +26,8 @@ class BackgroundWorker  constructor(var context: Context) :
         createvent("http://www.psutsystems.com/pisystem/create_event.php"),
         myfriends("http://www.psutsystems.com/pisystem/my_friends.php"),
         myevent("http://www.psutsystems.com/pisystem/my_events.php"),
-        invitedtoevent("http://www.psutsystems.com/pisystem/invited_to_event.php")
+        invitedtoevent("http://www.psutsystems.com/pisystem/invited_to_event.php"),
+        findfriend("http://www.psutsystems.com/pisystem/find_friend.php")
     }
     init {
         myCallback = context as MyCallback
@@ -320,6 +321,45 @@ class BackgroundWorker  constructor(var context: Context) :
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }}
+            "findfriend" -> {
+
+                try {
+                    val userName = p0[1]
+                    val url = URL(phplinks.login.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = URLEncoder.encode(
+                        "Name",
+                        "UTF-8"
+                    ) + "=" + URLEncoder.encode(userName, "UTF-8")
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                    var result: String? = ""
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
         }
         return null
     }

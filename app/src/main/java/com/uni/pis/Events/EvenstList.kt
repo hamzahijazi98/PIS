@@ -37,7 +37,6 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
         var type = result!!.split("^")
         if (type[1] == "myevents") {
             var data = type[2].split("*")
-            val builder = AlertDialog.Builder(this)
 
             for (i in data) {
 

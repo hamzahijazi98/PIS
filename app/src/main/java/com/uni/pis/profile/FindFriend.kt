@@ -7,34 +7,32 @@ import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uni.pis.Adapter.FriendViewAdapter
+import com.uni.pis.BackgroundWorker
+import com.uni.pis.Events.EvenstList
 import com.uni.pis.R
+import com.uni.pis.data.friendData
+import com.uni.pis.model.EventsListeItem
 import com.uni.pis.model.FriendsItem
 import kotlinx.android.synthetic.main.activity_find_friend.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class FindFriend : AppCompatActivity() {
+class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
 
-    val friendarraylist=ArrayList<FriendsItem>()
-    val searcharraylist=ArrayList<FriendsItem>()
-
+    val friendarraylist=ArrayList<friendData>()
+    val searcharraylist=ArrayList<friendData>()
+    val friendarraylistadapter=FriendViewAdapter(searcharraylist,this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_friend)
-        friendarraylist.add(FriendsItem("123456","yousef",
-            R.drawable.ic_image_black_24dp.toString()))
-        friendarraylist.add(FriendsItem("123456","yousef",
-            R.drawable.ic_image_black_24dp.toString()))
-        friendarraylist.add(FriendsItem("123456","yousef",
-            R.drawable.ic_image_black_24dp.toString()))
-        friendarraylist.add(FriendsItem("123456","yousef",
-            R.drawable.ic_image_black_24dp.toString()))
+
+
 
         searcharraylist.addAll(friendarraylist)
 
-        val friendarraylistadapter=FriendViewAdapter(searcharraylist,this)
+
         rv_findfriend.layoutManager=LinearLayoutManager(this)
-        rv_findfriend.adapter=friendarraylistadapter
+       rv_findfriend.adapter=friendarraylistadapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -83,6 +81,29 @@ class FindFriend : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResult(result: String?) {
+        var data = result.split("*")
+
+        for (i in data) {
+
+            var friend = i.split("&")
+            if (friend.size > 1) {
+
+                var firstname=friend[BackgroundWorker.userDataOrder.firstName.index].substringAfter("=")
+                var last_name=friend[BackgroundWorker.userDataOrder.lastName.index].substringAfter("=")
+                var phoneNumber=friend[BackgroundWorker.userDataOrder.phoneNumber.index].substringAfter("=")
+                var gender=friend[BackgroundWorker.userDataOrder.gender.index].substringAfter("=")
+                var email=friend[BackgroundWorker.userDataOrder.email.index].substringAfter("=")
+                var birthdate=friend[BackgroundWorker.userDataOrder.birthday.index].substringAfter("=")
+                var city=friend[BackgroundWorker.userDataOrder.city.index].substringAfter("=")
+                var image=friend[BackgroundWorker.userDataOrder.image.index].substringAfter("=")
+                var friendID=friend[BackgroundWorker.userDataOrder.UserID.index].substringAfter("=")
+                friendarraylist.add(friendData(firstname,last_name,email,phoneNumber,gender,birthdate,image,city,friendID))
+            }
+
+        }
     }
 
 }
