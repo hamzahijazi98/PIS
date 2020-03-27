@@ -56,6 +56,12 @@ class ProfilePagePersonalFrag : Fragment() {
             catch (e: IllegalStateException){
                 Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
             }
+            catch (e: NullPointerException){
+                Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+            }
+            catch (e: Exception){
+                Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+            }
 
         }.addOnFailureListener {
           Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()

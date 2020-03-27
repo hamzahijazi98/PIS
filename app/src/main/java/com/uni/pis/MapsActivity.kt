@@ -33,6 +33,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import kotlinx.android.synthetic.main.activity_maps.*
 import java.io.IOException
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -80,7 +81,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
           var locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
           if (isLocationEnabled(locationManager)) {
               val location=locationManager.getLastKnownLocation((LocationManager.GPS_PROVIDER))
-              mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location!!.latitude,location.longitude),15f))
+              try{
+              mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location!!.latitude,location.longitude),15f))}
+              catch (e: Exception){
+                  Toast.makeText(this,e.message,Toast.LENGTH_LONG  ).show()
+              }
           }
 
       }
