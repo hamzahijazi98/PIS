@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.Friends
 import com.uni.pis.R
 import com.uni.pis.data.userData
+import kotlinx.android.synthetic.main.fragment_main_.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 
 
@@ -34,19 +36,36 @@ class ProfilePagePersonalFrag : Fragment() {
         tv_gender.text= userData.gender
         tv_phone.text= userData.phoneNumber
         tv_birthday.text= userData.birthdate
+
         var image= userData.image.replace("\\","").trim()
+        try {
+
+
         mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
         mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
             val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+            try {
+
+
             iv_profile.setImageBitmap(
                 Bitmap.createScaledBitmap(
                     bmp, iv_profile.width,
                     iv_profile.height, false
                 )
-            )
+            )}
+            catch (e: IllegalStateException){
+                Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+            }
+
         }.addOnFailureListener {
-            // Handle any errors
+          Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
         }
+        }
+        catch (e: Exception){
+            Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+        }
+
+
 
         btn_friends.setOnClickListener {
             val intent = Intent (context, Friends::class.java)

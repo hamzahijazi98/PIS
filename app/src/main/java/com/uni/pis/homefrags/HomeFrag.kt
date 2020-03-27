@@ -41,6 +41,7 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
 
 
+
     }
 
     private fun SetDataList():ArrayList<Home_Item>{

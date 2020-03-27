@@ -13,14 +13,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
 
         >
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/home_iv_profile"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/eventoricon"
+             />
 
         <GridView
             android:id="@+id/Gridview_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="125dp"
+            android:layout_marginTop="20dp"
             android:columnWidth="150dp"
             android:paddingTop="25dp"
             android:horizontalSpacing="15dp"
