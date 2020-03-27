@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.uni.pis.Adapter.FindFriendAdapter
 import com.uni.pis.Adapter.FriendViewAdapter
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events.EvenstList
@@ -21,7 +22,7 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
 
     val friendarraylist=ArrayList<friendData>()
     val searcharraylist=ArrayList<friendData>()
-    val friendarraylistadapter=FriendViewAdapter(searcharraylist,this)
+    val friendarraylistadapter=FindFriendAdapter(searcharraylist,this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_friend)
@@ -52,7 +53,7 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
                         searcharraylist.clear()
                         val search=newText.toLowerCase(Locale.getDefault())
                         friendarraylist.forEach{
-                            if(it.Name.toLowerCase(Locale.getDefault()).contains(search)){
+                            if(it.first_name.toLowerCase(Locale.getDefault()).contains(search)){
                                 searcharraylist.add(it)
                             }
                         }
@@ -77,14 +78,12 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
 
         return super.onCreateOptionsMenu(menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         return super.onOptionsItemSelected(item)
     }
 
     override fun onResult(result: String?) {
-        var data = result.split("*")
+        var data = result!!.split("*")
 
         for (i in data) {
 
