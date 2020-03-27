@@ -2,6 +2,8 @@ package com.uni.pis.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
@@ -10,10 +12,14 @@ import com.uni.pis.Adapter.FindFriendAdapter
 import com.uni.pis.Adapter.FriendViewAdapter
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events.EvenstList
+import com.uni.pis.Events.Sinviter
+import com.uni.pis.Events.UserID
+import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
 import com.uni.pis.data.friendData
 import com.uni.pis.model.EventsListeItem
 import com.uni.pis.model.FriendsItem
+import kotlinx.android.synthetic.main.activity_create__invitation.*
 import kotlinx.android.synthetic.main.activity_find_friend.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -21,66 +27,34 @@ import kotlin.collections.ArrayList
 class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
 
     val friendarraylist=ArrayList<friendData>()
-    val searcharraylist=ArrayList<friendData>()
-    val friendarraylistadapter=FindFriendAdapter(searcharraylist,this)
+    val friendarraylistadapter=FindFriendAdapter(friendarraylist,this)
+    var userID= mFirebaseAuth.currentUser?.uid!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_friend)
 
-
-
-        searcharraylist.addAll(friendarraylist)
-
-
-        rv_findfriend.layoutManager=LinearLayoutManager(this)
-       rv_findfriend.adapter=friendarraylistadapter
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
-        val menuItem=menu!!.findItem(R.id.search)
-
-        if(menuItem!=null){
-            val searchView=menuItem.actionView as SearchView
-            searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return true
+        et_search.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                friendarraylist.clear()
+                rv_findfriend.adapter=friendarraylistadapter
+                if (s.toString().isNotEmpty()) {
+                    var data = BackgroundWorker(this@FindFriend)
+                    data.execute("findfriend", s.toString())
                 }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    if(newText!!.isNotEmpty())
-                    {
-                        searcharraylist.clear()
-                        val search=newText.toLowerCase(Locale.getDefault())
-                        friendarraylist.forEach{
-                            if(it.first_name.toLowerCase(Locale.getDefault()).contains(search)){
-                                searcharraylist.add(it)
-                            }
-                        }
-
-                        rv_findfriend.adapter!!.notifyDataSetChanged()
-                    }
-                    else
-                    {
-                        searcharraylist.clear()
-                        searcharraylist.addAll(friendarraylist)
-                        rv_findfriend.adapter!!.notifyDataSetChanged()
-                    }
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
 
-                    return true
                 }
+        })
 
 
-            })
 
-        }
-
-        return super.onCreateOptionsMenu(menu)
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
+
+
 
     override fun onResult(result: String?) {
         var data = result!!.split("*")
@@ -97,12 +71,20 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
                 var email=friend[BackgroundWorker.userDataOrder.email.index].substringAfter("=")
                 var birthdate=friend[BackgroundWorker.userDataOrder.birthday.index].substringAfter("=")
                 var city=friend[BackgroundWorker.userDataOrder.city.index].substringAfter("=")
-                var image=friend[BackgroundWorker.userDataOrder.image.index].substringAfter("=")
-                var friendID=friend[BackgroundWorker.userDataOrder.UserID.index].substringAfter("=")
-                friendarraylist.add(friendData(firstname,last_name,email,phoneNumber,gender,birthdate,image,city,friendID))
-            }
+                var image=friend[BackgroundWorker.userDataOrder.image.index].substringAfter("=").replace("\\","").trim()
+                var friendID=friend[BackgroundWorker.userDataOrder.UserID.index].substringAfter("=").trim()
+                if(friendID != userID){
+                    friendarraylist.add(friendData(firstname, last_name, email, phoneNumber, gender, city, birthdate, image, friendID))
+                }
+                }
+
+
 
         }
+
+        rv_findfriend.layoutManager=LinearLayoutManager(this)
+        rv_findfriend.adapter=friendarraylistadapter
+
     }
 
 }

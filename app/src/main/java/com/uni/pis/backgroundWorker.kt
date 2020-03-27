@@ -18,7 +18,7 @@ class BackgroundWorker  constructor(var context: Context) :
     var result: String? = ""
     enum class userDataOrder(val index: Int) {
         firstName(0), lastName(1),phoneNumber(2),gender(3),
-        email(4),birthday(5),city(6),image(7),UserID(8)
+        email(4),birthday(5),city(6),image(7),UserID(9)
     }
     enum class phplinks(val link: String) {
         login("http://www.psutsystems.com/pisystem/user_data.php"),
@@ -325,7 +325,7 @@ class BackgroundWorker  constructor(var context: Context) :
 
                 try {
                     val userName = p0[1]
-                    val url = URL(phplinks.login.link)
+                    val url = URL(phplinks.findfriend.link)
                     val httpURLConnection =
                         url.openConnection() as HttpURLConnection
                     httpURLConnection.requestMethod = "POST"

@@ -20,7 +20,7 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         lateinit var mStorageRef: StorageReference
         fun bindItems(friendData: friendData){
-            itemView.tv_friendname.text = friendData.first_name
+            itemView.tv_friendname.text = friendData.first_name+" "+friendData.last_name
             try {
                 mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(friendData.image)
                 mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
