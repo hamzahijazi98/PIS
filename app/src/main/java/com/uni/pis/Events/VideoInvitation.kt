@@ -1,4 +1,4 @@
-package com.uni.pis
+package com.uni.pis.Events
 
 import android.Manifest
 import android.app.Activity
@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.webkit.PermissionRequest
 import android.widget.MediaController
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -19,6 +18,7 @@ import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.uni.pis.R
 import kotlinx.android.synthetic.main.activity_video_invitation.*
 import kotlinx.android.synthetic.main.fragment_video_frame.*
 
@@ -32,7 +32,7 @@ class VideoInvitation : AppCompatActivity(), MultiplePermissionsListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_invitation)
-        Frag= videoFrame ()
+        Frag= videoFrame()
         supportFragmentManager.beginTransaction().add(R.id.videoFramecontine, Frag).commit()
 
         val permissions = listOf(

@@ -9,11 +9,11 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.uni.pis.Create_Invitation
+import com.uni.pis.Events.Create_Invitation
 import com.uni.pis.R
-import com.uni.pis.VideoInvitation
+import com.uni.pis.Events.VideoInvitation
 import com.uni.pis.model.Events_Item
-import kotlinx.android.synthetic.main.cardview_events.view.*
+import kotlinx.android.synthetic.main.cardview_create_event.view.*
 import android.view.View as View1
 
 
@@ -30,7 +30,7 @@ class EventsAdapter(val arraylist: ArrayList<Events_Item>, val context: Context)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v= LayoutInflater.from(parent.context).inflate(R.layout.cardview_events,parent,false)
+        val v= LayoutInflater.from(parent.context).inflate(R.layout.cardview_create_event,parent,false)
         return ViewHolder(v)
 
 
@@ -55,7 +55,7 @@ when(position) {
         }
 
         holder.itemView.btn_video.setOnClickListener {
-            var i=Intent(context,VideoInvitation::class.java)
+            var i=Intent(context, VideoInvitation::class.java)
             ContextCompat.startActivity(context,i,Bundle())
         }
     }

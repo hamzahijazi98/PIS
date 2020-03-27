@@ -1,7 +1,8 @@
-package com.uni.pis
+package com.uni.pis.Events
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.uni.pis.R
 
 class receivercardinvitaion : AppCompatActivity() {
 

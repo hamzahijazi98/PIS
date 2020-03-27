@@ -1,4 +1,4 @@
-package com.uni.pis
+package com.uni.pis.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uni.pis.Adapter.FriendViewAdapter
+import com.uni.pis.R
 import com.uni.pis.model.FriendsItem
 import kotlinx.android.synthetic.main.activity_find_friend.*
 import java.util.*
@@ -20,10 +21,14 @@ class FindFriend : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_friend)
-        friendarraylist.add(FriendsItem("123456","yousef",R.drawable.ic_image_black_24dp.toString()))
-        friendarraylist.add(FriendsItem("123456","yousef",R.drawable.ic_image_black_24dp.toString()))
-        friendarraylist.add(FriendsItem("123456","yousef",R.drawable.ic_image_black_24dp.toString()))
-        friendarraylist.add(FriendsItem("123456","yousef",R.drawable.ic_image_black_24dp.toString()))
+        friendarraylist.add(FriendsItem("123456","yousef",
+            R.drawable.ic_image_black_24dp.toString()))
+        friendarraylist.add(FriendsItem("123456","yousef",
+            R.drawable.ic_image_black_24dp.toString()))
+        friendarraylist.add(FriendsItem("123456","yousef",
+            R.drawable.ic_image_black_24dp.toString()))
+        friendarraylist.add(FriendsItem("123456","yousef",
+            R.drawable.ic_image_black_24dp.toString()))
 
         searcharraylist.addAll(friendarraylist)
 

@@ -1,18 +1,17 @@
-package com.uni.pis
+package com.uni.pis.profile
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.uni.pis.Adapter.EventsAdapter
 import com.uni.pis.Adapter.FriendViewAdapter
+import com.uni.pis.BackgroundWorker
+import com.uni.pis.R
+import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.model.FriendsItem
 import kotlinx.android.synthetic.main.activity_friends.*
-import kotlinx.android.synthetic.main.fragment_events_.*
 
-class Friends : AppCompatActivity(),BackgroundWorker.MyCallback {
+class Friends : AppCompatActivity(), BackgroundWorker.MyCallback {
     val arraylist=ArrayList<FriendsItem>()
     val friendadap=FriendViewAdapter(arraylist,this)
     enum class userDataOrder(val index: Int) {
@@ -24,7 +23,7 @@ class Friends : AppCompatActivity(),BackgroundWorker.MyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends)
-        var userID=mFirebaseAuth.currentUser?.uid!!
+        var userID= mFirebaseAuth.currentUser?.uid!!
         var data = BackgroundWorker(this)
         data.execute("myfriends",userID )
 

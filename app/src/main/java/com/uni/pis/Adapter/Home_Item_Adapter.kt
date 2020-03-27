@@ -24,7 +24,7 @@ class Home_Item_Adapter(var context: Context,var arrayList: ArrayList<Home_Item>
         return arrayList.size
     }
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var view:View=View.inflate(context, R.layout.cardview_itemgrid,null)
+        var view:View=View.inflate(context, R.layout.home_cardview,null)
         var icons:ImageView=view.findViewById(R.id.img_home)
         var names:TextView=view.findViewById(R.id.home_icon)
         var listItem:Home_Item=arrayList.get(position)

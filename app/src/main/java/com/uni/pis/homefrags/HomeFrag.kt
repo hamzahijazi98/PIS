@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import com.uni.pis.Adapter.Home_Item_Adapter
-import com.uni.pis.homefrags.MainActivity
+import com.uni.pis.Events.EvenstList
 import com.uni.pis.model.Home_Item
+import com.uni.pis.profile.FindFriend
 import com.uni.pis.profile.ProfilePagePersonalFrag
-import kotlinx.android.synthetic.main.fragment_main_.*
+import kotlinx.android.synthetic.main.fragment_home_.*
 import java.util.ArrayList
 
 
@@ -27,7 +27,7 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main_, container, false)
+        return inflater.inflate(R.layout.fragment_home_, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

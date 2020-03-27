@@ -6,14 +6,13 @@ import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.R
 import com.uni.pis.model.FriendsItem
-import kotlinx.android.synthetic.main.cardview_friend.view.*
-import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
+import kotlinx.android.synthetic.main.cardview_friend_list.view.*
+
 class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Context):RecyclerView.Adapter<FriendViewAdapter.ViewHolder>() {
 
 
@@ -45,7 +44,7 @@ class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Conte
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_friend, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_friend_list, parent, false)
         return ViewHolder(view)
 
 

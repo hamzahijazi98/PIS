@@ -1,6 +1,5 @@
 package com.uni.pis.profile
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -12,10 +11,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.uni.pis.Friends
 import com.uni.pis.R
 import com.uni.pis.data.userData
-import kotlinx.android.synthetic.main.fragment_main_.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 
 

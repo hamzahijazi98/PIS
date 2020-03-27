@@ -14,7 +14,7 @@ import com.uni.pis.Events_Frag
 import com.uni.pis.HomeFrag
 import com.uni.pis.R
 import com.uni.pis.profile.ProfilePagePersonalFrag
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_home.*
 
 class MainActivity : AppCompatActivity(),
     BackgroundWorker.MyCallback {
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
 
         val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
         viewpage_apdapter.addfragment(HomeFrag(),"Home")

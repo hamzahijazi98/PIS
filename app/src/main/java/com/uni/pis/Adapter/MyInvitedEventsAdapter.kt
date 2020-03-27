@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.uni.pis.R
 import com.uni.pis.model.EventsListeItem
-import kotlinx.android.synthetic.main.cardview_eventslist.view.*
+import kotlinx.android.synthetic.main.cardview_event_viewer.view.*
 
 class MyInvitedEventsAdapter(var arrayList_Invevents: ArrayList<EventsListeItem>, val context: Context):
     RecyclerView.Adapter<MyEventListAdapter.ViewHolder>() {
@@ -22,7 +22,7 @@ class MyInvitedEventsAdapter(var arrayList_Invevents: ArrayList<EventsListeItem>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyEventListAdapter.ViewHolder {
-        val v= LayoutInflater.from(parent.context).inflate(R.layout.cardview_eventslist,parent,false)
+        val v= LayoutInflater.from(parent.context).inflate(R.layout.cardview_event_viewer,parent,false)
         return MyEventListAdapter.ViewHolder(v)
     }
 

@@ -1,10 +1,9 @@
-package com.uni.pis
+package com.uni.pis.Events
 
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
@@ -21,9 +20,10 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.uni.pis.BackgroundWorker
+import com.uni.pis.R
 import kotlinx.android.synthetic.main.activity_create__invitation.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -52,7 +52,8 @@ val MAPS_CODE=1234
     //Permission code
     private val PERMISSION_CODE = 1001;
 
-class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
+class Create_Invitation : AppCompatActivity(),
+    BackgroundWorker.MyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create__invitation)
@@ -144,7 +145,9 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                     //permission denied
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
                     //show popup to request runtime permission
-                    requestPermissions(permissions, PERMISSION_CODE);
+                    requestPermissions(permissions,
+                        PERMISSION_CODE
+                    );
                 }
                 else{
                     //permission already granted
@@ -160,8 +163,9 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
 
         btn_Save.setOnClickListener {
-            Description=et_description.text.toString()
-            UserID=mFirebaseAuth.currentUser?.uid!!
+            Description =et_description.text.toString()
+            UserID =
+                mFirebaseAuth.currentUser?.uid!!
             uploadFile()
         }
 
@@ -169,7 +173,9 @@ class Create_Invitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
 
 
-        var myadap=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,halls)
+        var myadap=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
+            halls
+        )
         lv_halls.adapter=myadap
         myadap.add("yousef")
         myadap.add("ha")
@@ -217,10 +223,10 @@ fun setTime(set:String){
                 cal.set(Calendar.MINUTE,minute)
                 if(set.equals("start")){
                     tv_startTime.text = timeFormat.format(cal.time)
-                    stime= timeFormat.format(cal.time)}
+                    stime = timeFormat.format(cal.time)}
                 if(set.equals("end")){
                     tv_endTime.text = timeFormat.format(cal.time)
-                    etime= timeFormat.format(cal.time)}
+                    etime = timeFormat.format(cal.time)}
 
             }, cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE),false)
         timePicker.show()
@@ -233,15 +239,16 @@ fun setTime(set:String){
         {
             MAPS_CODE ->  when (resultCode)
             {
-                Activity.RESULT_OK -> {LocationID= data?.extras?.get("location").toString()
+                Activity.RESULT_OK -> {
+                    LocationID = data?.extras?.get("location").toString()
                     if (!LocationID.isEmpty())
                 ic_correct.visibility=View.VISIBLE}
                 Activity.RESULT_CANCELED -> Toast.makeText(this ,"Nothing selected",Toast.LENGTH_LONG).show()
             }
 
-            IMAGE_PICK_CODE->{
+            IMAGE_PICK_CODE ->{
                 if (resultCode == Activity.RESULT_OK){
-                    mImageUri= data!!.data!!
+                    mImageUri = data!!.data!!
                     pick_img.setImageURI(mImageUri)
                 }
 
@@ -268,18 +275,29 @@ fun setTime(set:String){
     private fun uploadFile() {
         if (mImageUri != null)
         {
-            var fileReference = mStorageRef.child(UserID+System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri))
+            var fileReference = mStorageRef.child(
+                UserID +System.currentTimeMillis().toString() + "." + getFileExtension(
+                    mImageUri
+                ))
             var uploadTask= fileReference.putFile(mImageUri)
                 .addOnSuccessListener { taskSnapshot ->
                     Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
                         .show()
                     taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
-                        imageStoragelink=it.toString()
+                        imageStoragelink =it.toString()
                         var data = BackgroundWorker(this)
-                        data.execute("createEvent", stime, etime, Finviter, Sinviter,
-                            eventdate, LocationID,Description,System.currentTimeMillis().toString(),
+                        data.execute("createEvent",
+                            stime,
+                            etime,
+                            Finviter,
+                            Sinviter,
+                            eventdate,
+                            LocationID,
+                            Description,System.currentTimeMillis().toString(),
                             "wedding","150",
-                            mFirebaseAuth.currentUser!!.uid,imageStoragelink)
+                            mFirebaseAuth.currentUser!!.uid,
+                            imageStoragelink
+                        )
 
                     }
 

@@ -1,4 +1,4 @@
-package com.uni.pis
+package com.uni.pis.ui
 
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
+import com.uni.pis.BackgroundWorker
+import com.uni.pis.R
 import com.uni.pis.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*

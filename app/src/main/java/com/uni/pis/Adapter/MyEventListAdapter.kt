@@ -9,10 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.uni.pis.R
-import com.uni.pis.mStorageRef
+import com.uni.pis.Events.mStorageRef
 import com.uni.pis.model.EventsListeItem
-import kotlinx.android.synthetic.main.cardview_eventslist.view.*
-import kotlinx.android.synthetic.main.cardview_friend.view.*
+import kotlinx.android.synthetic.main.cardview_event_viewer.view.*
 
 
 class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>, val context: Context):
@@ -42,7 +41,7 @@ class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>, val
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v=LayoutInflater.from(parent.context).inflate(R.layout.cardview_eventslist,parent,false)
+        val v=LayoutInflater.from(parent.context).inflate(R.layout.cardview_event_viewer,parent,false)
         return ViewHolder(v)
     }
 

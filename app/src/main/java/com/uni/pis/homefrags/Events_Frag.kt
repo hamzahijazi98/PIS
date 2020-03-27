@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uni.pis.Adapter.EventsAdapter
 import com.uni.pis.model.Events_Item
-import kotlinx.android.synthetic.main.fragment_events_.*
+import kotlinx.android.synthetic.main.fragment_create_event_.*
 
 class Events_Frag : Fragment() {
 
@@ -17,7 +17,7 @@ class Events_Frag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_events_, container, false)
+        return inflater.inflate(R.layout.fragment_create_event_, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

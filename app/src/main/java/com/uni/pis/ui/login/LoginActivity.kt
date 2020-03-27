@@ -18,7 +18,7 @@ import com.uni.pis.homefrags.MainActivity
 
 
 import com.uni.pis.R
-import com.uni.pis.SignUp
+import com.uni.pis.ui.SignUp
 
 class LoginActivity : AppCompatActivity() {
 
