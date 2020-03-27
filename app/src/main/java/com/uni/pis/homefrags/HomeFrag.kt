@@ -49,7 +49,7 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         arraylist.add(Home_Item(R.drawable.notf,"Notification"))
         arraylist.add(Home_Item(R.drawable.event,"Events List"))
         arraylist.add(Home_Item(R.drawable.prof,"Profile"))
-        arraylist.add(Home_Item(R.drawable.help,"Help"))
+        arraylist.add(Home_Item(R.drawable.help,"Find Friend"))
         return arraylist
 
     }
@@ -67,7 +67,8 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
                 startActivity(intent)
             }
 
-            3->{
+
+            2->{
                 val fm=fragmentManager
                 var trans= fm?.beginTransaction()
                 if (trans != null) {
@@ -76,6 +77,12 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
                     trans.commit()
 
                 }
+            }
+
+
+            3->{
+                val intent = Intent (context, FindFriend::class.java)
+                startActivity(intent)
             }
 
 

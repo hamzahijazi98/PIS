@@ -42,8 +42,12 @@
         android:padding="15dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp">
-
     </FrameLayout>
+
+
+
+
+
 
 
 </LinearLayout>

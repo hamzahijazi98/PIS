@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EvenstList"></activity>
+        <activity android:name=".FindFriend"></activity>
+        <activity android:name=".EvenstList" />
         <activity android:name=".EventsList" />
         <activity android:name=".Friends" />
         <activity android:name=".receivercardinvitaion" />

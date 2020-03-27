@@ -71,7 +71,6 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
 //spinner for phone number
         val phone_adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, phone_domain)
-
         spinner_phone.adapter = phone_adapter
         spinner_phone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -118,7 +117,6 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-
         RG_gender.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.RB_male)
                 gender = "Male"
@@ -126,23 +124,18 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                 gender = "Female"
         }
 
-
         btn_uploadimage.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                    //permission denied
-                    val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissions, PERMISSION_PICK_CODE)
-                } else {
-                    pick_image_from_gallery()
-                }
-            else {
+            if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                //permission denied
+                val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                requestPermissions(permissions, PERMISSION_PICK_CODE)
+            } else {
                 pick_image_from_gallery()
             }
         }
+
         btn_signup.setOnClickListener {
             var valid=Is_Vaild()
-
             if(valid){
 
                 loading.visibility= View.VISIBLE
@@ -292,7 +285,6 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
 
         return valid
     }
-
     override fun onResult(result: String?) {
         loading.visibility = View.GONE
         intent = Intent(this, LoginActivity::class.java)
@@ -304,7 +296,6 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         val mime = MimeTypeMap.getSingleton()
         return mime.getExtensionFromMimeType(cR.getType(uri))
     }
-
     private fun uploadFile() {
         if (mImageUri != null)
         {
