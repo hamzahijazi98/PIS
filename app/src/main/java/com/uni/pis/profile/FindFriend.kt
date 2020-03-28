@@ -1,34 +1,25 @@
 package com.uni.pis.profile
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Menu
-import android.view.MenuItem
-import androidx.appcompat.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.RequestQueue
 import com.uni.pis.Adapter.FindFriendAdapter
-import com.uni.pis.Adapter.FriendViewAdapter
 import com.uni.pis.BackgroundWorker
-import com.uni.pis.Events.EvenstList
-import com.uni.pis.Events.Sinviter
-import com.uni.pis.Events.UserID
 import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
 import com.uni.pis.data.friendData
-import com.uni.pis.model.EventsListeItem
-import com.uni.pis.model.FriendsItem
-import kotlinx.android.synthetic.main.activity_create__invitation.*
 import kotlinx.android.synthetic.main.activity_find_friend.*
-import java.util.*
-import kotlin.collections.ArrayList
+
 
 class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
 
     val friendarraylist=ArrayList<friendData>()
     val friendarraylistadapter=FindFriendAdapter(friendarraylist,this)
     var userID= mFirebaseAuth.currentUser?.uid!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_friend)

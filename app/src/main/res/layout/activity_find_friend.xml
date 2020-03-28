@@ -12,7 +12,6 @@
         android:layout_marginTop="10dp"
         android:id="@+id/lo_searchlayout"
         android:layout_marginHorizontal="10dp"
-        android:elevation="10dp"
         android:background="@drawable/roundedbutton"
         android:layout_height="wrap_content">
         <ImageView
@@ -46,7 +45,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_findfriend"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"

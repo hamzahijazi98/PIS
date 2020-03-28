@@ -58,8 +58,8 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         var items: Home_Item = arrayList!![position]
         when (position) {
             0 -> {
-//                vp?.getItem(0)
-                Toast.makeText(context,"yousef ",Toast.LENGTH_LONG).show()
+
+
             }
 
             1-> {
