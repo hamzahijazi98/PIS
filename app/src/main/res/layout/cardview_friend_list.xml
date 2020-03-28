@@ -31,13 +31,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                
                 android:layout_weight="1"
                 android:hint="yousefsuliman"
                 android:textSize="20sp" />
-
-
-
-
 
 
         <Button
@@ -48,7 +45,7 @@
             android:layout_weight="1"
             android:text="friend"
             android:layout_gravity="bottom"
-            android:textSize="20sp" />
+            android:autoSizeMaxTextSize="20sp" />
     </LinearLayout>
 
 </com.google.android.material.circularreveal.cardview.CircularRevealCardView>

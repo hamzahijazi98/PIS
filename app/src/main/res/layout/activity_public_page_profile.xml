@@ -45,24 +45,18 @@
             android:orientation="horizontal"
             android:padding="15dp">
             <Button
-                android:id="@+id/btn_friends"
+                android:id="@+id/addfriend"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
-                android:text="@string/friends"
-                android:textSize="15sp" />
-
-
-            <Button
-                android:id="@+id/btn_add_unfriend"
-                android:layout_width="0dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/roundedbutton"
-                android:text="Unfreind"
-                 />
+                android:layout_gravity="bottom"
+
+                android:text="@string/add_friend" />
+
+
+
 
             <Button
                 android:id="@+id/btn_invite"

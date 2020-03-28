@@ -25,7 +25,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/loginpic"
-                app:civ_border_color="#FF000000"
+                app:civ_border_color="#00000000"
                 app:civ_border_width="2dp" />
 
 
