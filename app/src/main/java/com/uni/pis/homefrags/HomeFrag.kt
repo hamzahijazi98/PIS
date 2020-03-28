@@ -46,7 +46,8 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         arraylist.add(Home_Item(R.drawable.notf,"Notification"))
         arraylist.add(Home_Item(R.drawable.event,"Events List"))
         arraylist.add(Home_Item(R.drawable.prof,"Profile"))
-        arraylist.add(Home_Item(R.drawable.ic_search,"Find Friend"))
+        arraylist.add(Home_Item(R.drawable.search,"Find Friend"))
+        arraylist.add(Home_Item(R.drawable.help,"Help"))
 
         return arraylist
 

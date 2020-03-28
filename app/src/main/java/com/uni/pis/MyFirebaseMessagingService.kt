@@ -30,7 +30,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentText(body)
             .setSmallIcon(R.drawable.ic_menu_add)
         val intent: Intent
-        intent = Intent(this, Notification::class.java)
+        intent = Intent(this, com.uni.pis.Notification::class.java)
 
         intent.putExtra("UserID", UserID)
         intent.putExtra("FriendID", FriendID)
