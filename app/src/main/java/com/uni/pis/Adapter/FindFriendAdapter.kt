@@ -39,10 +39,9 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
     var firbaseNotify=FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest");
 
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-        private var mRequestQue: RequestQueue? = null
         private val URL = "https://fcm.googleapis.com/fcm/send"
         var userID= mFirebaseAuth.currentUser?.uid!!
-        var firbaseNotify=FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest");
+
         lateinit var mStorageRef: StorageReference
         fun bindItems(friendData: friendData){
             itemView.tv_friendname.text = friendData.first_name+" "+friendData.last_name
@@ -78,11 +77,12 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
 
 
         private fun sendNotification(userID :String,friendID:String) {
-            mRequestQue = Volley.newRequestQueue(itemView.context);
+            val mRequestQue = Volley.newRequestQueue(itemView.context);
+            Volley.newRequestQueue(itemView.context);
 
             val json = JSONObject()
             try {
-                json.put("to", "/topics/" + "FriendRequest ")
+                json.put("to", "/topics/" + "FriendRequest")
                 val notificationObj = JSONObject()
                 notificationObj.put("title", "Friend Request")
                 notificationObj.put("body", "${userData.first_name} ${userData.last_name} Want to be your friend")
@@ -93,7 +93,7 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
                 extraData.put("Name","${userData.first_name} ${userData.last_name}")
                 json.put("notification", notificationObj)
                 json.put("data", extraData)
-                val request: JsonObjectRequest = object : JsonObjectRequest(
+                var request: JsonObjectRequest = object : JsonObjectRequest(
                     Method.POST, URL,
                     json,
                     Response.Listener<JSONObject> { Log.d("MUR", "onResponse: ") },
@@ -112,16 +112,15 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
                             Log.d("Notify", "onError: " + exception!!.message)}
                     }
                 ) {
-                    @Throws(AuthFailureError::class)
                     override fun getHeaders(): Map<String, String> {
-                        val header: MutableMap<String, String> =
+                        val header: HashMap<String, String> =
                             HashMap()
                         header["content-type"] = "application/json"
                         header["authorization"] = "key=AIzaSyD46-_quPy21OCoSi1npr1Y9SssSoHML7c"
                         return header
                     }
                 }
-                mRequestQue!!.add(request)
+                mRequestQue.add(request)
             } catch (e: JSONException) {
                 e.printStackTrace()
             }

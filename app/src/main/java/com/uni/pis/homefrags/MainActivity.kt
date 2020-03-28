@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events_Frag
 import com.uni.pis.HomeFrag
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
+        FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest")
         val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Events Type")
