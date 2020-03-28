@@ -39,9 +39,6 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         gridView?.onItemClickListener=this
 
 
-
-
-
     }
 
     private fun SetDataList():ArrayList<Home_Item>{
@@ -49,7 +46,8 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         arraylist.add(Home_Item(R.drawable.notf,"Notification"))
         arraylist.add(Home_Item(R.drawable.event,"Events List"))
         arraylist.add(Home_Item(R.drawable.prof,"Profile"))
-        arraylist.add(Home_Item(R.drawable.help,"Find Friend"))
+        arraylist.add(Home_Item(R.drawable.ic_search,"Find Friend"))
+
         return arraylist
 
     }
@@ -58,8 +56,8 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         var items: Home_Item = arrayList!![position]
         when (position) {
             0 -> {
-
-
+                val intent = Intent (context,Notification::class.java)
+                startActivity(intent)
             }
 
             1-> {
@@ -89,5 +87,10 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
         }
     }
+
+
+
+
+
 
 }

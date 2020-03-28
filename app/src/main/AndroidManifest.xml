@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".profile.PublicPageProfile"></activity>
+        <activity android:name=".Notification"></activity>
+        <activity android:name=".profile.PublicPageProfile" />
         <activity android:name=".profile.FindFriend" />
         <activity android:name=".Events.EvenstList" />
         <activity android:name=".EventsList" />

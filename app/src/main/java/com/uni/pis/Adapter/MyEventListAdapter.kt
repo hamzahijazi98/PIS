@@ -52,10 +52,6 @@ class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>, val
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binditems(arrayList_Myevents[position])
 
-
-
-
-
     }
 
 

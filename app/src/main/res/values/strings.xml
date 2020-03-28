@@ -72,4 +72,7 @@
     <string name="reject">Reject</string>
     <string name="send_invitation">Send Invitation</string>
     <string name="add_friend">Add Friend</string>
+
+
+    <string name="rejcet">Rejcet</string>
 </resources>
