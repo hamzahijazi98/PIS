@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -37,9 +39,10 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
     var firbaseNotify=FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest");
 
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-        private val mRequestQue: RequestQueue? = null
+        private var mRequestQue: RequestQueue? = null
         private val URL = "https://fcm.googleapis.com/fcm/send"
         var userID= mFirebaseAuth.currentUser?.uid!!
+        var firbaseNotify=FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest");
         lateinit var mStorageRef: StorageReference
         fun bindItems(friendData: friendData){
             itemView.tv_friendname.text = friendData.first_name+" "+friendData.last_name
@@ -75,6 +78,8 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
 
 
         private fun sendNotification(userID :String,friendID:String) {
+            mRequestQue = Volley.newRequestQueue(itemView.context);
+
             val json = JSONObject()
             try {
                 json.put("to", "/topics/" + "FriendRequest ")
@@ -120,6 +125,7 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
+
         }
 
 
