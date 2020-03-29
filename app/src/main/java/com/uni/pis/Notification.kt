@@ -19,8 +19,6 @@ class Notification : AppCompatActivity() {
         setContentView(R.layout.activity_notification)
 
         try {
-
-
             val intent = intent
             val userId = intent.getStringExtra("UserID")
             val frinedId = intent.getStringExtra("FriendID")

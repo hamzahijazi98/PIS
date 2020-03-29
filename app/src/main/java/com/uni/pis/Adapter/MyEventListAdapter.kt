@@ -14,7 +14,7 @@ import com.uni.pis.model.EventsListeItem
 import kotlinx.android.synthetic.main.cardview_event_viewer.view.*
 
 
-class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>, val context: Context):
+class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>):
     RecyclerView.Adapter<MyEventListAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
