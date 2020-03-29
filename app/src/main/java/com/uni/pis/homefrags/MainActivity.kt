@@ -1,5 +1,6 @@
 package com.uni.pis.homefrags
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,10 +11,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
-import com.uni.pis.BackgroundWorker
-import com.uni.pis.Events_Frag
-import com.uni.pis.HomeFrag
-import com.uni.pis.R
+import com.uni.pis.*
+import com.uni.pis.data.acceptFriendData
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -27,6 +26,17 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest")
+        if (intent.hasExtra("UserID")) {
+            val userId = intent.extras!!.get("UserID") .toString()
+            val frinedId = intent.extras!!.get("FriendID") .toString()
+            val image = intent.extras!!.get("Image") .toString()
+            val name = intent.extras!!.get("name") .toString()
+            val intent=Intent(this,Notification::class.java)
+            intent.putExtra("UserID", userId)
+            intent.putExtra("FriendID", frinedId)
+            intent.putExtra("Image", image)
+            intent.putExtra("name", name)
+        }
         val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Events Type")
@@ -38,10 +48,12 @@ class MainActivity : AppCompatActivity(),
 
             var data = BackgroundWorker(this)
             data.execute("login", mFirebaseAuth.currentUser?.uid!!)
+
         }
         catch (e:NullPointerException) {
             Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
         }
+
 
 
     }
