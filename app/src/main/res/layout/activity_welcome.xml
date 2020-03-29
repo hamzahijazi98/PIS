@@ -17,10 +17,22 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/eventoricon" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/arizonia"
+        android:text="Welcome\n\nPlease wait"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="200dp"
+
        app:lottie_fileName="wlcomeanimation.json"
         android:layout_gravity="center_vertical"
         app:lottie_loop="true"

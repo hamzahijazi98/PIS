@@ -35,7 +35,7 @@ class welcome : AppCompatActivity() {
             Runnable {startActivity(intent)
             finish()
             },
-            2000
+            1000
         )
 
 
