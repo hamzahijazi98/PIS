@@ -69,4 +69,5 @@ class MainActivity : AppCompatActivity(),
     override fun onResult(result: String?) {
 
     }
+
 }
