@@ -26,17 +26,13 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
         FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest")
-
         val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Events Type")
         viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),"Profile")
         view_pager.adapter=viewpage_apdapter
         tabs.setupWithViewPager(view_pager)
-
-
         try {
             var mFirebaseAuth = FirebaseAuth.getInstance()
 
@@ -49,7 +45,26 @@ class MainActivity : AppCompatActivity(),
 
 
     }
+    class MyViewPagerAdapter(manger: FragmentManager): FragmentPagerAdapter(manger){
+        private val fragmentlist:MutableList<Fragment> =ArrayList()
+        private val titlelist:MutableList<String> =ArrayList()
 
+        override fun getItem(position: Int): Fragment {
+            return fragmentlist[position]
+        }
+
+        override fun getCount(): Int {
+            return fragmentlist.size
+        }
+        fun addfragment(fragment: Fragment, title:String){
+            fragmentlist.add(fragment)
+            titlelist.add(title)
+
+        }
+        override fun getPageTitle(position: Int): CharSequence? {
+            return titlelist[position]
+        }
+    }
 
     override fun onResult(result: String?) {
 

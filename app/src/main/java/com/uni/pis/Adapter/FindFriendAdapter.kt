@@ -120,6 +120,15 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
                         return header
                     }
                 }
+                try {
+                    var data = BackgroundWorker(itemView.context)
+                    data.execute("notification","send" )
+
+                }
+                catch (e:java.lang.Exception)
+                {
+                    Log.d("Notify", "onError: " + e.message)
+                }
                 mRequestQue.add(request)
             } catch (e: JSONException) {
                 e.printStackTrace()

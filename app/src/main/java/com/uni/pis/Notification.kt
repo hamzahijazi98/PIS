@@ -1,5 +1,6 @@
 package com.uni.pis
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +20,13 @@ class Notification : AppCompatActivity() {
         setContentView(R.layout.activity_notification)
 
         try {
-            val intent = intent
-            val userId = intent.getStringExtra("UserID")
-            val frinedId = intent.getStringExtra("FriendID")
-            val image = intent.getStringExtra("Image")
-            val name = intent.getStringExtra("name")
+
+
+
+            val userId = intent.extras!!.get("UserID") as String
+            val frinedId = intent.extras!!.get("FriendID")as String
+            val image = intent.extras!!.get("Image")as String
+            val name = intent.extras!!.get("name")as String
             NotificationArrayList.add(acceptFriendData(name, image, userId, frinedId))
         }
         catch (e:Exception)
