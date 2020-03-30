@@ -310,6 +310,9 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                          imageStoragelink=it.toString()
                          var data = BackgroundWorker(this)
                          data.execute("signup",first_name,last_name,gender,phonenumber,email,birth,userID,city,imageStoragelink)
+                        // var data = BackgroundWorker(this)
+                         //data.execute("updateuserdata",first_name,last_name,gender,phonenumber,birth,userID,city,imageStoragelink)
+
                      }
 
 
