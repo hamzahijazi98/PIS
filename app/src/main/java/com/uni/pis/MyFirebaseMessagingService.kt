@@ -29,7 +29,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         var mFirebaseAuth = FirebaseAuth.getInstance()
         if (UserID.equals( mFirebaseAuth.currentUser!!.uid)) {
             var data = BackgroundWorker(this)
-            data.execute("notification" )
+            //data.execute("notification" )
 
             val notificationBuilder = Notification.Builder( this)
                 .setContentTitle(title)

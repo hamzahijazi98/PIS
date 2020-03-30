@@ -28,7 +28,8 @@ class BackgroundWorker  constructor(var context: Context) :
         myevent("http://www.psutsystems.com/pisystem/my_events.php"),
         invitedtoevent("http://www.psutsystems.com/pisystem/invited_to_event.php"),
         findfriend("http://www.psutsystems.com/pisystem/find_friend.php"),
-        addfriend("http://www.psutsystems.com/pisystem/add_friend.php")
+        addfriend("http://www.psutsystems.com/pisystem/add_friend.php"),
+        notification("http://www.psutsystems.com/pisystem/notification.php")
     }
     init {
         myCallback = context as MyCallback
@@ -406,17 +407,24 @@ class BackgroundWorker  constructor(var context: Context) :
             "notification" ->  {
                 try {
                     val type = p0[1]
-                    val notificationID = p0[2]
-                    val title = p0[3]
-                    val body = p0[4]
-                    val data = p0[5]
-                    val userID = p0[6]
-                    val friendID = p0[7]
+                    var notificationID = " "
+                    var title = " "
+                    var body = " "
+                    var data = " "
+                    var userID = " "
+                    var  friendID = p0[2]
+                    if(type=="send"){
+                     notificationID = p0[2]!!
+                     title = p0[3]!!
+                     body = p0[4]!!
+                     data = p0[5]!!
+                     userID = p0[6]!!
+                     friendID = p0[7]!!}
 
 
 
 
-                    val url = URL(phplinks.addfriend.link)
+                    val url = URL(phplinks.notification.link)
                     val httpURLConnection =
                         url.openConnection() as HttpURLConnection
                     httpURLConnection.requestMethod = "POST"
@@ -425,9 +433,9 @@ class BackgroundWorker  constructor(var context: Context) :
                     val outputStream = httpURLConnection.outputStream
                     val bufferedWriter =
                         BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
-                    val post_data = (URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(userID, "UTF-8")
+                    val post_data = (URLEncoder.encode("toUserID", "UTF-8") + "=" + URLEncoder.encode(friendID, "UTF-8")
                             +"&"
-                            + URLEncoder.encode("friendID","UTF-8")+"="+URLEncoder.encode(friendID,"UTF-8")
+                            + URLEncoder.encode("fromUserID","UTF-8")+"="+URLEncoder.encode(userID,"UTF-8")
                             +"&"
                             + URLEncoder.encode("notificationID","UTF-8")+"="+URLEncoder.encode(notificationID,"UTF-8")
                             +"&"

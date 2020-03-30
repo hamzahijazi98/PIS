@@ -79,13 +79,15 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
         private fun sendNotification(userID :String,friendID:String) {
             val mRequestQue = Volley.newRequestQueue(itemView.context);
             Volley.newRequestQueue(itemView.context);
-
+            val title="Friend Request"
+            val body="${userData.first_name} ${userData.last_name} Want to be your friend"
             val json = JSONObject()
             try {
-                json.put("to", "/topics/" + "FriendRequest")
+                json.put("to", "/topics/FriendRequest$friendID")
                 val notificationObj = JSONObject()
-                notificationObj.put("title", "Friend Request")
-                notificationObj.put("body", "${userData.first_name} ${userData.last_name} Want to be your friend")
+
+                notificationObj.put("title",title )
+                notificationObj.put("body", body)
                 val extraData = JSONObject()
                 extraData.put("UserID", userID)
                 extraData.put("FriendID",friendID )
@@ -122,7 +124,7 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
                 }
                 try {
                     var data = BackgroundWorker(itemView.context)
-                    data.execute("notification","send" )
+                    data.execute("notification","send",System.currentTimeMillis().toString(),title,body,userData.image,userID,friendID )
 
                 }
                 catch (e:java.lang.Exception)

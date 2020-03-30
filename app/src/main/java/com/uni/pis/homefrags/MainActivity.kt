@@ -14,6 +14,7 @@ import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events_Frag
 import com.uni.pis.HomeFrag
 import com.uni.pis.R
+import com.uni.pis.data.userData
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -21,12 +22,13 @@ class MainActivity : AppCompatActivity(),
     BackgroundWorker.MyCallback {
     @RequiresApi(Build.VERSION_CODES.N)
 
-
+    var mFirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest")
+        var userid=mFirebaseAuth.currentUser?.uid!!
+        FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest$userid")
         val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Events Type")
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity(),
             var mFirebaseAuth = FirebaseAuth.getInstance()
 
             var data = BackgroundWorker(this)
-            data.execute("login", mFirebaseAuth.currentUser?.uid!!)
+            data.execute("login", userid)
         }
         catch (e:NullPointerException) {
             Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()

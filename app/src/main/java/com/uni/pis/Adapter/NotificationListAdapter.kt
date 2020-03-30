@@ -17,13 +17,15 @@ import com.uni.pis.data.friendData
 import kotlinx.android.synthetic.main.cardview_find_friend_list.view.*
 import kotlinx.android.synthetic.main.cardview_notification.view.*
 
+
 class NotificationListAdapter(val notificationarray:ArrayList<acceptFriendData>, context: Context):
     RecyclerView.Adapter<NotificationListAdapter.ViewHolder>()
+
 
 {
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         lateinit var mStorageRef: StorageReference
-        var userID= mFirebaseAuth.currentUser?.uid!!
+
         fun bindItems(acceptFriendData: acceptFriendData){
             itemView.tv_acceptnamefriend.text = acceptFriendData.first_name
             try {
