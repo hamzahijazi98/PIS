@@ -29,7 +29,8 @@ class BackgroundWorker  constructor(var context: Context) :
         invitedtoevent("http://www.psutsystems.com/pisystem/invited_to_event.php"),
         findfriend("http://www.psutsystems.com/pisystem/find_friend.php"),
         addfriend("http://www.psutsystems.com/pisystem/add_friend.php"),
-        notification("http://www.psutsystems.com/pisystem/notification.php")
+        notification("http://www.psutsystems.com/pisystem/notification.php"),
+        updateuserdata("http://www.psutsystems.com/pisystem/update_user_data.php")
     }
     init {
         myCallback = context as MyCallback
@@ -212,6 +213,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     e.printStackTrace()
                 }
             }
+
             "myfriends" ->{
                 try {
                 val userID = p0[1]
@@ -249,6 +251,7 @@ class BackgroundWorker  constructor(var context: Context) :
             } catch (e: IOException) {
                 e.printStackTrace()
             }}
+
             "myevents" ->{
                 try {
                     val userID = p0[1]
@@ -286,6 +289,7 @@ class BackgroundWorker  constructor(var context: Context) :
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }}
+
             "invitedtoevent" ->{
                 try {
                     val userID = p0[1]
@@ -323,6 +327,7 @@ class BackgroundWorker  constructor(var context: Context) :
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }}
+
             "findfriend" -> {
 
                 try {
@@ -362,6 +367,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     e.printStackTrace()
                 }
             }
+
             "addfriend" ->  {
                 try {
                     val userID = p0[1]
@@ -404,6 +410,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     e.printStackTrace()
                 }
             }
+
             "notification" ->  {
                 try {
                     val type = p0[1]
@@ -470,6 +477,67 @@ class BackgroundWorker  constructor(var context: Context) :
                     e.printStackTrace()
                 }
             }
+
+            "updateuserdata" ->  {
+                try {
+                    val user_fname = p0[1]
+                    val user_lname = p0[2]
+                    val user_gender =p0[3]
+                    val user_PhoneNo = p0[4]
+                    val user_BirthDate = p0[5]
+                    val user_ID = p0[6]
+                    val user_city = p0[7]
+                    val user_image = p0[8]
+                    val url = URL(phplinks.updateuserdata.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = (URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(user_ID, "UTF-8")
+                            +"&"
+                            + URLEncoder.encode("firstname","UTF-8")+"="+URLEncoder.encode(user_fname,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("lastname","UTF-8")+"="+URLEncoder.encode(user_lname,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("gender","UTF-8")+"="+URLEncoder.encode(user_gender,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("phoneno","UTF-8")+"="+URLEncoder.encode(user_PhoneNo,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("birthdate","UTF-8")+"="+URLEncoder.encode(user_BirthDate,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("city","UTF-8")+"="+URLEncoder.encode(user_city,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(user_image,"UTF-8")
+
+                            )
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                    var result: String? = ""
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+
+
         }
         return null
     }
