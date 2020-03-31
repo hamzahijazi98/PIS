@@ -13,6 +13,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.R
 import com.uni.pis.data.userData
+import com.uni.pis.homefrags.Edit_Profile_Fragment
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 
 
@@ -27,58 +28,63 @@ class ProfilePagePersonalFrag : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        tv_fullName.text="${userData.first_name} ${userData.last_name}"
-        tv_city.text= userData.city
-        tv_email.text= userData.email
-        tv_gender.text= userData.gender
-        tv_phone.text= userData.phoneNumber
-        tv_birthday.text= userData.birthdate
+        tv_fullName.text = "${userData.first_name} ${userData.last_name}"
+        tv_city.text = userData.city
+        tv_email.text = userData.email
+        tv_gender.text = userData.gender
+        tv_phone.text = userData.phoneNumber
+        tv_birthday.text = userData.birthdate
 
-        var image= userData.image.replace("\\","").trim()
+        var image = userData.image.replace("\\", "").trim()
         try {
 
 
-        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
-        mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
-            val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
-            try {
+            mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
+            mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+                try {
 
 
-            iv_profile.setImageBitmap(
-                Bitmap.createScaledBitmap(
-                    bmp, iv_profile.width,
-                    iv_profile.height, false
-                )
-            )}
-            catch (e: IllegalStateException){
-                Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
-            }
-            catch (e: NullPointerException){
-                Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
-            }
-            catch (e: Exception){
-                Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
-            }
+                    iv_profile.setImageBitmap(
+                        Bitmap.createScaledBitmap(
+                            bmp, iv_profile.width,
+                            iv_profile.height, false
+                        )
+                    )
+                } catch (e: IllegalStateException) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                } catch (e: NullPointerException) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                }
 
-        }.addOnFailureListener {
-          Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
-        }
-        }
-        catch (e: Exception){
-            Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+            }.addOnFailureListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
         }
 
 
 
         btn_friends.setOnClickListener {
-            val intent = Intent (context, Friends::class.java)
+            val intent = Intent(context, Friends::class.java)
             startActivity(intent)
 
         }
+        btn_editProfile.setOnClickListener {
+            val transaction = fragmentManager!!.beginTransaction().apply {
+                // Replace whatever is in the fragment_container view with this fragment,
+                // and add the transaction to the back stack so the user can navigate back
+                replace(R.id.PROFILE_FRAME,Edit_Profile_Fragment())
+                addToBackStack(null)
+            }
 
+// Commit the transaction
+            transaction.commit();
 
-
-
+        }
     }
 
 }

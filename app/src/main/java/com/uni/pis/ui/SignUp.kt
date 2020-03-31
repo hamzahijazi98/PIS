@@ -33,6 +33,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         "Choose your city", "Amman", "Az Zarqa", "Irbid", "Al Karak",
         "Jerash", "Ajloun", "Ma'an", "Tafilah", "Madaba", "Aqaba", "Balqa", "Mafraq"
     )
+
     var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
     lateinit var mDatabaseRef: DatabaseReference
@@ -90,12 +91,9 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                 }
 
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
             }
         }
-
 
 
 // city code

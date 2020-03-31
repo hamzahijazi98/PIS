@@ -2,7 +2,7 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/PROFILE_FRAM"
+    android:id="@+id/PROFILE_FRAME"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/appbackground"
@@ -167,7 +167,7 @@
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/birthday"
-                        android:textSize="20sp" />
+                        android:autoSizeMaxTextSize="18sp"/>
 
 
                     <TextView

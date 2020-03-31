@@ -48,7 +48,7 @@ val MAPS_CODE=1234
  var halls:ArrayList<String> = ArrayList()
 
     //image pick code
-    private val IMAGE_PICK_CODE = 1000;
+    val IMAGE_PICK_CODE = 1000;
     //Permission code
     private val PERMISSION_CODE = 1001;
 

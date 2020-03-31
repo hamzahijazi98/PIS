@@ -62,8 +62,9 @@ when(position) {
 
 
 
-    1->{  var i = Intent(context, VideoInvitation::class.java)
-        ContextCompat.startActivity(context, i, Bundle())
+    1->{ // var i = Intent(context, VideoInvitation::class.java)
+       // ContextCompat.startActivity(context, i, Bundle())
+        Toast.makeText(context, "yousef", Toast.LENGTH_LONG).show()
     }
 
 
