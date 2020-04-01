@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.uni.pis.Events.receivercardinvitaion
+import com.uni.pis.Events.MyCardInvitation
 import com.uni.pis.R
 import com.uni.pis.data.eventData
-import com.uni.pis.model.EventsListeItem
 import kotlinx.android.synthetic.main.cardview_event_viewer.view.*
 
 class MyInvitedEventsAdapter(var arrayList_Invevents: ArrayList<eventData>, val context: Context):
@@ -41,7 +40,7 @@ class MyInvitedEventsAdapter(var arrayList_Invevents: ArrayList<eventData>, val 
 
         holder.itemView.setOnClickListener{
             val image = arrayList_Invevents[position]
-            val i = Intent(holder.itemView.context, receivercardinvitaion::class.java)
+            val i = Intent(holder.itemView.context, MyCardInvitation::class.java)
             val bundle = Bundle()
             val parcel = arrayList_Invevents[position]
             bundle.putParcelable("eventdata", parcel)

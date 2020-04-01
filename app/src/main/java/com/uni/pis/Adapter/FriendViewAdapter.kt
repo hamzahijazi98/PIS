@@ -6,12 +6,18 @@ import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.R
+import com.uni.pis.data.eventData
+import com.uni.pis.data.model.eventDataInvite
 import com.uni.pis.model.FriendsItem
+import kotlinx.android.synthetic.main.activity_public_page_profile.*
 import kotlinx.android.synthetic.main.cardview_friend_list.view.*
+import kotlinx.android.synthetic.main.invitationdialog.view.*
 
 class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Context):RecyclerView.Adapter<FriendViewAdapter.ViewHolder>() {
 
@@ -55,6 +61,34 @@ class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Conte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(friendlist[position])
+
+
+
+
+
+       if(eventDataInvite.EventID!=""){
+           holder.itemView.btn_invite.setOnClickListener {
+                val mDialogView=LayoutInflater.from(holder.itemView.context).inflate(R.layout.invitationdialog,null)
+
+                val mBulider= AlertDialog.Builder(holder.itemView.context)
+                    .setView(mDialogView)
+                    .setTitle("Invitee Number")
+
+                val mAlertDialog=mBulider.show()
+                mDialogView.btn_confirm.setOnClickListener {
+                    mAlertDialog.dismiss()
+                    eventDataInvite.InviteeNumer+=mDialogView.et_inviteenumber.text.toString()
+                    Toast.makeText(holder.itemView.context,"You Invitee Number Now Is ${eventDataInvite.InviteeNumer}",Toast.LENGTH_LONG).show()
+                }
+                mDialogView.btn_cancel.setOnClickListener{
+                    mAlertDialog.dismiss()
+                    Toast.makeText(holder.itemView.context,"Cancelled",Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+
+
 
 
     }

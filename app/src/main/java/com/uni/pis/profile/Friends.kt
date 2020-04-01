@@ -1,6 +1,9 @@
 package com.uni.pis.profile
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Layout
+import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,8 +11,16 @@ import com.uni.pis.Adapter.FriendViewAdapter
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
 import com.uni.pis.Events.mFirebaseAuth
+import com.uni.pis.data.eventData
+import com.uni.pis.data.model.eventDataInvite
 import com.uni.pis.model.FriendsItem
+import kotlinx.android.synthetic.main.activity_create__invitation.view.*
 import kotlinx.android.synthetic.main.activity_friends.*
+import kotlinx.android.synthetic.main.activity_public_page_profile.*
+import kotlinx.android.synthetic.main.activity_public_page_profile.btn_invite
+import kotlinx.android.synthetic.main.cardview_friend_list.*
+import kotlinx.android.synthetic.main.fragment_profile_page_personal.view.*
+import kotlinx.android.synthetic.main.invitationdialog.view.*
 
 class Friends : AppCompatActivity(), BackgroundWorker.MyCallback {
     val arraylist=ArrayList<FriendsItem>()
@@ -28,8 +39,23 @@ class Friends : AppCompatActivity(), BackgroundWorker.MyCallback {
         data.execute("myfriends",userID )
 
 
+        val eventID=intent.extras!!.get("EventId")
+        val invitee_Number=intent.extras!!.get("InviteeNumber")
+
+
+        if(eventID!=null) {
+            eventDataInvite.EventID = eventID.toString()
+            eventDataInvite.InviteeNumer=invitee_Number.toString()
+        }
+
+
+
+
 
     }
+
+
+
 
     override fun onResult(result: String?) {
         var data=result!!.split("*")

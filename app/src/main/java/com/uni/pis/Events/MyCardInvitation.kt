@@ -9,18 +9,17 @@ import android.os.Bundle
 import com.google.firebase.storage.FirebaseStorage
 import com.uni.pis.R
 import com.uni.pis.data.eventData
-import kotlinx.android.synthetic.main.activity_receivercardinvitaion.*
-import kotlinx.android.synthetic.main.cardview_event_viewer.view.*
+import com.uni.pis.profile.Friends
+import kotlinx.android.synthetic.main.activity_mycardinvitation.*
 
-class receivercardinvitaion : AppCompatActivity() {
+class MyCardInvitation : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_receivercardinvitaion)
+        setContentView(R.layout.activity_mycardinvitation)
 
         val bundle = intent.getBundleExtra("Bundle")
         val eventdata = bundle.getParcelable<eventData>("eventdata")
-
 
         if (eventdata!!.image!="") {
             mStorageRef =
@@ -53,7 +52,12 @@ class receivercardinvitaion : AppCompatActivity() {
             i.action = Intent.ACTION_VIEW
             i.data = Uri.parse("geo:" + loc[0] + "," + loc[1] + "?z=17")
             startActivity(i)
-
+        }
+        btn_invite.setOnClickListener {
+            var intent=Intent(this,Friends::class.java)
+            intent.putExtra("EventId",eventdata.Event_ID)
+            intent.putExtra("InviteeNumber",eventdata.Inv_No)
+            startActivity(intent)
         }
 
 

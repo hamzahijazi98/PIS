@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+
+
+    <EditText
+        android:id="@+id/et_inviteenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:hint="Invitee Number"
+        android:layout_marginBottom="30dp"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center">
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
+        android:text="Cancel"
+        android:textSize="12sp"
+        android:layout_gravity="start"/>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="end"
+
+
+          >
+          <Button
+              android:id="@+id/btn_setModerator"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="end"
+              android:padding="5dp"
+              android:background="@drawable/roundedbutton"
+              android:text="Set Moderator"
+              android:textSize="12sp"/>
+
+          <Button
+              android:id="@+id/btn_confirm"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="right"
+              android:background="@drawable/roundedbutton"
+              android:text="Confrim"
+              android:layout_marginStart="15dp"
+              android:textSize="12sp"/>
+      </LinearLayout>
+
+  </LinearLayout>
+
+
+</LinearLayout>
