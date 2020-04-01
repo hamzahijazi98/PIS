@@ -607,7 +607,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     val Event_ID=p0[10]
 
 
-                    val url = URL(phplinks.createvent.link)
+                    val url = URL(phplinks.updatevent.link)
                     val httpURLConnection =
                         url.openConnection() as HttpURLConnection
                     httpURLConnection.requestMethod = "POST"
