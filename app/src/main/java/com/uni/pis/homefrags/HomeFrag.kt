@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.FrameLayout
 import android.widget.GridView
-import android.widget.Toast
 import com.uni.pis.Adapter.Home_Item_Adapter
 import com.uni.pis.Events.EvenstList
 import com.uni.pis.model.Home_Item
@@ -69,6 +69,8 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
             2->{
                 val fm=fragmentManager
+                val profview=view!!.findViewById<FrameLayout>(R.id.fragment_profile_page_personal)
+                profview.visibility=View.INVISIBLE
                 var trans= fm?.beginTransaction()
                 if (trans != null) {
                     trans.replace(R.id.FrameHome,ProfilePagePersonalFrag())

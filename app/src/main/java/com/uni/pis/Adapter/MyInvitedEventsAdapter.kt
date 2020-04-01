@@ -31,8 +31,8 @@ class MyInvitedEventsAdapter(var arrayList_Invevents: ArrayList<EventsListeItem>
     }
 
     override fun onBindViewHolder(holder: MyEventListAdapter.ViewHolder, position: Int) {
-        holder.binditems(arrayList_Invevents[position])
+//        holder.binditems(arrayList_Invevents[position])
+//    }
+
     }
-
-
 }

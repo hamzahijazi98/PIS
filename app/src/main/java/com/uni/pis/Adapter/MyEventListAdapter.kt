@@ -1,30 +1,39 @@
 package com.uni.pis.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Bundle
+import android.os.Parcelable
+import android.util.EventLog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
+import com.uni.pis.Events.VideoInvitation
 import com.uni.pis.R
 import com.uni.pis.Events.mStorageRef
+import com.uni.pis.Events.receivercardinvitaion
+import com.uni.pis.data.eventData
 import com.uni.pis.model.EventsListeItem
 import kotlinx.android.synthetic.main.cardview_event_viewer.view.*
 
 
-class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>):
+class MyEventListAdapter(var arrayList_Myevents: ArrayList<eventData>):
     RecyclerView.Adapter<MyEventListAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
-        fun binditems(EventsListItem:EventsListeItem){
-            itemView.tv_eventname.text=EventsListItem.name
-            itemView.tv_desc.text=EventsListItem.description
-            if (EventsListItem.Image!="") {
+        fun binditems(eventData:eventData){
+            itemView.tv_eventname.text=eventData.Event_type
+            itemView.tv_desc.text=eventData.Description
+            if (eventData.image!="") {
                 mStorageRef =
-                    FirebaseStorage.getInstance().getReferenceFromUrl(EventsListItem.Image)
+                    FirebaseStorage.getInstance().getReferenceFromUrl(eventData.image)
                 mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
                     val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
                     itemView.iv_event.setImageBitmap(
@@ -51,6 +60,30 @@ class MyEventListAdapter(var arrayList_Myevents: ArrayList<EventsListeItem>):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binditems(arrayList_Myevents[position])
+
+
+        holder.itemView.setOnClickListener{
+            when(position)
+            {
+                0->{
+                    val image=arrayList_Myevents[position]
+                    val i=Intent(holder.itemView.context, receivercardinvitaion::class.java)
+                    val bundle = Bundle()
+                    val parcel = arrayList_Myevents[position]
+                    bundle.putParcelable("eventdata", parcel)
+                    i.putExtra("Bundle", bundle)
+                    ContextCompat.startActivity(holder.itemView.context,i, Bundle())
+
+                }
+
+
+
+            }
+
+
+
+        }
+
 
     }
 

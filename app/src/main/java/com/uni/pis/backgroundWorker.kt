@@ -567,7 +567,7 @@ class BackgroundWorker  constructor(var context: Context) :
 
             "event"->{
                 var data=result!!.split("&")
-                eventData.Inv_No=data[0].substringAfter("=")
+//                eventData.Inv_No=data[0].substringAfter("=")
 
             }
 

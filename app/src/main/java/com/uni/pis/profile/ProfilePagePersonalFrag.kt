@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.R
@@ -74,16 +76,13 @@ class ProfilePagePersonalFrag : Fragment() {
 
         }
         btn_editProfile.setOnClickListener {
-            val transaction = fragmentManager!!.beginTransaction().apply {
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack so the user can navigate back
-                replace(R.id.PROFILE_FRAME,Edit_Profile_Fragment())
-                addToBackStack(null)
+            val fm = fragmentManager
+            var trans = fm?.beginTransaction()
+            if (trans != null) {
+                trans.replace(R.id.fragment_profile_page_personal, Edit_Profile_Fragment())
+                trans.addToBackStack(null)
+                trans.commit()
             }
-
-// Commit the transaction
-            transaction.commit();
-
         }
     }
 

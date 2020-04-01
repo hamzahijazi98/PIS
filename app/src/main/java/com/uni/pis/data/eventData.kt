@@ -1,48 +1,62 @@
 package com.uni.pis.data
 
- class eventData {
-     companion object {
-         var Event_ID = "test"
-         var Inv_No = "test"
-         var Date = ""
-         var Event_type = ""
-         var StartTime = ""
-         var EndTime = "test"
-         var Description = ""
-         var InviterID = ""
-         var firstinvitername = ""
-         var secondinvitername = ""
-         var Place_ID = ""
-         var image = ""
+import android.annotation.SuppressLint
+import android.os.Parcel
+import android.os.Parcelable
 
-     }
-
-     constructor(
-         Event_ID: String,
-         Inv_No: String,
-         Date: String,
-         Event_type: String,
-         StartTime: String,
-         EndTime: String,
-         InviterID: String,
-         firstinvitername: String,
-         secondinvitername: String,
-         Place_ID: String,
-         image: String
-     ) {
-         eventData.Date=Date
-         eventData.Description= Description
-         eventData.EndTime=EndTime
-         eventData.Event_ID=Event_ID
-         eventData.Event_type=Event_type
-         eventData.Inv_No=Inv_No
-         eventData.InviterID=InviterID
-         eventData.Place_ID=Place_ID
-         eventData.StartTime=StartTime
-         eventData.secondinvitername=secondinvitername
-         eventData.firstinvitername=firstinvitername
-         eventData.image=image
+@SuppressLint("ParcelCreator")
+class eventData (var Event_ID: String, var Inv_No: String, var  Date: String, var Event_type: String,
+                 var  StartTime: String,
+                 var   EndTime: String, var   InviterID: String, var firstinvitername: String,
+                 var secondinvitername: String, var Place_ID: String, var image: String,
+                 var Description:String):Parcelable{
 
 
-     }
- }
+    constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString()
+    ) {
+    }
+
+
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(Event_ID)
+        parcel.writeString(Inv_No)
+        parcel.writeString(Date)
+        parcel.writeString(Event_type)
+        parcel.writeString(StartTime)
+        parcel.writeString(EndTime)
+        parcel.writeString(InviterID)
+        parcel.writeString(firstinvitername)
+        parcel.writeString(secondinvitername)
+        parcel.writeString(Place_ID)
+        parcel.writeString(image)
+        parcel.writeString(Description)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<eventData> {
+        override fun createFromParcel(parcel: Parcel): eventData {
+            return eventData(parcel)
+        }
+
+        override fun newArray(size: Int): Array<eventData?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+}

@@ -12,13 +12,14 @@ import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events.mFirebaseAuth
 
 import com.uni.pis.R
+import com.uni.pis.data.eventData
 import com.uni.pis.model.EventsListeItem
 import kotlinx.android.synthetic.main.fragment_invited__events.*
 
 
 class Invited_Events_Frag : Fragment() {
 
-    val arrayListMyInvited=ArrayList<EventsListeItem>()
+    val arrayListMyInvited=ArrayList<eventData>()
     val AdapterInvitedEvent=MyEventListAdapter(arrayListMyInvited)
 
     override fun onCreateView(

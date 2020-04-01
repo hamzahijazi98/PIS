@@ -28,6 +28,8 @@ import com.uni.pis.data.userData
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.cardview_notification.*
 import kotlinx.android.synthetic.main.fragment_edit__profile_.*
+import kotlinx.android.synthetic.main.fragment_edit__profile_.iv_profile
+import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import java.util.*
 
 
