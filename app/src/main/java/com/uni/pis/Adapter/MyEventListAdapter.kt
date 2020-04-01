@@ -25,7 +25,7 @@ class MyEventListAdapter(var arrayList_Myevents: ArrayList<eventData>):
         fun binditems(eventData:eventData){
             itemView.tv_eventname.text=eventData.Event_type
             itemView.tv_desc.text=eventData.Description
-            if (eventData.image!="") {
+           if (eventData.image!="") {
                 mStorageRef =
                     FirebaseStorage.getInstance().getReferenceFromUrl(eventData.image)
                 mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {

@@ -32,7 +32,7 @@ class BackgroundWorker  constructor(var context: Context) :
         notification("http://www.psutsystems.com/pisystem/notification.php"),
         updateuserdata("http://www.psutsystems.com/pisystem/update_user_data.php"),
         invitetomyevent("http://www.psutsystems.com/pisystem/invite_to_my_event.php"),
-        updatevent("http://www.psutsystems.com/pisystem/update_event.php.php")
+        updatevent("http://www.psutsystems.com/pisystem/update_event.php")
 
     }
     init {
@@ -604,6 +604,8 @@ class BackgroundWorker  constructor(var context: Context) :
                     val Description = p0[7]
                     val inviteenumber=p0[8]
                     val image=p0[9]
+                    val Event_ID=p0[10]
+
 
                     val url = URL(phplinks.createvent.link)
                     val httpURLConnection =
@@ -631,6 +633,8 @@ class BackgroundWorker  constructor(var context: Context) :
                             +URLEncoder.encode("inviteenumber","UTF-8")+"="+URLEncoder.encode(inviteenumber,"UTF-8")
                             +"&"
                             +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(image,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("Event_ID","UTF-8")+"="+URLEncoder.encode(Event_ID,"UTF-8")
 
 
                             )

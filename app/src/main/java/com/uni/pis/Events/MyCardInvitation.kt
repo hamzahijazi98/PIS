@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.google.firebase.storage.FirebaseStorage
 import com.uni.pis.R
 import com.uni.pis.data.eventData
@@ -36,8 +37,8 @@ class MyCardInvitation : AppCompatActivity() {
                 // Handle any errors
             }
         }
-        tv_finviter.text= eventdata.firstinvitername
-        tv_sinviter.text= eventdata.secondinvitername
+        tv_finviter.text= eventdata!!.firstinvitername
+        tv_sinviter.text= eventdata!!.secondinvitername
         tv_eventdate.text= eventdata.Date
         tv_starttime.text= eventdata.StartTime
         tv_endtime.text= eventdata.EndTime
@@ -58,6 +59,17 @@ class MyCardInvitation : AppCompatActivity() {
             intent.putExtra("EventId",eventdata.Event_ID)
             intent.putExtra("InviteeNumber",eventdata.Inv_No)
             startActivity(intent)
+        }
+
+        btn_editevent.setOnClickListener {
+            val image = eventdata
+            val i = Intent(this, EditEvent::class.java)
+            val bundle = Bundle()
+            val parcel = image
+            bundle.putParcelable("eventdata", parcel)
+            i.putExtra("Bundle", bundle)
+            ContextCompat.startActivity(this, i, Bundle())
+
         }
 
 
