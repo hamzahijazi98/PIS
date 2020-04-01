@@ -58,6 +58,7 @@ class Friends : AppCompatActivity(), BackgroundWorker.MyCallback {
 
 
     override fun onResult(result: String?) {
+
         var data=result!!.split("*")
         val builder = AlertDialog.Builder(this)
 

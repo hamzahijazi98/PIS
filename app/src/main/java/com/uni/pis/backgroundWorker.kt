@@ -30,7 +30,8 @@ class BackgroundWorker  constructor(var context: Context) :
         findfriend("http://www.psutsystems.com/pisystem/find_friend.php"),
         addfriend("http://www.psutsystems.com/pisystem/add_friend.php"),
         notification("http://www.psutsystems.com/pisystem/notification.php"),
-        updateuserdata("http://www.psutsystems.com/pisystem/update_user_data.php")
+        updateuserdata("http://www.psutsystems.com/pisystem/update_user_data.php"),
+        invitetomyevent("http://www.psutsystems.com/pisystem/invite_to_my_event.php")
     }
     init {
         myCallback = context as MyCallback
@@ -522,6 +523,59 @@ class BackgroundWorker  constructor(var context: Context) :
                     val bufferedReader =
                         BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
                     var result: String? = ""
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+
+            "invitetomyevent" ->  {
+                try {
+                    val Perrmision = p0[1]
+                    val AttendanceStatus = p0[2]
+                    val Event_ID =p0[3]
+                    val UserID = p0[4]
+                    val inviteenumber = p0[5]
+
+
+                    val url = URL(phplinks.invitetomyevent.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = (URLEncoder.encode("Perrmision", "UTF-8") + "=" + URLEncoder.encode(Perrmision, "UTF-8")
+                            +"&"
+                            + URLEncoder.encode("AttendanceStatus","UTF-8")+"="+URLEncoder.encode(AttendanceStatus,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("Event_ID","UTF-8")+"="+URLEncoder.encode(Event_ID,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("UserID","UTF-8")+"="+URLEncoder.encode(UserID,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("inviteenumber","UTF-8")+"="+URLEncoder.encode(inviteenumber,"UTF-8")
+
+
+                            )
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
                         result += line

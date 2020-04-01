@@ -50,7 +50,7 @@ class MyCardInvitation : AppCompatActivity() {
             var loc=eventdata.Place_ID.split('&')
             var i = Intent()
             i.action = Intent.ACTION_VIEW
-            i.data = Uri.parse("geo:" + loc[0] + "," + loc[1] + "?z=17")
+            i.data = Uri.parse("google.navigation:q=" + loc[0] + "," + loc[1])
             startActivity(i)
         }
         btn_invite.setOnClickListener {

@@ -54,68 +54,111 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
         val myEventFrag:My_Events_Frag =My_Events_Frag()
         val InvitedEventFrag:Invited_Events_Frag= Invited_Events_Frag()
         var type = result!!.split("^")
-        if (type[1] == "myevents") {
-            var data = type[2].split("*")
-            for (i in data) {
+        if(type.size>2) {
+            if (type[1] == "myevents") {
+                var data = type[2].split("*")
+                for (i in data) {
 
-                var friend = i.split("&")
-                if (friend.size > 1) {
+                    var friend = i.split("&")
+                    if (friend.size > 1) {
 
-                    var EventID = friend[eventDataOrder.EventID.index].substringAfter("=")
-                    var name = friend[eventDataOrder.EventType.index].substringAfter("=")
-                    var description = friend[eventDataOrder.Description.index].substringAfter("=")
-                    var Image =
-                        friend[eventDataOrder.Image.index].substringAfter("=").replace("\\", "")
-                            .trim()
-                    var Invitee_No = friend[eventDataOrder.Invitee_No.index].substringAfter("=")
-                    var StartTime = friend[eventDataOrder.StartTime.index].substringAfter("=")
-                    var EndTime = friend[eventDataOrder.EndTime.index].substringAfter("=")
-                    var Date = friend[eventDataOrder.Date.index].substringAfter("=")
-                    var PlaceId = friend[eventDataOrder.PlaceId.index].substringAfter("=").substringAfter("=")+"&"+friend[eventDataOrder.PlaceId.index+1]
-                    var FirstInviterName = friend[eventDataOrder.FirstInviterName.index].substringAfter("=")
-                    var SecondInviterName = friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
-                    var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
+                        var EventID = friend[eventDataOrder.EventID.index].substringAfter("=")
+                        var name = friend[eventDataOrder.EventType.index].substringAfter("=")
+                        var description =
+                            friend[eventDataOrder.Description.index].substringAfter("=")
+                        var Image =
+                            friend[eventDataOrder.Image.index].substringAfter("=").replace("\\", "")
+                                .trim()
+                        var Invitee_No = friend[eventDataOrder.Invitee_No.index].substringAfter("=")
+                        var StartTime = friend[eventDataOrder.StartTime.index].substringAfter("=")
+                        var EndTime = friend[eventDataOrder.EndTime.index].substringAfter("=")
+                        var Date = friend[eventDataOrder.Date.index].substringAfter("=")
+                        var PlaceId =
+                            friend[eventDataOrder.PlaceId.index].substringAfter("=").substringAfter(
+                                "="
+                            ) + "&" + friend[eventDataOrder.PlaceId.index + 1]
+                        var FirstInviterName =
+                            friend[eventDataOrder.FirstInviterName.index].substringAfter("=")
+                        var SecondInviterName =
+                            friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
+                        var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
 
-                    myEventFrag.arrayListMyEvent.add(eventData(EventID,Invitee_No,Date,name,StartTime,EndTime,InviterId,FirstInviterName,SecondInviterName,PlaceId,Image,description))
+                        myEventFrag.arrayListMyEvent.add(
+                            eventData(
+                                EventID,
+                                Invitee_No,
+                                Date,
+                                name,
+                                StartTime,
+                                EndTime,
+                                InviterId,
+                                FirstInviterName,
+                                SecondInviterName,
+                                PlaceId,
+                                Image,
+                                description
+                            )
+                        )
+                    }
                 }
+                var RV_myevent = findViewById<RecyclerView>(R.id.rv_Myeven)
+                RV_myevent.layoutManager = LinearLayoutManager(this)
+                RV_myevent.adapter = myEventFrag.AdapterMyEvent
+
             }
-            var RV_myevent=findViewById<RecyclerView>(R.id.rv_Myeven)
-            RV_myevent.layoutManager = LinearLayoutManager(this)
-            RV_myevent.adapter = myEventFrag.AdapterMyEvent
+            if (type[1] == "invitedto") {
+                var data = type[2].split("*")
+                val builder = AlertDialog.Builder(this)
 
-        }
-        if (type[1] == "invitedto")
-        {
-            var data = type[2].split("*")
-            val builder = AlertDialog.Builder(this)
+                for (i in data) {
 
-            for (i in data) {
+                    var friend = i.split("&")
+                    if (friend.size > 1) {
+                        var EventID = friend[eventDataOrder.EventID.index].substringAfter("=")
+                        var name = friend[eventDataOrder.EventType.index].substringAfter("=")
+                        var description =
+                            friend[eventDataOrder.Description.index].substringAfter("=")
+                        var Image =
+                            friend[eventDataOrder.Image.index].substringAfter("=").replace("\\", "")
+                                .trim()
+                        var Invitee_No = friend[eventDataOrder.Invitee_No.index].substringAfter("=")
+                        var StartTime = friend[eventDataOrder.StartTime.index].substringAfter("=")
+                        var EndTime = friend[eventDataOrder.EndTime.index].substringAfter("=")
+                        var Date = friend[eventDataOrder.Date.index].substringAfter("=")
+                        var PlaceId =
+                            friend[eventDataOrder.PlaceId.index].substringAfter("=").substringAfter(
+                                "="
+                            ) + "&" + friend[eventDataOrder.PlaceId.index + 1]
+                        var FirstInviterName =
+                            friend[eventDataOrder.FirstInviterName.index].substringAfter("=")
+                        var SecondInviterName =
+                            friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
+                        var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
 
-                var friend = i.split("&")
-                if (friend.size > 1) {
-                    var EventID = friend[eventDataOrder.EventID.index].substringAfter("=")
-                    var name = friend[eventDataOrder.EventType.index].substringAfter("=")
-                    var description = friend[eventDataOrder.Description.index].substringAfter("=")
-                    var Image =
-                        friend[eventDataOrder.Image.index].substringAfter("=").replace("\\", "")
-                            .trim()
-                    var Invitee_No = friend[eventDataOrder.Invitee_No.index].substringAfter("=")
-                    var StartTime = friend[eventDataOrder.StartTime.index].substringAfter("=")
-                    var EndTime = friend[eventDataOrder.EndTime.index].substringAfter("=")
-                    var Date = friend[eventDataOrder.Date.index].substringAfter("=")
-                    var PlaceId = friend[eventDataOrder.PlaceId.index].substringAfter("=").substringAfter("=")+"&"+friend[eventDataOrder.PlaceId.index+1]
-                    var FirstInviterName = friend[eventDataOrder.FirstInviterName.index].substringAfter("=")
-                    var SecondInviterName = friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
-                    var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
-
-                    InvitedEventFrag.arrayListMyInvited.add(eventData(EventID,Invitee_No,Date,name,StartTime,EndTime,InviterId,FirstInviterName,SecondInviterName,PlaceId,Image,description))
+                        InvitedEventFrag.arrayListMyInvited.add(
+                            eventData(
+                                EventID,
+                                Invitee_No,
+                                Date,
+                                name,
+                                StartTime,
+                                EndTime,
+                                InviterId,
+                                FirstInviterName,
+                                SecondInviterName,
+                                PlaceId,
+                                Image,
+                                description
+                            )
+                        )
+                    }
                 }
+                var RV_INVITEDEVENT = findViewById<RecyclerView>(R.id.rv_invevents)
+                RV_INVITEDEVENT.layoutManager = LinearLayoutManager(this)
+                RV_INVITEDEVENT.adapter = InvitedEventFrag.AdapterInvitedEvent
+
+
             }
-            var RV_INVITEDEVENT=findViewById<RecyclerView>(R.id.rv_invevents)
-            RV_INVITEDEVENT.layoutManager = LinearLayoutManager(this)
-            RV_INVITEDEVENT.adapter = InvitedEventFrag.AdapterInvitedEvent
-
-
         }
     }
 }
