@@ -39,7 +39,7 @@
             android:gravity="center"
             android:background="@drawable/roundedbutton"
             android:id="@+id/tv_finviter"
-            android:textSize="25sp"
+            android:textSize="18sp"
             />
 
 
@@ -52,7 +52,7 @@
             android:background="@drawable/roundedbutton"
             tools:ignore="Suspicious0dp"
             android:id="@+id/tv_sinviter"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:layout_marginStart="20dp"/>
     </LinearLayout>
     <LinearLayout
@@ -68,7 +68,7 @@
             android:padding="5dp"
             android:layout_height="match_parent"
             android:hint="@string/event_date"
-            android:textSize="25sp"
+            android:textSize="18sp"
 
 
             />
@@ -78,7 +78,7 @@
             android:padding="5dp"
             android:layout_height="match_parent"
             android:hint="21-9-1996"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:gravity="center"
             android:id="@+id/tv_eventdate"
             android:layout_marginStart="15dp"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:hint="Start Time"
             android:padding="5dp"
-            android:textSize="25sp"
+            android:textSize="18sp"
             tools:ignore="Suspicious0dp" />
 
 
@@ -111,7 +111,7 @@
             android:id="@+id/tv_starttime"
             android:gravity="center"
             android:hint="HH : MM"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:layout_marginStart="15dp"
             />
 
@@ -130,14 +130,14 @@
             android:layout_height="wrap_content"
             android:hint="End Time"
             android:padding="5dp"
-            android:textSize="25sp"
+            android:textSize="18sp"
             tools:ignore="Suspicious0dp" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="HH : MM"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:padding="5dp"
             android:layout_marginStart="15dp"
             android:id="@+id/tv_endtime"

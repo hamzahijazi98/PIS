@@ -63,25 +63,13 @@ class MyEventListAdapter(var arrayList_Myevents: ArrayList<eventData>):
 
 
         holder.itemView.setOnClickListener{
-            when(position)
-            {
-                0->{
-                    val image=arrayList_Myevents[position]
-                    val i=Intent(holder.itemView.context, receivercardinvitaion::class.java)
-                    val bundle = Bundle()
-                    val parcel = arrayList_Myevents[position]
-                    bundle.putParcelable("eventdata", parcel)
-                    i.putExtra("Bundle", bundle)
-                    ContextCompat.startActivity(holder.itemView.context,i, Bundle())
-
-                }
-
-
-
-            }
-
-
-
+                  val image = arrayList_Myevents[position]
+                  val i = Intent(holder.itemView.context, receivercardinvitaion::class.java)
+                  val bundle = Bundle()
+                  val parcel = arrayList_Myevents[position]
+                  bundle.putParcelable("eventdata", parcel)
+                  i.putExtra("Bundle", bundle)
+                  ContextCompat.startActivity(holder.itemView.context, i, Bundle())
         }
 
 

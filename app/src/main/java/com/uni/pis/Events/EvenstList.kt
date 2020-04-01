@@ -84,7 +84,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
             RV_myevent.adapter = myEventFrag.AdapterMyEvent
 
         }
-      //  if (type[1] == "invitedto")
+        if (type[1] == "invitedto")
         {
             var data = type[2].split("*")
             val builder = AlertDialog.Builder(this)
@@ -103,7 +103,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                     var StartTime = friend[eventDataOrder.StartTime.index].substringAfter("=")
                     var EndTime = friend[eventDataOrder.EndTime.index].substringAfter("=")
                     var Date = friend[eventDataOrder.Date.index].substringAfter("=")
-                    var PlaceId = friend[eventDataOrder.PlaceId.index].substringAfter("=")
+                    var PlaceId = friend[eventDataOrder.PlaceId.index].substringAfter("=").substringAfter("=")+"&"+friend[eventDataOrder.PlaceId.index+1]
                     var FirstInviterName = friend[eventDataOrder.FirstInviterName.index].substringAfter("=")
                     var SecondInviterName = friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
                     var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
