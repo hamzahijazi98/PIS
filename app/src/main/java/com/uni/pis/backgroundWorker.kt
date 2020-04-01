@@ -31,7 +31,9 @@ class BackgroundWorker  constructor(var context: Context) :
         addfriend("http://www.psutsystems.com/pisystem/add_friend.php"),
         notification("http://www.psutsystems.com/pisystem/notification.php"),
         updateuserdata("http://www.psutsystems.com/pisystem/update_user_data.php"),
-        invitetomyevent("http://www.psutsystems.com/pisystem/invite_to_my_event.php")
+        invitetomyevent("http://www.psutsystems.com/pisystem/invite_to_my_event.php"),
+        updatevent("http://www.psutsystems.com/pisystem/update_event.php.php")
+
     }
     init {
         myCallback = context as MyCallback
@@ -565,6 +567,70 @@ class BackgroundWorker  constructor(var context: Context) :
                             +URLEncoder.encode("UserID","UTF-8")+"="+URLEncoder.encode(UserID,"UTF-8")
                             +"&"
                             +URLEncoder.encode("inviteenumber","UTF-8")+"="+URLEncoder.encode(inviteenumber,"UTF-8")
+
+
+                            )
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+
+            "updatevent" ->  {
+                try {
+                    val stime = p0[1]
+                    val etime = p0[2]
+                    val FinviterName =p0[3]
+                    val SinviterName = p0[4]
+                    val eventdate = p0[5]
+                    val LocationID = p0[6]
+                    val Description = p0[7]
+                    val inviteenumber=p0[8]
+                    val image=p0[9]
+
+                    val url = URL(phplinks.createvent.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = (URLEncoder.encode("starttime", "UTF-8") + "=" + URLEncoder.encode(stime, "UTF-8")
+                            +"&"
+                            + URLEncoder.encode("endtime","UTF-8")+"="+URLEncoder.encode(etime,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("firstinvitername","UTF-8")+"="+URLEncoder.encode(FinviterName,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("secondinvitername","UTF-8")+"="+URLEncoder.encode(SinviterName,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(eventdate,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("locationid","UTF-8")+"="+URLEncoder.encode(LocationID,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("description","UTF-8")+"="+URLEncoder.encode(Description,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("inviteenumber","UTF-8")+"="+URLEncoder.encode(inviteenumber,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(image,"UTF-8")
 
 
                             )
