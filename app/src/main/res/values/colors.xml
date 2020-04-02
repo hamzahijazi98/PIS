@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#edffea</color>
-    <color name="colorPrimaryDark">#1089ff</color>
+    <color name="colorPrimary">#8785a2</color>
+    <color name="colorPrimaryDark">#33425b</color>
     <color name="colorAccent">#4f81c7</color>
     <color name="whiteBackGround">#ffffff</color>
-    <color name="homeitem">#1b262c </color>
-    <color name="green">#1d4d4f</color>
     <color name="blueblack">#110133</color>
     <color name="lightwhite">#ecfcff</color>
+    <color name="test">#f6f6f6</color>
+    <color name="gray">#758184</color>
 </resources>

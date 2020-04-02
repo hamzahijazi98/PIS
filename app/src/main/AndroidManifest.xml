@@ -36,7 +36,11 @@
         <activity android:name=".Events.EvenstList" />
         <activity android:name=".EventsList" />
         <activity android:name=".profile.Friends" />
-        <activity android:name=".Events.MyCardInvitation" />
+        <activity android:name=".Events.MyCardInvitation"
+            android:theme="@style/MenuTheme"
+            >
+
+        </activity>
         <activity android:name=".Events.VideoInvitation" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -75,7 +75,6 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
                     trans.replace(R.id.FrameHome,ProfilePagePersonalFrag())
                     trans.addToBackStack(null)
                     trans.commit()
-
                 }
             }
 

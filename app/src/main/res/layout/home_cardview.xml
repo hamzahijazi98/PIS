@@ -6,7 +6,7 @@
     app:cardCornerRadius="50dp"
     app:cardPreventCornerOverlap="true"
     app:cardElevation="150dp"
-    app:cardBackgroundColor="@color/homeitem"
+    app:cardBackgroundColor="@color/blueblack"
 
     >
 
