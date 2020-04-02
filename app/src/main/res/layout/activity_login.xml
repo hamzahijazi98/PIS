@@ -7,29 +7,31 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/whitephonebackground"
+    android:background="@drawable/a3"
     android:padding="10dp"
      tools:context=".ui.login.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_gravity="center"
         android:layout_marginVertical="10dp"
-
-
+        android:background="@color/gray"
         android:contentDescription="@string/app_logo"
         android:cropToPadding="true"
-        app:srcCompat="@drawable/loginpic"></ImageView>
+        app:srcCompat="@drawable/loginpic"/>
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp"
-    android:background="@drawable/roundedbutton"
+    android:background="@drawable/textviewshape"
     android:orientation="vertical">
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
+        android:textColor="@color/whiteBackGround"
+        android:textColorHint="@color/whiteBackGround"
         android:layout_height="50dp"
         android:layout_marginVertical="10dp"
         android:background="@drawable/roundedbutton"
@@ -44,6 +46,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginVertical="10dp"
+        android:textColor="@color/whiteBackGround"
+        android:textColorHint="@color/whiteBackGround"
         android:background="@drawable/roundedbutton"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -63,6 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/roundedbutton"
+            android:textColor="@color/whiteBackGround"
+            android:textColorHint="@color/whiteBackGround"
             android:padding="10dp"
             android:text="@string/remember_me"
             android:layout_marginEnd="14dp"
@@ -74,6 +80,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/roundedbutton"
+            android:textColor="@color/whiteBackGround"
+            android:textColorHint="@color/whiteBackGround"
+
             android:padding="10dp"
 
             android:text="@string/forget_password"
@@ -93,6 +102,8 @@
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"
+        android:textColor="@color/whiteBackGround"
+        android:textColorHint="@color/whiteBackGround"
         android:layout_height="50dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/roundedbutton"
@@ -103,6 +114,8 @@
     <Button
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
+        android:textColor="@color/whiteBackGround"
+        android:textColorHint="@color/whiteBackGround"
         android:layout_height="50dp"
         android:layout_marginVertical="20dp"
         android:background="@drawable/roundedbutton"
