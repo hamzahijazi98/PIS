@@ -69,8 +69,7 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
             2->{
                 val fm=fragmentManager
-                val profview=view!!.findViewById<FrameLayout>(R.id.fragment_profile_page_personal)
-                profview.visibility=View.INVISIBLE
+
                 var trans= fm?.beginTransaction()
                 if (trans != null) {
                     trans.replace(R.id.FrameHome,ProfilePagePersonalFrag())

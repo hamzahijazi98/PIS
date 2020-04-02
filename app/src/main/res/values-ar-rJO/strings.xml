@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eventor</string>
+    <string name="welcome">"مرحبا "</string>
+    <string name="invalid_username">"اسم مستخدم غير صحيح "</string>
+    <string name="record">تسجيل</string>
+</resources>
