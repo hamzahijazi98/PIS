@@ -38,12 +38,12 @@ class Friends : AppCompatActivity(), BackgroundWorker.MyCallback {
         var data = BackgroundWorker(this)
         data.execute("myfriends",userID )
 
-
+        if(intent.hasExtra("EventId")) {
         val eventID=intent.extras!!.get("EventId")
         val invitee_Number=intent.extras!!.get("InviteeNumber")
 
 
-        if(eventID!=null) {
+
             eventDataInvite.EventID = eventID.toString()
             eventDataInvite.InviteeNumer=invitee_Number.toString()
         }
