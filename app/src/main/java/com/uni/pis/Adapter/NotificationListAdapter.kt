@@ -3,6 +3,7 @@ package com.uni.pis.Adapter
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,10 +41,13 @@ class NotificationListAdapter(val notificationarray:ArrayList<acceptFriendData>,
                             )
                         )}
                     catch (e: IllegalStateException){
-                        //Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+                        Log.d(this.toString(), "onError: " + e.message)
+                    }
+                    catch (e: IllegalArgumentException){
+                        Log.d(this.toString(), "onError: " + e.message)
                     }
                 }.addOnFailureListener {
-                    // Handle any errors
+                    Log.d(this.toString(), "onError: " + it.message)
                 }
             }
             catch (e: Exception){

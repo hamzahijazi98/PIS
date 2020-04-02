@@ -27,9 +27,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val friendImage = extraData["Image"]
         val friendName = extraData["Name"]
         var mFirebaseAuth = FirebaseAuth.getInstance()
-        if (UserID.equals( mFirebaseAuth.currentUser!!.uid)) {
-            var data = BackgroundWorker(this)
-            //data.execute("notification" )
+
 
             val notificationBuilder = Notification.Builder( this)
                 .setContentTitle(title)
@@ -46,13 +44,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationBuilder.setContentIntent(pendingIntent)
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val id = System.currentTimeMillis().toInt()
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                val channel =
-//                    NotificationChannel("TAC", "demo", NotificationManager.IMPORTANCE_HIGH)
-//                notificationManager.createNotificationChannel(channel)
-//            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val channel =
+                    NotificationChannel("TAC", "demo", NotificationManager.IMPORTANCE_HIGH)
+                notificationManager.createNotificationChannel(channel)
+            }
             notificationManager.notify(id, notificationBuilder.build())
         }
     }
 
-}
