@@ -25,12 +25,12 @@
 
             android:layout_marginTop="25dp"
             android:contentDescription="@string/Upload_Image2"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/ic_wedding" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:padding="10dp"
             android:layout_marginTop="25dp"
 
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:padding="10dp"
             android:orientation="horizontal">
 
@@ -76,6 +76,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundedbutton"
+                android:textColor="@color/whiteBackGround"
                 android:layout_weight="1"
                 android:text="@string/event_date" />
 
@@ -84,6 +85,8 @@
                 android:layout_width="0dp"
                 android:gravity="center"
                 android:layout_height="match_parent"
+                android:textColor="@drawable/hintedittext"
+
                 android:layout_marginLeft="10dp"
                 android:layout_weight="3"
                 android:textSize="20sp"
@@ -97,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:padding="10dp"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:orientation="horizontal">
 
 
@@ -107,6 +110,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/roundedbutton"
+                android:textColor="@color/whiteBackGround"
                 android:layout_weight="1"
                 android:text="@string/start_time" />
             <TextView
@@ -128,7 +132,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/btn_endTime"
@@ -136,6 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
+                android:textColor="@color/whiteBackGround"
                 android:layout_marginEnd="20dp"
                 android:text="@string/end_time" />
 
@@ -156,7 +161,7 @@
     android:layout_height="wrap_content">
         <EditText
             android:id="@+id/et_description"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -172,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/textviewshape"
             android:textStyle="bold"
             android:padding="10dp"
             android:textSize="20sp"
@@ -183,7 +188,7 @@
     android:gravity="center"
     android:layout_marginVertical="20dp"
     android:orientation="vertical"
-    android:background="@drawable/roundedbutton"
+    android:background="@drawable/hintedittext"
 
     android:layout_height="wrap_content">
     <TextView
@@ -212,7 +217,7 @@
             android:gravity="center"
             android:layout_marginVertical="20dp"
             android:orientation="vertical"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:padding="10dp"
             android:layout_height="wrap_content">
             <TextView
@@ -250,6 +255,7 @@
             android:id="@+id/btn_Save"
             android:text="@string/save"
             android:layout_gravity="center"
+            android:textColor="@color/whiteBackGround"
             />
 
 

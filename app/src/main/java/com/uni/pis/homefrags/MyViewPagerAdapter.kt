@@ -12,6 +12,7 @@ class MyViewPagerAdapter(manger: FragmentManager): FragmentPagerAdapter(manger){
         return fragmentlist[position]
     }
 
+
     override fun getCount(): Int {
         return fragmentlist.size
     }

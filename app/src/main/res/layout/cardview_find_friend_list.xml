@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
+        android:textColor="@color/Black"
         >
 
         <LinearLayout
@@ -45,12 +46,13 @@
             android:id="@+id/addfriend"
             android:layout_width="wrap_content"
             android:background="@drawable/roundedbutton"
+            android:textColor="@color/whiteBackGround"
             android:layout_marginTop="5dp"
-
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
 
-            android:text="@string/add_friend" />
+            android:text="@string/add_friend"
+            tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
 

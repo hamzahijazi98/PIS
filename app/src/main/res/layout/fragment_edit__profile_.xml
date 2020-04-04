@@ -34,7 +34,8 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hintedittext"
+                android:textColor="@color/Black"
                 android:hint="@string/first_name"
                 android:inputType="text"
                 android:selectAllOnFocus="true"
@@ -47,7 +48,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hintedittext"
                 android:hint="@string/last_name"
                 android:inputType="text"
                 android:selectAllOnFocus="true"
@@ -60,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:gravity="center"
             android:padding="10dp"
             android:textStyle="bold" />
@@ -78,8 +79,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
+                android:background="@drawable/hintedittext"
+                android:textColor="@color/Black"
                 android:textAlignment="center"
-                android:background="@drawable/roundedbutton"
                 tools:ignore="RtlCompat" />
 
             <EditText
@@ -88,7 +90,8 @@
                 android:layout_height="50dp"
                 android:layout_weight="4"
                 android:autofillHints=""
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hintedittext"
+                android:textColor="@color/Black"
                 android:hint="@string/phone"
                 android:inputType="numberSigned"
                 android:selectAllOnFocus="true"
@@ -111,6 +114,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
                 android:text="birthdate"
+                android:textColor="@color/whiteBackGround"
                 android:padding="5dp"
                 android:textSize="12sp"
                 android:textStyle="normal"
@@ -124,7 +128,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="15dp"
                 android:layout_weight="4"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hinttextview"
                 android:gravity="center"
                 android:hint="@string/birthdayformat"
                 android:padding="10dp"
@@ -142,7 +146,7 @@
                 android:id="@+id/tv_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hinttextview"
                 android:fontFamily="sans-serif"
                 android:padding="10dp"
                 android:text="@string/gender"
@@ -162,7 +166,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/roundedbutton"
+                    android:background="@drawable/hintedittext"
+                    android:textColor="@color/Black"
                     android:padding="10dp"
                     android:text="@string/RB_male" />
 
@@ -172,7 +177,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/roundedbutton"
+                    android:background="@drawable/hintedittext"
+
                     android:padding="10dp"
                     android:text="@string/RB_female" />
             </RadioGroup>
@@ -189,7 +195,8 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/roundedbutton"
-            android:text="@string/save" />
+            android:text="@string/save"
+            android:textColor="@color/whiteBackGround"/>
 
     </LinearLayout>
 

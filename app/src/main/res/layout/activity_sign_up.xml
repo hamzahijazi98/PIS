@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:autofillHints=""
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
         android:hint="@string/first_name"
         android:inputType="text"
         android:selectAllOnFocus="true"
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:autofillHints=""
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
         android:hint="@string/last_name"
         android:inputType="text"
         android:selectAllOnFocus="true"
@@ -62,33 +62,48 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:autofillHints=""
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
         android:layout_marginBottom="20dp" />
 
+
+
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:autofillHints=""
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        />
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:passwordToggleEnabled="true">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Password"-->
+<!--            android:inputType="textPassword"-->
+<!--            />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <EditText
         android:id="@+id/et_repassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:autofillHints=""
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
         android:hint="@string/repassword"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
@@ -96,6 +111,7 @@
         android:selectAllOnFocus="true"
         android:textAlignment="center"
         />
+
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="200dp"
@@ -107,20 +123,21 @@
        />
 
 <androidx.appcompat.widget.LinearLayoutCompat
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="20dp">
+    android:layout_marginVertical="20dp"
+    android:layout_marginStart="15dp">
     <TextView
         android:id="@+id/tv_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/textviewshape"
         android:fontFamily="sans-serif"
         android:text="@string/gender"
         android:textSize="18sp"
         android:padding="10dp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="25dp" />
     <RadioGroup
         android:id="@+id/RG_gender"
         android:layout_width="wrap_content"
@@ -136,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:padding="10dp"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:text="@string/RB_male" />
 
         <RadioButton
@@ -144,35 +161,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
             android:text="@string/RB_female" />
 
     </RadioGroup>
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp">
+
+
     <Button
         android:id="@+id/btn_birthdate"
-
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:padding="10dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:background="@drawable/roundedbutton"
         android:text="@string/btn_birthdate"
-        android:textSize="12sp"
-        android:textStyle="normal"
+        android:textColor="@color/whiteBackGround"
+
+        android:autoSizeMaxTextSize="12sp"
+        android:autoSizeMinTextSize="10sp"
         tools:layout_editor_absoluteX="22dp"
         tools:layout_editor_absoluteY="564dp"
         tools:text="birthdate" />
     <TextView
         android:id="@+id/tv_date"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="3"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
         android:hint="@string/birthdayformat"
         android:textSize="18sp"
         android:padding="10dp"
@@ -185,18 +208,21 @@
         android:layout_marginVertical="20dp">
     <Spinner
         android:id="@+id/spinner_phone"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="50dp"
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
+        android:textAlignment="center"
         android:padding="10dp"
         android:layout_marginEnd="20dp"
          />
     <EditText
         android:id="@+id/et_phonenumber"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="3"
         android:layout_height="50dp"
         android:autofillHints=""
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/hintedittext"
         android:hint="@string/phone"
         android:inputType="numberSigned"
         android:selectAllOnFocus="true"
@@ -215,9 +241,10 @@
             android:id="@+id/spinner_city"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/hintedittext"
+            android:textAlignment="center"
             android:padding="10dp"
-            android:gravity="center"
+
 
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -229,8 +256,9 @@
         android:id="@+id/btn_uploadimage"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_gravity="start"
+        android:layout_gravity="center_vertical"
         android:background="@drawable/roundedbutton"
+        android:textColor="@color/whiteBackGround"
         android:text="@string/upload_image"
         android:textSize="12sp"
         android:padding="10dp"
@@ -242,17 +270,21 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/your_image"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:background="@drawable/hintedittext"
+        android:layout_marginStart="15dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <Button
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:textColor="@color/whiteBackGround"
         android:layout_marginTop="10dp"
         android:background="@drawable/roundedbutton"
         android:text="@string/action_sign_up"
          />
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

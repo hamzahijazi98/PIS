@@ -37,8 +37,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/roundedbutton"
                 android:padding="10dp"
+                android:background="@drawable/hintedittext"
                 android:layout_marginTop="25dp"
 
                 >
@@ -74,13 +74,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hintedittext"
                 android:padding="10dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_eventDate"
                     android:layout_width="0dp"
+                    android:textColor="@color/whiteBackGround"
                     android:layout_height="match_parent"
                     android:background="@drawable/roundedbutton"
                     android:layout_weight="1"
@@ -104,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="10dp"
-                android:background="@drawable/roundedbutton"
+                android:textColor="@color/whiteBackGround"
+
                 android:orientation="horizontal">
 
 
@@ -114,6 +116,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/roundedbutton"
+                    android:textColor="@color/whiteBackGround"
                     android:layout_weight="1"
                     android:text="@string/start_time" />
                 <TextView
@@ -121,6 +124,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:background="@drawable/textviewshape"
                     android:textSize="20sp"
                     android:layout_weight="1"
                     android:hint="@string/hh_mm" />
@@ -135,15 +139,17 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hintedittext"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btn_endtime"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/roundedbutton"
-                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/whiteBackGround"
                     android:text="@string/end_time" />
 
 
@@ -151,7 +157,7 @@
                     android:id="@+id/tv_endtime"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-
+                    android:background="@drawable/textviewshape"
                     android:gravity="center"
                     android:textSize="20sp"
                     android:layout_weight="1"
@@ -163,7 +169,7 @@
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/et_descrip"
-                    android:background="@drawable/roundedbutton"
+                    android:background="@drawable/hintedittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -179,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hintedittext"
                 android:textStyle="bold"
                 android:padding="10dp"
                 android:textSize="20sp"
@@ -190,7 +196,7 @@
                 android:gravity="center"
                 android:layout_marginVertical="20dp"
                 android:orientation="vertical"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hintedittext"
 
                 android:layout_height="wrap_content">
                 <TextView
@@ -219,7 +225,7 @@
                 android:gravity="center"
                 android:layout_marginVertical="20dp"
                 android:orientation="vertical"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/hintedittext"
                 android:padding="10dp"
                 android:layout_height="wrap_content">
                 <TextView

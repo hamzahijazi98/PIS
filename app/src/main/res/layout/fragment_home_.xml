@@ -5,7 +5,6 @@
     android:id="@+id/FrameHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/appbackground"
     tools:context=".homefrags.HomeFrag"
     >
 
@@ -14,23 +13,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
         >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/home_iv_profile"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/eventoricon"
              />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/fjalla_one"
+        android:hint="youse suliman "
+        android:id="@+id/tv_homeName"
+        android:textColor="@color/whiteBackGround"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+</LinearLayout>
         <GridView
+            android:padding="25dp"
             android:id="@+id/Gridview_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:columnWidth="150dp"
+            android:background="@drawable/roundedlayout"
+            android:backgroundTint="@color/whiteBackGround"
             android:paddingTop="25dp"
             android:horizontalSpacing="15dp"
             android:numColumns="auto_fit"
