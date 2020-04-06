@@ -41,7 +41,7 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="remember_me">Remember Me</string>
     <string name="forget_password">Forget Password?</string>
-    <string name="app_logo">App logo</string>
+    <string name="app_logo" translatable="false">App logo</string>
     <string name="birthdayformat">DD/MM/YYYY</string>
     <string name="home_icons">Home Icons</string>
     <string name="your_name">Your Name</string>
