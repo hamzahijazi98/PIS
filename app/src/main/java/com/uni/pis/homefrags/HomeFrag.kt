@@ -52,31 +52,31 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
         gridView?.adapter=itemAdapters
         gridView?.onItemClickListener=this
 
-//        var image = userData.image.replace("\\", "").trim()
-//        try {
-//            mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
-//            mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
-//                val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
-//                try {
-//                    home_iv_profile.setImageBitmap(
-//                        Bitmap.createScaledBitmap(
-//                            bmp, home_iv_profile.width,
-//                            home_iv_profile.height, false
-//                        )
-//                    )
-//                } catch (e: IllegalStateException) {
-//                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
-//                } catch (e: NullPointerException) {
-//                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
-//                } catch (e: Exception) {
-//                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
-//                }
-//
-//            }.addOnFailureListener {
-//                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
-//            }
-//        } catch (e: Exception) { Toast.makeText(context, e.message, Toast.LENGTH_LONG).show() }
-//        tv_homeName.text=userData.first_name+" "+userData.last_name
+        var image = userData.image.replace("\\", "").trim()
+        try {
+            mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
+            mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+                try {
+                    home_iv_profile.setImageBitmap(
+                        Bitmap.createScaledBitmap(
+                            bmp, home_iv_profile.width,
+                            home_iv_profile.height, false
+                        )
+                    )
+                } catch (e: IllegalStateException) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                } catch (e: NullPointerException) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                }
+
+            }.addOnFailureListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) { Toast.makeText(context, e.message, Toast.LENGTH_LONG).show() }
+        tv_homeName.text=userData.first_name+" "+userData.last_name
     }
 
     private fun SetDataList():ArrayList<Home_Item>{

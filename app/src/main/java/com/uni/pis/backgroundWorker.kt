@@ -18,7 +18,7 @@ class BackgroundWorker  constructor(var context: Context) :
     var result: String? = ""
     enum class userDataOrder(val index: Int) {
         firstName(0), lastName(1),phoneNumber(2),gender(3),
-        email(4),birthday(5),city(6),image(7),UserID(9)
+        email(4),birthday(5),city(6),image(7),UserID(8)
     }
     enum class phplinks(val link: String) {
         login("http://www.psutsystems.com/pisystem/user_data.php"),
