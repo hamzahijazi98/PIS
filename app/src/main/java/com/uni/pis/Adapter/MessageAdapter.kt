@@ -5,6 +5,7 @@ package com.uni.pis.Adapter
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +65,8 @@ class MessageAdapter(var context: Context) :
             convertView.tag = holder
             holder.name!!.text = message.SenderName
             holder.messageBody!!.text = message.text
-            holder.avatar!!.setBackgroundColor(Color.parseColor(getRandomColor(message.SenderName)))
+            val drawable = holder.avatar!!.background as GradientDrawable
+            drawable.setColor(Color.parseColor(getRandomColor(message.SenderName)))
 
         }
         return convertView
@@ -72,7 +74,7 @@ class MessageAdapter(var context: Context) :
     private fun getRandomColor(Name:String): String? {
         val r = Random()
         if(Name!=""){
-        r.setSeed(Name.toLong())
+        r.setSeed(Name[0].toInt().toLong())
         }
         val sb = StringBuffer("#")
         while (sb.length < 7) {

@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:clipToPadding="false"
     android:focusableInTouchMode="true"
-    tools:context=".Events.Chat">
+    tools:context=".Events.Chat"
+    android:background="@color/chatbackground">
 
     <ListView
         android:layout_width="match_parent"
@@ -26,16 +27,17 @@
         <EditText
             android:id="@+id/et_msg"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="2"
             android:ems="10"
+            android:background="@drawable/hintedittext"
             android:hint="@string/write_a_message"
             android:inputType="text"
             android:paddingHorizontal="10dp"
             android:text="" />
 
 
-        <Button
+        <ImageButton
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
