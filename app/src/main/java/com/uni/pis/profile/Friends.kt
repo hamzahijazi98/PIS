@@ -41,11 +41,13 @@ class Friends : AppCompatActivity(), BackgroundWorker.MyCallback {
         if(intent.hasExtra("EventId")) {
         val eventID=intent.extras!!.get("EventId")
         val invitee_Number=intent.extras!!.get("InviteeNumber")
+            val channelUrl=intent.extras!!.get("channelUrl")
 
 
 
             eventDataInvite.EventID = eventID.toString()
             eventDataInvite.InviteeNumer=invitee_Number.toString()
+            eventDataInvite.channelUrl=channelUrl.toString()
         }
 
 

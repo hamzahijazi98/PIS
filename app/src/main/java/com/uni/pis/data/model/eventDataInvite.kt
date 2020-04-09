@@ -8,6 +8,7 @@ package com.uni.pis.data.model
  companion object{
      var EventID:String=""
      var InviteeNumer:String=""
+     var channelUrl:String=""
 
  }
 

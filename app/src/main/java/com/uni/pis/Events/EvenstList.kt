@@ -38,8 +38,8 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
         Image(9),
         FirstInviterName(11),
         SecondInviterName(12),
-        InviterId(10),
-        ChannelUrl(13)
+        InviterId(13),
+        ChannelUrl(14)
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -60,6 +60,7 @@ class MyCardInvitation : AppCompatActivity() {
             var intent=Intent(this,Friends::class.java)
             intent.putExtra("EventId",eventdata.Event_ID)
             intent.putExtra("InviteeNumber",eventdata.Inv_No)
+            intent.putExtra("channelUrl",eventdata.channelUrl)
             startActivity(intent)
         }
         btn_groupchat.setOnClickListener {

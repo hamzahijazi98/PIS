@@ -11,20 +11,23 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.sendbird.android.*
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
+import com.uni.pis.data.Message
 import com.uni.pis.data.eventData
 import com.uni.pis.data.friendData
 import com.uni.pis.data.model.eventDataInvite
 import com.uni.pis.model.FriendsItem
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_public_page_profile.*
 import kotlinx.android.synthetic.main.cardview_friend_list.view.*
 import kotlinx.android.synthetic.main.invitationdialog.view.*
 
 class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Context):RecyclerView.Adapter<FriendViewAdapter.ViewHolder>() {
-
-
+    private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
+    private val userid=mFirebaseAuth.currentUser?.uid!!
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         lateinit var mStorageRef: StorageReference
         fun bindItems(Friendsitem: FriendsItem) {
@@ -84,6 +87,38 @@ class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Conte
                     var data = BackgroundWorker(holder.itemView.context)
                     data.execute("invitetomyevent","0","0",eventDataInvite.EventID,
                         friendlist[position].UserID ,inviteeNumber)
+
+                    SendBird.init(SENDBIRDAPPID, holder.itemView.context)
+
+                    SendBird.connect(userid, object : SendBird.ConnectHandler { override fun onConnected(user: User?, e: SendBirdException?) {
+                        if (e != null)
+                        {
+                            return
+                        }
+                    } })
+
+
+
+                    GroupChannel.getChannel(eventDataInvite.channelUrl, object : GroupChannel.GroupChannelGetHandler {
+                        override fun onResult(groupChannel: GroupChannel, e: SendBirdException?) {
+                            if (e != null) { // Error.
+                                return
+                            }
+                            val userIds: MutableList<String> = ArrayList()
+                            userIds.add(friendlist[position].UserID )
+                            groupChannel.inviteWithUserIds(userIds, object : GroupChannel.GroupChannelInviteHandler {
+                                override fun onResult(e: SendBirdException?) {
+                                    if (e != null) { // Error.
+                                        return
+                                    }
+                                }
+                            })
+
+                        }
+                    })
+
+
+
                     Toast.makeText(holder.itemView.context,"You Invitee Number Now Is ${eventDataInvite.InviteeNumer}",Toast.LENGTH_LONG).show()
                 }
                 mDialogView.btn_cancel.setOnClickListener{

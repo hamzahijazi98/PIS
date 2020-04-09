@@ -171,7 +171,14 @@ class Create_Invitation : AppCompatActivity(),
             Description =et_description.text.toString()
             UserID =
                 mFirebaseAuth.currentUser?.uid!!
-            uploadFile()
+            val users = java.util.ArrayList<String>()
+            users.add(userid)
+
+            GroupChannel.createChannelWithUserIds(users, true
+            ) { groupChannel, e -> CHANNEL_URL = groupChannel.url
+                uploadFile()
+            }
+
         }
 
 
@@ -186,11 +193,7 @@ class Create_Invitation : AppCompatActivity(),
                 }
             }
         })
-        val users = java.util.ArrayList<String>()
-        users.add(userid)
 
-        GroupChannel.createChannelWithUserIds(users, true
-        ) { groupChannel, e -> CHANNEL_URL = groupChannel.url }
 
         // Accepting an invitation
         SendBird.setChannelInvitationPreference(true, object : SendBird.SetChannelInvitationPreferenceHandler {

@@ -16,7 +16,6 @@ import java.util.ArrayList
 class Chat : AppCompatActivity() {
     private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
     private var CHANNEL_URL = ""
-    private val gc: GroupChannel? = null
     private var messageadapter: MessageAdapter? = null
     private var listViewMessages: ListView? = null
     private var msgText: String? = null
@@ -32,7 +31,7 @@ class Chat : AppCompatActivity() {
 
         SendBird.init(SENDBIRDAPPID, this)
 
-        SendBird.connect(userid, object : SendBird.ConnectHandler { override fun onConnected(user: User?, e: SendBirdException?) {
+            SendBird.connect(userid, object : SendBird.ConnectHandler { override fun onConnected(user: User?, e: SendBirdException?) {
                 if (e != null)
                 {
                     return
@@ -106,8 +105,7 @@ class Chat : AppCompatActivity() {
                             }
                             val belongsToCurrentUser: Boolean = userMessage.sender.userId == "1"
                             val message = Message(userMessage.message, belongsToCurrentUser)
-                            val msg = Message(userMessage.message, true)
-                            messageadapter!!.add(msg)
+                            messageadapter!!.add(message)
                             listViewMessages!!.setSelection(listViewMessages!!.count - 1)
                             et_msg!!.text.clear()
                         }

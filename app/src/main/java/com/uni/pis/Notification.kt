@@ -64,4 +64,9 @@ class Notification : AppCompatActivity(),BackgroundWorker.MyCallback {
         rv_notification.adapter = NotificationAdapter
     }
 
+    override fun onPause() {
+        super.onPause()
+        finish()
+    }
+
 }

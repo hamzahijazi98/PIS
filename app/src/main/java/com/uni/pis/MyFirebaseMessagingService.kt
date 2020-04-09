@@ -7,6 +7,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -26,7 +27,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val FriendID = extraData["UserID"]
         val friendImage = extraData["Image"]
         val friendName = extraData["Name"]
-        var mFirebaseAuth = FirebaseAuth.getInstance()
 
 
             val notificationBuilder = Notification.Builder( this)
@@ -34,11 +34,14 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 .setContentText(body)
                 .setSmallIcon(R.drawable.ic_menu_add)
             val intent = Intent(this, com.uni.pis.Notification::class.java)
+            intent.flags = FLAG_ACTIVITY_NEW_TASK
 
             intent.putExtra("UserID", UserID)
             intent.putExtra("FriendID", FriendID)
             intent.putExtra("Image", friendImage)
             intent.putExtra("name", friendName)
+            startActivity(intent)
+
             val pendingIntent =
                 PendingIntent.getActivity(this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT)
             notificationBuilder.setContentIntent(pendingIntent)
