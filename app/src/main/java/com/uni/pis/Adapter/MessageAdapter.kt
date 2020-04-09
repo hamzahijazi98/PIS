@@ -5,7 +5,6 @@ package com.uni.pis.Adapter
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,24 +58,28 @@ class MessageAdapter(var context: Context) :
         } else {
             convertView = messageInflater.inflate(R.layout.their_message, null)
             holder.name = convertView.findViewById<View>(R.id.name) as TextView
+            holder.avatar = convertView.findViewById(R.id.avatar) as View
             holder.messageBody =
                 convertView.findViewById<View>(R.id.message_body) as TextView
             convertView.tag = holder
             holder.name!!.text = message.SenderName
             holder.messageBody!!.text = message.text
-            val drawable = holder.avatar!!.background as GradientDrawable
-            drawable.setColor(Color.parseColor(getRandomColor(message.SenderName)))
+            holder.avatar!!.setBackgroundColor(Color.parseColor(getRandomColor(message.SenderName)))
+
         }
         return convertView
     }
     private fun getRandomColor(Name:String): String? {
         val r = Random()
+        if(Name!=""){
         r.setSeed(Name.toLong())
+        }
         val sb = StringBuffer("#")
         while (sb.length < 7) {
             sb.append(Integer.toHexString(r.nextInt()))
         }
         return sb.toString().substring(0, 7)
+
     }
 }
 
