@@ -2,7 +2,6 @@ package com.uni.pis.Adapter
 
 
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
@@ -11,13 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
 import android.widget.TextView
 import com.uni.pis.R
 import com.uni.pis.data.Message
-import com.uni.pis.data.userData
 import java.util.*
-
 
 
 @Suppress("NAME_SHADOWING")
@@ -68,14 +64,25 @@ class MessageAdapter(var context: Context) :
             convertView.tag = holder
             holder.name!!.text = message.SenderName
             holder.messageBody!!.text = message.text
+            val drawable = holder.avatar!!.background as GradientDrawable
+            drawable.setColor(Color.parseColor(getRandomColor(message.SenderName)))
         }
         return convertView
     }
-
+    private fun getRandomColor(Name:String): String? {
+        val r = Random()
+        r.setSeed(Name.toLong())
+        val sb = StringBuffer("#")
+        while (sb.length < 7) {
+            sb.append(Integer.toHexString(r.nextInt()))
+        }
+        return sb.toString().substring(0, 7)
+    }
 }
 
 
 internal class MessageViewHolder {
+    var avatar: View? = null
     var name: TextView? = null
     var messageBody: TextView? = null
 

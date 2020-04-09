@@ -1,17 +1,16 @@
 package com.uni.pis.Events
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import com.sendbird.android.*
 import com.uni.pis.Adapter.MessageAdapter
 import com.uni.pis.R
 import com.uni.pis.data.Message
 import com.uni.pis.data.userData
 import kotlinx.android.synthetic.main.activity_chat.*
-import java.util.ArrayList
+import java.util.*
 
 class Chat : AppCompatActivity() {
     private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
@@ -36,14 +35,9 @@ class Chat : AppCompatActivity() {
                 {
                     return
                 }
+
+
             } })
-        SendBird.setChannelInvitationPreference(true, object : SendBird.SetChannelInvitationPreferenceHandler {
-            override fun onResult(e: SendBirdException?) {
-                if (e != null) { // Error.
-                    return
-                }
-            }
-        })
 
         if(intent.hasExtra("ChannelUrl")) {
             CHANNEL_URL = intent.extras!!.get("ChannelUrl").toString()

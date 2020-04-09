@@ -15,6 +15,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.sendbird.android.SendBird
+import com.sendbird.android.SendBirdException
+import com.sendbird.android.User
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events_Frag
 import com.uni.pis.HomeFrag
@@ -27,6 +30,7 @@ import kotlinx.android.synthetic.main.fragment_home_.*
 class MainActivity : AppCompatActivity(),
     BackgroundWorker.MyCallback {
     @RequiresApi(Build.VERSION_CODES.N)
+    private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
 
     var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
@@ -36,6 +40,22 @@ class MainActivity : AppCompatActivity(),
         setContentView(R.layout.activity_home)
         var userid=mFirebaseAuth.currentUser?.uid!!
         FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest$userid")
+        SendBird.init(SENDBIRDAPPID, this)
+
+        SendBird.connect(userid, object : SendBird.ConnectHandler { override fun onConnected(user: User?, e: SendBirdException?) {
+            if (e != null)
+            {
+                return
+            }
+        } })
+        SendBird.setChannelInvitationPreference(true, object : SendBird.SetChannelInvitationPreferenceHandler {
+            override fun onResult(e: SendBirdException?) {
+                if (e != null) { // Error.
+                    return
+                }
+            }
+        })
+
         val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Create Event")
