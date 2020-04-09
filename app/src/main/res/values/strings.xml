@@ -75,4 +75,8 @@
 
     <string name="rejcet">Rejcet</string>
     <string name="edit">Edit</string>
+    <string name="write_a_message">Write Message</string>
+    <string name="placeholder_message">My Message</string>
+    <string name="how_are_you_doing_this_is_a_long_message_that_should_probably_wrap">Their Message</string>
+    <string name="rose">Their Name</string>
 </resources>

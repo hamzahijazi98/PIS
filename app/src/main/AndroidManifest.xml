@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Events.EditEvent"></activity>
+        <activity android:name=".Events.Chat"></activity>
+        <activity android:name=".Events.EditEvent" />
         <activity android:name=".welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,11 +37,9 @@
         <activity android:name=".Events.EvenstList" />
         <activity android:name=".EventsList" />
         <activity android:name=".profile.Friends" />
-        <activity android:name=".Events.MyCardInvitation"
-            android:theme="@style/MenuTheme"
-            >
-
-        </activity>
+        <activity
+            android:name=".Events.MyCardInvitation"
+            android:theme="@style/MenuTheme"></activity>
         <activity android:name=".Events.VideoInvitation" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -76,7 +75,7 @@
         <activity android:name=".ui.SignUp" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>

@@ -158,6 +158,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     val inviteenumber=p0[10]
                     val InviterID=p0[11]
                     val image=p0[12]
+                    val channelUrl=p0[13]
 
                     val url = URL(phplinks.createvent.link)
                     val httpURLConnection =
@@ -191,6 +192,8 @@ class BackgroundWorker  constructor(var context: Context) :
                             +URLEncoder.encode("inviterid","UTF-8")+"="+URLEncoder.encode(InviterID,"UTF-8")
                             +"&"
                             +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(image,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("channelUrl","UTF-8")+"="+URLEncoder.encode(channelUrl,"UTF-8")
 
 
                             )

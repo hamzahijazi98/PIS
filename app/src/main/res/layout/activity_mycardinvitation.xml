@@ -169,20 +169,39 @@
             android:nestedScrollingEnabled="true"
             android:textSize="20sp" />
 
-        <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundedbutton"
-        android:layout_marginTop="20dp"
-        android:padding="5dp"
-        android:layout_gravity="center"
-        android:textColor="@color/whiteBackGround"
-        android:text="@string/location"
-            android:id="@+id/btn_location"
-    />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
+            <Button
+                android:id="@+id/btn_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:padding="5dp"
+                android:text="@string/location"
+                android:textColor="@color/whiteBackGround" />
 
- <LinearLayout
+            <Button
+                android:id="@+id/btn_groupchat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:padding="5dp"
+                android:text="@string/location"
+                android:textColor="@color/whiteBackGround" />
+
+        </LinearLayout>
+
+        <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:orientation="horizontal"

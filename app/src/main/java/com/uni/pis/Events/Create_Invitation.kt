@@ -22,8 +22,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.sendbird.android.GroupChannel
+import com.sendbird.android.SendBird
+import com.sendbird.android.SendBirdException
+import com.sendbird.android.User
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
+import com.uni.pis.data.userData
 import kotlinx.android.synthetic.main.activity_create__invitation.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -47,13 +52,17 @@ lateinit var mStorageRef: StorageReference
 val MAPS_CODE=1234
  var halls:ArrayList<String> = ArrayList()
 
-    //image pick code
+
     val IMAGE_PICK_CODE = 1000;
-    //Permission code
     private val PERMISSION_CODE = 1001;
 
 class Create_Invitation : AppCompatActivity(),
     BackgroundWorker.MyCallback {
+    private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
+    private var CHANNEL_URL = ""
+    private val gc: GroupChannel? = null
+    private val userid=mFirebaseAuth.currentUser?.uid!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create__invitation)
@@ -136,7 +145,6 @@ class Create_Invitation : AppCompatActivity(),
             date.show()
 
         }
-
         pick_img.setOnClickListener{
             //check runtime permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -159,15 +167,44 @@ class Create_Invitation : AppCompatActivity(),
                 pickImageFromGallery();
             }
         }
-
-
-
         btn_Save.setOnClickListener {
             Description =et_description.text.toString()
             UserID =
                 mFirebaseAuth.currentUser?.uid!!
             uploadFile()
         }
+
+
+
+        SendBird.init(SENDBIRDAPPID, this)
+
+        SendBird.connect(userid, object : SendBird.ConnectHandler {
+            override fun onConnected(user: User?, e: SendBirdException?) {
+                if (e != null)
+                {
+                    return
+                }
+            }
+        })
+        val users = java.util.ArrayList<String>()
+        users.add(userid)
+
+        GroupChannel.createChannelWithUserIds(users, true
+        ) { groupChannel, e -> CHANNEL_URL = groupChannel.url }
+
+        // Accepting an invitation
+        SendBird.setChannelInvitationPreference(true, object : SendBird.SetChannelInvitationPreferenceHandler {
+            override fun onResult(e: SendBirdException?) {
+                if (e != null) { // Error.
+                    return
+                }
+            }
+        })
+
+
+
+
+
 
 
 
@@ -296,7 +333,8 @@ fun setTime(set:String){
                             Description,System.currentTimeMillis().toString(),
                             "wedding","150",
                             mFirebaseAuth.currentUser!!.uid,
-                            imageStoragelink
+                            imageStoragelink,
+                            CHANNEL_URL
                         )
 
 

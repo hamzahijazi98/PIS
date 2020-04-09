@@ -1,22 +1,25 @@
 package com.uni.pis.profile
 
+import android.R.attr.fragment
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.R
 import com.uni.pis.data.userData
 import com.uni.pis.homefrags.Edit_Profile_Fragment
+import kotlinx.android.synthetic.main.fragment_edit__profile_.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
+import kotlinx.android.synthetic.main.fragment_profile_page_personal.iv_profile
+import kotlinx.android.synthetic.main.fragment_profile_page_personal.tv_gender
 
 
 class ProfilePagePersonalFrag : Fragment() {
@@ -76,14 +79,13 @@ class ProfilePagePersonalFrag : Fragment() {
 
         }
         btn_editProfile.setOnClickListener {
-            val fm = fragmentManager
-            var trans = fm?.beginTransaction()
-            if (trans != null) {
-                trans.replace(R.id.fragment_profile_page_personal, Edit_Profile_Fragment())
-                trans.addToBackStack(null)
-                trans.commit()
+            val fragmentManager: FragmentManager? = fragmentManager
+            fragmentManager!!.beginTransaction()
+                
+                .replace(R.id.fragment_profile_page_personal,Edit_Profile_Fragment())
+                .addToBackStack(null)
+                .commit()
             }
         }
-    }
 
 }

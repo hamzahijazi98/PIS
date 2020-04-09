@@ -38,7 +38,8 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
         Image(9),
         FirstInviterName(11),
         SecondInviterName(12),
-        InviterId(10)
+        InviterId(10),
+        ChannelUrl(13)
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +83,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                         var SecondInviterName =
                             friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
                         var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
+                        var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
 
                         myEventFrag.arrayListMyEvent.add(
                             eventData(
@@ -96,7 +98,8 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                                 SecondInviterName,
                                 PlaceId,
                                 Image,
-                                description
+                                description,
+                                channelUrl
                             )
                         )
                     }
@@ -134,6 +137,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                         var SecondInviterName =
                             friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
                         var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
+                        var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
 
                         InvitedEventFrag.arrayListMyInvited.add(
                             eventData(
@@ -148,7 +152,8 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                                 SecondInviterName,
                                 PlaceId,
                                 Image,
-                                description
+                                description,
+                                channelUrl
                             )
                         )
                     }

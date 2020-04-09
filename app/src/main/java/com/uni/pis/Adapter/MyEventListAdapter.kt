@@ -55,7 +55,6 @@ class MyEventListAdapter(var arrayList_Myevents: ArrayList<eventData>):
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binditems(arrayList_Myevents[position])
 
-
         holder.itemView.setOnClickListener{
                   val image = arrayList_Myevents[position]
                   val i = Intent(holder.itemView.context, MyCardInvitation::class.java)
