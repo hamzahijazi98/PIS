@@ -78,7 +78,7 @@ class Chat : AppCompatActivity() {
                                     flag = false
                                     if (x.sender.userId == SendBird.getCurrentUser().userId) flag =
                                         true
-                                    val msg = Message(x.message, flag)
+                                    val msg = Message(x.message, flag,x.data)
                                     messageadapter!!.add(msg)
                                     listViewMessages!!.setSelection(listViewMessages!!.count - 1)
                                 }
@@ -98,13 +98,14 @@ class Chat : AppCompatActivity() {
                     msgText=et_msg.text.toString()
                     val params: UserMessageParams = UserMessageParams()
                         .setMessage(msgText)
+                        .setData(userData.first_name+" "+userData.last_name)
                     groupChannel.sendUserMessage(params, object : BaseChannel.SendUserMessageHandler {
                         override fun onSent(userMessage: UserMessage, e: SendBirdException?) {
                             if (e != null) { // Error.
                                 return
                             }
-                            val belongsToCurrentUser: Boolean = userMessage.sender.userId == "1"
-                            val message = Message(userMessage.message, belongsToCurrentUser)
+                            val belongsToCurrentUser: Boolean = userMessage.sender.userId == userid
+                            val message = Message(userMessage.message, belongsToCurrentUser,userMessage.data)
                             messageadapter!!.add(message)
                             listViewMessages!!.setSelection(listViewMessages!!.count - 1)
                             et_msg!!.text.clear()
@@ -118,7 +119,7 @@ class Chat : AppCompatActivity() {
             override fun onMessageReceived(channel: BaseChannel?, message: BaseMessage) {
                 when (message) {
                     is UserMessage -> {
-                        val msg = Message(message.message, false)
+                        val msg = Message(message.message, false,message.data)
                         messageadapter!!.add(msg)
                         listViewMessages!!.setSelection(listViewMessages!!.count - 1)
                     }
