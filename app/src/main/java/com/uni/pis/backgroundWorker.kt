@@ -4,6 +4,8 @@ package com.uni.pis
 import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
+import androidx.core.text.htmlEncode
+import com.sendbird.android.shadow.okio.Utf8
 import com.uni.pis.data.eventData
 import com.uni.pis.data.userData
 import java.io.*
@@ -65,7 +67,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
                     var result: String? = ""
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -127,7 +129,7 @@ class BackgroundWorker  constructor(var context: Context) :
                 outputStream.close()
                 val inputStream = httpURLConnection.inputStream
                 val bufferedReader =
-                    BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                    BufferedReader(InputStreamReader(inputStream, "UTF-8"))
                 var result: String? = ""
                 var line: String? = ""
                 while (bufferedReader.readLine().also { line = it } != null) {
@@ -203,7 +205,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
 
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -242,7 +244,7 @@ class BackgroundWorker  constructor(var context: Context) :
                 outputStream.close()
                 val inputStream = httpURLConnection.inputStream
                 val bufferedReader =
-                    BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                    BufferedReader(InputStreamReader(inputStream, "UTF-8"))
                 var result: String? = ""
                 var line: String? = ""
                 while (bufferedReader.readLine().also { line = it } != null) {
@@ -280,7 +282,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
                     var result: String? = ""
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -318,7 +320,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
                     var result: String? = ""
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -357,7 +359,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
                     var result: String? = ""
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -400,7 +402,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
 
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -467,7 +469,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
 
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -526,7 +528,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
                     var result: String? = ""
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -579,7 +581,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
 
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
@@ -647,7 +649,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     outputStream.close()
                     val inputStream = httpURLConnection.inputStream
                     val bufferedReader =
-                        BufferedReader(InputStreamReader(inputStream, "iso-8859-1"))
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
 
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
