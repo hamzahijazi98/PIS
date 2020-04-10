@@ -7,20 +7,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/a3"
+    android:background="@drawable/craftwhitebackground"
     android:padding="10dp"
      tools:context=".ui.login.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginVertical="10dp"
-        android:background="@color/whiteBackGround"
         android:contentDescription="@string/app_logo"
         android:cropToPadding="true"
-        app:srcCompat="@drawable/loginpic"/>
+        app:srcCompat="@drawable/linkedin_banner_image_1"/>
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -75,9 +74,8 @@
             android:buttonTintMode="src_atop"
             android:padding="10dp"
             android:text="@string/remember_me"
-
-            android:textColor="@color/whiteBackGround"
-            android:textColorHint="@color/whiteBackGround" />
+            android:textColor="@color/gray"
+            android:textColorHint="@color/gray" />
 
         <TextView
             android:id="@+id/tv_forgetPassword"
@@ -85,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/roundedbutton"
-            android:textColor="@color/whiteBackGround"
+            android:textColor="@color/gray"
             android:textColorHint="@color/whiteBackGround"
             android:padding="10dp"
 
@@ -106,7 +104,7 @@
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"
-        android:textColor="@color/whiteBackGround"
+        android:textColor="@color/gray"
         android:textColorHint="@color/whiteBackGround"
         android:layout_height="50dp"
         android:layout_marginTop="60dp"
@@ -118,7 +116,7 @@
     <Button
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
-        android:textColor="@color/whiteBackGround"
+        android:textColor="@color/gray"
         android:textColorHint="@color/whiteBackGround"
         android:layout_height="50dp"
         android:layout_marginVertical="20dp"

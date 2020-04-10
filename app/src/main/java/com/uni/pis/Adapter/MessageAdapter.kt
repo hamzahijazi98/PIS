@@ -74,7 +74,7 @@ class MessageAdapter(var context: Context) :
     private fun getRandomColor(Name:String): String? {
         val r = Random()
         if(Name!=""){
-        r.setSeed(Name[0].toInt().toLong())
+        r.setSeed(Name[0].toInt().toLong()+Name[Name.length-1].toInt().toLong())
         }
         val sb = StringBuffer("#")
         while (sb.length < 7) {

@@ -57,7 +57,7 @@ class Chat : AppCompatActivity() {
                     // Retrieving previous messages.
                     prevMessageListQuery.load(
                         30,
-                        true,
+                        false,
                         object : MessageListQuery.MessageListQueryResult,
                             PreviousMessageListQuery.MessageListQueryResult {
                             override fun onResult(

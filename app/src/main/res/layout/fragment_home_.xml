@@ -25,7 +25,7 @@
             android:layout_height="120dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="25dp"
-            android:src="@drawable/eventoricon"
+            android:src="@drawable/linkedin_banner_image_1"
              />
 
     <TextView
@@ -41,15 +41,13 @@
         android:textStyle="bold" />
 </LinearLayout>
         <GridView
-            android:padding="25dp"
             android:id="@+id/Gridview_home"
+           android:padding="25dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:columnWidth="150dp"
             android:background="@drawable/roundedlayout"
-            android:backgroundTint="@color/whiteBackGround"
-            android:paddingTop="25dp"
             android:horizontalSpacing="15dp"
             android:numColumns="auto_fit"
             android:verticalSpacing="20dp">

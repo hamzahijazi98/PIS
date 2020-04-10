@@ -3,29 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/appbackground"
+    android:background="@color/colorPrimaryDark"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context=".profile.Friends">
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/home_iv_profile"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/eventoricon"
-        />
+    <TextView
+        android:id="@+id/tv_myevents"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blueblack"
+        android:gravity="center"
+        android:textColor="@color/whiteBackGround"
+        android:text="Friends"
+        android:textSize="24sp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_friend"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
-        android:background="@android:color/background_light"
+        android:background="@drawable/roundedlayout"
+        android:padding="25dp"
+
 
         />
 </LinearLayout>

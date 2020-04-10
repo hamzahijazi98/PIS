@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundedbutton"
-        android:textColor="@color/whiteBackGround"
+        android:textColor="@color/gray"
         android:text="Cancel"
         android:textSize="12sp"
         android:layout_gravity="start"/>
@@ -43,8 +43,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="end"
-              android:textColor="@color/whiteBackGround"
-
+              android:textColor="@color/gray"
               android:padding="5dp"
               android:background="@drawable/roundedbutton"
               android:text="Set Moderator"
@@ -55,8 +54,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="right"
-              android:textColor="@color/whiteBackGround"
-
+              android:textColor="@color/gray"
               android:background="@drawable/roundedbutton"
               android:text="Confrim"
               android:layout_marginStart="15dp"

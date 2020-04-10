@@ -10,20 +10,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ImageView
         android:id="@+id/home_iv_profile"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/eventoricon"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:src="@drawable/linkedin_banner_image_1"
         />
 
 <androidx.recyclerview.widget.RecyclerView
 android:id="@+id/RV_events"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-    android:layout_marginTop="25dp"
+    android:layout_marginTop="30dp"
     android:background="@drawable/roundedlayout"/>
 
 </LinearLayout>

@@ -16,14 +16,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/craftwhitebackground"
 
     >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/a3"
 
-        />
 
     <EditText
         android:id="@+id/et_firstname"

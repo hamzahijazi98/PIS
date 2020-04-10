@@ -3,29 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/appbackground"
+    android:background="@color/colorPrimaryDark"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Events.Create_Invitation">
 
-    <LinearLayout
-        android:id="@+id/conntainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+   android:layout_marginTop="25dp"
+    android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/pick_img"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_gravity="center"
-
-            android:layout_marginTop="25dp"
             android:contentDescription="@string/Upload_Image2"
-            android:src="@drawable/ic_wedding" />
+            android:src="@drawable/linkedin_banner_image_1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to Upload Event Cover"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/quantum_white_100"
+        android:padding="10dp"
+        />
+</RelativeLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedlayout"
+            android:padding="25dp"
+            android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,9 +89,10 @@
             <Button
                 android:id="@+id/btn_eventDate"
                 android:layout_width="0dp"
+                android:padding="10dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundedbutton"
-                android:textColor="@color/whiteBackGround"
+                android:textColor="@color/gray"
                 android:layout_weight="1"
                 android:text="@string/event_date" />
 
@@ -85,8 +101,6 @@
                 android:layout_width="0dp"
                 android:gravity="center"
                 android:layout_height="match_parent"
-                android:textColor="@drawable/hintedittext"
-
                 android:layout_marginLeft="10dp"
                 android:layout_weight="3"
                 android:textSize="20sp"
@@ -110,7 +124,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/roundedbutton"
-                android:textColor="@color/whiteBackGround"
+                android:textColor="@color/gray"
                 android:layout_weight="1"
                 android:text="@string/start_time" />
             <TextView
@@ -140,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
-                android:textColor="@color/whiteBackGround"
+                android:textColor="@color/gray"
                 android:layout_marginEnd="20dp"
                 android:text="@string/end_time" />
 
@@ -255,11 +269,12 @@
             android:id="@+id/btn_Save"
             android:text="@string/save"
             android:layout_gravity="center"
-            android:textColor="@color/whiteBackGround"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/gray"
             />
 
 
 
     </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
 </ScrollView>
