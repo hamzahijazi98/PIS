@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Notification">
+
+    <TextView
+        android:id="@+id/tv_myevents"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blueblack"
+        android:gravity="center"
+        android:textColor="@color/whiteBackGround"
+        android:text="Friends"
+        android:textSize="24sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

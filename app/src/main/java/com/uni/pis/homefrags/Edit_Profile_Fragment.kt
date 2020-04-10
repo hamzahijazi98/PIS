@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.service.autofill.UserData
@@ -28,7 +30,7 @@ import com.uni.pis.data.userData
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.cardview_notification.*
 import kotlinx.android.synthetic.main.fragment_edit__profile_.*
-import kotlinx.android.synthetic.main.fragment_edit__profile_.iv_profile
+import kotlinx.android.synthetic.main.fragment_home_.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import java.util.*
 
@@ -63,6 +65,7 @@ class Edit_Profile_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+
         et_fname.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 first_name=s.toString()
@@ -152,6 +155,29 @@ class Edit_Profile_Fragment : Fragment() {
                 userData.gender=gender
             }
         }
+        try {
+            mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
+            mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+                try {
+                    iv_Editprofile.setImageBitmap(
+                        Bitmap.createScaledBitmap(
+                            bmp, iv_Editprofile.width,
+                            iv_Editprofile.height, false
+                        )
+                    )
+                } catch (e: IllegalStateException) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                } catch (e: NullPointerException) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                }
+
+            }.addOnFailureListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) { Toast.makeText(context, e.message, Toast.LENGTH_LONG).show() }
 
 
 
@@ -168,7 +194,7 @@ class Edit_Profile_Fragment : Fragment() {
             dob.show()
 
         }
-        iv_profile.setOnClickListener {
+        iv_Editprofile.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, IMAGE_PICK_CODE)

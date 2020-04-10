@@ -4,7 +4,7 @@
     android:id="@+id/Edit_Frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/appbackground"
+    android:background="@color/colorPrimaryDark"
     tools:context=".homefrags.Edit_Profile_Fragment"
     >
 
@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/iv_profile"
+            android:id="@+id/iv_Editprofile"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
@@ -23,6 +23,12 @@
             app:civ_border_color="#00000000"
             app:civ_border_width="2dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedlayout"
+            android:padding="25dp"
+            android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -114,7 +120,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
                 android:text="birthdate"
-                android:textColor="@color/whiteBackGround"
+                android:textColor="@color/gray"
                 android:padding="5dp"
                 android:textSize="12sp"
                 android:textStyle="normal"
@@ -196,9 +202,9 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/roundedbutton"
             android:text="@string/save"
-            android:textColor="@color/whiteBackGround"/>
+            android:textColor="@color/gray"/>
 
     </LinearLayout>
 
-
+    </LinearLayout>
 </FrameLayout>

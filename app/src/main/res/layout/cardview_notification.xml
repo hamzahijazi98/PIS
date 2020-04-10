@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="100dp"
+    app:cardUseCompatPadding="false"
+    android:layout_marginTop="15dp">
 
 
 
@@ -11,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="10dp"
         android:layout_margin="15dp">
 
         <LinearLayout
@@ -19,7 +24,9 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:civ_border_width="2dp"
                 android:id="@+id/iv_acceptImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
@@ -37,6 +44,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     >
         <Button
             android:id="@+id/accept_friend"
@@ -45,7 +53,7 @@
             android:background="@drawable/roundedbutton"
             android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/whiteBackGround"
+            android:textColor="@color/gray"
             android:layout_gravity="bottom"
             android:text="@string/accept" />
     <Button
@@ -58,7 +66,7 @@
         android:layout_gravity="bottom"
         android:text="@string/rejcet"
         android:layout_marginStart="5dp"
-        android:textColor="@color/whiteBackGround"
+        android:textColor="@color/gray"
         />
 
 
