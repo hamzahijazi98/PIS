@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -26,6 +27,7 @@ import com.uni.pis.data.userData
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_home_.*
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(),
     BackgroundWorker.MyCallback {
@@ -125,6 +127,19 @@ class MainActivity : AppCompatActivity(),
             }
         } catch (e: Exception) { Toast.makeText(this, e.message, Toast.LENGTH_LONG).show() }
         tv_homeName.text=userData.first_name+"\n"+userData.last_name
+    }
+
+    override fun onBackPressed() {
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Do you want to close APP?")
+        builder.setPositiveButton("Confirm"){ _, _ ->
+            super.onBackPressed()
+        }
+        builder.setNegativeButton("Cancel"){ _, _ ->
+            Toast.makeText(this,"Cancelled.",Toast.LENGTH_SHORT).show()
+        }
+        builder.create().show()
     }
 
 }

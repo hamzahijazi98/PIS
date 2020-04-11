@@ -2,6 +2,7 @@ package com.uni.pis.profile
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
+import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -85,10 +86,22 @@ class ProfilePagePersonalFrag : Fragment() {
             }
         }
         ib_logout.setOnClickListener {
-            mFirebaseAuth.signOut()
-            var sp= context!!.deleteSharedPreferences("myPrefs")
 
-            exitProcess(0)
+            val builder = AlertDialog.Builder(view.context)
+            builder.setMessage("Do you want to LogOut?")
+            builder.setPositiveButton("Confirm"){ _, _ ->
+                run {
+                    mFirebaseAuth.signOut()
+                    context!!.deleteSharedPreferences("myPrefs")
+
+                    exitProcess(0)
+
+                }
+            }
+            builder.setNegativeButton("Cancel"){ _, _ ->
+                Toast.makeText(view.context,"Cancelled.",Toast.LENGTH_SHORT).show()
+            }
+            builder.create().show()
 
         }
 
