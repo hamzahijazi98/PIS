@@ -1,6 +1,10 @@
 package com.uni.pis.profile
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.AlertDialog
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -18,9 +21,7 @@ import com.uni.pis.R
 import com.uni.pis.data.userData
 import com.uni.pis.welcome
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
-import kotlinx.android.synthetic.main.fragment_profile_page_personal.iv_profile
-import kotlinx.android.synthetic.main.fragment_profile_page_personal.tv_gender
-import kotlin.math.E
+import kotlin.system.exitProcess
 
 
 class ProfilePagePersonalFrag : Fragment() {
@@ -31,7 +32,7 @@ class ProfilePagePersonalFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_page_personal, container, false)
+        return inflater.inflate(    R.layout.fragment_profile_page_personal, container, false)
     }
 
     @SuppressLint("ResourceType")
@@ -85,12 +86,22 @@ class ProfilePagePersonalFrag : Fragment() {
             }
         }
         ib_logout.setOnClickListener {
-            mFirebaseAuth.signOut()
-            activity?.let {
-                val intent = Intent(it, welcome::class.java)
-                it.startActivity(intent)
 
+            val builder = AlertDialog.Builder(view.context)
+            builder.setMessage("Do you want to LogOut?")
+            builder.setPositiveButton("Confirm"){ _, _ ->
+                run {
+                    mFirebaseAuth.signOut()
+                    context!!.deleteSharedPreferences("myPrefs")
+
+                    exitProcess(0)
+
+                }
             }
+            builder.setNegativeButton("Cancel"){ _, _ ->
+                Toast.makeText(view.context,"Cancelled.",Toast.LENGTH_SHORT).show()
+            }
+            builder.create().show()
 
         }
 
