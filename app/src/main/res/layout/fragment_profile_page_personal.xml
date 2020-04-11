@@ -17,8 +17,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                >
+                <ImageButton
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:id="@+id/ib_logout"
+                    >
+                </ImageButton>
+                
+            </LinearLayout>
+            
+            
+            
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+>            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/iv_profile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -27,7 +47,7 @@
                 android:src="@drawable/loginpic"
                 app:civ_border_color="#00000000"
                 app:civ_border_width="2dp" />
-
+</LinearLayout>
 
             <TextView
                 android:id="@+id/tv_fullName"

@@ -13,9 +13,9 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/whiteBackGround"
         app:tabGravity="fill"
-        app:tabMode="fixed"
-        android:background="@color/whiteBackGround"/>
+        app:tabMode="fixed" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Events.Chat"></activity>
+        <activity android:name=".profile.EditProfileActivity"></activity>
+        <activity android:name=".Events.Chat" />
         <activity android:name=".Events.EditEvent" />
         <activity android:name=".welcome">
             <intent-filter>
@@ -39,7 +40,7 @@
         <activity android:name=".profile.Friends" />
         <activity
             android:name=".Events.MyCardInvitation"
-            android:theme="@style/MenuTheme"></activity>
+            android:theme="@style/MenuTheme" />
         <activity android:name=".Events.VideoInvitation" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

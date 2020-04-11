@@ -23,6 +23,7 @@ import com.uni.pis.homefrags.MyViewPagerAdapter
 import com.uni.pis.model.Home_Item
 import com.uni.pis.profile.FindFriend
 import com.uni.pis.profile.ProfilePagePersonalFrag
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_home_.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import java.util.ArrayList
@@ -107,13 +108,16 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener {
 
 
             2->{
+
                 val fm=fragmentManager
                 val trans= fm?.beginTransaction()
                 if (trans != null) {
                     trans.replace(R.id.FrameHome,ProfilePagePersonalFrag())
                     trans.addToBackStack(null)
+
                     trans.commit()
                 }
+
             }
 
 

@@ -1,6 +1,6 @@
 package com.uni.pis.profile
 
-import android.R.attr.fragment
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -11,18 +11,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.R
 import com.uni.pis.data.userData
-import com.uni.pis.homefrags.Edit_Profile_Fragment
-import kotlinx.android.synthetic.main.fragment_edit__profile_.*
+import com.uni.pis.welcome
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.iv_profile
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.tv_gender
+import kotlin.math.E
 
 
 class ProfilePagePersonalFrag : Fragment() {
+    var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,7 @@ class ProfilePagePersonalFrag : Fragment() {
         return inflater.inflate(R.layout.fragment_profile_page_personal, container, false)
     }
 
+    @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         tv_fullName.text = "${userData.first_name} ${userData.last_name}"
         tv_city.text = userData.city
@@ -71,21 +74,26 @@ class ProfilePagePersonalFrag : Fragment() {
             Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
         }
 
-
-
         btn_friends.setOnClickListener {
             val intent = Intent(context, Friends::class.java)
             startActivity(intent)
-
         }
         btn_editProfile.setOnClickListener {
-            val fragmentManager: FragmentManager? = fragmentManager
-            fragmentManager!!.beginTransaction()
-                
-                .replace(R.id.fragment_profile_page_personal,Edit_Profile_Fragment())
-                .addToBackStack(null)
-                .commit()
+            activity?.let {
+                val intent = Intent(it, EditProfileActivity::class.java)
+                it.startActivity(intent)
             }
         }
+        ib_logout.setOnClickListener {
+            mFirebaseAuth.signOut()
+            activity?.let {
+                val intent = Intent(it, welcome::class.java)
+                it.startActivity(intent)
 
+            }
+
+        }
+
+
+    }
 }
