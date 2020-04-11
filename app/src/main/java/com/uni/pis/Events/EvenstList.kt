@@ -36,10 +36,10 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
         Description(6),
         PlaceId(7),
         Image(9),
-        FirstInviterName(11),
-        SecondInviterName(12),
-        InviterId(13),
-        ChannelUrl(14)
+        FirstInviterName(10),
+        SecondInviterName(11),
+        InviterId(12),
+        ChannelUrl(13)
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,26 +64,21 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                     if (friend.size > 1) {
 
                         var EventID = friend[eventDataOrder.EventID.index].substringAfter("=")
-                        var name = friend[eventDataOrder.EventType.index].substringAfter("=")
-                        var description =
-                            friend[eventDataOrder.Description.index].substringAfter("=")
-                        var Image =
-                            friend[eventDataOrder.Image.index].substringAfter("=").replace("\\", "")
-                                .trim()
                         var Invitee_No = friend[eventDataOrder.Invitee_No.index].substringAfter("=")
                         var StartTime = friend[eventDataOrder.StartTime.index].substringAfter("=")
                         var EndTime = friend[eventDataOrder.EndTime.index].substringAfter("=")
+                        var name = friend[eventDataOrder.EventType.index].substringAfter("=")
                         var Date = friend[eventDataOrder.Date.index].substringAfter("=")
-                        var PlaceId =
-                            friend[eventDataOrder.PlaceId.index].substringAfter("=").substringAfter(
-                                "="
-                            ) + "&" + friend[eventDataOrder.PlaceId.index + 1]
+                        var description =friend[eventDataOrder.Description.index].substringAfter("=")
+                        var PlaceId = friend[eventDataOrder.PlaceId.index].substringAfter("=")
+                            .substringAfter("=") + "&" + friend[eventDataOrder.PlaceId.index + 1]
+                        var Image = friend[eventDataOrder.Image.index].substringAfter("=").replace("\\", "")
                         var FirstInviterName =
                             friend[eventDataOrder.FirstInviterName.index].substringAfter("=")
                         var SecondInviterName =
                             friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
                         var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
-                        var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
+                         var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
 
                         myEventFrag.arrayListMyEvent.add(
                             eventData(

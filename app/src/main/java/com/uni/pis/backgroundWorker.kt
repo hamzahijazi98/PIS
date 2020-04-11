@@ -712,6 +712,16 @@ class BackgroundWorker  constructor(var context: Context) :
     interface MyCallback {
         fun onResult(result: String?)
     }
+//    fun connect( Link:String):BufferedWriter{
+//        val url = URL(phplinks.updatevent.link)
+//        val httpURLConnection =
+//            url.openConnection() as HttpURLConnection
+//        httpURLConnection.requestMethod = "POST"
+//        httpURLConnection.doOutput = true
+//        httpURLConnection.doInput = true
+//        val outputStream = httpURLConnection.outputStream
+//           return BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+//    }
 
 
 
