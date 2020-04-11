@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity(),
     override fun onBackPressed() {
 
         val builder = AlertDialog.Builder(this)
-        builder.setMessage("Do you want to close APP?")
+        builder.setMessage("Do you want to close Eventor?")
         builder.setPositiveButton("Confirm"){ _, _ ->
             super.onBackPressed()
         }
