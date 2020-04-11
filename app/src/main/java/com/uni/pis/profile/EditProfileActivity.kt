@@ -16,6 +16,7 @@ import android.webkit.MimeTypeMap
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.viewpager.widget.ViewPager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.storage.FirebaseStorage
@@ -25,6 +26,7 @@ import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
 import com.uni.pis.data.userData
 import com.uni.pis.homefrags.MainActivity
+import com.uni.pis.homefrags.MyViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_edit__profile_.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import java.util.*
@@ -197,9 +199,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                     } catch (e: NullPointerException) {
                         Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
                     }
-
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                Toast.makeText(this,"Update Saved ", Toast.LENGTH_LONG).show()
 
             }
             builder.setNegativeButton("Cancel"){ _, _ ->

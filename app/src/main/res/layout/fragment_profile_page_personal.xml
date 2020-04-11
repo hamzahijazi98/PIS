@@ -23,13 +23,14 @@
                 android:gravity="end"
                 >
                 <ImageButton
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logout"
+                    android:backgroundTint="@color/whiteBackGround"
                     android:id="@+id/ib_logout"
                     >
                 </ImageButton>
-                
+
             </LinearLayout>
             
             
