@@ -44,9 +44,6 @@ class LoginActivity : AppCompatActivity() {
 
         var sp= getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
 
-        username.setText(sp.getString("name",null))
-
-        password.setText(sp.getString("password", null))
 
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
