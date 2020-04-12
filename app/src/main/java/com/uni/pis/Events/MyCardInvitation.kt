@@ -70,6 +70,7 @@ class MyCardInvitation : AppCompatActivity() {
         }
         btn_attendance.setOnClickListener {
             var intent=Intent(this,Invitee_List::class.java)
+            intent.putExtra("eventID",eventdata.Event_ID)
             startActivity(intent)
         }
 

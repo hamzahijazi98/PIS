@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_invitee__list.*
 class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback {
     val InviteeArrayList=ArrayList<InviteeListData>()
     val InviteeArrayListAdapter= InviteeListAdapter(InviteeArrayList,this)
+    lateinit  var EventId:String
     enum class userDataOrder(val index: Int) {
         UserID(0),
         firstName(1),
@@ -30,11 +31,11 @@ class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_invitee__list)
 
-
-        var userID= mFirebaseAuth.currentUser?.uid!!
-        var data = BackgroundWorker(this)
-        data.execute("myfriends",userID )
-
+        if(intent.hasExtra("eventID")) {
+            EventId = intent.extras!!.get("eventID").toString()
+            var data = BackgroundWorker(this)
+            data.execute("eventinvittee", EventId)
+        }
 
     }
 
