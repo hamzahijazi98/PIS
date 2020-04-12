@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uni.pis.Adapter.MyEventListAdapter
+import com.uni.pis.Adapter.MyInvitedEventsAdapter
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events.mFirebaseAuth
 
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_invited__events.*
 class Invited_Events_Frag : Fragment() {
 
     val arrayListMyInvited=ArrayList<eventData>()
-    val AdapterInvitedEvent=MyEventListAdapter(arrayListMyInvited)
+    val AdapterInvitedEvent= MyInvitedEventsAdapter(arrayListMyInvited)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

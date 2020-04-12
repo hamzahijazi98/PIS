@@ -130,7 +130,9 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 city=userData.city
             }
-        }
+    }
+
+
         et_fname.setText(userData.first_name)
         et_lname.setText(userData.last_name)
         et_phonenum.setText(userData.phoneNumber)

@@ -26,19 +26,13 @@ class Notification : AppCompatActivity(),BackgroundWorker.MyCallback {
         setContentView(R.layout.activity_notification)
 
         try {
-
-
             var data = BackgroundWorker(this)
             data.execute("notification","receive",userID )
-
-
         }
         catch (e:Exception)
         {
             NotificationArrayList.add(acceptFriendData("you dont have friend"," ", " "," "))
         }
-
-
         rv_notification.layoutManager = LinearLayoutManager(this)
         rv_notification.adapter = NotificationAdapter
     }

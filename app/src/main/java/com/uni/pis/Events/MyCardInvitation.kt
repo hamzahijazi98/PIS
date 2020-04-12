@@ -68,6 +68,10 @@ class MyCardInvitation : AppCompatActivity() {
             intent.putExtra("ChannelUrl",eventdata.channelUrl)
             startActivity(intent)
         }
+        btn_attendance.setOnClickListener {
+            var intent=Intent(this,Invitee_List::class.java)
+            startActivity(intent)
+        }
 
     }
 

@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity(),
 
     var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
-
+    val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -58,7 +60,7 @@ class MainActivity : AppCompatActivity(),
             }
         })
 
-        val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
+
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Create Event")
         viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),"Profile")
@@ -76,28 +78,7 @@ class MainActivity : AppCompatActivity(),
 
 
     }
-    class MyViewPagerAdapter(manger: FragmentManager): FragmentPagerAdapter(manger){
-        private val fragmentlist:MutableList<Fragment> =ArrayList()
-        private val titlelist:MutableList<String> =ArrayList()
 
-        override fun getItem(position: Int): Fragment {
-            return fragmentlist[position]
-        }
-
-        override fun getCount(): Int {
-            return fragmentlist.size
-        }
-        fun addfragment(fragment: Fragment, title:String){
-            fragmentlist.add(fragment)
-            titlelist.add(title)
-
-        }
-        override fun getPageTitle(position: Int): CharSequence? {
-            return titlelist[position]
-        }
-
-
-        }
 
 
     @SuppressLint("SetTextI18n")
@@ -142,4 +123,6 @@ class MainActivity : AppCompatActivity(),
         builder.create().show()
     }
 
-}
+    }
+
+

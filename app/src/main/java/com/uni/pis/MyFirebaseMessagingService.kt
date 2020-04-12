@@ -42,6 +42,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             intent.putExtra("name", friendName)
             startActivity(intent)
 
+
             val pendingIntent =
                 PendingIntent.getActivity(this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT)
             notificationBuilder.setContentIntent(pendingIntent)

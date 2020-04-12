@@ -23,7 +23,41 @@
         android:contentDescription="@string/Upload_Image2"
         android:src="@drawable/linkedin_banner_image_1" />
 
-    <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_invite"
+                android:text="Invite Friends"
+                android:textColor="@color/gray"
+                android:background="@drawable/roundedbutton"
+                />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_attendance"
+                android:text="Invited FriendS"
+                android:textColor="@color/gray"
+                android:background="@drawable/roundedbutton"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="5dp"
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -211,6 +245,14 @@
 
         </LinearLayout>
 
+
+
+
+
+
+
+
+
         <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
@@ -218,15 +260,7 @@
      android:layout_marginTop="20dp"
      >
 
-<Button
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    android:layout_height="wrap_content"
-    android:id="@+id/btn_invite"
-    android:text="Invite\n Friends"
-    android:textColor="@color/gray"
-    android:background="@drawable/roundedbutton"
-    />
+
      <Button
     android:layout_width="0dp"
     android:layout_weight="1"
@@ -235,7 +269,6 @@
     android:text="Check attendance \n using QR"
     android:textColor="@color/gray"
     android:background="@drawable/roundedbutton"
-    android:layout_marginStart="15dp"
     android:layout_marginBottom="5dp"
     />
 
