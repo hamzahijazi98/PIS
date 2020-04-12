@@ -34,7 +34,8 @@ class BackgroundWorker  constructor(var context: Context) :
         notification("http://www.psutsystems.com/pisystem/notification.php"),
         updateuserdata("http://www.psutsystems.com/pisystem/update_user_data.php"),
         invitetomyevent("http://www.psutsystems.com/pisystem/invite_to_my_event.php"),
-        updatevent("http://www.psutsystems.com/pisystem/update_event.php")
+        updatevent("http://www.psutsystems.com/pisystem/update_event.php"),
+        updateAttendanceStatus("http://www.psutsystems.com/pisystem/update_attendance.php")
 
     }
     init {
@@ -651,6 +652,52 @@ class BackgroundWorker  constructor(var context: Context) :
                     val bufferedReader =
                         BufferedReader(InputStreamReader(inputStream, "UTF-8"))
 
+                    var line: String? = ""
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        result += line
+                    }
+                    bufferedReader.close()
+                    inputStream.close()
+                    httpURLConnection.disconnect()
+                    return result
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+
+            "updateAttendanceStatus" ->  {
+                try {
+                    val user_ID = p0[1]
+                    val Event_ID = p0[2]
+                    val AttendanceStatus =p0[3]
+
+                    val url = URL(phplinks.updateAttendanceStatus.link)
+                    val httpURLConnection =
+                        url.openConnection() as HttpURLConnection
+                    httpURLConnection.requestMethod = "POST"
+                    httpURLConnection.doOutput = true
+                    httpURLConnection.doInput = true
+                    val outputStream = httpURLConnection.outputStream
+                    val bufferedWriter =
+                        BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+                    val post_data = (URLEncoder.encode("UserID", "UTF-8") + "=" + URLEncoder.encode(user_ID, "UTF-8")
+                            +"&"
+                            + URLEncoder.encode("EventID","UTF-8")+"="+URLEncoder.encode(Event_ID,"UTF-8")
+                            +"&"
+                            +URLEncoder.encode("AttendanceStatus","UTF-8")+"="+URLEncoder.encode(AttendanceStatus,"UTF-8")
+
+
+                            )
+                    bufferedWriter.write(post_data)
+                    bufferedWriter.flush()
+                    bufferedWriter.close()
+                    outputStream.close()
+                    val inputStream = httpURLConnection.inputStream
+                    val bufferedReader =
+                        BufferedReader(InputStreamReader(inputStream, "UTF-8"))
+                    var result: String? = ""
                     var line: String? = ""
                     while (bufferedReader.readLine().also { line = it } != null) {
                         result += line
