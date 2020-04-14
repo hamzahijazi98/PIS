@@ -8,12 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
@@ -29,12 +31,14 @@ import com.uni.pis.data.userData
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_home_.*
+import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(),
     BackgroundWorker.MyCallback {
     @RequiresApi(Build.VERSION_CODES.N)
     private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
+
 
     var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
@@ -61,11 +65,14 @@ class MainActivity : AppCompatActivity(),
         })
 
 
+
         viewpage_apdapter.addfragment(HomeFrag(),"Home")
         viewpage_apdapter.addfragment(Events_Frag(),"Create Event")
         viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),"Profile")
         view_pager.adapter=viewpage_apdapter
         tabs.setupWithViewPager(view_pager)
+
+
         try {
             var mFirebaseAuth = FirebaseAuth.getInstance()
 
@@ -107,11 +114,10 @@ class MainActivity : AppCompatActivity(),
                 Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
             }
         } catch (e: Exception) { Toast.makeText(this, e.message, Toast.LENGTH_LONG).show() }
-        tv_homeName.text=userData.first_name+"\n"+userData.last_name
+        tv_homeName.text= userData.first_name+"\n"+userData.last_name
     }
-
     override fun onBackPressed() {
-
+if (view_pager.currentItem==0){
         val builder = AlertDialog.Builder(this)
         builder.setMessage("Do you want to close Eventor?")
         builder.setPositiveButton("Confirm"){ _, _ ->
@@ -120,9 +126,16 @@ class MainActivity : AppCompatActivity(),
         builder.setNegativeButton("Cancel"){ _, _ ->
             Toast.makeText(this,"Cancelled.",Toast.LENGTH_SHORT).show()
         }
-        builder.create().show()
+        builder.create().show()}
+        else
+    view_pager.currentItem=0
     }
 
+    fun trans(postion :Int){
+        view_pager.currentItem=postion
     }
+
+}
+
 
 

@@ -23,6 +23,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.uni.pis.BackgroundWorker
+import com.uni.pis.Events.EvenstList
 import com.uni.pis.R
 import com.uni.pis.data.userData
 import com.uni.pis.homefrags.MainActivity
@@ -81,7 +82,6 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
-
         val phone_adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, phone_domain)
         spin_phone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -108,9 +108,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                 })
             } }
         spin_phone.adapter = phone_adapter
-
-        val city_adapter =
-            ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cities)
+        val city_adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cities)
         spin_city.adapter = city_adapter
         spin_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -201,8 +199,11 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                     } catch (e: NullPointerException) {
                         Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
                     }
-                Toast.makeText(this,"Update Saved ", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Update Saved", Toast.LENGTH_LONG).show()
 
+//                val intent = Intent (this, MainActivity::class.java)
+//                MainActivity
+//                startActivity(intent)
             }
             builder.setNegativeButton("Cancel"){ _, _ ->
                 Toast.makeText(this,"Cancelled.", Toast.LENGTH_SHORT).show()

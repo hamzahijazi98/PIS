@@ -21,7 +21,6 @@ lateinit var type:String
 class EventsAdapter(val arraylist: ArrayList<Events_Item>, val context: Context): RecyclerView.Adapter<EventsAdapter.ViewHolder>()
 {
 
-
     class ViewHolder(itemView: View1): RecyclerView.ViewHolder(itemView){
         fun bindItems(EventItem:Events_Item){
             itemView.tv_eventName.text=EventItem.title
@@ -45,7 +44,6 @@ class EventsAdapter(val arraylist: ArrayList<Events_Item>, val context: Context)
         var view= holder.itemView.findViewById<LinearLayout>(R.id.initialinvisiable)
         holder.itemView.setOnClickListener{
 when(position) {
-
 
     0 -> {
         view.visibility=android.view.View.VISIBLE

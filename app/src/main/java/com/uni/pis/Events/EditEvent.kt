@@ -130,7 +130,6 @@ class EditEvent : AppCompatActivity(),BackgroundWorker.MyCallback{
             timeSet = "end"
             setTime(timeSet)
         }
-
         et_descrip.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 descrip = s.toString()
@@ -146,8 +145,6 @@ class EditEvent : AppCompatActivity(),BackgroundWorker.MyCallback{
         et_finviter.setText(eventdata.firstinvitername)
         et_sinviter.setText(eventdata.secondinvitername)
         et_descrip.setText(eventdata.Description)
-
-
         btn_SAVE.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setMessage("Edit Confirmation")
@@ -169,14 +166,11 @@ class EditEvent : AppCompatActivity(),BackgroundWorker.MyCallback{
             builder.create().show()
 
         }
-
         btn_maps.setOnClickListener {
             var i= Intent (this,  MapsActivity::class.java)
             startActivityForResult (i, com.uni.pis.Events.MAPS_CODE)
 
         }
-
-
 
 }
     fun setTime(set:String){
@@ -211,8 +205,6 @@ class EditEvent : AppCompatActivity(),BackgroundWorker.MyCallback{
                         pick_img.setImageURI(ImageUri)
                     }
                 }
-
-
                 MAPS_CODE ->  when (resultCode) {
                     Activity.RESULT_OK -> {
                         LocationId= data?.extras?.get("location").toString()

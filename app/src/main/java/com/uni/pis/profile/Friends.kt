@@ -17,7 +17,6 @@ import com.uni.pis.model.FriendsItem
 import kotlinx.android.synthetic.main.activity_create__invitation.view.*
 import kotlinx.android.synthetic.main.activity_friends.*
 import kotlinx.android.synthetic.main.activity_public_page_profile.*
-import kotlinx.android.synthetic.main.activity_public_page_profile.btn_invite
 import kotlinx.android.synthetic.main.cardview_friend_list.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.view.*
 import kotlinx.android.synthetic.main.invitationdialog.view.*

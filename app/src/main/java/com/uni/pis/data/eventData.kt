@@ -28,9 +28,6 @@ class eventData (var Event_ID: String, var Inv_No: String, var  Date: String, va
         parcel.readString().toString()
     ) {
     }
-
-
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(Event_ID)
         parcel.writeString(Inv_No)

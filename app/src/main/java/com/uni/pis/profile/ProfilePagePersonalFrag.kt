@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
 import com.uni.pis.data.userData
 import com.uni.pis.welcome
@@ -24,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import kotlin.system.exitProcess
 
 
-class ProfilePagePersonalFrag : Fragment() {
+class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
     var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
     override fun onCreateView(
@@ -105,6 +106,10 @@ class ProfilePagePersonalFrag : Fragment() {
 
         }
 
+
+    }
+
+    override fun onResult(result: String?) {
 
     }
 

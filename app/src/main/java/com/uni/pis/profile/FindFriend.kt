@@ -37,7 +37,6 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-
                 }
         })
 

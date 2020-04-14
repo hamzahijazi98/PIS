@@ -42,16 +42,17 @@
                 />
         </LinearLayout>
 
-        <Button
+        <ToggleButton
             android:id="@+id/addfriend"
             android:layout_width="wrap_content"
             android:background="@drawable/roundedbutton"
-            android:textColor="@color/whiteBackGround"
+            android:textColor="@color/gray"
+            android:padding="15dp"
+            android:textOff="Send Request "
+            android:textOn="Cancel Request"
             android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-
-            android:text="@string/add_friend"
             tools:ignore="RtlHardcoded" />
 
     </LinearLayout>

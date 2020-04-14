@@ -1,13 +1,16 @@
 package com.uni.pis.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
@@ -24,6 +27,7 @@ import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
 import com.uni.pis.data.friendData
 import com.uni.pis.data.userData
+import com.uni.pis.profile.PublicPageProfile
 import kotlinx.android.synthetic.main.cardview_find_friend_list.view.*
 import kotlinx.android.synthetic.main.cardview_friend_list.view.*
 import kotlinx.android.synthetic.main.cardview_friend_list.view.iv_friend
@@ -137,12 +141,6 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
             }
 
         }
-
-
-
-
-
-
     }
 
 
@@ -157,9 +155,17 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
 
     override fun onBindViewHolder(holder: FindFriendAdapter.ViewHolder, position: Int) {
         holder.bindItems(FindFriend[position])
+        holder.itemView.setOnClickListener{
+
+            val image = FindFriend[position]
+            val i = Intent(holder.itemView.context, PublicPageProfile::class.java)
+            val bundle = Bundle()
+            val parcel = FindFriend[position]
+            bundle.putParcelable("friendData", parcel)
+            i.putExtra("Bundle", bundle)
+            ContextCompat.startActivity(holder.itemView.context, i, Bundle())
+        }
+
+
     }
-
-
-
-
 }
