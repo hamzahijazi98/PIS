@@ -25,7 +25,8 @@ class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback {
         lastName(2),
         Image(3),
         attendace(4),
-        permission(5)
+        permission(5),
+        inviteenumber(6)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +47,7 @@ class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback {
 
         for(i in data) {
 
-            var friend=i.split("&")
+            var friend=i.split("!&")
             if (friend.size>1){
 
                 var UserID = friend[userDataOrder.UserID.index].substringAfter("=")
@@ -55,7 +56,8 @@ class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback {
                 var image = friend[userDataOrder.Image.index].substringAfter("=").replace("\\","").trim()
                 var attendence = friend[userDataOrder.attendace.index].substringAfter("=")
                 var permission = friend[userDataOrder.permission.index].substringAfter("=")
-                InviteeArrayList.add(InviteeListData(UserID,"$firstname  $lastname",image,attendence,permission))
+                var inviteenumber = friend[userDataOrder.inviteenumber.index].substringAfter("=")
+                InviteeArrayList.add(InviteeListData(UserID,"$firstname  $lastname",image,attendence,permission,inviteenumber))
             }
 
         }

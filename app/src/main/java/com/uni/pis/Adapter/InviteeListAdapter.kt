@@ -15,7 +15,7 @@ import com.uni.pis.R
 import com.uni.pis.data.InviteeListData
 import kotlinx.android.synthetic.main.cardview_eventinvitee.view.*
 
-class InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val context: Context):
+class   InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val context: Context):
     RecyclerView.Adapter<InviteeListAdapter.ViewHolder>() {
 
     private val userid = mFirebaseAuth.currentUser?.uid!!
