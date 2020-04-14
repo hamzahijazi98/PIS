@@ -1,5 +1,6 @@
 package com.uni.pis.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -21,6 +22,7 @@ class InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val contex
 
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         lateinit var mStorageRef: StorageReference
+        @SuppressLint("SetTextI18n")
         fun bindItems(InviteeListData: InviteeListData) {
             itemView.tv_friendname.text = InviteeListData.Name
             try {
@@ -43,11 +45,14 @@ class InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val contex
             } catch (e: Exception) {
                 // Toast.makeText(context,e.message, Toast.LENGTH_LONG).show()
             }
-            itemView.RG_status.isEnabled=false
+
             when(InviteeListData.attendace){
-                "0"-> {itemView.RB_Rejecting.isChecked = true}
-                "1"-> {itemView.RB_MAYBE.isChecked = true}
-                "2"-> {itemView.RB_Accepting.isChecked = true}
+                "0"-> {itemView.ib_reject.visibility = View.VISIBLE
+                itemView.tv_status.text="Reject"}
+                "1"-> {itemView.ib_maybe.visibility = View.VISIBLE
+                    itemView.tv_status.text="Maybe"}
+                "2"-> {itemView.ib_accpet.visibility = View.VISIBLE
+                    itemView.tv_status.text="Accept"}
             }
 
         }
