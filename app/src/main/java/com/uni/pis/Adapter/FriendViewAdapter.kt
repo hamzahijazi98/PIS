@@ -26,8 +26,9 @@ import kotlinx.android.synthetic.main.cardview_friend_list.view.*
 import kotlinx.android.synthetic.main.invitationdialog.view.*
 
 class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Context):RecyclerView.Adapter<FriendViewAdapter.ViewHolder>() {
-    private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
-    private val userid=mFirebaseAuth.currentUser?.uid!!
+    private val SENDBIRDAPPID = "C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
+    private val userid = mFirebaseAuth.currentUser?.uid!!
+
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         lateinit var mStorageRef: StorageReference
         fun bindItems(Friendsitem: FriendsItem) {
@@ -36,31 +37,33 @@ class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Conte
                 mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(Friendsitem.Image)
                 mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
                     val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
-                    try{
-                    itemView.iv_friend.setImageBitmap(
-                        Bitmap.createScaledBitmap(
-                            bmp, itemView.iv_friend.width,
-                            itemView.iv_friend.height, false
+                    try {
+                        itemView.iv_friend.setImageBitmap(
+                            Bitmap.createScaledBitmap(
+                                bmp, itemView.iv_friend.width,
+                                itemView.iv_friend.height, false
+                            )
                         )
-                    )}
-                    catch (e: IllegalStateException){
+                    } catch (e: IllegalStateException) {
                         //Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
                     }
                 }.addOnFailureListener {
                     // Handle any errors
                 }
-            }
-            catch (e: Exception){
-               // Toast.makeText(context,e.message, Toast.LENGTH_LONG).show()
+            } catch (e: Exception) {
+                // Toast.makeText(context,e.message, Toast.LENGTH_LONG).show()
             }
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_friend_list, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.cardview_friend_list, parent, false)
         return ViewHolder(view)
 
 
     }
+
     override fun getItemCount(): Int {
         return friendlist.size
     }
@@ -69,70 +72,71 @@ class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Conte
         holder.bindItems(friendlist[position])
 
 
-
-
-
-       if(eventDataInvite.EventID!=""){
-           holder.itemView.btn_invite.setOnClickListener {
-                val mDialogView=LayoutInflater.from(holder.itemView.context).inflate(R.layout.invitationdialog,null)
-
-                val mBulider= AlertDialog.Builder(holder.itemView.context)
+        if (eventDataInvite.EventID != "") {
+            holder.itemView.btn_invite.setOnClickListener {
+                val mDialogView = LayoutInflater.from(holder.itemView.context)
+                    .inflate(R.layout.invitationdialog, null)
+                val mBulider = AlertDialog.Builder(holder.itemView.context)
                     .setView(mDialogView)
                     .setTitle("Invitee Number")
 
-                val mAlertDialog=mBulider.show()
+                val mAlertDialog = mBulider.show()
                 mDialogView.btn_confirm.setOnClickListener {
                     mAlertDialog.dismiss()
-                   var inviteeNumber =mDialogView.et_inviteenumber.text.toString()
+                    var inviteeNumber = mDialogView.et_inviteenumber.text.toString()
                     var data = BackgroundWorker(holder.itemView.context)
-                    data.execute("invitetomyevent","0","0",eventDataInvite.EventID,
-                        friendlist[position].UserID ,inviteeNumber)
+                    data.execute("invitetomyevent", "0", "0", eventDataInvite.EventID,
+                        friendlist[position].UserID, inviteeNumber
+                    )
+
+
 
                     SendBird.init(SENDBIRDAPPID, holder.itemView.context)
-
-                    SendBird.connect(userid, object : SendBird.ConnectHandler { override fun onConnected(user: User?, e: SendBirdException?) {
-                        if (e != null)
-                        {
-                            return
-                        }
-                    } })
-
-
-
-                    GroupChannel.getChannel(eventDataInvite.channelUrl, object : GroupChannel.GroupChannelGetHandler {
-                        override fun onResult(groupChannel: GroupChannel, e: SendBirdException?) {
-                            if (e != null) { // Error.
+                    SendBird.connect(userid, object : SendBird.ConnectHandler {
+                        override fun onConnected(user: User?, e: SendBirdException?) {
+                            if (e != null) {
                                 return
                             }
-                            val userIds: MutableList<String> = ArrayList()
-                            userIds.add(friendlist[position].UserID )
-                            groupChannel.inviteWithUserIds(userIds, object : GroupChannel.GroupChannelInviteHandler {
-                                override fun onResult(e: SendBirdException?) {
-                                    if (e != null) { // Error.
-                                        return
-                                    }
-                                }
-                            })
-
                         }
                     })
+                    GroupChannel.getChannel(
+                        eventDataInvite.channelUrl,
+                        object : GroupChannel.GroupChannelGetHandler {
+                            override fun onResult(
+                                groupChannel: GroupChannel,
+                                e: SendBirdException?
+                            ) {
+                                if (e != null) { // Error.
+                                    return
+                                }
+                                val userIds: MutableList<String> = ArrayList()
+                                userIds.add(friendlist[position].UserID)
+                                groupChannel.inviteWithUserIds(
+                                    userIds,
+                                    object : GroupChannel.GroupChannelInviteHandler {
+                                        override fun onResult(e: SendBirdException?) {
+                                            if (e != null) { // Error.
+                                                return
+                                            }
+                                        }
+                                    })
+
+                            }
+                        })
 
 
 
-                    Toast.makeText(holder.itemView.context,"You Invitee Number Now Is ${eventDataInvite.InviteeNumer}",Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "You Invitee Number Now Is ${eventDataInvite.InviteeNumer}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-                mDialogView.btn_cancel.setOnClickListener{
+                mDialogView.btn_cancel.setOnClickListener {
                     mAlertDialog.dismiss()
-                    Toast.makeText(holder.itemView.context,"Cancelled",Toast.LENGTH_LONG).show()
+                    Toast.makeText(holder.itemView.context, "Cancelled", Toast.LENGTH_LONG).show()
                 }
             }
         }
-
-
-
-
-
     }
-
-
 }

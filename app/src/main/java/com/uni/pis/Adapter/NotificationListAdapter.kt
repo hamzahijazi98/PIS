@@ -15,6 +15,7 @@ import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
 import com.uni.pis.data.acceptFriendData
 import com.uni.pis.data.friendData
+import kotlinx.android.synthetic.main.activity_notification.view.*
 import kotlinx.android.synthetic.main.cardview_find_friend_list.view.*
 import kotlinx.android.synthetic.main.cardview_notification.view.*
 
@@ -22,8 +23,8 @@ import kotlinx.android.synthetic.main.cardview_notification.view.*
 class NotificationListAdapter(val notificationarray:ArrayList<acceptFriendData>, context: Context):
     RecyclerView.Adapter<NotificationListAdapter.ViewHolder>()
 
-
 {
+
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         lateinit var mStorageRef: StorageReference
 
@@ -53,12 +54,11 @@ class NotificationListAdapter(val notificationarray:ArrayList<acceptFriendData>,
             catch (e: Exception){
                 // Toast.makeText(context,e.message, Toast.LENGTH_LONG).show()
             }
-
-
             itemView.accept_friend.setOnClickListener {
                 var data = BackgroundWorker(itemView.context)
                 data.execute("addfriend", acceptFriendData.FriendID,acceptFriendData.UserID)
             }
+
         }
     }
 
@@ -74,6 +74,9 @@ class NotificationListAdapter(val notificationarray:ArrayList<acceptFriendData>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(notificationarray[position])
+
+
+
 
     }
 }

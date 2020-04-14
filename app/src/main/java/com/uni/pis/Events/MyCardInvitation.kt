@@ -66,6 +66,7 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
             i.data = Uri.parse("google.navigation:q=" + loc[0] + "," + loc[1])
             startActivity(i)
         }
+
         btn_invite.setOnClickListener {
             var intent=Intent(this,Friends::class.java)
             intent.putExtra("EventId",eventdata.Event_ID)
@@ -73,6 +74,7 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
             intent.putExtra("channelUrl",eventdata.channelUrl)
             startActivity(intent)
         }
+
         btn_groupchat.setOnClickListener {
             var intent=Intent(this,Chat::class.java)
             intent.putExtra("ChannelUrl",eventdata.channelUrl)
@@ -97,7 +99,6 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
@@ -179,7 +180,6 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
 
     }
-
 
 }
 

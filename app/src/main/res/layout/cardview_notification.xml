@@ -57,7 +57,7 @@
             android:layout_gravity="bottom"
             android:text="@string/accept" />
     <Button
-        android:id="@+id/refuse_friend"
+        android:id="@+id/reject_friend"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:background="@drawable/roundedbutton"

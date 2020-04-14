@@ -35,6 +35,9 @@ class Notification : AppCompatActivity(),BackgroundWorker.MyCallback {
         }
         rv_notification.layoutManager = LinearLayoutManager(this)
         rv_notification.adapter = NotificationAdapter
+
+
+
     }
 
     override fun onResult(result: String?) {
@@ -50,12 +53,10 @@ class Notification : AppCompatActivity(),BackgroundWorker.MyCallback {
                 var image = friend[userDataOrder.Image.index].substringAfter("=").replace("\\","").trim()
                 NotificationArrayList.add(acceptFriendData(body,image, userId,frinedId))
             }
-
         }
-
-
         rv_notification.layoutManager = LinearLayoutManager(this)
         rv_notification.adapter = NotificationAdapter
+
     }
 
     override fun onPause() {
