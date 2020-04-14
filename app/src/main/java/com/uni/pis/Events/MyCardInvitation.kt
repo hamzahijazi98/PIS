@@ -1,21 +1,31 @@
 package com.uni.pis.Events
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.storage.FirebaseStorage
+import com.google.zxing.integration.android.IntentIntegrator
+import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
+import com.uni.pis.data.InviteeListData
 import com.uni.pis.data.eventData
 import com.uni.pis.profile.Friends
+import kotlinx.android.synthetic.main.activity_invitee__list.*
 import kotlinx.android.synthetic.main.activity_mycardinvitation.*
 
-class MyCardInvitation : AppCompatActivity() {
+class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
     lateinit var  evetD:eventData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +83,12 @@ class MyCardInvitation : AppCompatActivity() {
             intent.putExtra("eventID",eventdata.Event_ID)
             startActivity(intent)
         }
+        btn_scan.setOnClickListener {
+            val scanner = IntentIntegrator(this)
+            scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+            scanner.setBeepEnabled(false)
+            scanner.initiateScan()
+        }
 
     }
 
@@ -97,7 +113,74 @@ class MyCardInvitation : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+            if (result != null) {
+                if (result.contents == null) {
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+                } else {
+                    var data = BackgroundWorker(this)
+                    data.execute("checkID",evetD.Event_ID ,result.contents)
 
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
+    }
+
+    override fun onResult(result: String?) {
+
+
+
+            var friend = result!!.split("!&")
+            if (friend.size > 1) {
+
+                var UserID = friend[Invitee_List.userDataOrder.UserID.index].substringAfter("=")
+                var firstname =
+                    friend[Invitee_List.userDataOrder.firstName.index].substringAfter("=")
+                var lastname = friend[Invitee_List.userDataOrder.lastName.index].substringAfter("=")
+                var image = friend[Invitee_List.userDataOrder.Image.index].substringAfter("=")
+                    .replace("\\", "").trim()
+                var attendence =
+                    friend[Invitee_List.userDataOrder.attendace.index].substringAfter("=")
+                var permission =
+                    friend[Invitee_List.userDataOrder.permission.index].substringAfter("=")
+                var inviteenumber =
+                    friend[Invitee_List.userDataOrder.inviteenumber.index].substringAfter("=")
+                InviteeListData(UserID,"$firstname  $lastname",image,attendence,permission,inviteenumber)
+
+            img_complete.visibility=View.VISIBLE
+                val handler = Handler()
+                handler.postDelayed(
+                    Runnable {startActivity(intent)
+                        finish()
+                    },
+                    1000
+                )
+
+                img_complete.visibility=View.GONE
+
+        }
+        else{
+                img_cancelled.visibility=View.VISIBLE
+                val handler = Handler()
+                handler.postDelayed(
+                    Runnable {startActivity(intent)
+                        finish()
+                    },
+                    1000
+                )
+
+                img_cancelled.visibility=View.GONE
+            }
+
+
+
+
+
+    }
 
 
 }

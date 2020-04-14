@@ -66,6 +66,8 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.airbnb.android:lottie:2.8.0'
     implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.125'
+    implementation 'com.google.zxing:zxingorg:3.3.3'
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 
 
 }

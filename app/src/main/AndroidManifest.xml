@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Events.Invitee_List"></activity>
+        <activity android:name=".Events.QrCodeGenerate"></activity>
+        <activity android:name=".Events.Invitee_List" />
         <activity android:name=".Events.TheirCardInvitation" />
         <activity android:name=".Events.dsa" />
         <activity android:name=".profile.EditProfileActivity" />

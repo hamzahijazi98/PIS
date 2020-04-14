@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -202,6 +204,7 @@
 
         </LinearLayout>
 
+
         <TextView
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
@@ -265,7 +268,7 @@
     android:layout_width="0dp"
     android:layout_weight="1"
     android:layout_height="wrap_content"
-    android:id="@+id/btn_attendanceQR"
+    android:id="@+id/btn_scan"
     android:text="Check attendance \n using QR"
     android:textColor="@color/gray"
     android:background="@drawable/roundedbutton"
@@ -282,4 +285,27 @@
 
 
 </LinearLayout>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/img_complete"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:lottie_fileName="complete.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+
+        />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/img_cancelled"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:lottie_fileName="cancelled.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+
+        />
+</RelativeLayout>
 </ScrollView>

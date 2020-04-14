@@ -24,8 +24,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-
-       app:lottie_fileName="wlcomeanimation.json"
+        app:lottie_fileName="wlcomeanimation.json"
         android:layout_gravity="center_vertical"
         app:lottie_loop="true"
         app:lottie_autoPlay="true"

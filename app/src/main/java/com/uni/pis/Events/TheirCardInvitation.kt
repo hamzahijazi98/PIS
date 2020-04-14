@@ -124,6 +124,12 @@ class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
             }
             builder.create().show()
 
+            }
+        btn_attendanceQR.setOnClickListener {
+            var intent = Intent(this, QrCodeGenerate::class.java)
+            intent.putExtra("userID",UserID )
+            startActivity(intent)
+
         }
 
     }
