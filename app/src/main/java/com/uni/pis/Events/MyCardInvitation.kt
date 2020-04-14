@@ -154,26 +154,24 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
             img_complete.visibility=View.VISIBLE
                 val handler = Handler()
                 handler.postDelayed(
-                    Runnable {startActivity(intent)
-                        finish()
+                    Runnable {img_complete.visibility=View.GONE
                     },
                     1000
                 )
 
-                img_complete.visibility=View.GONE
+
 
         }
         else{
                 img_cancelled.visibility=View.VISIBLE
                 val handler = Handler()
                 handler.postDelayed(
-                    Runnable {startActivity(intent)
-                        finish()
+                    Runnable {img_cancelled.visibility=View.GONE
                     },
                     1000
                 )
 
-                img_cancelled.visibility=View.GONE
+
             }
 
 
