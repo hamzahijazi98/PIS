@@ -1,12 +1,13 @@
 package com.uni.pis.ui
 
-import android.app.Activity
+import android.Manifest
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.AdapterView
@@ -20,12 +21,17 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
 import com.uni.pis.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
-
 
 class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     private val phone_domain = arrayOf("0XX", "078", "077", "079")
@@ -33,34 +39,35 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         "Choose your city", "Amman", "Az Zarqa", "Irbid", "Al Karak",
         "Jerash", "Ajloun", "Ma'an", "Tafilah", "Madaba", "Aqaba", "Balqa", "Mafraq"
     )
-
+    private val IMAGE_PICK_CODE = 1000
     var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
     lateinit var mDatabaseRef: DatabaseReference
-    lateinit private var mUploadTask: StorageTask<*>
-    lateinit var first_name: String
-    lateinit var last_name: String
-    lateinit var email: String
-    lateinit var password: String
-    lateinit var phonenumber: String
-    lateinit var gender: String
-    lateinit var city: String
+    private lateinit var mUploadTask: StorageTask<*>
+    var first_name: String=""
+    var last_name: String=""
+    var email: String=""
+    var password: String=""
+    var phonenumber: String=""
+    var gender: String=""
+    var city: String=""
+    var birth: String=""
     lateinit var imageStoragelink: String
     lateinit var userID:String
-    lateinit var birth:String
-    var index:Int =0
+    var indexPhoneNum:Int =0
+    var indexCity:Int =0
     lateinit var mImageUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-//Birthdate
 
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads")
+
+        //Birthdate
         btn_birthdate.setOnClickListener{
             val now=Calendar.getInstance()
-
             val dob=DatePickerDialog(this,DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                 birth=dayOfMonth.toString()+ "-"+ (month+1).toString() + "-" + year.toString()
                 tv_date.text=birth
@@ -71,51 +78,38 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         }
 
 
-//spinner for phone number
+        //spinner for phone number
         val phone_adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, phone_domain)
         spinner_phone.adapter = phone_adapter
         spinner_phone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (position == 0){
-                    btn_signup.isEnabled=false
-                }
-                else{
-                    phonenumber = phone_domain[position] + et_phonenumber.text.toString()
-                    index=position
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position !=0){
+                    phonenumber = phone_domain[position]+et_phonenumber.text.toString()
+                    indexPhoneNum=position
                 }
 
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
+
             }
         }
 
-
-// city code
+        // city code
         val city_adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cities)
         spinner_city.adapter = city_adapter
         spinner_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (position == 0 && index==0)
-                    btn_signup.isEnabled = false
-                else if(index!=0){
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                 if(position!=0){
                     city = cities[position]
-                    btn_signup.isEnabled = true
+                    indexCity=position
                 }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
         }
         RG_gender.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.RB_male)
@@ -123,21 +117,142 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             if (checkedId == R.id.RB_female)
                 gender = "Female"
         }
-
         btn_uploadimage.setOnClickListener {
-            if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                //permission denied
-                val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                requestPermissions(permissions, PERMISSION_PICK_CODE)
-            } else {
-                pick_image_from_gallery()
-            }
+            Dexter.withActivity(this)
+                .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(object : PermissionListener {
+                    override fun onPermissionGranted(response: PermissionGrantedResponse) {
+                        val intent = Intent(Intent.ACTION_PICK)
+                        intent.type = "image/*"
+                        startActivityForResult(intent, IMAGE_PICK_CODE)
+                    }
+                    override fun onPermissionDenied(response: PermissionDeniedResponse) {
+                        response.requestedPermission
+                    }
+                    override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest, token: PermissionToken) {
+                        token.continuePermissionRequest()
+                    }
+                })
+                .check()
         }
+        et_firstname.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.length>15) {
+                    et_firstname.error = "Too Long Input ..."
+                    first_name=""
+                }
+                if(s.isEmpty()) {
+                    et_firstname.error = "Empty Field Not Allowed ..."
+                    first_name = ""
+                }
+                else
+                    first_name=et_firstname.text.toString()
+            }
+        })
+        et_lastname.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.length>15){
+                    et_lastname.error="Too Long Input ..."
+                    last_name=""
+                }
+                if(s.isEmpty()) {
+                    et_lastname.error = "Empty Field Not Allowed ..."
+                    last_name=""
+                }
+                else
+                    last_name=et_lastname.text.toString()
+            }
+        })
+        et_email.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                et_email.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
+                    if (!android.util.Patterns.EMAIL_ADDRESS.matcher(et_email.text).matches())
+                        et_email.error = "Invalid Email Address ..."
+                }
+                if(s!!.isEmpty()) {
+                    et_email.error = "Empty Field Not Allowed ..."
+                    email=""
+                }
+                else
+                    email=et_email.text.toString()
+            }
+        })
+        et_password.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
 
-        btn_signup.setOnClickListener {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+               et_password.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
+                   if (s!!.length < 6)
+                       et_password.error = "Minimum Length Password is 6"
+               }
+                if(s!!.isEmpty())
+                    et_password.error="Empty Field Not Allowed ..."
+            }
+        })
+        et_repassword.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                et_repassword.onFocusChangeListener=View.OnFocusChangeListener{ _ ,_ ->
+                 if(et_password.text.toString()!=et_repassword.text.toString()){
+                     et_repassword.error="PassWord MissMatch ..."
+                    password=""
+                 } }
+                if(s!!.isEmpty()) {
+                    et_repassword.error = "Empty Field Not Allowed ..."
+                    password="" }
+                if(et_password.text.toString() == et_repassword.text.toString())
+                    password=et_repassword.text.toString()
+            }
+        })
+        et_phonenumber.addTextChangedListener(object :TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                if(s!!.length>7) {
+                    et_phonenumber.error = "Invalid Phone Number ..."
+                    phonenumber=""
+                }
+                if(s.isEmpty()) {
+                    et_phonenumber.error = "Empty Field Not Allowed ..."
+                    phonenumber=""
+                }
+                else {
+                    phonenumber = phone_domain[indexPhoneNum] + et_phonenumber.text.toString()
+                }
+                if(et_firstname.text.isNotEmpty()&&et_lastname.text.isNotEmpty()
+                    &&et_email.text.isNotEmpty()
+                    &&et_password.text!!.isNotEmpty() &&et_repassword.text!!.isNotEmpty()
+                    &&et_phonenumber.text.isNotEmpty()&&tv_date.text.isNotEmpty()&&gender!=""&&indexCity!=0&&indexPhoneNum!=0)
+                    btn_signup.isEnabled=true
+            }
+        })
+        btn_signup.setOnClickListener{
             var valid=Is_Vaild()
             if(valid){
-
                 loading.visibility= View.VISIBLE
                 mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
                     if (!it.isSuccessful) {
@@ -157,134 +272,20 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
 
             }
             else {
-                Toast.makeText(this, "Failed you have error field or Invalid", Toast.LENGTH_LONG)
-                    .show()
-                btn_signup.isEnabled=true
+                Toast.makeText(this, "Failed You Have Error Field Or Invalid", Toast.LENGTH_LONG).show()
             }
-
-
-
-
-
-
-        }
-
-    }
-
-
-    private val IMAGE_PICK_CODE = 1000
-    private val PERMISSION_PICK_CODE = 1001
-    private fun pick_image_from_gallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
-
-
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            PERMISSION_PICK_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    pick_image_from_gallery()
-            }
-            else -> {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-    }
-
+        } }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE)
-            profile_img.setImageURI(data?.data)
-        mImageUri=data?.data!!
-
+        when(requestCode) {
+            IMAGE_PICK_CODE ->{
+                mImageUri = data?.data!!
+                profile_img.setImageURI(data.data)
+                              }
+        }
     }
-
-    @RequiresApi(Build.VERSION_CODES.FROYO)
     fun Is_Vaild(): Boolean {
-
-        var valid =true
-
-        // first name
-        if (et_firstname.text.isEmpty()){
-            et_firstname.error = "Empty field not allowed ... "
-            valid=false
-        }
-        if (et_firstname.text.toString().trim().length > 20){
-            et_firstname.error = "Name too long"
-            valid=false
-        }
-        else
-            first_name = et_firstname.text.toString()
-
-
-        //last name
-        if (et_lastname.text.isEmpty()){
-            et_lastname.error = "Empty field not allowed ... "
-            valid=false
-        }
-        if (et_lastname.text.toString().trim().length > 20){
-            et_lastname.error = "Name too long"
-            valid=false
-        }
-        else
-            last_name = et_lastname.text.toString()
-
-
-        //email
-        if (et_email.text.isEmpty()){
-            et_email.error = "Empty field not allowed ..."
-            valid=false}
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(et_email.text).matches()){
-            et_email.error = "Invalid Email Address ..."
-            valid=false}
-        else
-            email = et_email.text.toString()
-
-
-        //password
-        if (et_password.text.isEmpty()){
-            et_password.error = "Empty field not allowed ..."
-            valid=false}
-        if (et_password.text.trim().length < 5){
-            et_password.error = "Short Password"
-            valid=false}
-
-        //repassword
-        if (et_repassword.text.isEmpty()){
-            et_repassword.error = "Empty field not allowed ..."
-            valid=false}
-        if (et_repassword.text.trim().length < 5){
-            et_repassword.error = "Short Password"
-            valid=false}
-
-        if (!et_repassword.text.toString().equals(et_password.text.toString())){
-            et_repassword.error = "MissMatch Password"
-            valid=false}
-        else
-            password = et_password.text.toString()
-
-        //phone number
-        if (et_phonenumber.text.isEmpty()){
-            et_phonenumber.error = "Empty field not allowed ... "
-            valid=false}
-        if (et_phonenumber.length() != 7) {
-            et_phonenumber.error = "Invalid phone number ..."
-            valid=false
-        }
-        else
-            phonenumber = phone_domain[index] + et_phonenumber.text.toString()
-
-        return valid
-    }
+        return first_name!=""&&last_name!=""&&email!=""&&password!=""&&phonenumber!=""&&gender!=""&&city!=""&&birth!=""&& indexPhoneNum!=0&& indexCity!=0 }
     override fun onResult(result: String?) {
         loading.visibility = View.GONE
         intent = Intent(this, LoginActivity::class.java)
@@ -324,5 +325,5 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
         }
     }
-
 }
+
