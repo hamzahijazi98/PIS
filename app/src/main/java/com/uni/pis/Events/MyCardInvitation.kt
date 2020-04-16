@@ -57,15 +57,16 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
         tv_starttime.text= eventdata.StartTime
         tv_endtime.text= eventdata.EndTime
         tv_description.text= eventdata.Description
-        btn_location.setOnClickListener {
-            // lat= 32.0233
-            // lon= 35.8759
-            var loc=eventdata.Place_ID.split('&')
-            var i = Intent()
-            i.action = Intent.ACTION_VIEW
-            i.data = Uri.parse("google.navigation:q=" + loc[0] + "," + loc[1])
-            startActivity(i)
-        }
+            btn_location.setOnClickListener {
+
+                var loc=eventdata.Place_ID.split('&')
+                 var lat=loc[0].substringAfter("=")
+                var lot= loc[1]
+                var i = Intent()
+                i.action = Intent.ACTION_VIEW
+                i.data = Uri.parse("google.navigation:q=" + lat + "," + lot)
+                startActivity(i)
+            }
 
         btn_invite.setOnClickListener {
             var intent=Intent(this,Friends::class.java)

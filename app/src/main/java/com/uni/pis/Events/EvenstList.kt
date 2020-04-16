@@ -35,11 +35,11 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
         Date(5),
         Description(6),
         PlaceId(7),
-        Image(9),
-        FirstInviterName(10),
-        SecondInviterName(11),
-        InviterId(12),
-        ChannelUrl(13)
+        Image(8),
+        FirstInviterName(9),
+        SecondInviterName(10),
+        InviterId(11),
+        ChannelUrl(12)
 
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +60,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                 var data = type[2].split("*")
                 for (i in data) {
 
-                    var friend = i.split("&")
+                    var friend = i.split("!&")
                     if (friend.size > 1) {
 
                         var EventID = friend[eventDataOrder.EventID.index].substringAfter("=")
@@ -71,7 +71,6 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                         var Date = friend[eventDataOrder.Date.index].substringAfter("=")
                         var description =friend[eventDataOrder.Description.index].substringAfter("=")
                         var PlaceId = friend[eventDataOrder.PlaceId.index].substringAfter("=")
-                            .substringAfter("=") + "&" + friend[eventDataOrder.PlaceId.index + 1]
                         var Image = friend[eventDataOrder.Image.index].substringAfter("=").replace("\\", "")
                         var FirstInviterName =
                             friend[eventDataOrder.FirstInviterName.index].substringAfter("=")
@@ -110,7 +109,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
 
                 for (i in data) {
 
-                    var friend = i.split("&")
+                    var friend = i.split("!&")
                     if (friend.size > 1) {
                         var EventID = friend[eventDataOrder.EventID.index].substringAfter("=")
                         var name = friend[eventDataOrder.EventType.index].substringAfter("=")
