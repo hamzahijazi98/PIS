@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,11 +62,11 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener,BackgroundWorker.My
                         )
                     )
                 } catch (e: IllegalStateException) {
-                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("HomeFrag", "onError: " + e.message)
                 } catch (e: NullPointerException) {
-                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("HomeFrag", "onError: " + e.message)
                 } catch (e: Exception) {
-                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("HomeFrag", "onError: " + e.message)
                 }
 
             }.addOnFailureListener {

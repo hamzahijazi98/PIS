@@ -9,11 +9,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Build
-import androidx.core.app.NotificationCompat
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.uni.pis.homefrags.MainActivity
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -22,11 +19,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val title = remoteMessage.notification!!.title
         val body = remoteMessage.notification!!.body
         val extraData =
-            remoteMessage.data
+        remoteMessage.data
         val UserID = extraData["FriendID"]
         val FriendID = extraData["UserID"]
         val friendImage = extraData["Image"]
-        val friendName = extraData["Name"]
+        val friendName = String(extraData["Name"]!!.toByteArray(), charset("UTF-8"))
 
 
             val notificationBuilder = Notification.Builder( this)
