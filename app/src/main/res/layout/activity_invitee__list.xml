@@ -5,41 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
     tools:context=".Events.Invitee_List">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/roundedlayout"
+        android:padding="25dp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             >
         <TextView
             android:id="@+id/tv_viewTotalNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Total Invitee "
+            android:background="@drawable/textviewshape"
+            android:text="@string/total_invitee"
+            android:textAlignment="center"
             android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tv_TotalNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="15"
+                android:textAlignment="center"
                 android:layout_weight="1"
                 android:textSize="20sp" />
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
         <TextView
             android:id="@+id/tv_viewTotalAccepted"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Total Accepted "
+            android:background="@drawable/textviewshape"
+            android:text="@string/accepted"
+            android:textAlignment="center"
             android:textSize="20sp" />
 
             <TextView
@@ -47,50 +56,58 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="10"
+                android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
         <TextView
             android:id="@+id/tv_viewTotalRejected"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Total Rejected "
+            android:background="@drawable/textviewshape"
+            android:text="@string/rejected"
+            android:textAlignment="center"
             android:textSize="20sp" />
             <TextView
             android:id="@+id/tv_TotalRejected"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="20"
-            android:textSize="20sp" />
+                android:textAlignment="center"
+                android:textSize="20sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/tv_viewTotalNotSure"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:background="@drawable/textviewshape"
             android:layout_height="wrap_content"
-            android:hint="Total Not Sure"
+            android:text="@string/maybe"
+            android:textAlignment="center"
             android:textSize="20sp" />
             <TextView
                 android:id="@+id/tv_TotalNotSure"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="5"
+                android:textAlignment="center"
                 android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RV_InviteeList"
+        android:background="@drawable/roundedlayout"
+        android:paddingVertical="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"/>

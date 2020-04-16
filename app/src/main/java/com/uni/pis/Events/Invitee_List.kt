@@ -15,7 +15,7 @@ import com.uni.pis.profile.Friends
 import kotlinx.android.synthetic.main.activity_friends.*
 import kotlinx.android.synthetic.main.activity_invitee__list.*
 
-class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback {
+class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback,InviteeListAdapter.FragCallbacks {
     val InviteeArrayList=ArrayList<InviteeListData>()
     val InviteeArrayListAdapter= InviteeListAdapter(InviteeArrayList,this)
     lateinit  var EventId:String
@@ -63,5 +63,15 @@ class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback {
         }
         RV_InviteeList.layoutManager= LinearLayoutManager(this)
         RV_InviteeList.adapter=InviteeArrayListAdapter
+    }
+
+    override fun sendResult(total: Int,totalaccepted: Int,totalrejected: Int,totalmaby: Int) {
+        tv_TotalNumber.text=total.toString()
+        tv_TotalAccepted.text=totalaccepted.toString()
+        tv_TotalRejected.text=totalrejected.toString()
+        tv_TotalNotSure.text=totalmaby.toString()
+
+
+
     }
 }

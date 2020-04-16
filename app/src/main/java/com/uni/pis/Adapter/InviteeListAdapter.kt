@@ -17,7 +17,12 @@ import kotlinx.android.synthetic.main.cardview_eventinvitee.view.*
 
 class   InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val context: Context):
     RecyclerView.Adapter<InviteeListAdapter.ViewHolder>() {
-
+    companion object{
+    var total:Int=0
+    var totalAccepted:Int=0
+    var totalrejeted:Int=0
+    var totalmaby:Int=0}
+    lateinit var callbacks : FragCallbacks
     private val userid = mFirebaseAuth.currentUser?.uid!!
 
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -48,14 +53,24 @@ class   InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val cont
 
             when(InviteeListData.attendace){
                 "0"-> {itemView.ib_reject.visibility = View.VISIBLE
-                itemView.tv_status.text="Reject"}
+                itemView.tv_status.text="Reject"
+                    total+=InviteeListData.inviteenumber.trim().toInt()
+                    totalrejeted+=InviteeListData.inviteenumber.trim().toInt()
+
+                }
                 "1"-> {itemView.ib_maybe.visibility = View.VISIBLE
-                    itemView.tv_status.text="Maybe"}
+                    itemView.tv_status.text="Maybe"
+                    total+=InviteeListData.inviteenumber.trim().toInt()
+                    totalmaby+=InviteeListData.inviteenumber.trim().toInt()}
                 "2"-> {itemView.ib_accpet.visibility = View.VISIBLE
-                    itemView.tv_status.text="Accept"}
+                    itemView.tv_status.text="Accept"
+                    total+=InviteeListData.inviteenumber.trim().toInt()
+                    totalAccepted+=InviteeListData.inviteenumber.trim().toInt()}
             }
+            itemView.tv_personInviteeNumer.text=InviteeListData.inviteenumber
 
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -72,5 +87,16 @@ class   InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val cont
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(InviteeList[position])
+        callbacks.sendResult(total, totalAccepted, totalrejeted, totalmaby)
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        callbacks= context as FragCallbacks
+    }
+
+    interface FragCallbacks
+    {
+        fun sendResult (total: Int,totalaccepted: Int,totalrejected: Int,totalmaby: Int) // this method will be implemented in the hosting activity
     }
 }
