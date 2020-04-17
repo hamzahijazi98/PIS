@@ -88,5 +88,9 @@
     <string name="Home">Home</string>
     <string name="Profile">Profile</string>
     <string name="Create_Event">Create Event</string>
+    <string name="BirthDate">BirthDate</string>
+    <string name="Graduation">Graduation</string>
+    <string name="Engagement">Engagement</string>
+
 
 </resources>
