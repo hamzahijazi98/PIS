@@ -39,7 +39,7 @@
             android:layout_marginLeft="7dp"
             android:layout_toRightOf="@+id/ic_searchIcon"
             android:ellipsize="end"
-            android:hint="Enter Address, City or Zip Code"
+            android:hint="@string/enter_address_city_or_zip_code"
             android:inputType="text"
             android:maxLines="1"
             android:textColor="#000"

@@ -25,7 +25,7 @@ import com.google.firebase.storage.StorageTask
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
 import com.uni.pis.Data.UserData.userData
-import kotlinx.android.synthetic.main.fragment_edit__profile_.*
+import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import java.util.*
 

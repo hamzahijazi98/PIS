@@ -27,7 +27,7 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_marginStart="15dp"
-                android:src="@color/design_default_color_primary_dark" />
+                android:src="@drawable/linkedin_banner_image_1" />
 
             <TextView
                 android:id="@+id/tv_eventname"
@@ -36,7 +36,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="5dp"
-                android:hint="Wedding"
+                android:hint="@string/wedding"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -48,8 +48,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="kmsldbfmvfdklmdkmlmdsklvmfdslvmlfdsmvkldsmvlksdmvlsd"
+            android:hint="@string/description"
             android:textSize="20sp" />
+
 
     </LinearLayout>
 

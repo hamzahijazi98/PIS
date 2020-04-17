@@ -18,6 +18,7 @@ import com.google.firebase.storage.StorageReference
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
 import com.uni.pis.Data.UserData.userData
+import com.uni.pis.Events.EvenstList
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import kotlin.system.exitProcess
 
@@ -79,6 +80,10 @@ class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
             val intent = Intent(context, Friends::class.java)
             startActivity(intent)
         }
+        btn_myEvents.setOnClickListener {
+            val intent=Intent(context, EvenstList::class.java)
+            startActivity(intent)
+        }
         btn_editProfile.setOnClickListener {
             activity?.let {
                 val intent = Intent(it, EditProfileActivity::class.java)
@@ -107,6 +112,7 @@ class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
 
 
     }
+
 
     override fun onResult(result: String?) {
 

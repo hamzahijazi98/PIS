@@ -46,7 +46,6 @@
     <string name="home_icons">Home Icons</string>
     <string name="your_name">Your Name</string>
     <string name="friends">Friends</string>
-    <string name="my_events">My Events</string>
     <string name="birthday">Birthday</string>
     <string name="wedding">Wedding</string>
     <string name="events_image">events_image</string>
@@ -71,8 +70,6 @@
     <string name="reject">Reject</string>
     <string name="send_invitation">Send Invitation</string>
     <string name="add_friend">Add Friend</string>
-
-
     <string name="rejcet">Rejcet</string>
     <string name="edit">Edit</string>
     <string name="write_a_message">Write Message</string>
@@ -84,5 +81,28 @@
     <string name="total_invitee">Total Invitee</string>
     <string name="rejected">Rejected</string>
     <string name="required">Required</string>
+    <string name="click_to_upload_event_cover">Click to Upload Event Cover</string>
+    <string name="choose_your_hall_place_n_with_one_of_the_following_options">Choose your hall place\n with one of the following options</string>
+    <string name="enter_name_to_search">Enter Name To Search</string>
+    <string name="enter_address_city_or_zip_code">Enter Address, City or Zip Code</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="invited_friend_s">Invited Friend\'S</string>
+    <string name="check_attendance_n_using_qr">Check attendance \n using QR</string>
+    <string name="notification">Notification</string>
+    <string name="send_friend_request">Send Friend Request</string>
+    <string name="cancel_friend_request">Cancel Friend Request</string>
+    <string name="your_qr_attendance_n_show_it_to_inviter">Your QR Attendance \n Show It To Inviter</string>
+    <string name="accept_n_invitation">Accept\n Invitation</string>
+    <string name="maybe_n">Maybe\n</string>
+    <string name="reject_n_invitaion">Reject\n Invitaion</string>
+    <string name="generate_attendance_qr_code">Generate Attendance QR_Code</string>
+    <string name="status">status</string>
+    <string name="unfriend">Unfriend</string>
+    <string name="event_s_invited_to">Event\'s Invited To</string>
+    <string name="my_events">My Events</string>
+    <string name="invitee_number">Invitee Number</string>
+    <string name="cancel">Cancel</string>
+    <string name="set_moderator">Set Moderator</string>
+    <string name="confrim">Confrim</string>
 
 </resources>

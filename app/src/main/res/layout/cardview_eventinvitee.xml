@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:hint="yousefsuliman"
+                android:hint="@string/first_name"
                 android:textSize="20sp" />
 
            <LinearLayout
@@ -44,7 +44,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginStart="5dp"
-                   android:hint="Invitee Number"
+                   android:hint="@string/invitee_number"
                    android:layout_gravity="center"
                    android:textSize="14sp" />
 
@@ -100,13 +100,13 @@
                     android:src="@drawable/close" />
 
             </LinearLayout>
+
             <TextView
+                android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="status"
-                android:id="@+id/tv_status"
                 android:layout_gravity="center"
-                />
+                android:text="@string/status" />
 
 
         </LinearLayout>

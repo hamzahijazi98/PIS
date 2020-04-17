@@ -34,7 +34,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="50dp"
         android:fontFamily="@font/fjalla_one"
-        android:hint="youse suliman "
+        android:hint="@string/your_name"
         android:id="@+id/tv_homeName"
         android:textColor="@color/whiteBackGround"
         android:textSize="24sp"

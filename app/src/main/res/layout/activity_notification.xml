@@ -14,7 +14,7 @@
         android:background="@color/blueblack"
         android:gravity="center"
         android:textColor="@color/whiteBackGround"
-        android:text="Friends"
+        android:text="@string/notification"
         android:textSize="24sp" />
 
     <androidx.recyclerview.widget.RecyclerView

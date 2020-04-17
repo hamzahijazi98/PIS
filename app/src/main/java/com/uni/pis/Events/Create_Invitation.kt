@@ -167,23 +167,20 @@ class Create_Invitation : AppCompatActivity(),
             }
         }
         btn_Save.setOnClickListener {
-            Description =et_description.text.toString()
-            UserID =
-                mFirebaseAuth.currentUser?.uid!!
-            val users = java.util.ArrayList<String>()
-            users.add(userid)
+            if (mImageUri != null) {
+                Description = et_description.text.toString()
+                UserID =
+                    mFirebaseAuth.currentUser?.uid!!
+                val users = java.util.ArrayList<String>()
+                users.add(userid)
 
-            GroupChannel.createChannelWithUserIds(users, true
-            ) { groupChannel, e -> CHANNEL_URL = groupChannel.url
-                uploadFile()
+                GroupChannel.createChannelWithUserIds(users, true) { groupChannel, e ->
+                    CHANNEL_URL = groupChannel.url
+                    uploadFile()
+                }
             }
-
         }
-
-
-
         SendBird.init(SENDBIRDAPPID, this)
-
         SendBird.connect(userid, object : SendBird.ConnectHandler {
             override fun onConnected(user: User?, e: SendBirdException?) {
                 if (e != null)
@@ -202,35 +199,14 @@ class Create_Invitation : AppCompatActivity(),
                 }
             }
         })
-
-
-
-
-
-
-
-
-
-
-        var myadap=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
-            halls
-        )
+        val myadap=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, halls)
         lv_halls.adapter=myadap
-        myadap.add("yousef")
-        myadap.add("ha")
-        myadap.add("auy")
-        myadap.add("2313")
-        myadap.add("ha")
-        myadap.add("yoktob")
-        myadap.add("ha")
-        myadap.add("ha")
-        myadap.add("ha")
+        myadap.add("Future Update")
         btn_maps.setOnClickListener {
-            var i= Intent (this,  MapsActivity::class.java)
+            val i= Intent (this,  MapsActivity::class.java)
             startActivityForResult (i, MAPS_CODE)
 
         }
-
     }
 
     private fun pickImageFromGallery() {
@@ -293,17 +269,11 @@ fun setTime(set:String){
 
             }
         }
-
-
-
-
-
-
-
-
   }
     override fun onResult(result: String?) {
-        Toast.makeText(this,result,Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Event Created Successfully", Toast.LENGTH_LONG).show()
+        val intent=Intent(this,EvenstList::class.java)
+        startActivity(intent)
     }
     private fun getFileExtension(uri: Uri): String? {
         val cR = contentResolver
@@ -320,8 +290,6 @@ fun setTime(set:String){
                 ))
             var uploadTask= fileReference.putFile(mImageUri)
                 .addOnSuccessListener { taskSnapshot ->
-                    Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
-                        .show()
                     taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
                         imageStoragelink =it.toString()
                         var data = BackgroundWorker(this)

@@ -17,7 +17,7 @@
             android:background="@color/blueblack"
             android:gravity="center"
             android:textColor="@color/whiteBackGround"
-            android:text="My Events"
+            android:text="@string/my_events"
             android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView

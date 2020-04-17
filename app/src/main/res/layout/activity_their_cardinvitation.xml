@@ -32,19 +32,18 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Accept Invitation"
+            android:text="@string/accept_n_invitation"
             android:id="@+id/btn_acceptInvite"
             android:textColor="@color/gray"
             android:background="@drawable/roundedbutton"
-
-                android:padding="5dp"
+            android:padding="5dp"
             />
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray"
-                android:text="Not \n Sure "
+                android:text="@string/maybe_n"
                 android:id="@+id/btn_notsure"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
@@ -58,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray"
                 android:id="@+id/btn_reject"
-                android:text="Reject Invitaion "
+                android:text="@string/reject_n_invitaion"
                 android:background="@drawable/roundedbutton"
                 android:padding="5dp"
                 />
@@ -130,7 +129,7 @@
                     android:layout_weight="1"
                     android:padding="5dp"
                     android:layout_height="match_parent"
-                    android:hint="21-9-1996"
+                    android:hint="@string/dd_mm_yyyy"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:background="@drawable/textviewshape"
@@ -153,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:background="@drawable/hinttextview"
-                    android:hint="Start Time"
+                    android:hint="@string/start_time"
                     android:padding="5dp"
                     android:textSize="18sp"
                     tools:ignore="Suspicious0dp" />
@@ -166,7 +165,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="HH : MM"
+                    android:hint="@string/hh_mm"
                     android:padding="5dp"
                     android:background="@drawable/textviewshape"
                     android:textSize="18sp" />
@@ -186,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/hinttextview"
-                    android:hint="End Time"
+                    android:hint="@string/end_time"
                     android:padding="5dp"
                     android:gravity="center"
                     android:textSize="18sp"
@@ -201,8 +200,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/textviewshape"
                     android:gravity="center"
-
-                    android:hint="HH : MM"
+                    android:hint="@string/hh_mm"
                     android:padding="5dp"
                     android:textSize="18sp"
 
@@ -275,7 +273,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_attendanceQR"
-                    android:text="Generate Attendance QR_Code"
+                    android:text="@string/generate_attendance_qr_code"
                     android:textColor="@color/gray"
                     android:background="@drawable/roundedbutton"
 

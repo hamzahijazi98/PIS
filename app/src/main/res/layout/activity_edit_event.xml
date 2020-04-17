@@ -81,7 +81,7 @@
                 <Button
                     android:id="@+id/btn_eventDate"
                     android:layout_width="0dp"
-                    android:textColor="@color/whiteBackGround"
+                    android:textColor="@color/gray"
                     android:layout_height="match_parent"
                     android:background="@drawable/roundedbutton"
                     android:layout_weight="1"
@@ -92,7 +92,7 @@
                     android:layout_width="0dp"
                     android:gravity="center"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="3"
                     android:textSize="20sp"
                     android:hint="@string/dd_mm_yyyy" />
@@ -116,7 +116,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/roundedbutton"
-                    android:textColor="@color/whiteBackGround"
+                    android:textColor="@color/gray"
                     android:layout_weight="1"
                     android:text="@string/start_time" />
                 <TextView
@@ -149,7 +149,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/roundedbutton"
-                    android:textColor="@color/whiteBackGround"
+                    android:textColor="@color/gray"
                     android:text="@string/end_time" />
 
 
@@ -189,7 +189,7 @@
                 android:textStyle="bold"
                 android:padding="10dp"
                 android:textSize="20sp"
-                android:text="Choose your hall place\n with one of the following options"
+                android:text="@string/choose_your_hall_place_n_with_one_of_the_following_options"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -208,7 +208,7 @@
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:textSize="20sp"
-                    android:text="- Option 1: Available on time and date you have chosen "
+                    android:text="@string/option_1_available_on_time_and_date_you_have_chosen"
                     />
                 <ListView
                     android:id="@+id/lv_halls"
@@ -237,7 +237,7 @@
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:textSize="20sp"
-                    android:text="- Option 2: from maps click on the picture below "
+                    android:text="@string/option_2_from_maps_click_on_the_picture_below"
                     />
                 <ImageButton
                     android:layout_width="wrap_content"

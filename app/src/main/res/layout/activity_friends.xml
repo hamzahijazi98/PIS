@@ -17,7 +17,7 @@
         android:background="@color/blueblack"
         android:gravity="center"
         android:textColor="@color/whiteBackGround"
-        android:text="Friends"
+        android:text="@string/friends"
         android:textSize="24sp" />
 
 
