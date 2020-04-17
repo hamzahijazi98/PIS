@@ -29,8 +29,8 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
         FirstInviterName(9),
         SecondInviterName(10),
         InviterId(11),
-        ChannelUrl(12)
-
+        ChannelUrl(12),
+        Video(13)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +52,6 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
 
                     var friend = i.split("!&")
                     if (friend.size > 1) {
-
                         var EventID = friend[eventDataOrder.EventID.index].substringAfter("=")
                         var Invitee_No = friend[eventDataOrder.Invitee_No.index].substringAfter("=")
                         var StartTime = friend[eventDataOrder.StartTime.index].substringAfter("=")
@@ -67,7 +66,8 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                         var SecondInviterName =
                             friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
                         var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
-                         var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
+                        var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
+                        var video = friend[eventDataOrder.Video.index].substringAfter("=")
 
                         myEventFrag.MyEventArrayList.add(
                             eventData(
@@ -83,7 +83,9 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                                 PlaceId,
                                 Image,
                                 description,
-                                channelUrl
+                                channelUrl,
+                                video
+
                             )
                         )
                     }
@@ -122,6 +124,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                             friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
                         var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
                         var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
+                        var video = friend[eventDataOrder.Video.index].substringAfter("=")
 
                         InvitedEventFrag.MyInvitedEventsArrayList.add(
                             eventData(
@@ -137,7 +140,8 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                                 PlaceId,
                                 Image,
                                 description,
-                                channelUrl
+                                channelUrl,
+                                video
                             )
                         )
                     }

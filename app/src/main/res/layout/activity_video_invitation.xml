@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Events.VideoInvitation"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
 
@@ -14,7 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            >
 
             <Button
                 android:id="@+id/btn_pick_fromgallery"
@@ -36,6 +38,13 @@
                 android:text="@string/record" />
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedlayout"
+        android:orientation="vertical"
+        android:padding="25dp"
+        android:layout_marginTop="20dp">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -46,6 +55,17 @@
         android:layout_marginTop="20dp">
     </FrameLayout>
 
+    <Button
+        android:id="@+id/btn_linkVideoToEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/roundedbutton"
+        android:layout_marginTop="20dp"
+        android:text="@string/record"
+        android:textColor="@color/gray" />
+
+    </LinearLayout>
 
 
 

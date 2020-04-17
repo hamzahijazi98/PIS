@@ -24,7 +24,7 @@
             android:background="@drawable/textviewshape"
             android:padding="10dp"
             android:layout_gravity="center"
-            android:text="@string/your_qr_attendance_n_show_it_to_inviter"
+            android:text="your_qr_attendance_n_show_it_to_inviter"
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="24sp">

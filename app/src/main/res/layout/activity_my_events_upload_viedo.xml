@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Notification">
-
+    tools:context=".Events.MyEventsUploadViedo">
     <TextView
-        android:id="@+id/tv_myevents"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:text="Select Events To Link Video"
+        android:textAlignment="center"
+        android:textSize="20sp"
         android:background="@color/blueblack"
-        android:gravity="center"
         android:textColor="@color/whiteBackGround"
-        android:text="notification"
-        android:textSize="24sp" />
+        />
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_eventsUploadViedo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv_notification"/>
+        android:layout_height="match_parent" />
+
+
 </LinearLayout>

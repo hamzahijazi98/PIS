@@ -55,11 +55,9 @@ class MainActivity : AppCompatActivity(),
             }
         })
 
-
-
-        viewpage_apdapter.addfragment(HomeFrag(),R.string.Home as String)
-        viewpage_apdapter.addfragment(Events_Frag(),R.string.Create_Event as String)
-        viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),R.string.Profile as String)
+        viewpage_apdapter.addfragment(HomeFrag(),R.string.Home.toString())
+        viewpage_apdapter.addfragment(Events_Frag(),R.string.Create_Event .toString())
+        viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),R.string.Profile .toString())
         view_pager.adapter=viewpage_apdapter
         tabs.setupWithViewPager(view_pager)
 

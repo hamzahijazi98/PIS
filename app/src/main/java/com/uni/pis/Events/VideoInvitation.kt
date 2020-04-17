@@ -27,6 +27,7 @@ class VideoInvitation : AppCompatActivity(), MultiplePermissionsListener {
     private val VIDEO_CAPTURE = 101
     private var mediaController: MediaController? = null
     lateinit var Frag:Fragment
+    lateinit  var videoUri:Uri
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,8 +53,14 @@ class VideoInvitation : AppCompatActivity(), MultiplePermissionsListener {
                 .withPermissions(permissions)
                 .withListener(this)
                 .check()
+        }
 
-
+        btn_linkVideoToEvent.setOnClickListener {
+            if(videoUri!=null) {
+                val intent = Intent(this, MyEventsUploadViedo::class.java)
+                intent.putExtra("video", videoUri)
+                startActivity(intent)
+            }
         }
     }
 
@@ -63,12 +70,12 @@ class VideoInvitation : AppCompatActivity(), MultiplePermissionsListener {
         when (requestCode) {
             GALLERY -> {
                 if (data != null) {
-                    var contentURI: Uri? = data.data
-                    val selectedVideoPath: String = getPath(contentURI)
+                    videoUri = data.data!!
+                    val selectedVideoPath: String = getPath(videoUri)
                     mediaController = MediaController(this)
                     mediaController?.setAnchorView(viewVideo)
                     viewVideo.setMediaController(mediaController)
-                    Frag.viewVideo.setVideoURI(contentURI)
+                    Frag.viewVideo.setVideoURI(videoUri)
                     Frag.viewVideo.requestFocus()
                     Frag.viewVideo.start()
                 }
@@ -77,7 +84,7 @@ class VideoInvitation : AppCompatActivity(), MultiplePermissionsListener {
 
 
             VIDEO_CAPTURE -> {
-                val videoUri = data?.data
+                videoUri = data!!.data!!
                 when (resultCode) {
                     Activity.RESULT_OK -> {
                         Toast.makeText(this, "Video saved to:\n$videoUri", Toast.LENGTH_LONG)

@@ -14,7 +14,7 @@
         android:ems="10"
         android:inputType="number"
         android:textAlignment="center"
-        android:hint="@string/invitee_number"
+        android:hint="invitee_number"
         android:layout_marginBottom="30dp"/>
 
   <LinearLayout
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/roundedbutton"
         android:textColor="@color/gray"
-        android:text="@string/cancel"
+        android:text="cancel"
         android:textSize="12sp"
         android:layout_gravity="start"/>
 
@@ -46,7 +46,7 @@
               android:textColor="@color/gray"
               android:padding="5dp"
               android:background="@drawable/roundedbutton"
-              android:text="@string/set_moderator"
+              android:text="set_moderator"
               android:textSize="12sp"/>
 
           <Button
@@ -56,7 +56,7 @@
               android:layout_gravity="right"
               android:textColor="@color/gray"
               android:background="@drawable/roundedbutton"
-              android:text="@string/confrim"
+              android:text="confrim"
               android:layout_marginStart="15dp"
               android:textSize="12sp"/>
       </LinearLayout>

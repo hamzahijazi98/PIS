@@ -68,13 +68,15 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads")
 
         //Birthdate
-        btn_birthdate.setOnClickListener{
-            val now=Calendar.getInstance()
-            val dob=DatePickerDialog(this,DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                birth=dayOfMonth.toString()+ "-"+ (month+1).toString() + "-" + year.toString()
-                tv_date.text=birth
-            },
-                now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH))
+        btn_birthdate.setOnClickListener {
+            val now = Calendar.getInstance()
+            val dob = DatePickerDialog(
+                this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                    birth = dayOfMonth.toString() + "-" + (month + 1).toString() + "-" + year.toString()
+                    tv_date.text = birth
+                },
+                now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)
+            )
             dob.show()
 
         }
@@ -86,12 +88,13 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         spinner_phone.adapter = phone_adapter
         spinner_phone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position !=0){
-                    phonenumber = phone_domain[position]+et_phonenumber.text.toString()
-                    indexPhoneNum=position
+                if (position != 0) {
+                    phonenumber = phone_domain[position] + et_phonenumber.text.toString()
+                    indexPhoneNum = position
                 }
 
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
@@ -103,9 +106,9 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         spinner_city.adapter = city_adapter
         spinner_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                 if(position!=0){
+                if (position != 0) {
                     city = cities[position]
-                    indexCity=position
+                    indexCity = position
                 }
             }
 
@@ -128,69 +131,73 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                         intent.type = "image/*"
                         startActivityForResult(intent, IMAGE_PICK_CODE)
                     }
+
                     override fun onPermissionDenied(response: PermissionDeniedResponse) {
                         response.requestedPermission
                     }
+
                     override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest, token: PermissionToken) {
                         token.continuePermissionRequest()
                     }
                 })
                 .check()
         }
-        et_firstname.addTextChangedListener(object :TextWatcher{
+        et_firstname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.length>15) {
+                if (s!!.length > 15) {
                     et_firstname.error = "Too Long Input ..."
-                    first_name=""
-                }
-                if(s.isEmpty()) {
-                    et_firstname.error = "Empty Field Not Allowed ..."
                     first_name = ""
                 }
-                else
-                    first_name=et_firstname.text.toString()
+                if (s.isEmpty()) {
+                    et_firstname.error = "Empty Field Not Allowed ..."
+                    first_name = ""
+                } else
+                    first_name = et_firstname.text.toString()
             }
         })
-        et_lastname.addTextChangedListener(object :TextWatcher{
+        et_lastname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.length>15){
-                    et_lastname.error="Too Long Input ..."
-                    last_name=""
+                if (s!!.length > 15) {
+                    et_lastname.error = "Too Long Input ..."
+                    last_name = ""
                 }
-                if(s.isEmpty()) {
+                if (s.isEmpty()) {
                     et_lastname.error = "Empty Field Not Allowed ..."
-                    last_name=""
-                }
-                else
-                    last_name=et_lastname.text.toString()
+                    last_name = ""
+                } else
+                    last_name = et_lastname.text.toString()
             }
         })
-        et_email.addTextChangedListener(object :TextWatcher{
+        et_email.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 et_email.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
                     if (!android.util.Patterns.EMAIL_ADDRESS.matcher(et_email.text).matches())
                         et_email.error = "Invalid Email Address ..."
                 }
-                if(s!!.isEmpty()) {
+                if (s!!.isEmpty()) {
                     et_email.error = "Empty Field Not Allowed ..."
-                    email=""
-                }
-                else
-                    email=et_email.text.toString()
+                    email = ""
+                } else
+                    email = et_email.text.toString()
             }
         })
-        et_password.addTextChangedListener(object :TextWatcher{
+        et_password.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -199,32 +206,35 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-               et_password.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
-                   if (s!!.length < 6)
-                       et_password.error = "Minimum Length Password is 6"
-               }
-                if(s!!.isEmpty())
-                    et_password.error="Empty Field Not Allowed ..."
+                et_password.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
+                    if (s!!.length < 6)
+                        et_password.error = "Minimum Length Password is 6"
+                }
+                if (s!!.isEmpty())
+                    et_password.error = "Empty Field Not Allowed ..."
             }
         })
-        et_repassword.addTextChangedListener(object :TextWatcher{
+        et_repassword.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                et_repassword.onFocusChangeListener=View.OnFocusChangeListener{ _ ,_ ->
-                 if(et_password.text.toString()!=et_repassword.text.toString()){
-                     et_repassword.error="PassWord MissMatch ..."
-                    password=""
-                 } }
-                if(s!!.isEmpty()) {
+                et_repassword.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
+                    if (et_password.text.toString() != et_repassword.text.toString()) {
+                        et_repassword.error = "PassWord MissMatch ..."
+                        password = ""
+                    }
+                }
+                if (s!!.isEmpty()) {
                     et_repassword.error = "Empty Field Not Allowed ..."
-                    password="" }
-                if(et_password.text.toString() == et_repassword.text.toString())
-                    password=et_repassword.text.toString()
+                    password = ""
+                }
+                if (et_password.text.toString() == et_repassword.text.toString())
+                    password = et_repassword.text.toString()
             }
         })
-        et_phonenumber.addTextChangedListener(object :TextWatcher {
+        et_phonenumber.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -234,51 +244,54 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-                if(s!!.length>7) {
+                if (s!!.length > 7) {
                     et_phonenumber.error = "Invalid Phone Number ..."
-                    phonenumber=""
+                    phonenumber = ""
                 }
-                if(s.isEmpty()) {
+                if (s.isEmpty()) {
                     et_phonenumber.error = "Empty Field Not Allowed ..."
-                    phonenumber=""
-                }
-                else {
+                    phonenumber = ""
+                } else {
                     phonenumber = phone_domain[indexPhoneNum] + et_phonenumber.text.toString()
                 }
 
             }
         })
-        btn_signup.setOnClickListener{
-            if(indexCity==0)
-                citySpin_error.visibility=View.VISIBLE
-            if(indexPhoneNum==0)
-                phoneSpin_error.visibility=View.VISIBLE
-            }
 
 
-            if(Is_Vaild()){
-                loading.visibility= View.VISIBLE
-                mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
+        btn_signup.setOnClickListener {
+
+
+            if (Is_Vaild()) {
+                loading.visibility = View.VISIBLE
+                mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (!it.isSuccessful) {
                         try {
-                            userID=mFirebaseAuth.currentUser?.uid!!
+                            userID = mFirebaseAuth.currentUser?.uid!!
                             uploadFile()
 
+                        } catch (e: NullPointerException) {
+                            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
                         }
-                        catch (e: NullPointerException)
-                        {
-                            Toast.makeText(this,e.message,Toast.LENGTH_LONG).show()
-                        }
-                        Toast.makeText(this,"Successful sign up",Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Successful sign up", Toast.LENGTH_LONG).show()
 
                     }
                 }
 
             }
             else {
+                if (indexCity == 0)
+                    citySpin_error.visibility = View.VISIBLE
+                else
+                    citySpin_error.visibility = View.GONE
+                if (indexPhoneNum == 0)
+                    phoneSpin_error.visibility = View.VISIBLE
+                else
+                    phoneSpin_error.visibility = View.GONE
                 Toast.makeText(this, "Failed You Have Error Field Or Invalid", Toast.LENGTH_LONG).show()
             }
         }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode) {

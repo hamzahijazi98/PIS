@@ -9,7 +9,7 @@ class eventData (var Event_ID: String, var Inv_No: String, var  Date: String, va
                  var  StartTime: String,
                  var   EndTime: String, var   InviterID: String, var firstinvitername: String,
                  var secondinvitername: String, var Place_ID: String, var image: String,
-                 var Description:String,var channelUrl:String):Parcelable{
+                 var Description:String,var channelUrl:String,var Video:String):Parcelable{
 
 
     constructor(parcel: Parcel) : this(
@@ -25,8 +25,8 @@ class eventData (var Event_ID: String, var Inv_No: String, var  Date: String, va
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString().toString()
-    ) {
+        parcel.readString().toString(),
+        parcel.readString().toString()) {
     }
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(Event_ID)
@@ -42,6 +42,7 @@ class eventData (var Event_ID: String, var Inv_No: String, var  Date: String, va
         parcel.writeString(image)
         parcel.writeString(Description)
         parcel.writeString(channelUrl)
+        parcel.writeString(Video)
     }
 
     override fun describeContents(): Int {

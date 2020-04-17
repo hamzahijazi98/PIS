@@ -31,7 +31,7 @@
             android:layout_toEndOf="@+id/ic_searchIcon"
             android:background="@null"
             android:ellipsize="end"
-            android:hint="@string/enter_name_to_search"
+            android:hint="enter_name_to_search"
             android:inputType="text"
             android:maxLines="1"
             android:textColor="#000"

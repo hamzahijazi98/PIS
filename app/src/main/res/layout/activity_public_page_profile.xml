@@ -53,8 +53,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:textOff="@string/send_friend_request"
-                android:textOn="@string/cancel_friend_request"
+                android:textOff="send_friend_request"
+                android:textOn="cancel_friend_request"
 
                 />
 

@@ -22,10 +22,10 @@ class Events_Frag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val EventsTypeArrayList=ArrayList<Events_Item>()
-        EventsTypeArrayList.add(Events_Item(R.string.wedding as String, R.drawable.ic_wedding))
-        EventsTypeArrayList.add(Events_Item(R.string.birthday as String, R.drawable.ic_wedding))
-        EventsTypeArrayList.add(Events_Item(R.string.Graduation as String, R.drawable.ic_wedding))
-        EventsTypeArrayList.add(Events_Item(R.string.Engagement as String, R.drawable.ic_wedding))
+        EventsTypeArrayList.add(Events_Item(R.string.wedding .toString(), R.drawable.ic_wedding))
+        EventsTypeArrayList.add(Events_Item(R.string.birthday .toString(), R.drawable.ic_wedding))
+        EventsTypeArrayList.add(Events_Item(R.string.Graduation .toString(), R.drawable.ic_wedding))
+        EventsTypeArrayList.add(Events_Item(R.string.Engagement .toString(), R.drawable.ic_wedding))
 
         val myadapter = context?.let { EventsAdapter(EventsTypeArrayList, it) }
         RV_events.layoutManager= LinearLayoutManager(context)
