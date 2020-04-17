@@ -15,19 +15,16 @@ import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RadioButton
 import android.widget.Toast
-import androidx.viewpager.widget.ViewPager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.uni.pis.BackgroundWorker
-import com.uni.pis.Events.EvenstList
 import com.uni.pis.R
-import com.uni.pis.data.userData
-import com.uni.pis.homefrags.MainActivity
-import com.uni.pis.homefrags.MyViewPagerAdapter
+import com.uni.pis.Data.UserData.userData
 import kotlinx.android.synthetic.main.fragment_edit__profile_.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import java.util.*
@@ -85,7 +82,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
         val phone_adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, phone_domain)
         spin_phone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                phonenumber=userData.phoneNumber
+                phonenumber= userData.phoneNumber
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0)
@@ -126,7 +123,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                city=userData.city
+                city= userData.city
             }
     }
 
@@ -135,6 +132,11 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
         et_lname.setText(userData.last_name)
         et_phonenum.setText(userData.phoneNumber)
         tv_date.text = userData.birthdate
+        if(userData.gender=="Male")
+            findViewById<RadioButton>(R.id.RB_male).isChecked=true
+        else
+            findViewById<RadioButton>(R.id.RB_female).isChecked=true
+
         rg_gender.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.RB_male){
                 gender = "Male"

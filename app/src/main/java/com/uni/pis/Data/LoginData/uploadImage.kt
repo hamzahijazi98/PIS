@@ -1,4 +1,4 @@
-package com.uni.pis.data
+package com.uni.pis.Data.LoginData
 
 class Upload {
     var name: String? = null

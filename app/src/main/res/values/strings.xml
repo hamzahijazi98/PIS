@@ -83,5 +83,6 @@
     <string name="accepted">Accepted</string>
     <string name="total_invitee">Total Invitee</string>
     <string name="rejected">Rejected</string>
+    <string name="required">Required</string>
 
 </resources>

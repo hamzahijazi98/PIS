@@ -1,4 +1,4 @@
-package com.uni.pis.model
+package com.uni.pis.Data.LoginData
 
 class Home_Item {
         var icons :Int? = 0

@@ -1,4 +1,4 @@
-package com.uni.pis.Adapter
+package com.uni.pis.Adapter.UsersAdapter
 
 import android.content.Context
 import android.content.Intent
@@ -9,11 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.AuthFailureError
-import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
@@ -22,14 +19,12 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.BackgroundWorker
-import com.uni.pis.Events.UserID
 import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
-import com.uni.pis.data.friendData
-import com.uni.pis.data.userData
+import com.uni.pis.Data.UserData.friendData
+import com.uni.pis.Data.UserData.userData
 import com.uni.pis.profile.PublicPageProfile
 import kotlinx.android.synthetic.main.cardview_find_friend_list.view.*
-import kotlinx.android.synthetic.main.cardview_friend_list.view.*
 import kotlinx.android.synthetic.main.cardview_friend_list.view.iv_friend
 import kotlinx.android.synthetic.main.cardview_friend_list.view.tv_friendname
 import org.json.JSONException
@@ -37,7 +32,7 @@ import org.json.JSONObject
 import javax.xml.transform.ErrorListener
 import javax.xml.transform.TransformerException
 
-class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
+class FindFriendAdapter(val FindFriendArrayList:ArrayList<friendData>, context:Context):
     RecyclerView.Adapter<FindFriendAdapter.ViewHolder>() {
 
     var firbaseNotify=FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest");
@@ -95,7 +90,7 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
                 val extraData = JSONObject()
                 extraData.put("UserID", userID)
                 extraData.put("FriendID",friendID )
-                extraData.put("Image",userData.image )
+                extraData.put("Image", userData.image )
                 extraData.put("Name","${userData.first_name} ${userData.last_name}")
                 json.put("notification", notificationObj)
                 json.put("data", extraData)
@@ -128,7 +123,8 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
                 }
                 try {
                     var data = BackgroundWorker(itemView.context)
-                    data.execute("notification","send",System.currentTimeMillis().toString(),title,body,userData.image,userID,friendID )
+                    data.execute("notification","send",System.currentTimeMillis().toString(),title,body,
+                        userData.image,userID,friendID )
 
                 }
                 catch (e:java.lang.Exception)
@@ -144,23 +140,23 @@ class FindFriendAdapter(val FindFriend:ArrayList<friendData>,context:Context):
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FindFriendAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_find_friend_list, parent, false)
-        return FindFriendAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return FindFriend.size
+        return FindFriendArrayList.size
     }
 
-    override fun onBindViewHolder(holder: FindFriendAdapter.ViewHolder, position: Int) {
-        holder.bindItems(FindFriend[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bindItems(FindFriendArrayList[position])
         holder.itemView.setOnClickListener{
 
-            val image = FindFriend[position]
+            val image = FindFriendArrayList[position]
             val i = Intent(holder.itemView.context, PublicPageProfile::class.java)
             val bundle = Bundle()
-            val parcel = FindFriend[position]
+            val parcel = FindFriendArrayList[position]
             bundle.putParcelable("friendData", parcel)
             i.putExtra("Bundle", bundle)
             ContextCompat.startActivity(holder.itemView.context, i, Bundle())

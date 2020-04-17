@@ -1,4 +1,4 @@
-package com.uni.pis.data.model
+package com.uni.pis.Data.EventData
 
  class eventDataInvite {
 

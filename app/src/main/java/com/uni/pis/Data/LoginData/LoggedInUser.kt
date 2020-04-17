@@ -1,6 +1,4 @@
-package com.uni.pis.data.model
-
-import com.uni.pis.ui.login.ForgetPassword
+package com.uni.pis.Data.LoginData
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

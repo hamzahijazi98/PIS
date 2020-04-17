@@ -1,28 +1,23 @@
 package com.uni.pis.homefrags
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.uni.pis.Adapter.MyEventListAdapter
+import com.uni.pis.Adapter.EventsAdapter.MyEventListAdapter
 import com.uni.pis.BackgroundWorker
-import com.uni.pis.Events.EvenstList
 import com.uni.pis.Events.mFirebaseAuth
 
 import com.uni.pis.R
-import com.uni.pis.data.eventData
-import com.uni.pis.model.EventsListeItem
-import kotlinx.android.synthetic.main.fragment_my__events.*
+import com.uni.pis.Data.EventData.eventData
 
 
 class My_Events_Frag : Fragment() {
 
-    val arrayListMyEvent = ArrayList<eventData>()
-    val AdapterMyEvent=MyEventListAdapter(arrayListMyEvent)
+    val MyEventArrayList = ArrayList<eventData>()
+    val MyEventArrayListAdapter= MyEventListAdapter(MyEventArrayList)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

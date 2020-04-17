@@ -3,6 +3,7 @@ package com.uni.pis.ui
 import android.Manifest
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -243,16 +245,18 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                 else {
                     phonenumber = phone_domain[indexPhoneNum] + et_phonenumber.text.toString()
                 }
-                if(et_firstname.text.isNotEmpty()&&et_lastname.text.isNotEmpty()
-                    &&et_email.text.isNotEmpty()
-                    &&et_password.text!!.isNotEmpty() &&et_repassword.text!!.isNotEmpty()
-                    &&et_phonenumber.text.isNotEmpty()&&tv_date.text.isNotEmpty()&&gender!=""&&indexCity!=0&&indexPhoneNum!=0)
-                    btn_signup.isEnabled=true
+
             }
         })
         btn_signup.setOnClickListener{
-            var valid=Is_Vaild()
-            if(valid){
+            if(indexCity==0)
+                citySpin_error.visibility=View.VISIBLE
+            if(indexPhoneNum==0)
+                phoneSpin_error.visibility=View.VISIBLE
+            }
+
+
+            if(Is_Vaild()){
                 loading.visibility= View.VISIBLE
                 mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
                     if (!it.isSuccessful) {
@@ -274,7 +278,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             else {
                 Toast.makeText(this, "Failed You Have Error Field Or Invalid", Toast.LENGTH_LONG).show()
             }
-        } }
+        }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode) {

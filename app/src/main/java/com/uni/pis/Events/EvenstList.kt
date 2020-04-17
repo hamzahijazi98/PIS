@@ -2,27 +2,17 @@ package com.uni.pis.Events
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.core.view.Event
-import com.uni.pis.Adapter.MyEventListAdapter
 import com.uni.pis.BackgroundWorker
-import com.uni.pis.Events_Frag
-import com.uni.pis.HomeFrag
 import com.uni.pis.R
-import com.uni.pis.data.eventData
+import com.uni.pis.Data.EventData.eventData
 import com.uni.pis.homefrags.Invited_Events_Frag
 import com.uni.pis.homefrags.MyViewPagerAdapter
 import com.uni.pis.homefrags.My_Events_Frag
-import com.uni.pis.model.EventsListeItem
-import com.uni.pis.profile.ProfilePagePersonalFrag
-import kotlinx.android.synthetic.main.activity_evenst_list.*
 import kotlinx.android.synthetic.main.activity_evenst_list.tabs
 import kotlinx.android.synthetic.main.activity_evenst_list.view_pager
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.fragment_my__events.*
 
 
 class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
@@ -79,7 +69,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                         var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
                          var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
 
-                        myEventFrag.arrayListMyEvent.add(
+                        myEventFrag.MyEventArrayList.add(
                             eventData(
                                 EventID,
                                 Invitee_No,
@@ -100,7 +90,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                 }
                 var RV_myevent = findViewById<RecyclerView>(R.id.rv_Myeven)
                 RV_myevent.layoutManager = LinearLayoutManager(this)
-                RV_myevent.adapter = myEventFrag.AdapterMyEvent
+                RV_myevent.adapter = myEventFrag.MyEventArrayListAdapter
 
             }
             if (type[1] == "invitedto") {
@@ -133,7 +123,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                         var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
                         var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
 
-                        InvitedEventFrag.arrayListMyInvited.add(
+                        InvitedEventFrag.MyInvitedEventsArrayList.add(
                             eventData(
                                 EventID,
                                 Invitee_No,
@@ -154,7 +144,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                 }
                 var RV_INVITEDEVENT = findViewById<RecyclerView>(R.id.rv_invevents)
                 RV_INVITEDEVENT.layoutManager = LinearLayoutManager(this)
-                RV_INVITEDEVENT.adapter = InvitedEventFrag.AdapterInvitedEvent
+                RV_INVITEDEVENT.adapter = InvitedEventFrag.MyInvitedEventsArrayListAdapter
 
 
             }

@@ -1,10 +1,4 @@
-package com.uni.pis.data
-
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
-import com.uni.pis.data.model.LoggedInUser
-import java.io.IOException
-import com.uni.pis.ui.login.LoginActivity as LoginActivity1
+package com.uni.pis.Data.LoginData
 
 /**
  * Class that requests authentication and user information from the remote data source and

@@ -5,19 +5,18 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.RequestQueue
-import com.uni.pis.Adapter.FindFriendAdapter
+import com.uni.pis.Adapter.UsersAdapter.FindFriendAdapter
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
-import com.uni.pis.data.friendData
+import com.uni.pis.Data.UserData.friendData
 import kotlinx.android.synthetic.main.activity_find_friend.*
 
 
 class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
 
-    val friendarraylist=ArrayList<friendData>()
-    val friendarraylistadapter=FindFriendAdapter(friendarraylist,this)
+    val FriendArraylist=ArrayList<friendData>()
+    val FreindArrayListAdapter= FindFriendAdapter(FriendArraylist, this)
     var userID= mFirebaseAuth.currentUser?.uid!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +25,8 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
 
         et_search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                friendarraylist.clear()
-                rv_findfriend.adapter=friendarraylistadapter
+                FriendArraylist.clear()
+                rv_findfriend.adapter=FreindArrayListAdapter
                 if (s.toString().isNotEmpty()) {
                     var data = BackgroundWorker(this@FindFriend)
                     data.execute("findfriend", s.toString())
@@ -63,7 +62,19 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
                 var image=friend[BackgroundWorker.userDataOrder.image.index].substringAfter("=").replace("\\","").trim()
                 var friendID=friend[BackgroundWorker.userDataOrder.UserID.index].substringAfter("=").trim()
                 if(friendID != userID){
-                    friendarraylist.add(friendData(firstname, last_name, email, phoneNumber, gender, city, birthdate, image, friendID))
+                    FriendArraylist.add(
+                        friendData(
+                            firstname,
+                            last_name,
+                            email,
+                            phoneNumber,
+                            gender,
+                            city,
+                            birthdate,
+                            image,
+                            friendID
+                        )
+                    )
                 }
                 }
 
@@ -72,7 +83,7 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
         }
 
         rv_findfriend.layoutManager=LinearLayoutManager(this)
-        rv_findfriend.adapter=friendarraylistadapter
+        rv_findfriend.adapter=FreindArrayListAdapter
 
     }
 

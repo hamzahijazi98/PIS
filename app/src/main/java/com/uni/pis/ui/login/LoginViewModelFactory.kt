@@ -2,8 +2,8 @@ package com.uni.pis.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.uni.pis.data.LoginDataSource
-import com.uni.pis.data.LoginRepository
+import com.uni.pis.Data.LoginData.LoginDataSource
+import com.uni.pis.Data.LoginData.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

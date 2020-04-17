@@ -1,4 +1,4 @@
-package com.uni.pis.data
+package com.uni.pis.Data.LoginData
 
 /**
  * A generic class that holds a value with its loading status.

@@ -1,15 +1,12 @@
 package com.uni.pis.ui.login
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.uni.pis.data.LoginRepository
-import com.uni.pis.data.Result
+import com.uni.pis.Data.LoginData.LoginRepository
+import com.uni.pis.Data.LoginData.Result
 
 import com.uni.pis.R
 

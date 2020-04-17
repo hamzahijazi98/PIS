@@ -1,4 +1,4 @@
-package com.uni.pis.data
+package com.uni.pis.Data.UserData
 
 import android.os.Parcel
 import android.os.Parcelable

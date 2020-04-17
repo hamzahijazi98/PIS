@@ -5,12 +5,11 @@ import android.view.View
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.sendbird.android.*
-import com.uni.pis.Adapter.MessageAdapter
+import com.uni.pis.Adapter.EventsAdapter.MessageAdapter
 import com.uni.pis.R
-import com.uni.pis.data.Message
-import com.uni.pis.data.userData
+import com.uni.pis.Data.EventData.Message
+import com.uni.pis.Data.UserData.userData
 import kotlinx.android.synthetic.main.activity_chat.*
-import java.util.*
 
 class Chat : AppCompatActivity() {
     private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
@@ -72,7 +71,7 @@ class Chat : AppCompatActivity() {
                                     flag = false
                                     if (x.sender.userId == SendBird.getCurrentUser().userId) flag =
                                         true
-                                    val msg = Message(x.message, flag,x.data)
+                                    val msg = Message(x.message, flag, x.data)
                                     messageadapter!!.add(msg)
                                     listViewMessages!!.setSelection(listViewMessages!!.count - 1)
                                 }
@@ -92,14 +91,15 @@ class Chat : AppCompatActivity() {
                     msgText=et_msg.text.toString()
                     val params: UserMessageParams = UserMessageParams()
                         .setMessage(msgText)
-                        .setData(userData.first_name+" "+userData.last_name)
+                        .setData(userData.first_name+" "+ userData.last_name)
                     groupChannel.sendUserMessage(params, object : BaseChannel.SendUserMessageHandler {
                         override fun onSent(userMessage: UserMessage, e: SendBirdException?) {
                             if (e != null) { // Error.
                                 return
                             }
                             val belongsToCurrentUser: Boolean = userMessage.sender.userId == userid
-                            val message = Message(userMessage.message, belongsToCurrentUser,userMessage.data)
+                            val message =
+                                Message(userMessage.message, belongsToCurrentUser, userMessage.data)
                             messageadapter!!.add(message)
                             listViewMessages!!.setSelection(listViewMessages!!.count - 1)
                             et_msg!!.text.clear()
@@ -113,7 +113,7 @@ class Chat : AppCompatActivity() {
             override fun onMessageReceived(channel: BaseChannel?, message: BaseMessage) {
                 when (message) {
                     is UserMessage -> {
-                        val msg = Message(message.message, false,message.data)
+                        val msg = Message(message.message, false, message.data)
                         messageadapter!!.add(msg)
                         listViewMessages!!.setSelection(listViewMessages!!.count - 1)
                     }

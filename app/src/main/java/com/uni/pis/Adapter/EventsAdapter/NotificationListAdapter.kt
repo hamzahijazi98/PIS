@@ -1,29 +1,22 @@
-package com.uni.pis.Adapter
+package com.uni.pis.Adapter.EventsAdapter
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.BackgroundWorker
-import com.uni.pis.Events.mFirebaseAuth
-import com.uni.pis.Notification
 import com.uni.pis.R
-import com.uni.pis.data.acceptFriendData
-import com.uni.pis.data.friendData
-import kotlinx.android.synthetic.main.activity_notification.*
-import kotlinx.android.synthetic.main.activity_notification.view.*
-import kotlinx.android.synthetic.main.cardview_find_friend_list.view.*
+import com.uni.pis.Data.UserData.acceptFriendData
 import kotlinx.android.synthetic.main.cardview_notification.view.*
 
 
-class NotificationListAdapter(val notificationarray:ArrayList<acceptFriendData>, context: Context):
+class NotificationListAdapter(val NotificationArray:ArrayList<acceptFriendData>, context: Context):
     RecyclerView.Adapter<NotificationListAdapter.ViewHolder>() {
 
     class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -67,23 +60,20 @@ class NotificationListAdapter(val notificationarray:ArrayList<acceptFriendData>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = LayoutInflater.from(parent.context)
             .inflate(R.layout.cardview_notification, parent, false)
-        return NotificationListAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return notificationarray.size
+        return NotificationArray.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(notificationarray[position])
-
-
+        holder.bindItems(NotificationArray[position])
         when (position) {
             position-> {
                 holder.itemView.btn_reject.setOnClickListener {
-                    notificationarray.removeAt(position)
+                    NotificationArray.removeAt(position)
                     notifyItemRemoved(holder.adapterPosition)
-
                 }
             }
         }

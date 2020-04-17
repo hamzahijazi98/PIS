@@ -12,33 +12,30 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.storage.FirebaseStorage
 import com.google.zxing.integration.android.IntentIntegrator
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
-import com.uni.pis.data.InviteeListData
-import com.uni.pis.data.eventData
+import com.uni.pis.Data.UserData.InviteeListData
+import com.uni.pis.Data.EventData.eventData
 import com.uni.pis.profile.Friends
-import kotlinx.android.synthetic.main.activity_invitee__list.*
 import kotlinx.android.synthetic.main.activity_mycardinvitation.*
 
 class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
-    lateinit var  evetD:eventData
+    lateinit var  EventData: eventData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mycardinvitation)
 
         val bundle = intent.getBundleExtra("Bundle")
-        val eventdata = bundle.getParcelable<eventData>("eventdata")
-        if (eventdata != null) {
-            evetD=eventdata
+        val Eventdata = bundle.getParcelable<eventData>("eventdata")
+        if (Eventdata != null) {
+            EventData=Eventdata
         }
-        if (eventdata!!.image!="") {
+        if (Eventdata!!.image!="") {
             mStorageRef =
-                FirebaseStorage.getInstance().getReferenceFromUrl(eventdata.image)
+                FirebaseStorage.getInstance().getReferenceFromUrl(Eventdata.image)
             mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
                 val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
                 event_img.setImageBitmap(
@@ -51,15 +48,15 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                 // Handle any errors
             }
         }
-        tv_finviter.text= eventdata!!.firstinvitername
-        tv_sinviter.text= eventdata!!.secondinvitername
-        tv_eventdate.text= eventdata.Date
-        tv_starttime.text= eventdata.StartTime
-        tv_endtime.text= eventdata.EndTime
-        tv_description.text= eventdata.Description
+        tv_finviter.text= Eventdata!!.firstinvitername
+        tv_sinviter.text= Eventdata!!.secondinvitername
+        tv_eventdate.text= Eventdata.Date
+        tv_starttime.text= Eventdata.StartTime
+        tv_endtime.text= Eventdata.EndTime
+        tv_description.text= Eventdata.Description
             btn_location.setOnClickListener {
 
-                var loc=eventdata.Place_ID.split('&')
+                var loc=Eventdata.Place_ID.split('&')
                  var lat=loc[0].substringAfter("=")
                 var lot= loc[1]
                 var i = Intent()
@@ -70,20 +67,20 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
         btn_invite.setOnClickListener {
             var intent=Intent(this,Friends::class.java)
-            intent.putExtra("EventId",eventdata.Event_ID)
-            intent.putExtra("InviteeNumber",eventdata.Inv_No)
-            intent.putExtra("channelUrl",eventdata.channelUrl)
+            intent.putExtra("EventId",Eventdata.Event_ID)
+            intent.putExtra("InviteeNumber",Eventdata.Inv_No)
+            intent.putExtra("channelUrl",Eventdata.channelUrl)
             startActivity(intent)
         }
 
         btn_groupchat.setOnClickListener {
             var intent=Intent(this,Chat::class.java)
-            intent.putExtra("ChannelUrl",eventdata.channelUrl)
+            intent.putExtra("ChannelUrl",Eventdata.channelUrl)
             startActivity(intent)
         }
         btn_attendance.setOnClickListener {
             var intent=Intent(this,Invitee_List::class.java)
-            intent.putExtra("eventID",eventdata.Event_ID)
+            intent.putExtra("eventID",Eventdata.Event_ID)
             startActivity(intent)
         }
         btn_scan.setOnClickListener {
@@ -105,7 +102,7 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
 
         if (id == R.id.ic_edit) {
-            val image = evetD
+            val image = EventData
             val i = Intent(this, EditEvent::class.java)
             val bundle = Bundle()
             val parcel = image
@@ -123,7 +120,7 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                     Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
                 } else {
                     var data = BackgroundWorker(this)
-                    data.execute("checkID",evetD.Event_ID ,result.contents)
+                    data.execute("checkID",EventData.Event_ID ,result.contents)
 
                 }
             } else {
@@ -151,7 +148,14 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                     friend[Invitee_List.userDataOrder.permission.index].substringAfter("=")
                 var inviteenumber =
                     friend[Invitee_List.userDataOrder.inviteenumber.index].substringAfter("=")
-                InviteeListData(UserID,"$firstname  $lastname",image,attendence,permission,inviteenumber)
+                InviteeListData(
+                    UserID,
+                    "$firstname  $lastname",
+                    image,
+                    attendence,
+                    permission,
+                    inviteenumber
+                )
 
             img_complete.visibility=View.VISIBLE
                 val handler = Handler()

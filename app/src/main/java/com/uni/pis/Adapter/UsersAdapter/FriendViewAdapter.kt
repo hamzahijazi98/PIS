@@ -1,4 +1,4 @@
-package com.uni.pis.Adapter
+package com.uni.pis.Adapter.UsersAdapter
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -15,17 +15,12 @@ import com.sendbird.android.*
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
-import com.uni.pis.data.Message
-import com.uni.pis.data.eventData
-import com.uni.pis.data.friendData
-import com.uni.pis.data.model.eventDataInvite
-import com.uni.pis.model.FriendsItem
-import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.activity_public_page_profile.*
+import com.uni.pis.Data.EventData.eventDataInvite
+import com.uni.pis.Data.UserData.FriendsItem
 import kotlinx.android.synthetic.main.cardview_friend_list.view.*
 import kotlinx.android.synthetic.main.invitationdialog.view.*
 
-class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Context):RecyclerView.Adapter<FriendViewAdapter.ViewHolder>() {
+class FriendViewAdapter(val FriendArrayList:ArrayList<FriendsItem>, val context: Context):RecyclerView.Adapter<FriendViewAdapter.ViewHolder>() {
     private val SENDBIRDAPPID = "C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
     private val userid = mFirebaseAuth.currentUser?.uid!!
 
@@ -65,11 +60,11 @@ class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Conte
     }
 
     override fun getItemCount(): Int {
-        return friendlist.size
+        return FriendArrayList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(friendlist[position])
+        holder.bindItems(FriendArrayList[position])
 
 
         if (eventDataInvite.EventID != "") {
@@ -86,7 +81,7 @@ class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Conte
                     var inviteeNumber = mDialogView.et_inviteenumber.text.toString()
                     var data = BackgroundWorker(holder.itemView.context)
                     data.execute("invitetomyevent", "0", "0", eventDataInvite.EventID,
-                        friendlist[position].UserID, inviteeNumber
+                        FriendArrayList[position].UserID, inviteeNumber
                     )
 
 
@@ -110,7 +105,7 @@ class FriendViewAdapter(val friendlist:ArrayList<FriendsItem>,val context: Conte
                                     return
                                 }
                                 val userIds: MutableList<String> = ArrayList()
-                                userIds.add(friendlist[position].UserID)
+                                userIds.add(FriendArrayList[position].UserID)
                                 groupChannel.inviteWithUserIds(
                                     userIds,
                                     object : GroupChannel.GroupChannelInviteHandler {

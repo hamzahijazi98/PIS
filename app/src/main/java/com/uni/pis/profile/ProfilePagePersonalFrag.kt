@@ -1,10 +1,7 @@
 package com.uni.pis.profile
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
 import android.app.AlertDialog
-import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -20,8 +17,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
-import com.uni.pis.data.userData
-import com.uni.pis.welcome
+import com.uni.pis.Data.UserData.userData
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import kotlin.system.exitProcess
 

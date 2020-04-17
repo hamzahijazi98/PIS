@@ -4,17 +4,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.uni.pis.Adapter.FriendViewAdapter
+import com.uni.pis.Adapter.UsersAdapter.FriendViewAdapter
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
-import com.uni.pis.data.model.eventDataInvite
-import com.uni.pis.model.FriendsItem
+import com.uni.pis.Data.EventData.eventDataInvite
+import com.uni.pis.Data.UserData.FriendsItem
 import kotlinx.android.synthetic.main.activity_friends.*
 
 class Friends : AppCompatActivity(), BackgroundWorker.MyCallback {
-    val arraylist=ArrayList<FriendsItem>()
-    val friendadap=FriendViewAdapter(arraylist,this)
+    val FriendArrayList=ArrayList<FriendsItem>()
+    val FriendArrayListAdapter= FriendViewAdapter(FriendArrayList, this)
     enum class userDataOrder(val index: Int) {
         UserID(0),
         firstName(1),
@@ -60,11 +60,11 @@ class Friends : AppCompatActivity(), BackgroundWorker.MyCallback {
             var firstname = friend[userDataOrder.firstName.index].substringAfter("=")
             var lastname = friend[userDataOrder.lastName.index].substringAfter("=")
             var image = friend[userDataOrder.Image.index].substringAfter("=").replace("\\","").trim()
-            arraylist.add(FriendsItem(UserID,"$firstname  $lastname",image))
+                FriendArrayList.add(FriendsItem(UserID, "$firstname  $lastname", image))
             }
 
         }
         rv_friend.layoutManager= LinearLayoutManager(this)
-        rv_friend.adapter=friendadap
+        rv_friend.adapter=FriendArrayListAdapter
     }
 }

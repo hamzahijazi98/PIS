@@ -1,4 +1,4 @@
-package com.uni.pis.Adapter
+package com.uni.pis.Adapter.EventsAdapter
 
 
 
@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.uni.pis.R
-import com.uni.pis.data.Message
+import com.uni.pis.Data.EventData.Message
 import java.util.*
 
 

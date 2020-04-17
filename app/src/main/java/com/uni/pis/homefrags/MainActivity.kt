@@ -6,16 +6,9 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
@@ -27,12 +20,10 @@ import com.uni.pis.BackgroundWorker
 import com.uni.pis.Events_Frag
 import com.uni.pis.HomeFrag
 import com.uni.pis.R
-import com.uni.pis.data.userData
+import com.uni.pis.Data.UserData.userData
 import com.uni.pis.profile.ProfilePagePersonalFrag
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_home_.*
-import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
-import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(),
     BackgroundWorker.MyCallback {
@@ -114,7 +105,7 @@ class MainActivity : AppCompatActivity(),
                 Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
             }
         } catch (e: Exception) { Toast.makeText(this, e.message, Toast.LENGTH_LONG).show() }
-        tv_homeName.text= userData.first_name+"\n"+userData.last_name
+        tv_homeName.text= userData.first_name+"\n"+ userData.last_name
     }
     override fun onBackPressed() {
 if (view_pager.currentItem==0){

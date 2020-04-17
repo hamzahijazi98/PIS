@@ -1,4 +1,4 @@
-package com.uni.pis.Adapter
+package com.uni.pis.Adapter.UsersAdapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,10 +12,10 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
-import com.uni.pis.data.InviteeListData
+import com.uni.pis.Data.UserData.InviteeListData
 import kotlinx.android.synthetic.main.cardview_eventinvitee.view.*
 
-class   InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val context: Context):
+class   InviteeListAdapter (val InviteeListArrayList:ArrayList<InviteeListData>, val context: Context):
     RecyclerView.Adapter<InviteeListAdapter.ViewHolder>() {
     companion object{
     var total:Int=0
@@ -54,18 +54,18 @@ class   InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val cont
             when(InviteeListData.attendace){
                 "0"-> {itemView.ib_reject.visibility = View.VISIBLE
                 itemView.tv_status.text="Reject"
-                    total+=InviteeListData.inviteenumber.trim().toInt()
-                    totalrejeted+=InviteeListData.inviteenumber.trim().toInt()
+                    total +=InviteeListData.inviteenumber.trim().toInt()
+                    totalrejeted +=InviteeListData.inviteenumber.trim().toInt()
 
                 }
                 "1"-> {itemView.ib_maybe.visibility = View.VISIBLE
                     itemView.tv_status.text="Maybe"
-                    total+=InviteeListData.inviteenumber.trim().toInt()
-                    totalmaby+=InviteeListData.inviteenumber.trim().toInt()}
+                    total +=InviteeListData.inviteenumber.trim().toInt()
+                    totalmaby +=InviteeListData.inviteenumber.trim().toInt()}
                 "2"-> {itemView.ib_accpet.visibility = View.VISIBLE
                     itemView.tv_status.text="Accept"
-                    total+=InviteeListData.inviteenumber.trim().toInt()
-                    totalAccepted+=InviteeListData.inviteenumber.trim().toInt()}
+                    total +=InviteeListData.inviteenumber.trim().toInt()
+                    totalAccepted +=InviteeListData.inviteenumber.trim().toInt()}
             }
             itemView.tv_personInviteeNumer.text=InviteeListData.inviteenumber
 
@@ -82,12 +82,17 @@ class   InviteeListAdapter (val InviteeList:ArrayList<InviteeListData>, val cont
     }
 
     override fun getItemCount(): Int {
-        return InviteeList.size
+        return InviteeListArrayList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(InviteeList[position])
-        callbacks.sendResult(total, totalAccepted, totalrejeted, totalmaby)
+        holder.bindItems(InviteeListArrayList[position])
+        callbacks.sendResult(
+            total,
+            totalAccepted,
+            totalrejeted,
+            totalmaby
+        )
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {

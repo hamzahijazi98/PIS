@@ -181,10 +181,11 @@
         android:gravity="center"
          />
     </LinearLayout>
-<LinearLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp">
+        >
     <Spinner
         android:id="@+id/spinner_phone"
         android:layout_width="0dp"
@@ -195,6 +196,7 @@
         android:padding="10dp"
         android:layout_marginEnd="20dp"
          />
+
     <EditText
         android:id="@+id/et_phonenumber"
         android:layout_width="0dp"
@@ -207,9 +209,18 @@
         android:selectAllOnFocus="true"
         android:textAlignment="center"
        />
-
-
 </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:text="@string/required"
+        android:id="@+id/phoneSpin_error"
+        android:textColor="@color/red"
+        />
+
 <Spinner
  android:id="@+id/spinner_city"
  android:layout_width="match_parent"
@@ -217,11 +228,23 @@
  android:gravity="center"
  android:background="@drawable/hintedittext"
  android:textAlignment="center"
- android:padding="10dp" />
+ android:padding="10dp"
+    android:layout_marginTop="15dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:padding="5dp"
+        android:textSize="12sp"
+        android:text="@string/required"
+        android:visibility="gone"
+        android:id="@+id/citySpin_error"
+        android:textColor="@color/red"
+        />
 <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp">
+    android:layout_marginVertical="20dp">
     <Button
         android:id="@+id/btn_uploadimage"
         android:layout_width="100dp"
@@ -238,28 +261,18 @@
         android:id="@+id/profile_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
-
         android:contentDescription="@string/your_image"
         android:background="@drawable/hintedittext"
         android:layout_marginStart="15dp"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:padding="5dp"
-        android:text="*** Button SignUp Will Be  Enable\n If  All Fields Filled  And Be Valid "
-        android:textSize="12sp"
-        android:textColor="@color/blueblack"
-        tools:ignore="RtlHardcoded" />
+
     <Button
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/roundedbutton"
-        android:enabled="false"
         android:text="@string/action_sign_up"
         android:textColor="@color/gray" />
 </LinearLayout>

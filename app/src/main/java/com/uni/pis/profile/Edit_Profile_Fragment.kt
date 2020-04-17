@@ -25,7 +25,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
-import com.uni.pis.data.userData
+import com.uni.pis.Data.UserData.userData
 import kotlinx.android.synthetic.main.fragment_edit__profile_.*
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import java.util.*
@@ -41,15 +41,15 @@ class Edit_Profile_Fragment : Fragment() {
     lateinit var mStorageRef: StorageReference
     lateinit var mDatabaseRef: DatabaseReference
     lateinit private var mUploadTask: StorageTask<*>
-    var first_name: String=userData.first_name
-    var last_name: String=userData.last_name
-    var phonenumber: String=userData.phoneNumber
-    var gender: String=userData.gender
-    var city: String=userData.city
+    var first_name: String= userData.first_name
+    var last_name: String= userData.last_name
+    var phonenumber: String= userData.phoneNumber
+    var gender: String= userData.gender
+    var city: String= userData.city
     lateinit var userID:String
-    var birth:String=userData.birthdate
+    var birth:String= userData.birthdate
     var mImageUri: Uri? =null
-    var image=userData.image
+    var image= userData.image
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -92,7 +92,7 @@ class Edit_Profile_Fragment : Fragment() {
         val phone_adapter = ArrayAdapter<String>(view.context, android.R.layout.simple_spinner_item, phone_domain)
         spin_phone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                phonenumber=userData.phoneNumber
+                phonenumber= userData.phoneNumber
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0)
@@ -135,7 +135,7 @@ class Edit_Profile_Fragment : Fragment() {
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                city=userData.city
+                city= userData.city
             }
         }
         et_fname.setText(userData.first_name)

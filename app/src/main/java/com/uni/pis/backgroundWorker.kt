@@ -4,10 +4,7 @@ package com.uni.pis
 import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
-import androidx.core.text.htmlEncode
-import com.sendbird.android.shadow.okio.Utf8
-import com.uni.pis.data.eventData
-import com.uni.pis.data.userData
+import com.uni.pis.Data.UserData.userData
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.MalformedURLException

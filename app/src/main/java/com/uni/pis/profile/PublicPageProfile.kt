@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
 import com.uni.pis.Events.mStorageRef
 import com.uni.pis.R
-import com.uni.pis.data.friendData
+import com.uni.pis.Data.UserData.friendData
 import kotlinx.android.synthetic.main.activity_public_page_profile.*
 
 
 class PublicPageProfile : AppCompatActivity() {
-    lateinit var  fdata:friendData
+    lateinit var  FriendData: friendData
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,9 +23,9 @@ class PublicPageProfile : AppCompatActivity() {
         val bundle = intent.getBundleExtra("Bundle")
         val frienddata = bundle.getParcelable<friendData>("friendData")
         if (frienddata != null) {
-            fdata=frienddata
+            FriendData=frienddata
         }
-        if (fdata.image!="") {
+        if (FriendData.image!="") {
             mStorageRef =
                 FirebaseStorage.getInstance().getReferenceFromUrl(frienddata!!.image)
             mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {

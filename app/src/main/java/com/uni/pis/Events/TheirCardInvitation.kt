@@ -12,11 +12,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
-import com.uni.pis.data.eventData
+import com.uni.pis.Data.EventData.eventData
 import kotlinx.android.synthetic.main.activity_their_cardinvitation.*
 
 class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
-    lateinit var  evetD: eventData
+    lateinit var  EventData: eventData
     var attendaceStatus="0"
     var mFirebaseAuth = FirebaseAuth.getInstance()
     var UserID= mFirebaseAuth.currentUser!!.uid
@@ -25,13 +25,13 @@ class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
         setContentView(R.layout.activity_their_cardinvitation)
 
         val bundle = intent.getBundleExtra("Bundle")
-        val eventdata = bundle.getParcelable<eventData>("eventdata")
-        if (eventdata != null) {
-            evetD = eventdata
+        val Eventdata = bundle.getParcelable<eventData>("eventdata")
+        if (Eventdata != null) {
+            EventData = Eventdata
         }
-        if (eventdata!!.image != "") {
+        if (Eventdata!!.image != "") {
             mStorageRef =
-                FirebaseStorage.getInstance().getReferenceFromUrl(eventdata.image)
+                FirebaseStorage.getInstance().getReferenceFromUrl(Eventdata.image)
             mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
                 val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
                 event_img.setImageBitmap(
@@ -44,14 +44,14 @@ class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                 // Handle any errors
             }
         }
-        tv_finviter.text = eventdata.firstinvitername
-        tv_sinviter.text = eventdata.secondinvitername
-        tv_eventdate.text = eventdata.Date
-        tv_starttime.text = eventdata.StartTime
-        tv_endtime.text = eventdata.EndTime
-        tv_description.text = eventdata.Description
+        tv_finviter.text = Eventdata.firstinvitername
+        tv_sinviter.text = Eventdata.secondinvitername
+        tv_eventdate.text = Eventdata.Date
+        tv_starttime.text = Eventdata.StartTime
+        tv_endtime.text = Eventdata.EndTime
+        tv_description.text = Eventdata.Description
         btn_location.setOnClickListener {
-            var loc=eventdata.Place_ID.split('&')
+            var loc=Eventdata.Place_ID.split('&')
             var lat=loc[0].substringAfter("=")
             var lot= loc[1]
             var i = Intent()
@@ -69,7 +69,7 @@ class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
 
         btn_groupchat.setOnClickListener {
             var intent = Intent(this, Chat::class.java)
-            intent.putExtra("ChannelUrl", eventdata.channelUrl)
+            intent.putExtra("ChannelUrl", Eventdata.channelUrl)
             startActivity(intent)
         }
 
@@ -80,7 +80,7 @@ class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                 try {
                     attendaceStatus = "2"
                     var data = BackgroundWorker(this)
-                    data.execute("updateAttendanceStatus", UserID, evetD.Event_ID, attendaceStatus)
+                    data.execute("updateAttendanceStatus", UserID, EventData.Event_ID, attendaceStatus)
                 } catch (e: Exception) {
                 }
             }
@@ -97,7 +97,7 @@ class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                 try {
                     attendaceStatus = "0"
                     var data = BackgroundWorker(this)
-                    data.execute("updateAttendanceStatus", UserID, evetD.Event_ID, attendaceStatus)
+                    data.execute("updateAttendanceStatus", UserID, EventData.Event_ID, attendaceStatus)
                 } catch (e: Exception) {
                 }
             }
@@ -115,7 +115,7 @@ class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                 try {
                     attendaceStatus = "1"
                     var data = BackgroundWorker(this)
-                    data.execute("updateAttendanceStatus", UserID, evetD.Event_ID, attendaceStatus)
+                    data.execute("updateAttendanceStatus", UserID, EventData.Event_ID, attendaceStatus)
                 } catch (e: Exception) {
                 }
             }

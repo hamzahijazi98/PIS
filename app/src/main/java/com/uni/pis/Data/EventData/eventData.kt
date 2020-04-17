@@ -1,4 +1,4 @@
-package com.uni.pis.data
+package com.uni.pis.Data.EventData
 
 import android.annotation.SuppressLint
 import android.os.Parcel

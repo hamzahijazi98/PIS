@@ -28,7 +28,6 @@ import com.sendbird.android.SendBirdException
 import com.sendbird.android.User
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
-import com.uni.pis.data.userData
 import kotlinx.android.synthetic.main.activity_create__invitation.*
 import java.util.*
 import kotlin.collections.ArrayList

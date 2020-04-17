@@ -4,20 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.uni.pis.Adapter.FriendViewAdapter
-import com.uni.pis.Adapter.InviteeListAdapter
+import com.uni.pis.Adapter.UsersAdapter.InviteeListAdapter
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
-import com.uni.pis.data.InviteeListData
-import com.uni.pis.data.model.eventDataInvite
-import com.uni.pis.model.FriendsItem
-import com.uni.pis.profile.Friends
-import kotlinx.android.synthetic.main.activity_friends.*
+import com.uni.pis.Data.UserData.InviteeListData
 import kotlinx.android.synthetic.main.activity_invitee__list.*
 
-class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback,InviteeListAdapter.FragCallbacks {
+class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback, InviteeListAdapter.FragCallbacks {
     val InviteeArrayList=ArrayList<InviteeListData>()
-    val InviteeArrayListAdapter= InviteeListAdapter(InviteeArrayList,this)
+    val InviteeArrayListAdapter= InviteeListAdapter(InviteeArrayList, this)
     lateinit  var EventId:String
     enum class userDataOrder(val index: Int) {
         UserID(0),
@@ -57,7 +52,16 @@ class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback,InviteeList
                 var attendence = friend[userDataOrder.attendace.index].substringAfter("=")
                 var permission = friend[userDataOrder.permission.index].substringAfter("=")
                 var inviteenumber = friend[userDataOrder.inviteenumber.index].substringAfter("=")
-                InviteeArrayList.add(InviteeListData(UserID,"$firstname  $lastname",image,attendence,permission,inviteenumber))
+                InviteeArrayList.add(
+                    InviteeListData(
+                        UserID,
+                        "$firstname  $lastname",
+                        image,
+                        attendence,
+                        permission,
+                        inviteenumber
+                    )
+                )
             }
 
         }
