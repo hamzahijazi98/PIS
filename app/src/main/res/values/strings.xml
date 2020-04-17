@@ -84,5 +84,6 @@
     <string name="total_invitee">Total Invitee</string>
     <string name="rejected">Rejected</string>
     <string name="required">Required</string>
+    <string name="uplaod_image">upload image</string>
 
 </resources>
