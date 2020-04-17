@@ -85,5 +85,8 @@
     <string name="rejected">Rejected</string>
     <string name="required">Required</string>
     <string name="uplaod_image">upload image</string>
+    <string name="Home">Home</string>
+    <string name="Profile">Profile</string>
+    <string name="Create_Event">Create Event</string>
 
 </resources>
