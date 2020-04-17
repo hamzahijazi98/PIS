@@ -41,7 +41,6 @@
     <string name="edit_profile">"تعديل الصفحة "</string>
     <string name="remember_me">تذكرني</string>
     <string name="forget_password">نسيت كلمة المرور؟</string>
-    <string name="app_logo">شعار التطبيق</string>
     <string name="birthdayformat">يوم\\شهر\\سنة</string>
     <string name="home_icons">ايقونة الصفحة الرئيسية</string>
     <string name="your_name">اسمك</string>
@@ -71,4 +70,10 @@
     <string name="add_friend">اضافة صديق</string>
     <string name="rejcet">رفض</string>
     <string name="title_activity_login">مناسباتي</string>
+    <string name="edit">تعديل</string>
+    <string name="write_a_message">كتابة رسالة</string>
+    <string name="placeholder_message">رسائلي</string>
+    <string name="how_are_you_doing_this_is_a_long_message_that_should_probably_wrap">المرسل اليه</string>
+    <string name="rose">اسم المرسل</string>
+    <string name="chat">المحادثة</string>
 </resources>
