@@ -277,17 +277,6 @@
 
 </LinearLayout>
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/img_complete"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:lottie_fileName="complete.json"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-
-        />
-    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/img_cancelled"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -296,7 +285,18 @@
         app:lottie_autoPlay="true"
         android:layout_centerInParent="true"
         android:visibility="gone"
+        android:layout_toStartOf="@id/inviteeInfoFramecontine"
 
         />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/inviteeInfoFramecontine"
+        android:padding="15dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+
+        >
+    </FrameLayout>
 </RelativeLayout>
 </ScrollView>
