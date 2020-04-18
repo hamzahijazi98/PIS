@@ -45,7 +45,6 @@ class VideoInvitation : AppCompatActivity(), MultiplePermissionsListener {
 
         val permissions = listOf(
             Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE
         )
         btn_pick_fromgallery.setOnClickListener {

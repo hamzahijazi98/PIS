@@ -11,10 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.webkit.MimeTypeMap
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -80,7 +77,8 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             dob.show()
 
         }
-
+        var radiobuttonmale:RadioButton=findViewById(R.id.RB_male)
+        var radiobuttonfemale:RadioButton=findViewById(R.id.RB_female)
 
         //spinner for phone number
         val phone_adapter =
@@ -288,6 +286,13 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                     phoneSpin_error.visibility = View.VISIBLE
                 else
                     phoneSpin_error.visibility = View.GONE
+                if(!radiobuttonmale.isChecked && !radiobuttonfemale.isChecked)
+                    tv_gendererror.visibility=View.VISIBLE
+                else
+                    tv_gendererror.visibility=View.GONE
+
+
+
                 Toast.makeText(this, "Failed You Have Error Field Or Invalid", Toast.LENGTH_LONG).show()
             }
         }

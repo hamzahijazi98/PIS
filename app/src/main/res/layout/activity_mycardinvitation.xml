@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_invite"
-                android:text="invite_friends"
+                android:text="@string/invite_friends"
                 android:textColor="@color/gray"
                 android:background="@drawable/roundedbutton"
                 />
@@ -48,7 +48,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_attendance"
-                android:text="invited_friend_s"
+                android:text="@string/invited_friend_s"
                 android:textColor="@color/gray"
                 android:background="@drawable/roundedbutton"
                 android:layout_marginStart="15dp"
@@ -159,7 +159,7 @@
            android:layout_marginStart="15dp"
            android:layout_weight="1"
            android:gravity="center"
-           android:hint="HH : MM"
+           android:hint="@string/hh_mm"
            android:padding="5dp"
            android:background="@drawable/textviewshape"
            android:textSize="18sp" />
@@ -194,8 +194,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/textviewshape"
                 android:gravity="center"
-
-                android:hint="HH : MM"
+                android:hint="@string/hh_mm"
                 android:padding="5dp"
                 android:textSize="18sp"
 
@@ -260,7 +259,7 @@
     android:layout_weight="1"
     android:layout_height="wrap_content"
     android:id="@+id/btn_scan"
-    android:text="check_attendance_n_using_qr"
+    android:text="@string/check_attendance_n_using_qr"
     android:textColor="@color/gray"
     android:background="@drawable/roundedbutton"
     android:layout_marginBottom="5dp"
