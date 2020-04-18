@@ -92,30 +92,30 @@
     <string name="Graduation">Graduation</string>
     <string name="Engagement">Engagement</string>
     <string name="confrim">confrim</string>
-    <string name="set_moderator">set_moderator</string>
+    <string name="set_moderator">set moderator</string>
     <string name="cancel">cancel</string>
-    <string name="invitee_number">invitee_number</string>
+    <string name="invitee_number">invitee number</string>
     <string name="logout">Logout</string>
-    <string name="event_s_invited_to">event_s_invited_to</string>
+    <string name="event_s_invited_to">events invited to</string>
     <string name="unfriend">unfriend</string>
     <string name="friend_name">Friend Name</string>
-    <string name="send_friend_request">send_friend_request</string>
-    <string name="cancel_friend_request">cancel_friend_request</string>
+    <string name="send_friend_request">send friend request</string>
+    <string name="cancel_friend_request">cancel friend request</string>
     <string name="status">status</string>
     <string name="link_to_your_event">Link To Your Event</string>
     <string name="accept_n_invitation">accept\n invitation</string>
     <string name="maybe_n">maybe \n</string>
     <string name="reject_n_invitaion">reject\n invitaion</string>
-    <string name="your_qr_attendance_n_show_it_to_inviter">Your QR_Attendance\n Show It To Inviter</string>
+    <string name="your_qr_attendance_n_show_it_to_inviter">Your QR Attendance\n Show It To Inviter</string>
     <string name="notification">notification</string>
-    <string name="invite_friends">invite_friends</string>
-    <string name="invited_friend_s">invited_friend_s</string>
-    <string name="check_attendance_n_using_qr">check_attendance_n_using_qr</string>
+    <string name="invite_friends">invite friends</string>
+    <string name="invited_friend_s">invited friend\'s</string>
+    <string name="check_attendance_n_using_qr">check_attendance using_qr</string>
     <string name="select_events_to_link_video">Select Events To Link Video</string>
-    <string name="enter_address_city_or_zip_code">enter_address_city_or_zip_code</string>
+    <string name="enter_address_city_or_zip_code">enter address city or zip code</string>
     <string name="enter_name_to_search">enter_name_to_search</string>
-    <string name="choose_your_hall_place_n_with_one_of_the_following_options">choose_your_hall_place_n_with_one_of_the_following_options</string>
-    <string name="click_to_upload_event_cover">click_to_upload_event_cover</string>
+    <string name="choose_your_hall_place_n_with_one_of_the_following_options">choose your hall place\n with one of the following options</string>
+    <string name="click_to_upload_event_cover">click to upload event cover</string>
 
 
 </resources>
