@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.google.firebase.storage.FirebaseStorage
 import com.google.zxing.integration.android.IntentIntegrator
 import com.uni.pis.BackgroundWorker
@@ -21,13 +22,16 @@ import com.uni.pis.Data.UserData.InviteeListData
 import com.uni.pis.Data.EventData.eventData
 import com.uni.pis.profile.Friends
 import kotlinx.android.synthetic.main.activity_mycardinvitation.*
+import kotlinx.android.synthetic.main.fragment_invitee_info.*
 
 class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
     lateinit var  EventData: eventData
+    lateinit var Frag: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mycardinvitation)
-
+        Frag= inviteeInfo()
+        supportFragmentManager.beginTransaction().add(R.id.inviteeInfoFramecontine, Frag).commit()
         val bundle = intent.getBundleExtra("Bundle")
         val Eventdata = bundle.getParcelable<eventData>("eventdata")
         if (Eventdata != null) {
@@ -148,7 +152,7 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                     friend[Invitee_List.userDataOrder.permission.index].substringAfter("=")
                 var inviteenumber =
                     friend[Invitee_List.userDataOrder.inviteenumber.index].substringAfter("=")
-                InviteeListData(
+              var inviteeData=  InviteeListData(
                     UserID,
                     "$firstname  $lastname",
                     image,
@@ -158,13 +162,44 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                 )
 
             img_complete.visibility=View.VISIBLE
+                Frag.tv_friendname.text=inviteeData.Name
+                Frag.tv_personInviteeNumer.text=inviteeData.inviteenumber
+                mStorageRef =
+                    FirebaseStorage.getInstance().getReferenceFromUrl(inviteeData.image)
+                mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                    val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+                    Frag.iv_friend.setImageBitmap(
+                        Bitmap.createScaledBitmap(
+                            bmp, iv_friend.width,
+                            iv_friend.height, false
+                        )
+                    )
+                }.addOnFailureListener {
+                    // Handle any errors
+                }
+                when(inviteeData.attendace){
+                    "0"-> {Frag.ib_reject.visibility = View.VISIBLE
+                        Frag.tv_status.text="Reject"
+                    }
+                    "1"-> {Frag.ib_maybe.visibility = View.VISIBLE
+                        Frag.tv_status.text="Maybe"
+                     }
+                    "2"-> {Frag.ib_accpet.visibility = View.VISIBLE
+                        Frag.tv_status.text="Accept"
+                       }
+                }
+                inviteeInfoFramecontine.visibility=View.VISIBLE
+
+
                 val handler = Handler()
                 handler.postDelayed(
                     Runnable {img_complete.visibility=View.GONE
                     },
-                    1000
+                    4000
                 )
-
+                inviteeInfoFramecontine.setOnClickListener{
+                    inviteeInfoFramecontine.visibility=View.GONE
+                }
 
 
         }
@@ -174,7 +209,7 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                 handler.postDelayed(
                     Runnable {img_cancelled.visibility=View.GONE
                     },
-                    1000
+                    2500
                 )
 
 

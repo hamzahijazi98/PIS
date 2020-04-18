@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".Events.inviteeInfo">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cv_friend"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginTop="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        app:civ_border_width="2dp"
+                        android:id="@+id/iv_friend"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_friendname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:hint="@string/first_name"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="end">
+                        <TextView
+                            android:id="@+id/tv_viewNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:hint="invitee_number"
+                            android:layout_gravity="center"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_personInviteeNumer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_gravity="center"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/whiteBackGround"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:backgroundTint="@color/whiteBackGround"
+                            android:src="@drawable/accept"
+                            android:id="@+id/ib_accpet"
+                            />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/question"
+                            android:visibility="gone"
+                            android:layout_marginEnd="15dp"
+                            android:backgroundTint="@color/whiteBackGround"
+                            android:layout_marginStart="15dp"
+                            android:id="@+id/ib_maybe"
+                            />
+
+                        <ImageButton
+                            android:id="@+id/ib_reject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/whiteBackGround"
+                            android:visibility="gone"
+                            android:src="@drawable/close" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="status" />
+
+
+                </LinearLayout>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/img_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:lottie_fileName="complete.json"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+
+                    />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+</FrameLayout>
