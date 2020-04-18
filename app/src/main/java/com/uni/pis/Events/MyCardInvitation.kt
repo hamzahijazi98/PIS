@@ -5,33 +5,44 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.MediaController
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.google.firebase.storage.FirebaseStorage
 import com.google.zxing.integration.android.IntentIntegrator
 import com.uni.pis.BackgroundWorker
-import com.uni.pis.R
-import com.uni.pis.Data.UserData.InviteeListData
+import com.uni.pis.Data.EventData.FullscreenVideo
 import com.uni.pis.Data.EventData.eventData
+import com.uni.pis.Data.UserData.InviteeListData
+import com.uni.pis.R
 import com.uni.pis.profile.Friends
+import kotlinx.android.synthetic.main.activity_fullscreen_video.*
 import kotlinx.android.synthetic.main.activity_mycardinvitation.*
 import kotlinx.android.synthetic.main.fragment_invitee_info.*
+import kotlinx.android.synthetic.main.fragment_video_frame.*
+import java.io.File
+import java.nio.charset.Charset
+
 
 class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
     lateinit var  EventData: eventData
-    lateinit var Frag: Fragment
+    lateinit var Fraginvitee: Fragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mycardinvitation)
-        Frag= inviteeInfo()
-        supportFragmentManager.beginTransaction().add(R.id.inviteeInfoFramecontine, Frag).commit()
+        Fraginvitee= inviteeInfo()
+
+        supportFragmentManager.beginTransaction().add(R.id.inviteeInfoFramecontine, Fraginvitee).commit()
+
         val bundle = intent.getBundleExtra("Bundle")
         val Eventdata = bundle.getParcelable<eventData>("eventdata")
         if (Eventdata != null) {
@@ -93,6 +104,20 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
             scanner.setBeepEnabled(false)
             scanner.initiateScan()
         }
+        if(Eventdata.Video!="0"){
+            btn_video.visibility=View.VISIBLE
+
+            btn_video.setOnClickListener {
+                var intent= Intent(this,FullscreenVideo::class.java)
+                intent.putExtra("videourl",Eventdata.Video)
+                startActivity(intent)
+
+
+            }
+
+
+        }
+
 
     }
 
@@ -162,13 +187,13 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                 )
 
             img_complete.visibility=View.VISIBLE
-                Frag.tv_friendname.text=inviteeData.Name
-                Frag.tv_personInviteeNumer.text=inviteeData.inviteenumber
+                Fraginvitee.tv_friendname.text=inviteeData.Name
+                Fraginvitee.tv_personInviteeNumer.text=inviteeData.inviteenumber
                 mStorageRef =
                     FirebaseStorage.getInstance().getReferenceFromUrl(inviteeData.image)
                 mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
                     val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
-                    Frag.iv_friend.setImageBitmap(
+                    Fraginvitee.iv_friend.setImageBitmap(
                         Bitmap.createScaledBitmap(
                             bmp, iv_friend.width,
                             iv_friend.height, false
@@ -178,14 +203,14 @@ class MyCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
                     // Handle any errors
                 }
                 when(inviteeData.attendace){
-                    "0"-> {Frag.ib_reject.visibility = View.VISIBLE
-                        Frag.tv_status.text="Reject"
+                    "0"-> {Fraginvitee.ib_reject.visibility = View.VISIBLE
+                        Fraginvitee.tv_status.text="Reject"
                     }
-                    "1"-> {Frag.ib_maybe.visibility = View.VISIBLE
-                        Frag.tv_status.text="Maybe"
+                    "1"-> {Fraginvitee.ib_maybe.visibility = View.VISIBLE
+                        Fraginvitee.tv_status.text="Maybe"
                      }
-                    "2"-> {Frag.ib_accpet.visibility = View.VISIBLE
-                        Frag.tv_status.text="Accept"
+                    "2"-> {Fraginvitee.ib_accpet.visibility = View.VISIBLE
+                        Fraginvitee.tv_status.text="Accept"
                        }
                 }
                 inviteeInfoFramecontine.visibility=View.VISIBLE

@@ -59,11 +59,11 @@ class VideoInvitation : AppCompatActivity(), MultiplePermissionsListener {
                 .check()
         }
         btn_linkVideoToEvent.setOnClickListener {
-            if(videoUri!=null) {
+
                 val intent = Intent(this, MyEventsUploadViedo::class.java)
                 intent.putExtra("video", videoUri)
                 startActivity(intent)
-            }
+
         }
     }
 
@@ -82,6 +82,7 @@ try {
                 Frag.viewVideo.setVideoURI(videoUri)
                 Frag.viewVideo.requestFocus()
                 Frag.viewVideo.start()
+                btn_linkVideoToEvent.isEnabled=true
             }
         }
         VIDEO_CAPTURE -> {
@@ -96,6 +97,7 @@ try {
                     Frag.viewVideo.setVideoURI(videoUri)
                     Frag.viewVideo.requestFocus()
                     Frag.viewVideo.start()
+                    btn_linkVideoToEvent.isEnabled=true
 
                 }
                 Activity.RESULT_CANCELED -> {

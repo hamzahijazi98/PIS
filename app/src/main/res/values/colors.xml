@@ -15,4 +15,6 @@
     <color name="chatbackground">#e6dedd</color>
     <color name="green">#85ef47</color>
     <color name="red">#ff0f0f</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

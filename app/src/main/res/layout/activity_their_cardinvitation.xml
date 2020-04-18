@@ -73,6 +73,16 @@
             android:background="@drawable/roundedlayout"
             android:padding="25dp"
             >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_video"
+                android:text="@string/invitation_video"
+                android:textColor="@color/gray"
+                android:background="@drawable/roundedbutton"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"

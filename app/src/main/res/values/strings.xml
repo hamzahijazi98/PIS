@@ -116,6 +116,11 @@
     <string name="enter_name_to_search">enter_name_to_search</string>
     <string name="choose_your_hall_place_n_with_one_of_the_following_options">choose your hall place\n with one of the following options</string>
     <string name="click_to_upload_event_cover">click to upload event cover</string>
+    <string name="invitation_video">Invitation Video</string>
+
+    <string name="title_activity_fullscreen_video">FullscreenVideo</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>

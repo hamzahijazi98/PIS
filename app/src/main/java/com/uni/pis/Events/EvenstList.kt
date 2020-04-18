@@ -67,7 +67,7 @@ class EvenstList : AppCompatActivity(), BackgroundWorker.MyCallback {
                             friend[eventDataOrder.SecondInviterName.index].substringAfter("=")
                         var InviterId = friend[eventDataOrder.InviterId.index].substringAfter("=")
                         var channelUrl = friend[eventDataOrder.ChannelUrl.index].substringAfter("=")
-                        var video = friend[eventDataOrder.Video.index].substringAfter("=")
+                        var video = friend[eventDataOrder.Video.index].substringAfter("=").replace("\\", "")
 
                         myEventFrag.MyEventArrayList.add(
                             eventData(

@@ -265,6 +265,18 @@
     android:layout_marginBottom="5dp"
     />
 
+   <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_video"
+                android:text="@string/invitation_video"
+                android:textColor="@color/gray"
+                android:background="@drawable/roundedbutton"
+                android:layout_marginBottom="5dp"
+       android:visibility="gone"
+                />
+
 
  </LinearLayout>
 
@@ -297,5 +309,8 @@
 
         >
     </FrameLayout>
+
+
 </RelativeLayout>
+
 </ScrollView>

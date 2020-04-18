@@ -5,15 +5,28 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.uni.pis.BackgroundWorker
+import com.uni.pis.Data.EventData.FullscreenVideo
 import com.uni.pis.R
 import com.uni.pis.Data.EventData.eventData
+import kotlinx.android.synthetic.main.activity_mycardinvitation.*
 import kotlinx.android.synthetic.main.activity_their_cardinvitation.*
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.btn_groupchat
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.btn_location
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.btn_video
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.event_img
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.tv_description
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.tv_endtime
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.tv_eventdate
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.tv_finviter
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.tv_sinviter
+import kotlinx.android.synthetic.main.activity_their_cardinvitation.tv_starttime
 
 class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
     lateinit var  EventData: eventData
@@ -129,6 +142,19 @@ class TheirCardInvitation : AppCompatActivity(),BackgroundWorker.MyCallback {
             var intent = Intent(this, QrCodeGenerate::class.java)
             intent.putExtra("userID",UserID )
             startActivity(intent)
+
+        }
+        if(Eventdata.Video!="0"){
+            btn_video.visibility= View.VISIBLE
+
+            btn_video.setOnClickListener {
+                var intent= Intent(this, FullscreenVideo::class.java)
+                intent.putExtra("videourl",Eventdata.Video)
+                startActivity(intent)
+
+
+            }
+
 
         }
 
