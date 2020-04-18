@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.service.autofill.UserData
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -27,6 +28,8 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.uni.pis.BackgroundWorker
+import com.uni.pis.Data.UserData.UserDataGoogle
+import com.uni.pis.Data.UserData.userData
 import com.uni.pis.R
 import com.uni.pis.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -56,10 +59,22 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     var indexPhoneNum:Int =0
     var indexCity:Int =0
     lateinit var mImageUri: Uri
+    lateinit var  UserData: UserDataGoogle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+        if(intent.hasExtra("Bundle")){
+            val bundle = intent.getBundleExtra("Bundle")
+            val Userdata = bundle.getParcelable<UserDataGoogle>("userinformation")
+            if (Userdata != null) {
+                UserData = Userdata
+                Toast.makeText(this, UserData.first_name, Toast.LENGTH_LONG).show()
+                Toast.makeText(this, UserData.email, Toast.LENGTH_LONG).show()
+            }
+        }
+
+
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads")
@@ -255,8 +270,6 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
 
             }
         })
-
-
         btn_signup.setOnClickListener {
 
 
@@ -297,6 +310,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             }
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode) {

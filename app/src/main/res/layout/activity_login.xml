@@ -92,7 +92,13 @@
 
             />
 
+
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btn_signGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
@@ -127,5 +133,6 @@
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
