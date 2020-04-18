@@ -62,7 +62,8 @@
         android:layout_gravity="center"
         android:background="@drawable/roundedbutton"
         android:layout_marginTop="20dp"
-        android:text="@string/record"
+        android:padding="10dp"
+        android:text="@string/link_to_your_event"
         android:textColor="@color/gray" />
 
     </LinearLayout>

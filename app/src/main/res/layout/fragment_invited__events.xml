@@ -6,11 +6,12 @@
     tools:context=".homefrags.Invited_Events_Frag">
 
     <LinearLayout
-        android:layout_width="735dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
 
         >
+
 
         <TextView
             android:id="@+id/tv_invited_events"
@@ -18,15 +19,14 @@
             android:layout_height="50dp"
             android:background="@color/blueblack"
             android:gravity="center"
-            android:text="event_s_invited_to"
+            android:text="@string/event_s_invited_to"
             android:textColor="@color/whiteBackGround"
             android:textSize="24sp" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_invevents"
-            android:layout_width="3630dp"
-            android:layout_height="3284dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scrollbars="vertical" />
 
 

@@ -35,9 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-
                 android:layout_weight="1"
-                android:hint="yousefsuliman"
+                android:hint="@string/friend_name"
                 android:textSize="20sp" />
 
 
@@ -54,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="unfriend"
+            android:text="@string/unfriend"
             android:layout_gravity="bottom"
             android:background="@drawable/roundedbutton"
             android:textColor="@color/gray"/>

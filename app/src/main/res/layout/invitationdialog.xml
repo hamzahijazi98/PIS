@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +15,7 @@
         android:ems="10"
         android:inputType="number"
         android:textAlignment="center"
-        android:hint="invitee_number"
+        android:hint="@string/invitee_number"
         android:layout_marginBottom="30dp"/>
 
   <LinearLayout
@@ -27,7 +28,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/roundedbutton"
         android:textColor="@color/gray"
-        android:text="cancel"
+        android:text="@string/cancel"
         android:textSize="12sp"
         android:layout_gravity="start"/>
 
@@ -46,7 +47,7 @@
               android:textColor="@color/gray"
               android:padding="5dp"
               android:background="@drawable/roundedbutton"
-              android:text="set_moderator"
+              android:text="@string/set_moderator"
               android:textSize="12sp"/>
 
           <Button
@@ -56,9 +57,10 @@
               android:layout_gravity="right"
               android:textColor="@color/gray"
               android:background="@drawable/roundedbutton"
-              android:text="confrim"
+              android:text="@string/confrim"
               android:layout_marginStart="15dp"
-              android:textSize="12sp"/>
+              android:textSize="12sp"
+              tools:ignore="RtlHardcoded" />
       </LinearLayout>
 
   </LinearLayout>

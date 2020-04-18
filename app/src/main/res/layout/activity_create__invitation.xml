@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="click_to_upload_event_cover"
+        android:text="@string/click_to_upload_event_cover"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:textColor="@color/quantum_white_100"
@@ -195,7 +195,7 @@
             android:textStyle="bold"
             android:padding="10dp"
             android:textSize="20sp"
-            android:text="choose_your_hall_place_n_with_one_of_the_following_options"
+            android:text="@string/choose_your_hall_place_n_with_one_of_the_following_options"
             />
 <LinearLayout
     android:layout_width="match_parent"
