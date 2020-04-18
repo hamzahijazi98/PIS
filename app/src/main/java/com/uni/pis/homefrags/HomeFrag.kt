@@ -78,11 +78,11 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener,BackgroundWorker.My
 
     private fun SetDataList():ArrayList<Home_Item>{
         val HomerArrayList:ArrayList<Home_Item> = ArrayList()
-        HomerArrayList.add(Home_Item(R.drawable.notf, "Notification"))
-        HomerArrayList.add(Home_Item(R.drawable.event, "Events List"))
-        HomerArrayList.add(Home_Item(R.drawable.prof, "Profile"))
-        HomerArrayList.add(Home_Item(R.drawable.search, "Find Friend"))
-        HomerArrayList.add(Home_Item(R.drawable.help, "Help"))
+        HomerArrayList.add(Home_Item(R.drawable.notf, getString(R.string.notification)))
+        HomerArrayList.add(Home_Item(R.drawable.event,  getString(R.string.Events_List)))
+        HomerArrayList.add(Home_Item(R.drawable.prof,  getString(R.string.Profile)))
+        HomerArrayList.add(Home_Item(R.drawable.search,  getString(R.string.Find_Friend)))
+        HomerArrayList.add(Home_Item(R.drawable.help,  getString(R.string.Help)))
         return HomerArrayList
 
     }

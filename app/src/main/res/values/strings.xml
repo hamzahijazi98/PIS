@@ -119,8 +119,10 @@
     <string name="invitation_video">Invitation Video</string>
 
     <string name="title_activity_fullscreen_video">FullscreenVideo</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="Notification">Notification</string>
+    <string name="Events_List">Events List</string>
+    <string name="Find_Friend">Find Friend</string>
+    <string name="Help">Help</string>
 
 
 </resources>
