@@ -1,0 +1,205 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddHalls">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:outlineAmbientShadowColor="@color/Black"
+        android:background="@color/colorPrimaryDark">
+
+
+        <ImageView
+            android:id="@+id/event_img"
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+            android:layout_marginTop="25dp"
+            android:contentDescription="@string/Upload_Image2"
+            android:src="@drawable/linkedin_banner_image_1" />
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:padding="5dp"
+        android:background="@drawable/hintedittext"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_capacity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundedbutton"
+            android:text="Capacity of halls
+            :"
+            android:textColor="@color/gray" />
+
+          <EditText
+            android:id="@+id/et_capacity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:inputType="numberSigned"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:background="@drawable/roundedbutton"
+
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:background="@drawable/hintedittext"
+        android:orientation="horizontal"
+
+       >
+        <Button
+            android:id="@+id/btn_noEnvitee"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundedbutton"
+            android:text="Number of invitee:"
+            android:textColor="@color/gray" />
+        <EditText
+            android:id="@+id/et_noEnvitee"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:inputType="numberSigned"
+            android:layout_weight="1"
+            android:background="@drawable/roundedbutton"
+
+            />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/hintedittext"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_hallno"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="Number of halls:"
+                android:textColor="@color/gray" />
+            <EditText
+                android:id="@+id/et_hallno"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:inputType="numberSigned"
+                android:background="@drawable/roundedbutton"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/hintedittext"
+            android:orientation="horizontal"
+
+            >
+            <Button
+                android:id="@+id/btn_availabledate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="Available date for reservation halls:"
+                android:textColor="@color/gray" />
+            <EditText
+                android:id="@+id/et_availabledate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:hint="@string/birthdayformat"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+
+                />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/hintedittext"
+            android:orientation="horizontal"
+
+            >
+            <Button
+                android:id="@+id/btn_availabletime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="Available time for reservation halls:"
+                android:textColor="@color/gray" />
+            <EditText
+                android:id="@+id/et_availabletime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:hint="@string/hh_mm"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                />
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/roundedbutton"
+            android:enabled="true"
+            android:text="Save"
+            android:textColor="@color/gray" />
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
