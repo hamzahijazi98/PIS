@@ -6,4 +6,172 @@
     android:layout_height="match_parent"
     tools:context=".AdminSignUp">
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:outlineAmbientShadowColor="@color/Black"
+        android:background="@color/colorPrimaryDark">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/hintedittext"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <Button
+                android:id="@+id/userName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="User Name:"
+                android:textColor="@color/gray" />
+
+            <EditText
+                android:id="@+id/et_userName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:gravity="center"
+                android:inputType="text"
+                android:textSize="20sp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/hintedittext"
+            android:orientation="horizontal"
+
+            >
+            <Button
+                android:id="@+id/adminID"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="Admin ID:"
+                android:textColor="@color/gray" />
+            <EditText
+                android:id="@+id/et_adminID"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:inputType="numberSigned"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/hintedittext"
+            android:orientation="horizontal"
+
+            >
+            <Button
+                android:id="@+id/emaill"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="Email:"
+                android:textColor="@color/gray" />
+            <EditText
+                android:id="@+id/et_emaill"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:inputType="textEmailAddress"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/hintedittext"
+            android:orientation="horizontal"
+
+            >
+            <Button
+                android:id="@+id/passwordd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+                android:text="Password"
+                android:textColor="@color/gray" />
+            <EditText
+                android:id="@+id/et_passwordd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:inputType="textEmailAddress"
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/hintedittext"
+            android:orientation="horizontal"
+            >
+            <Spinner
+                android:id="@+id/phone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@drawable/roundedbutton"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:layout_marginEnd="20dp" />
+            <EditText
+                android:id="@+id/et_telephone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:hint="phonne"
+                android:inputType="numberSigned"
+
+                android:layout_weight="1"
+                android:background="@drawable/roundedbutton"
+
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

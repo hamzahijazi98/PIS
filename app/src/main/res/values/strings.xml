@@ -125,4 +125,13 @@
     <string name="Help">Help</string>
 
 
+    <string name="et_capacity">"Capacity"</string>
+    <string name="et_noEnvitee">"Phone"</string>
+    <string name="et_hallno">"Phone"</string>
+    <string name="et_availabledate">"Phone"</string>
+    <string name="et_availabletime">"Phone"</string>
+
+
+
+
 </resources>

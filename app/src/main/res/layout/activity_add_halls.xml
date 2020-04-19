@@ -29,14 +29,13 @@
 
 
         <Button
-            android:id="@+id/btn_capacity"
+            android:id="@+id/capacity"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:background="@drawable/roundedbutton"
-            android:text="Capacity of halls
-            :"
+            android:text="Capacity of halls:"
             android:textColor="@color/gray" />
 
           <EditText
@@ -62,7 +61,7 @@
 
        >
         <Button
-            android:id="@+id/btn_noEnvitee"
+            android:id="@+id/noEnvitee"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
