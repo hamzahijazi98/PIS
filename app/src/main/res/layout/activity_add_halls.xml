@@ -98,7 +98,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
-                android:text="Number of halls:"
+                android:text="Halls ID:                     "
                 android:textColor="@color/gray" />
             <EditText
                 android:id="@+id/et_hallno"
@@ -131,8 +131,8 @@
                 android:background="@drawable/roundedbutton"
                 android:text="Available date for reservation halls:"
                 android:textColor="@color/gray" />
-            <EditText
-                android:id="@+id/et_availabledate"
+            <TextView
+                android:id="@+id/tv_availabledate"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -162,10 +162,10 @@
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
-                android:text="Available time for reservation halls:"
+                android:text="Available time for reservation halls after:"
                 android:textColor="@color/gray" />
-            <EditText
-                android:id="@+id/et_availabletime"
+            <TextView
+                android:id="@+id/tv_availabletime"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"

@@ -33,8 +33,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @RequiresApi(Build.VERSION_CODES.N)
-
-private var timeFormat = SimpleDateFormat("hh:mm a", Locale.US)
+var timeFormat = SimpleDateFormat("hh:mm a", Locale.US)
 lateinit var stime:String
 lateinit var etime:String
 lateinit var TimeSet:String
@@ -130,7 +129,7 @@ class Create_Invitation : AppCompatActivity(),
             TimeSet = "end"
             setTime(TimeSet)
         }
-        btn_eventDate.setOnClickListener {
+          btn_eventDate.setOnClickListener {
             val now = Calendar.getInstance()
             val date =
                 DatePickerDialog(
@@ -143,7 +142,9 @@ class Create_Invitation : AppCompatActivity(),
                 )
             date.show()
 
-        }
+              }
+
+
         pick_img.setOnClickListener{
             //check runtime permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -230,6 +231,7 @@ class Create_Invitation : AppCompatActivity(),
             }
         }
     }
+
 fun setTime(set:String){
         val cal= Calendar.getInstance()
         val timePicker = TimePickerDialog(this,

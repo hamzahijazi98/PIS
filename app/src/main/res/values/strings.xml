@@ -125,11 +125,19 @@
     <string name="Help">Help</string>
 
 
+
+
     <string name="et_capacity">"Capacity"</string>
-    <string name="et_noEnvitee">"Phone"</string>
-    <string name="et_hallno">"Phone"</string>
-    <string name="et_availabledate">"Phone"</string>
-    <string name="et_availabletime">"Phone"</string>
+    <string name="et_noEnvitee">"number of invitee"</string>
+    <string name="et_hallno">"halls ID"</string>
+    <string name="et_availabledate">"Available date for reservation halls after"</string>
+    <string name="et_availabletime">"Available time for reservation halls after"</string>
+
+    <string name="et_userName">"User Name of admin"</string>
+    <string name="et_adminID">"Admin ID"</string>
+    <string name="et_emaill">"Email of admin"</string>
+    <string name="et_passwordd">"Passwordd"</string>
+    <string name="et_telephone">"Telephone"</string>
 
 
 
