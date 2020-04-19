@@ -111,4 +111,20 @@
     <string name="enter_name_to_search">أدخل السم للبحث</string>
     <string name="choose_your_hall_place_n_with_one_of_the_following_options">اختر الصالة مع احد الخيارات التالية</string>
     <string name="click_to_upload_event_cover">اضغط لتحميل غلاف المناسبة</string>
+    <string name="invitation_video">فيديو الدعوة</string>
+    <string name="title_activity_fullscreen_video">فيديو ملئ الشاشة</string>
+    <string name="Notification">الاشعارات</string>
+    <string name="Events_List">لائحة المناسبات</string>
+    <string name="Find_Friend">البحث عن اصدقاء</string>
+    <string name="Help">المساعدة</string>
+    <string name="et_capacity">الاستيعاب</string>
+    <string name="et_noEnvitee">عدد المدعوين</string>
+    <string name="et_hallno">رقم القاعة</string>
+    <string name="et_availabledate">"التاريخ المتاح لحجز الصالة "</string>
+    <string name="et_availabletime">الوقت المتاح لحجز الصالة ،بعد</string>
+    <string name="et_userName">اسم المستخدم للمسؤول</string>
+    <string name="et_adminID">هوية المسؤول</string>
+    <string name="et_emaill">الايميل</string>
+    <string name="et_passwordd">كلمة السر</string>
+    <string name="et_telephone">تيليفون</string>
 </resources>

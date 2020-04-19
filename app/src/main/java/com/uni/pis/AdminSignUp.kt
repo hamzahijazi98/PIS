@@ -18,6 +18,12 @@ class AdminSignUp : AppCompatActivity() {
     lateinit var mDatabaseRef: DatabaseReference
 
 
+    var et_userName: String=""
+    var et_adminID: String=""
+
+    var emaill: String=""
+    var et_passwordd: String=""
+    var et_telephone: String=""
 
 
 
@@ -25,24 +31,29 @@ class AdminSignUp : AppCompatActivity() {
 
 
 
-    et_email.addTextChangedListener(object : TextWatcher {
+    et_emaill.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {}
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            et_email.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
-                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(et_email.text).matches())
-                    et_email.error = "Invalid Email Address ..."
+            val et_emaill
+            et_emaill.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(et_emaill.text).matches())
+                    et_emaill.error = "Invalid Email Address ..."
             }
             if (s!!.isEmpty()) {
-                et_email.error = "Empty Field Not Allowed ..."
-                email = ""
+                et_emaill.error = "Empty Field Not Allowed ..."
+                et_emaill = ""
             } else
-                email = et_email.text.toString()
+                et_emaill = et_emaill.text.toString()
         }
     })
-    et_password.addTextChangedListener(object : TextWatcher {
+
+
+
+
+    et_passwordd.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
 
         }
@@ -51,14 +62,18 @@ class AdminSignUp : AppCompatActivity() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            et_password.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
+            et_passwordd.onFocusChangeListener = View.OnFocusChangeListener { _, _ ->
                 if (s!!.length < 6)
-                    et_password.error = "Minimum Length Password is 6"
+                    et_passwordd.error = "Minimum Length Password is 6"
             }
             if (s!!.isEmpty())
-                et_password.error = "Empty Field Not Allowed ..."
+                et_passwordd.error = "Empty Field Not Allowed ..."
         }
     })
+
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
