@@ -60,28 +60,12 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     var indexPhoneNum: Int = 0
     var indexCity: Int = 0
     lateinit var mImageUri: Uri
-    lateinit var UserData: UserDataGoogle
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        if (intent.hasExtra("Bundle")) {
-            val bundle = intent.getBundleExtra("Bundle")
-            val Userdata = bundle.getParcelable<UserDataGoogle>("userinformation")
-            if (Userdata != null) {
-                UserData = Userdata
-            }
-            var DisplayName = UserData.first_name.split(" ")
-            et_firstname.setText(DisplayName[0])
-            first_name=et_firstname.text.toString()
-            et_lastname.setText(DisplayName[1])
-            last_name=et_lastname.text.toString()
-            et_email.setText(UserData.email)
-            email=et_email.text.toString()
-            mImageUri = UserData.image.toUri()
-            profile_img.setImageURI(mImageUri)
 
-        }
 
 
 

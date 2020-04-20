@@ -17,6 +17,7 @@ import com.sendbird.android.SendBird
 import com.sendbird.android.SendBirdException
 import com.sendbird.android.User
 import com.uni.pis.BackgroundWorker
+import com.uni.pis.Data.UserData.UserDataGoogle
 import com.uni.pis.Events_Frag
 import com.uni.pis.HomeFrag
 import com.uni.pis.R
@@ -34,10 +35,43 @@ class MainActivity : AppCompatActivity(),
     var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
     val viewpage_apdapter= MyViewPagerAdapter(supportFragmentManager)
+    lateinit var UserDataGoogle: UserDataGoogle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
         var userid=mFirebaseAuth.currentUser?.uid!!
+
+        if (intent.hasExtra("Bundle")) {
+            val bundle = intent.getBundleExtra("Bundle")
+            val Userdata = bundle.getParcelable<UserDataGoogle>("userinformation")
+            if (Userdata != null) {
+                UserDataGoogle = Userdata
+            }
+            userData.first_name=UserDataGoogle.first_name
+            userData.last_name=UserDataGoogle.last_name
+            userData.phoneNumber=UserDataGoogle.phoneNumber
+            userData.gender=UserDataGoogle.gender
+            userData.email=UserDataGoogle.email
+            userData.birthdate=UserDataGoogle.birthdate
+            userData.city=UserDataGoogle.city
+            userData.image=UserDataGoogle.image
+
+        }
+        else{
+            try {
+                var data = BackgroundWorker(this)
+                data.execute("login", userid)
+            }
+            catch (e:NullPointerException) {
+                Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
+            }
+
+        }
+
+
+
         FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest$userid")
         SendBird.init(SENDBIRDAPPID, this)
 
@@ -62,15 +96,6 @@ class MainActivity : AppCompatActivity(),
         tabs.setupWithViewPager(view_pager)
 
 
-        try {
-            var mFirebaseAuth = FirebaseAuth.getInstance()
-
-            var data = BackgroundWorker(this)
-            data.execute("login", userid)
-        }
-        catch (e:NullPointerException) {
-            Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
-        }
 
 
     }

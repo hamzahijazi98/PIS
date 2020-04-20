@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,15 +17,15 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.facebook.*
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.*
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.uni.pis.Data.UserData.UserDataGoogle
 import com.uni.pis.R
 import com.uni.pis.homefrags.MainActivity
@@ -36,18 +37,15 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private var mAuth: FirebaseAuth? = null
-    private var AuthStateListener: FirebaseAuth.AuthStateListener? = null
-    private var mCallbackmanger: CallbackManager?=null
-    private var AccessTokenTracker: AccessTokenTracker?=null
+    private lateinit var sp:SharedPreferences
+
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        mAuth = FirebaseAuth.getInstance()
-        FacebookSdk.sdkInitialize(this)
 
-        val account: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(this)
+        sp = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
 
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.et_password)
@@ -56,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
         val signup = findViewById<Button>(R.id.btn_signup)
         val tv_recovery=findViewById<TextView>(R.id.tv_forgetPassword)
         val  cb_rememberme=findViewById<CheckBox>(R.id.cb_rememberme)
-        var sp= getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
@@ -149,83 +147,21 @@ class LoginActivity : AppCompatActivity() {
             signInWithGoogle()
         }
 
-        mCallbackmanger = CallbackManager.Factory.create()
-        btn_signFacebook.registerCallback(mCallbackmanger, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult?) {
-                handleFacebookToken(result!!.accessToken)
-            }
-            override fun onCancel() {
-                Toast.makeText(applicationContext,"Cancelled ",Toast.LENGTH_SHORT).show()
-            }
-            override fun onError(error: FacebookException?) {
-                Toast.makeText(applicationContext, error!!.message,Toast.LENGTH_SHORT).show()
-            }
-        })
-        btn_signFacebook.setReadPermissions("email","public_profile")
-        AuthStateListener=(FirebaseAuth.AuthStateListener { p0 ->
-            val user= p0.currentUser
-            if(user!=null)
-                updateUIFacebook(user)
-            else
-                updateUIFacebook(null)
-        })
-        AccessTokenTracker=(object : AccessTokenTracker() {
-            override fun onCurrentAccessTokenChanged(oldAccessToken: AccessToken?, currentAccessToken: AccessToken?) {
-                if(currentAccessToken ==null)
-                    mAuth!!.signOut()
-            }
-        })
+
     }
     private fun updateUI(currentUser: GoogleSignInAccount?) {
-        if(currentUser != null) {
-           var userData: UserDataGoogle = UserDataGoogle(currentUser.displayName.toString(),"",currentUser.email.toString(),
-               "","","","",currentUser.photoUrl.toString())
-            val intent=Intent(this,SignUp::class.java)
+        if (currentUser != null) {
+            var userData: UserDataGoogle = UserDataGoogle(
+                currentUser.givenName.toString(),  currentUser.familyName.toString(), currentUser.email.toString(),
+                "", "", "", "", currentUser.photoUrl.toString())
+            val intent = Intent(this, MainActivity::class.java)
             val bundle = Bundle()
             val parcel = userData
             bundle.putParcelable("userinformation", parcel)
             intent.putExtra("Bundle", bundle)
             startActivity(intent)
         }
-        else
-            Toast.makeText(this,"Already Signed IN",Toast.LENGTH_SHORT).show()
     }
-    private fun handleFacebookToken(Token:AccessToken){
-        val AuthCredential= FacebookAuthProvider.getCredential(Token.token)
-        mAuth!!.signInWithCredential(AuthCredential).addOnCompleteListener(object : OnCompleteListener<AuthResult> {
-            override fun onComplete(p0: Task<AuthResult>) {
-                if(p0.isSuccessful)
-                {
-                    val firebaseuser= mAuth!!.currentUser
-                    updateUIFacebook(firebaseuser)
-                }
-                else
-                { Toast.makeText(applicationContext,"Falied ",Toast.LENGTH_LONG).show()
-                }
-            }
-        })
-
-    }
-    private fun updateUIFacebook(currentUser: FirebaseUser?) {
-        if (currentUser != null) {
-            username.setText(currentUser.email)
-        } else {
-            username.setText("")
-        }
-    }
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        AuthStateListener?.let { mAuth!!.addAuthStateListener(it) }
-
-    }
-    override fun onStop() {
-        super.onStop()
-        if(AuthStateListener!=null){
-            mAuth!!.removeAuthStateListener(AuthStateListener!!)
-        }
-    }
-
     private fun signInWithGoogle() {
         val gso =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -253,8 +189,6 @@ class LoginActivity : AppCompatActivity() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-    mCallbackmanger!!.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == RC_SIGN_IN) {
             val task: Task<GoogleSignInAccount> =
                 GoogleSignIn.getSignedInAccountFromIntent(data)
