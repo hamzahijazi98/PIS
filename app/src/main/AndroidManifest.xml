@@ -28,7 +28,7 @@
         <activity android:name=".Events.QrCodeGenerate" />
         <activity android:name=".Events.Invitee_List" />
         <activity android:name=".Events.TheirCardInvitation" />
-        <activity android:name=".Events.dsa" />
+        <activity android:name=".Data.EventData.FullscreenVideo" />
         <activity android:name=".profile.EditProfileActivity" />
         <activity android:name=".Events.Chat" />
         <activity android:name=".Events.EditEvent" />
