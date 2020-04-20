@@ -60,7 +60,6 @@ class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
                         )
                     )
                 } catch (e: IllegalStateException) {
-
                     Log.d("ProfilePagePersonalFrag", "onError: " + e.message)
                 } catch (e: NullPointerException) {
                     Log.d("ProfilePagePersonalFrag", "onError: " + e.message)

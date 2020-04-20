@@ -70,6 +70,7 @@ dependencies {
     implementation 'com.google.zxing:zxingorg:3.3.3'
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
 
 }

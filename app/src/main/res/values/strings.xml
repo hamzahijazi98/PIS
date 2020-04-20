@@ -72,7 +72,8 @@
     <string name="send_invitation">Send Invitation</string>
     <string name="add_friend">Add Friend</string>
 
-
+    <string name="facebook_app_id">154741595960895</string>
+    <string name="fb_login_protocol_scheme">fb154741595960895</string>
     <string name="rejcet">Rejcet</string>
     <string name="edit">Edit</string>
     <string name="write_a_message">Write Message</string>

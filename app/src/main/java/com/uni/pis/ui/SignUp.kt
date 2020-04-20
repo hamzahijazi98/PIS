@@ -15,6 +15,7 @@ import android.webkit.MimeTypeMap
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -46,32 +47,40 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
     lateinit var mStorageRef: StorageReference
     lateinit var mDatabaseRef: DatabaseReference
     private lateinit var mUploadTask: StorageTask<*>
-    var first_name: String=""
-    var last_name: String=""
-    var email: String=""
-    var password: String=""
-    var phonenumber: String=""
-    var gender: String=""
-    var city: String=""
-    var birth: String=""
+    var first_name: String = ""
+    var last_name: String = ""
+    var email: String = ""
+    var password: String = ""
+    var phonenumber: String = ""
+    var gender: String = ""
+    var city: String = ""
+    var birth: String = ""
     lateinit var imageStoragelink: String
-    lateinit var userID:String
-    var indexPhoneNum:Int =0
-    var indexCity:Int =0
+    lateinit var userID: String
+    var indexPhoneNum: Int = 0
+    var indexCity: Int = 0
     lateinit var mImageUri: Uri
-    lateinit var  UserData: UserDataGoogle
+    lateinit var UserData: UserDataGoogle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        if(intent.hasExtra("Bundle")){
+        if (intent.hasExtra("Bundle")) {
             val bundle = intent.getBundleExtra("Bundle")
             val Userdata = bundle.getParcelable<UserDataGoogle>("userinformation")
             if (Userdata != null) {
                 UserData = Userdata
-                Toast.makeText(this, UserData.first_name, Toast.LENGTH_LONG).show()
-                Toast.makeText(this, UserData.email, Toast.LENGTH_LONG).show()
             }
+            var DisplayName = UserData.first_name.split(" ")
+            et_firstname.setText(DisplayName[0])
+            first_name=et_firstname.text.toString()
+            et_lastname.setText(DisplayName[1])
+            last_name=et_lastname.text.toString()
+            et_email.setText(UserData.email)
+            email=et_email.text.toString()
+            mImageUri = UserData.image.toUri()
+            profile_img.setImageURI(mImageUri)
+
         }
 
 
@@ -92,12 +101,11 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
             dob.show()
 
         }
-        var radiobuttonmale:RadioButton=findViewById(R.id.RB_male)
-        var radiobuttonfemale:RadioButton=findViewById(R.id.RB_female)
+        val radiobuttonmale: RadioButton = findViewById(R.id.RB_male)
+        val radiobuttonfemale: RadioButton = findViewById(R.id.RB_female)
 
         //spinner for phone number
-        val phone_adapter =
-            ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, phone_domain)
+        val phone_adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, phone_domain)
         spinner_phone.adapter = phone_adapter
         spinner_phone.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -105,17 +113,12 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                     phonenumber = phone_domain[position] + et_phonenumber.text.toString()
                     indexPhoneNum = position
                 }
-
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-
         // city code
-        val city_adapter =
-            ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cities)
+        val city_adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cities)
         spinner_city.adapter = city_adapter
         spinner_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -125,9 +128,7 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                 }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         RG_gender.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.RB_male)
@@ -249,14 +250,12 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         })
         et_phonenumber.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
                 if (s!!.length > 7) {
                     et_phonenumber.error = "Invalid Phone Number ..."
                     phonenumber = ""
@@ -267,12 +266,9 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                 } else {
                     phonenumber = phone_domain[indexPhoneNum] + et_phonenumber.text.toString()
                 }
-
             }
         })
         btn_signup.setOnClickListener {
-
-
             if (Is_Vaild()) {
                 loading.visibility = View.VISIBLE
                 mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
@@ -285,12 +281,10 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
                         }
                         Toast.makeText(this, "Successful sign up", Toast.LENGTH_LONG).show()
-
                     }
                 }
 
-            }
-            else {
+            } else {
                 if (indexCity == 0)
                     citySpin_error.visibility = View.VISIBLE
                 else
@@ -299,13 +293,10 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
                     phoneSpin_error.visibility = View.VISIBLE
                 else
                     phoneSpin_error.visibility = View.GONE
-                if(!radiobuttonmale.isChecked && !radiobuttonfemale.isChecked)
-                    tv_gendererror.visibility=View.VISIBLE
+                if (!radiobuttonmale.isChecked && !radiobuttonfemale.isChecked)
+                    tv_gendererror.visibility = View.VISIBLE
                 else
-                    tv_gendererror.visibility=View.GONE
-
-
-
+                    tv_gendererror.visibility = View.GONE
                 Toast.makeText(this, "Failed You Have Error Field Or Invalid", Toast.LENGTH_LONG).show()
             }
         }
@@ -313,15 +304,16 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode) {
-            IMAGE_PICK_CODE ->{
+        when (requestCode) {
+            IMAGE_PICK_CODE -> {
                 mImageUri = data?.data!!
                 profile_img.setImageURI(data.data)
-                              }
+            }
         }
     }
     fun Is_Vaild(): Boolean {
-        return first_name!=""&&last_name!=""&&email!=""&&password!=""&&phonenumber!=""&&gender!=""&&city!=""&&birth!=""&& indexPhoneNum!=0&& indexCity!=0 }
+        return first_name != "" && last_name != "" && email != "" && password != "" && phonenumber != "" && gender != "" && city != "" && birth != "" && indexPhoneNum != 0 && indexCity != 0
+    }
     override fun onResult(result: String?) {
         loading.visibility = View.GONE
         intent = Intent(this, LoginActivity::class.java)
@@ -334,30 +326,27 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         return mime.getExtensionFromMimeType(cR.getType(uri))
     }
     private fun uploadFile() {
-        if (mImageUri != null)
-        {
-            var fileReference = mStorageRef.child("$first_name$last_name"+System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri))
-             var uploadTask= fileReference.putFile(mImageUri)
-                 .addOnSuccessListener { taskSnapshot ->
-                 Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
-                     .show()
-                     taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
-                         imageStoragelink=it.toString()
-                         var data = BackgroundWorker(this)
-                         data.execute("signup",first_name,last_name,gender,phonenumber,email,birth,userID,city,imageStoragelink)
+        if (mImageUri != null) {
+            var fileReference = mStorageRef.child("$first_name$last_name" + System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri))
+            var uploadTask = fileReference.putFile(mImageUri)
+                .addOnSuccessListener { taskSnapshot ->
+                    Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
+                        .show()
+                    taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+                        imageStoragelink = it.toString()
+                        var data = BackgroundWorker(this)
+                        data.execute("signup", first_name, last_name, gender, phonenumber, email, birth, userID, city, imageStoragelink)
                         // var data = BackgroundWorker(this)
-                         //data.execute("updateuserdata",first_name,last_name,gender,phonenumber,birth,userID,city,imageStoragelink)
+                        //data.execute("updateuserdata",first_name,last_name,gender,phonenumber,birth,userID,city,imageStoragelink)
 
-                     }
+                    }
 
 
-                 }
-                 .addOnFailureListener { e ->
-                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-                 }
-        }
-        else
-        {
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                }
+        } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
         }
     }
