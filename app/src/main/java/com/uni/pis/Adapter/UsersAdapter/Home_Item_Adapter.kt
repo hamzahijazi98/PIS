@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.uni.pis.R
 import com.uni.pis.Data.LoginData.Home_Item
+import com.uni.pis.Data.UserData.userData
+import kotlinx.android.synthetic.main.fragment_home_.*
 
 class Home_Item_Adapter(var context: Context,var Home_Item_ArrayList: ArrayList<Home_Item>):BaseAdapter() {
 
@@ -32,6 +34,7 @@ class Home_Item_Adapter(var context: Context,var Home_Item_ArrayList: ArrayList<
         val listItem: Home_Item =Home_Item_ArrayList.get(position)
         icons.setImageResource(listItem.icons!!)
         names.text=listItem.name
+
         return view
 
     }

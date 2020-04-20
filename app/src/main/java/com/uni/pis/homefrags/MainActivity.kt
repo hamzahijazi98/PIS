@@ -43,23 +43,7 @@ class MainActivity : AppCompatActivity(),
 
         var userid=mFirebaseAuth.currentUser?.uid!!
 
-        if (intent.hasExtra("Bundle")) {
-            val bundle = intent.getBundleExtra("Bundle")
-            val Userdata = bundle.getParcelable<UserDataGoogle>("userinformation")
-            if (Userdata != null) {
-                UserDataGoogle = Userdata
-            }
-            userData.first_name=UserDataGoogle.first_name
-            userData.last_name=UserDataGoogle.last_name
-            userData.phoneNumber=UserDataGoogle.phoneNumber
-            userData.gender=UserDataGoogle.gender
-            userData.email=UserDataGoogle.email
-            userData.birthdate=UserDataGoogle.birthdate
-            userData.city=UserDataGoogle.city
-            userData.image=UserDataGoogle.image
 
-        }
-        else{
             try {
                 var data = BackgroundWorker(this)
                 data.execute("login", userid)
@@ -68,7 +52,6 @@ class MainActivity : AppCompatActivity(),
                 Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
             }
 
-        }
 
 
 
@@ -128,7 +111,7 @@ class MainActivity : AppCompatActivity(),
                 Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
             }
         } catch (e: Exception) { Toast.makeText(this, e.message, Toast.LENGTH_LONG).show() }
-        tv_homeName.text= userData.first_name+"\n"+ userData.last_name
+
     }
     override fun onBackPressed() {
 if (view_pager.currentItem==0){

@@ -12,13 +12,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.uni.pis.BackgroundWorker
-import com.uni.pis.R
 import com.uni.pis.Data.UserData.userData
 import com.uni.pis.Events.EvenstList
+import com.uni.pis.R
 import kotlinx.android.synthetic.main.fragment_profile_page_personal.*
 import kotlin.system.exitProcess
 
@@ -26,6 +28,7 @@ import kotlin.system.exitProcess
 class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
     var mFirebaseAuth = FirebaseAuth.getInstance()
     lateinit var mStorageRef: StorageReference
+   lateinit var mGoogleSignInClient : GoogleSignIn
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +45,7 @@ class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
         tv_gender.text = userData.gender
         tv_phone.text = userData.phoneNumber
         tv_birthday.text = userData.birthdate
+
 
         var image = userData.image.replace("\\", "").trim()
         try {
@@ -95,10 +99,14 @@ class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
             builder.setMessage("Do you want to LogOut?")
             builder.setPositiveButton("Confirm"){ _, _ ->
                 run {
+
                     mFirebaseAuth.signOut()
                     context!!.deleteSharedPreferences("myPrefs")
+                        exitProcess(0)
 
-                    exitProcess(0)
+
+
+
 
                 }
             }

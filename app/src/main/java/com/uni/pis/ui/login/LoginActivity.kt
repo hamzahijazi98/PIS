@@ -3,6 +3,7 @@ package com.uni.pis.ui.login
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -26,6 +27,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.uni.pis.BackgroundWorker
 import com.uni.pis.Data.UserData.UserDataGoogle
 import com.uni.pis.R
 import com.uni.pis.homefrags.MainActivity
@@ -33,7 +35,7 @@ import com.uni.pis.ui.SignUp
 import kotlinx.android.synthetic.main.activity_login.*
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
 
     private lateinit var loginViewModel: LoginViewModel
     private var mAuth: FirebaseAuth? = null
@@ -144,7 +146,9 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         btn_signGoogle.setOnClickListener {
-            signInWithGoogle()
+
+              signInWithGoogle()
+
         }
 
 
@@ -155,11 +159,8 @@ class LoginActivity : AppCompatActivity() {
                 currentUser.givenName.toString(),  currentUser.familyName.toString(), currentUser.email.toString(),
                 "", "", "", "", currentUser.photoUrl.toString())
             val intent = Intent(this, MainActivity::class.java)
-            val bundle = Bundle()
-            val parcel = userData
-            bundle.putParcelable("userinformation", parcel)
-            intent.putExtra("Bundle", bundle)
             startActivity(intent)
+            finish()
         }
     }
     private fun signInWithGoogle() {
@@ -167,8 +168,9 @@ class LoginActivity : AppCompatActivity() {
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
+                .requestProfile()
                 .build()
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        val mGoogleSignInClient = GoogleSignIn.getClient(application.applicationContext, gso)
         mAuth = FirebaseAuth.getInstance()
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
@@ -180,6 +182,12 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(TAG, "onComplete: Success")
                     val user: FirebaseUser? = mAuth!!.currentUser
+                    var data = BackgroundWorker(this)
+                    data.execute("signup", account.givenName, account.familyName, "gender", "update your account", account.email, "update your account" , user!!.uid, "update your account", "")
+                    sp = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+                    var editor= sp.edit()
+                    editor.putString("name", account.email)
+                    editor.putString("password", user!!.uid)
                     this.updateUI(account)
                 } else {
                     Log.d(TAG, "onComplete: Failure: ", task.exception)
@@ -220,6 +228,10 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "GoogleSignInActivity"
         private const val RC_SIGN_IN = 9001
+    }
+
+    override fun onResult(result: String?) {
+
     }
 }
 /**
