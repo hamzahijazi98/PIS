@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.core.net.toUri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
@@ -17,6 +18,7 @@ import com.google.firebase.storage.StorageReference
 import com.sendbird.android.SendBird
 import com.sendbird.android.SendBirdException
 import com.sendbird.android.User
+import com.squareup.picasso.Picasso
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.Data.UserData.UserDataGoogle
 import com.uni.pis.Events_Frag
@@ -41,11 +43,7 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-
         var userid=mFirebaseAuth.currentUser?.uid!!
-
-
             try {
                 var data = BackgroundWorker(this)
                 data.execute("login", userid)
@@ -53,13 +51,8 @@ class MainActivity : AppCompatActivity(),
             catch (e:NullPointerException) {
                 Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
             }
-
-
-
-
         FirebaseMessaging.getInstance().subscribeToTopic("FriendRequest$userid")
         SendBird.init(SENDBIRDAPPID, this)
-
         SendBird.connect(userid, object : SendBird.ConnectHandler { override fun onConnected(user: User?, e: SendBirdException?) {
             if (e != null)
             {
@@ -73,7 +66,6 @@ class MainActivity : AppCompatActivity(),
                 }
             }
         })
-
         viewpage_apdapter.addfragment(HomeFrag(),getString( R.string.Home))
         viewpage_apdapter.addfragment(Events_Frag(),getString( R.string.Create_Event))
         viewpage_apdapter.addfragment(ProfilePagePersonalFrag(),getString(R.string.Profile ))
@@ -84,13 +76,12 @@ class MainActivity : AppCompatActivity(),
 
 
     }
-
-
-
     @SuppressLint("SetTextI18n")
     override fun onResult(result: String?) {
+
         var image = userData.image.replace("\\", "").trim()
         try {
+            Picasso.get().load(userData.image.toUri()).into(home_iv_profile)
             mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
             mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
                 val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
@@ -112,7 +103,8 @@ class MainActivity : AppCompatActivity(),
             }.addOnFailureListener {
                 Log.d("MainActivity", "onError: " + it.message)
             }
-        } catch (e: Exception) { Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            Log.d("MainActivity", "onError: " + e.message)
         }
         tv_homeName.text=userData.first_name+" "+userData.last_name
 
@@ -131,7 +123,6 @@ if (view_pager.currentItem==0){
         else
     view_pager.currentItem=0
     }
-
     fun trans(postion :Int){
         view_pager.currentItem=postion
     }

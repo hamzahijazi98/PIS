@@ -184,7 +184,7 @@ class LoginActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                     Log.d(TAG, "onComplete: Success")
                     val user: FirebaseUser? = mAuth!!.currentUser
                     var data = BackgroundWorker(this)
-                    data.execute("signup", account.givenName, account.familyName, "gender", "update your account", account.email, "update your account" , user!!.uid, "update your account", "")
+                    data.execute("signup", account.givenName, account.familyName, "gender", "update your account", account.email, "update your account" , user!!.uid, "update your account",account.photoUrl.toString())
                     sp = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
                     var editor= sp.edit()
                     editor.putString("name", account.email)
