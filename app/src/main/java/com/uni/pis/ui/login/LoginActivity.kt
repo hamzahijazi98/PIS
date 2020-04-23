@@ -178,6 +178,7 @@ class LoginActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
         val credential: AuthCredential =
             GoogleAuthProvider.getCredential(account!!.idToken, null)
+        mAuth!!.signOut()
         mAuth!!.signInWithCredential(credential).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "onComplete: Success")
@@ -187,7 +188,8 @@ class LoginActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                     sp = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
                     var editor= sp.edit()
                     editor.putString("name", account.email)
-                    editor.putString("password", user!!.uid)
+                    editor.putString("password", user.uid)
+                    editor.apply()
                     this.updateUI(account)
                 } else {
                     Log.d(TAG, "onComplete: Failure: ", task.exception)
