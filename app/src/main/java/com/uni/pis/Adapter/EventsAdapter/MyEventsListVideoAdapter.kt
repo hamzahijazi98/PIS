@@ -3,6 +3,7 @@ package com.uni.pis.Adapter.EventsAdapter
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,7 +77,7 @@ class MyEventsListVideoAdapter(var MyEvents_ArrayList: ArrayList<eventData>,var 
 
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(itemView.context, e.message, Toast.LENGTH_SHORT).show()
+                        Log.d("MyEventsListVideoAdapter", "onError: " + e.message)
                     }
             }
             else

@@ -45,7 +45,7 @@ class NotificationListAdapter(val NotificationArray:ArrayList<acceptFriendData>,
                     Log.d(this.toString(), "onError: " + it.message)
                 }
             } catch (e: Exception) {
-                // Toast.makeText(context,e.message, Toast.LENGTH_LONG).show()
+                Log.d("NotificationListAdapter", "onError: " + e.message)
             }
             itemView.accept_friend.setOnClickListener {
                 var data = BackgroundWorker(itemView.context)

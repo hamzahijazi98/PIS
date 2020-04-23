@@ -56,14 +56,14 @@ class FindFriendAdapter(val FindFriendArrayList:ArrayList<friendData>, context:C
                             )
                         )}
                     catch (e: IllegalStateException){
-                        //Toast.makeText(context,e.message,Toast.LENGTH_LONG).show()
+                        Log.d("FindFriendAdapter", "onError: " + e.message)
                     }
                 }.addOnFailureListener {
-                    // Handle any errors
+                    Log.d("FindFriendAdapter", "onError: " + it.message)
                 }
             }
             catch (e: Exception){
-                // Toast.makeText(context,e.message, Toast.LENGTH_LONG).show()
+                Log.d("FindFriendAdapter", "onError: " + e.message)
             }
 
             itemView.addfriend.setOnClickListener {

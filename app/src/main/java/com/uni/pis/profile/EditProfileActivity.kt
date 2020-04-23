@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.AdapterView
@@ -158,11 +159,11 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                         )
                     )
                 } catch (e: IllegalStateException) {
-                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("EditProfileActivity", "onError: " + e.message)
                 } catch (e: NullPointerException) {
-                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("EditProfileActivity", "onError: " + e.message)
                 } catch (e: Exception) {
-                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("EditProfileActivity", "onError: " + e.message)
                 }
 
             }.addOnFailureListener {
@@ -198,7 +199,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                         userID = mFirebaseAuth.currentUser?.uid!!
                         uploadFile()
                     } catch (e: NullPointerException) {
-                        Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                        Log.d("EditProfileActivity", "onError: " + e.message)
                     }
                 Toast.makeText(this, "Update Saved", Toast.LENGTH_LONG).show()
 
@@ -250,7 +251,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
 
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                    Log.d("EditProfileActivity", "onError: " + e.message)
                 }
         }
         else

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -101,15 +102,15 @@ class MainActivity : AppCompatActivity(),
                         )
                     )
                 } catch (e: IllegalStateException) {
-                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("MainActivity", "onError: " + e.message)
                 } catch (e: NullPointerException) {
-                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("MainActivity", "onError: " + e.message)
                 } catch (e: Exception) {
-                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    Log.d("MainActivity", "onError: " + e.message)
                 }
 
             }.addOnFailureListener {
-                Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                Log.d("MainActivity", "onError: " + it.message)
             }
         } catch (e: Exception) { Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
         }
