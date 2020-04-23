@@ -74,8 +74,5 @@ class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback, InviteeLis
         tv_TotalAccepted.text=totalaccepted.toString()
         tv_TotalRejected.text=totalrejected.toString()
         tv_TotalNotSure.text=totalmaby.toString()
-
-
-
     }
 }

@@ -53,7 +53,6 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-
         et_fname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 first_name=s.toString()
@@ -119,7 +118,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                 }
                 else{
                     city=cities[position]
-                    userData.city=cities[position]
+                    userData.city=city
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -146,6 +145,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                 userData.gender=gender
             }
         }
+
         try {
             mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
             mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
@@ -202,9 +202,6 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                     }
                 Toast.makeText(this, "Update Saved", Toast.LENGTH_LONG).show()
 
-//                val intent = Intent (this, MainActivity::class.java)
-//                MainActivity
-//                startActivity(intent)
             }
             builder.setNegativeButton("Cancel"){ _, _ ->
                 Toast.makeText(this,"Cancelled.", Toast.LENGTH_SHORT).show()
@@ -223,7 +220,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
             IMAGE_PICK_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     mImageUri = data!!.data
-                    iv_profile.setImageURI(mImageUri)
+                    iv_Editprofile.setImageURI(mImageUri)
                 }
             }
         }
@@ -237,8 +234,7 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
     private fun uploadFile() {
         if (mImageUri != null)
         {
-            var fileReference = mStorageRef.child("$first_name$last_name"+System.currentTimeMillis().toString() + "." + getFileExtension(
-                mImageUri!!
+            var fileReference = mStorageRef.child("$first_name$last_name"+System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri!!
             ))
             var uploadTask= fileReference.putFile(mImageUri!!)
                 .addOnSuccessListener { taskSnapshot ->

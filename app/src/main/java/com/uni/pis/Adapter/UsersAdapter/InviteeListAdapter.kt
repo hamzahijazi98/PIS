@@ -10,10 +10,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.uni.pis.Data.UserData.InviteeListData
 import com.uni.pis.Events.mFirebaseAuth
 import com.uni.pis.R
-import com.uni.pis.Data.UserData.InviteeListData
 import kotlinx.android.synthetic.main.cardview_eventinvitee.view.*
+
 
 class   InviteeListAdapter (val InviteeListArrayList:ArrayList<InviteeListData>, val context: Context):
     RecyclerView.Adapter<InviteeListAdapter.ViewHolder>() {
@@ -21,7 +22,8 @@ class   InviteeListAdapter (val InviteeListArrayList:ArrayList<InviteeListData>,
     var total:Int=0
     var totalAccepted:Int=0
     var totalrejeted:Int=0
-    var totalmaby:Int=0}
+    var totalmaby:Int=0
+    }
     lateinit var callbacks : FragCallbacks
     private val userid = mFirebaseAuth.currentUser?.uid!!
 
@@ -73,9 +75,13 @@ class   InviteeListAdapter (val InviteeListArrayList:ArrayList<InviteeListData>,
 
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.cardview_eventinvitee, parent, false)
+        total=0
+        totalAccepted=0
+        totalrejeted=0
+        totalmaby=0
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_eventinvitee, parent, false)
         return ViewHolder(view)
 
 
@@ -84,7 +90,6 @@ class   InviteeListAdapter (val InviteeListArrayList:ArrayList<InviteeListData>,
     override fun getItemCount(): Int {
         return InviteeListArrayList.size
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(InviteeListArrayList[position])
         callbacks.sendResult(
@@ -104,4 +109,6 @@ class   InviteeListAdapter (val InviteeListArrayList:ArrayList<InviteeListData>,
     {
         fun sendResult (total: Int,totalaccepted: Int,totalrejected: Int,totalmaby: Int) // this method will be implemented in the hosting activity
     }
+
+
 }

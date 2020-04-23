@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+
         var userid=mFirebaseAuth.currentUser?.uid!!
 
 
@@ -110,7 +111,9 @@ class MainActivity : AppCompatActivity(),
             }.addOnFailureListener {
                 Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
             }
-        } catch (e: Exception) { Toast.makeText(this, e.message, Toast.LENGTH_LONG).show() }
+        } catch (e: Exception) { Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+        }
+        tv_homeName.text=userData.first_name+" "+userData.last_name
 
     }
     override fun onBackPressed() {
