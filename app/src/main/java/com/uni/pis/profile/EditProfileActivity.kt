@@ -118,12 +118,11 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
                     city = userData.city
                 }
                 else{
-                    cities[position]
+                    city=cities[position]
                     userData.city=cities[position]
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                city= userData.city
             }
     }
 
@@ -152,10 +151,10 @@ class EditProfileActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
             mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
                 val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
                 try {
-                    iv_Editprofile.setImageBitmap(
+                    iv_profile.setImageBitmap(
                         Bitmap.createScaledBitmap(
-                            bmp, iv_Editprofile.width,
-                            iv_Editprofile.height, false
+                            bmp, iv_profile.width,
+                            iv_profile.height, false
                         )
                     )
                 } catch (e: IllegalStateException) {
