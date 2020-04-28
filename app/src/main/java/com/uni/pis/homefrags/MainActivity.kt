@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(),
 
         var image = userData.image.replace("\\", "").trim()
         try {
-            Picasso.get().load(userData.image.toUri()).into(home_iv_profile)
+//            Picasso.get().load(userData.image.toUri()).into(home_iv_profile)
             mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(image)
             mStorageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener {
                 val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)

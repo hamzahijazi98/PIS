@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -99,12 +100,13 @@ class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
             builder.setMessage("Do you want to LogOut?")
             builder.setPositiveButton("Confirm"){ _, _ ->
                 run {
-
+                   try{
+                       LoginManager.getInstance().logOut()
+                   }
+                   catch (e:Exception){Log.d("Logout",e.message)}
                     mFirebaseAuth.signOut()
                     context!!.deleteSharedPreferences("myPrefs")
                         exitProcess(0)
-
-
 
 
 
