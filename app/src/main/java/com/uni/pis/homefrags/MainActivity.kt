@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.fragment_home_.*
 class MainActivity : AppCompatActivity(),
     BackgroundWorker.MyCallback {
     @RequiresApi(Build.VERSION_CODES.N)
-    private val SENDBIRDAPPID="C70ACBE6-0911-45D5-B02B-C56D3ADDF158"
+    private val SENDBIRDAPPID="74BB1D8B-0F07-402B-ABD1-7A20E5B7E7AE"
 
 
     var mFirebaseAuth = FirebaseAuth.getInstance()
