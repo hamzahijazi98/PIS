@@ -59,13 +59,13 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     }
 
     // A placeholder username validation check
-    private fun isUserNameValid(username: String): Boolean {
+    fun isUserNameValid(username: String): Boolean {
         return username.isNotBlank()
 
     }
 
     // A placeholder password validation check
-    private fun isPasswordValid(password: String): Boolean {
+     fun isPasswordValid(password: String): Boolean {
         return password.length > 5
     }
 }

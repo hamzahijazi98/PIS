@@ -78,10 +78,10 @@ class   InviteeListAdapter (val InviteeListArrayList:ArrayList<InviteeListData>,
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        total=0
-        totalAccepted=0
-        totalrejeted=0
-        totalmaby=0
+//        total=0
+//        totalAccepted=0
+//        totalrejeted=0
+//        totalmaby=0
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_eventinvitee, parent, false)
         return ViewHolder(view)
 
