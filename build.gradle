@@ -8,6 +8,7 @@ buildscript {
         mavenCentral()
         ext {
             dokkaVersion = '0.9.17'
+
         }
 
     }

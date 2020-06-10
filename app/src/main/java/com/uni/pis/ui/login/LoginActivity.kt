@@ -200,7 +200,14 @@ class LoginActivity : AppCompatActivity(),BackgroundWorker.MyCallback {
 
 
     }
-    private fun updateUI(currentUser: GoogleSignInAccount?) {
+    /**
+     * @param currentUser:GoogleSignInAccount,
+     * @author yousef
+     * @return void
+     *
+     * **/
+     fun updateUI(currentUser: GoogleSignInAccount?) {
+
         if (currentUser != null) {
             var userData: UserDataGoogle = UserDataGoogle(
                 currentUser.givenName.toString(), currentUser.familyName.toString(), currentUser.email.toString(),
