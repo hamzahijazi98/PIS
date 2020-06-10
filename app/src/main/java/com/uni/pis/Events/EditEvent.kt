@@ -40,9 +40,7 @@ class EditEvent : AppCompatActivity(),BackgroundWorker.MyCallback{
     var timeSet: String = ""
     lateinit var eventName: String
     lateinit var finviter: String
-
     lateinit var LocationId: String
-
     lateinit var sinviter: String
     lateinit var date: String
     lateinit var stime: String
