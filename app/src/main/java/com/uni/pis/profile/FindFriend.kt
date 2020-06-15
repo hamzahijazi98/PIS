@@ -49,7 +49,7 @@ class FindFriend : AppCompatActivity(),BackgroundWorker.MyCallback {
 
         for (i in data) {
 
-            var friend = i.split("&")
+            var friend = i.split("&&")
             if (friend.size > 1) {
 
                 var firstname=friend[BackgroundWorker.userDataOrder.firstName.index].substringAfter("=")
