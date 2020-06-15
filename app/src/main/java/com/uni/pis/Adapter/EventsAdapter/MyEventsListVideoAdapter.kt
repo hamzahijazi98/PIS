@@ -103,7 +103,7 @@ class MyEventsListVideoAdapter(var MyEvents_ArrayList: ArrayList<eventData>,var 
 
         holder.itemView.setOnClickListener{
             val builder = AlertDialog.Builder(holder.itemView.context)
-            builder.setMessage("Do you want to close Eventor?")
+            builder.setMessage("Do you want to link video to this Event?")
             builder.setPositiveButton("Confirm"){ _, _ ->
                 holder.uploadFile()
 
