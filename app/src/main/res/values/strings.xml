@@ -125,8 +125,6 @@
     <string name="Help">Help</string>
 
 
-
-
     <string name="et_capacity">"Capacity"</string>
     <string name="et_noEnvitee">"number of invitee"</string>
     <string name="et_hallno">"halls ID"</string>
@@ -139,6 +137,7 @@
     <string name="et_passwordd">"Passwordd"</string>
     <string name="et_telephone">"Telephone"</string>
     <string name="events_invited_to">Events Invited To</string>
+    <string name="how_to_add_video_to_event">How To Add Video To Event?</string>
 
 
 </resources>

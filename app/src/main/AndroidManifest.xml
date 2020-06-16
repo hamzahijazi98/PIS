@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AddHalls"></activity>
+        <activity android:name=".homefrags.HelpActivity"></activity>
+        <activity android:name=".AddHalls" />
         <activity android:name=".AdminSignUp" />
         <activity android:name=".Events.MyEventsUploadViedo" />
         <activity android:name=".Events.QrCodeGenerate" />
@@ -73,9 +74,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
         <activity
             android:name=".Events.MapsActivity"

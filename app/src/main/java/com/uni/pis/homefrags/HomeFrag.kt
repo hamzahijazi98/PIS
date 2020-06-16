@@ -20,6 +20,7 @@ import com.uni.pis.Events.EvenstList
 import com.uni.pis.Data.UserData.userData
 import com.uni.pis.homefrags.MainActivity
 import com.uni.pis.Data.LoginData.Home_Item
+import com.uni.pis.homefrags.HelpActivity
 import com.uni.pis.profile.FindFriend
 import kotlinx.android.synthetic.main.fragment_home_.*
 import java.util.*
@@ -111,6 +112,8 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener,BackgroundWorker.My
                 startActivity(intent)
             }
 
+            4->{val intent = Intent (context, HelpActivity::class.java)
+                startActivity(intent)}
 
 
         }
