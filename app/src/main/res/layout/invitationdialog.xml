@@ -39,16 +39,16 @@
 
 
           >
-          <Button
-              android:id="@+id/btn_setModerator"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="end"
-              android:textColor="@color/gray"
-              android:padding="5dp"
-              android:background="@drawable/roundedbutton"
-              android:text="@string/set_moderator"
-              android:textSize="12sp"/>
+<!--          <Button-->
+<!--              android:id="@+id/btn_setModerator"-->
+<!--              android:layout_width="wrap_content"-->
+<!--              android:layout_height="wrap_content"-->
+<!--              android:layout_gravity="end"-->
+<!--              android:textColor="@color/gray"-->
+<!--              android:padding="5dp"-->
+<!--              android:background="@drawable/roundedbutton"-->
+<!--              android:text="@string/set_moderator"-->
+<!--              android:textSize="12sp"/>-->
 
           <Button
               android:id="@+id/btn_confirm"

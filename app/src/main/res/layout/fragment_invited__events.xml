@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:background="@color/blueblack"
             android:gravity="center"
-            android:text="@string/event_s_invited_to"
+            android:text="@string/events_invited_to"
             android:textColor="@color/whiteBackGround"
             android:textSize="24sp" />
 

@@ -5,6 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uni.pis.Adapter.UsersAdapter.InviteeListAdapter
+import com.uni.pis.Adapter.UsersAdapter.InviteeListAdapter.Companion.total
+import com.uni.pis.Adapter.UsersAdapter.InviteeListAdapter.Companion.totalAccepted
+import com.uni.pis.Adapter.UsersAdapter.InviteeListAdapter.Companion.totalmaby
+import com.uni.pis.Adapter.UsersAdapter.InviteeListAdapter.Companion.totalrejeted
 import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
 import com.uni.pis.Data.UserData.InviteeListData
@@ -32,6 +36,10 @@ class Invitee_List : AppCompatActivity(),BackgroundWorker.MyCallback, InviteeLis
             var data = BackgroundWorker(this)
             data.execute("eventinvittee", EventId)
         }
+        total=0
+        totalAccepted=0
+        totalrejeted=0
+        totalmaby=0
 
     }
 

@@ -67,7 +67,6 @@ class FriendViewAdapter(val FriendArrayList:ArrayList<FriendsItem>, val context:
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(FriendArrayList[position])
 
-
         if (eventDataInvite.EventID != "") {
             holder.itemView.btn_invite.setOnClickListener {
                 val mDialogView = LayoutInflater.from(holder.itemView.context)
@@ -124,8 +123,8 @@ class FriendViewAdapter(val FriendArrayList:ArrayList<FriendsItem>, val context:
 
                     Toast.makeText(
                         holder.itemView.context,
-                        "You Invitee Number Now Is ${eventDataInvite.InviteeNumer}",
-                        Toast.LENGTH_LONG
+                        "Invitation Sent Successfully",
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
                 mDialogView.btn_cancel.setOnClickListener {

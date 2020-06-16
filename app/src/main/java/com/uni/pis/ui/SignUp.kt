@@ -75,13 +75,14 @@ class SignUp : AppCompatActivity(), BackgroundWorker.MyCallback {
         //Birthdate
         btn_birthdate.setOnClickListener {
             val now = Calendar.getInstance()
-            val dob = DatePickerDialog(
-                this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            now.set(2007, 11, 31)
+            val dob = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                     birth = dayOfMonth.toString() + "-" + (month + 1).toString() + "-" + year.toString()
                     tv_date.text = birth
                 },
                 now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)
             )
+            dob.datePicker.maxDate=(now.timeInMillis)
             dob.show()
 
         }

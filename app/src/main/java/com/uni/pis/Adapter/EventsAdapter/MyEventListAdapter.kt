@@ -7,18 +7,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
+import com.uni.pis.BackgroundWorker
 import com.uni.pis.R
 import com.uni.pis.Events.mStorageRef
 import com.uni.pis.Events.MyCardInvitation
 import com.uni.pis.Data.EventData.eventData
+import com.uni.pis.Events.eventdate
+import com.uni.pis.Events.mFirebaseAuth
 import kotlinx.android.synthetic.main.cardview_event_viewer.view.*
 
 
 class MyEventListAdapter(var MyEvents_ArrayList: ArrayList<eventData>):
-    RecyclerView.Adapter<MyEventListAdapter.ViewHolder>() {
+    RecyclerView.Adapter<MyEventListAdapter.ViewHolder>(),BackgroundWorker.MyCallback {
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
@@ -64,7 +69,38 @@ class MyEventListAdapter(var MyEvents_ArrayList: ArrayList<eventData>):
                   ContextCompat.startActivity(holder.itemView.context, i, Bundle())
         }
 
+        holder.itemView.setOnLongClickListener{
+            val builder = AlertDialog.Builder(holder.itemView.context)
+            builder.setMessage("Do you want to delete this Event?")
+            builder.setPositiveButton("Confirm"){ _, _ ->
+                removeitem(position,holder)
 
+            }
+            builder.setNegativeButton("Cancel"){ _, _ ->
+                Toast.makeText(holder.itemView.context,"Cancelled.",Toast.LENGTH_SHORT).show()
+            }
+            builder.create().show()
+            true
+        }
+
+    }
+
+    private fun removeitem(position: Int, holder: ViewHolder):Boolean{
+        try {
+            var EventID= MyEvents_ArrayList[position].Event_ID
+            var data = BackgroundWorker(holder.itemView.context)
+            data.execute("deleteevent",EventID)
+        }
+        catch (e:Exception){
+            Toast.makeText(holder.itemView.context,e.message, Toast.LENGTH_LONG).show()
+        }
+        MyEvents_ArrayList.removeAt(position)
+        notifyDataSetChanged()
+        return true
+
+    }
+
+    override fun onResult(result: String?) {
     }
 
 

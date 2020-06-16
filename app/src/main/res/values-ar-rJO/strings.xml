@@ -91,7 +91,6 @@
     <string name="cancel">الغاء</string>
     <string name="invitee_number">عدد المدعوين</string>
     <string name="logout">تسجيل خروج</string>
-    <string name="event_s_invited_to">المناسبات المدعو اليها</string>
     <string name="unfriend">إلغاء الصداقة</string>
     <string name="friend_name">اسم الصديق</string>
     <string name="send_friend_request">ارسال طلب صداقة</string>
@@ -127,4 +126,5 @@
     <string name="et_emaill">الايميل</string>
     <string name="et_passwordd">كلمة السر</string>
     <string name="et_telephone">تيليفون</string>
+    <string name="events_invited_to">"المناسبات المدعو اليها "</string>
 </resources>

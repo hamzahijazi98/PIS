@@ -13,7 +13,8 @@ enum class userDataOrder(val index: Int) {
     userID(4),
     friendID(5),
     body(2),
-    Image(3)
+    Image(3),
+    NotificationID(0)
 }
 class Notification : AppCompatActivity(),BackgroundWorker.MyCallback {
     val NotificationArrayList=ArrayList<acceptFriendData>()
@@ -29,7 +30,7 @@ class Notification : AppCompatActivity(),BackgroundWorker.MyCallback {
         }
         catch (e:Exception)
         {
-            NotificationArrayList.add(acceptFriendData("you dont have friend", " ", " ", " "))
+            NotificationArrayList.add(acceptFriendData("you dont have friend", " ", " ", " "," "))
         }
         rv_notification.layoutManager = LinearLayoutManager(this)
         rv_notification.adapter = NotificationAdapter
@@ -45,7 +46,8 @@ class Notification : AppCompatActivity(),BackgroundWorker.MyCallback {
                 var frinedId = friend[userDataOrder.friendID.index].substringAfter("=")
                 var body = friend[userDataOrder.body.index].substringAfter("=")
                 var image = friend[userDataOrder.Image.index].substringAfter("=").replace("\\","").trim()
-                NotificationArrayList.add(acceptFriendData(body, image, userId, frinedId))
+                var NotificationID=friend[userDataOrder.NotificationID.index].substringAfter("=")
+                NotificationArrayList.add(acceptFriendData(body, image, userId, frinedId,NotificationID))
 
             }
 
