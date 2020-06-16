@@ -72,7 +72,7 @@ class HomeFrag : Fragment(), AdapterView.OnItemClickListener,BackgroundWorker.My
             }.addOnFailureListener {
                 Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
             }
-        } catch (e: Exception) { Toast.makeText(context, e.message, Toast.LENGTH_LONG).show() }
+        } catch (e: Exception) { Log.d("HomeFrag", "onError: " + e.message) }
         tv_homeName.text= userData.first_name+" "+ userData.last_name
     }
 

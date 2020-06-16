@@ -73,10 +73,10 @@ class ProfilePagePersonalFrag : Fragment(),BackgroundWorker.MyCallback {
                 }
 
             }.addOnFailureListener {
-                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                Log.d("ProfilePagePersonalFrag", "onError: " + it.message)
             }
         } catch (e: Exception) {
-            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+            Log.d("ProfilePagePersonalFrag", "onError: " + e.message)
         }
 
 
