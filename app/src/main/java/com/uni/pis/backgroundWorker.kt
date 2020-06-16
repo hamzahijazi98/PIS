@@ -876,11 +876,10 @@ class BackgroundWorker  constructor(var context: Context) :
             }
             "deletenotification" ->  {
                 try {
-                    val user_ID = p0[1]
-                    val Event_ID = p0[2]
-                    val AttendanceStatus =p0[3]
+                    val Notifcation_ID = p0[1]
 
-                    val url = URL(phplinks.updateAttendanceStatus.link)
+
+                    val url = URL(phplinks.deletenotification.link)
                     val httpURLConnection =
                         url.openConnection() as HttpURLConnection
                     httpURLConnection.requestMethod = "POST"
@@ -889,11 +888,7 @@ class BackgroundWorker  constructor(var context: Context) :
                     val outputStream = httpURLConnection.outputStream
                     val bufferedWriter =
                         BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
-                    val post_data = (URLEncoder.encode("UserID", "UTF-8") + "=" + URLEncoder.encode(user_ID, "UTF-8")
-                            +"&"
-                            + URLEncoder.encode("EventID","UTF-8")+"="+URLEncoder.encode(Event_ID,"UTF-8")
-                            +"&"
-                            +URLEncoder.encode("AttendanceStatus","UTF-8")+"="+URLEncoder.encode(AttendanceStatus,"UTF-8")
+                    val post_data = (URLEncoder.encode("notificationID", "UTF-8") + "=" + URLEncoder.encode(Notifcation_ID, "UTF-8")
 
 
                             )
