@@ -839,10 +839,10 @@ class BackgroundWorker  constructor(var context: Context) :
             "deleteevent" ->  {
                 try {
 
-                    val Event_ID = p0[2]
+                    val Event_ID = p0[1]
 
 
-                    val url = URL(phplinks.updateAttendanceStatus.link)
+                    val url = URL(phplinks.deleteevent.link)
                     val httpURLConnection =
                         url.openConnection() as HttpURLConnection
                     httpURLConnection.requestMethod = "POST"
